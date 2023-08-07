@@ -1,0 +1,65 @@
+#!/bin/sh
+
+wget https://deb.volian.org/volian/scar.key -O /usr/share/keyrings/nala-archive-keyring.gpg
+tee /etc/apt/sources.list.d/nala.list.disabled > /dev/null << EOF
+deb [signed-by=/usr/share/keyrings/nala-archive-keyring.gpg arch=amd64] http://deb.volian.org/volian/ scar main
+EOF
+
+tee /etc/apt/preferences.d/nosnap.pref.disabled > /dev/null << EOF
+Package: snapd
+Pin: release a=*
+Pin-Priority: -10
+EOF
+
+mv ./flatpak-add /usr/bin/
+mv ./flatpak-remove /usr/bin/
+mv ./nala-add /usr/bin/
+mv ./nala-remove /usr/bin/
+mv ./snap-add /usr/bin/
+mv ./snap-remove /usr/bin/
+
+# Add universe repository
+add-apt-repository -y universe
+
+# Purge restricted software
+apt-get install -y aptitude
+
+for pkg in $(aptitude search -F '%p' --disable-columns '?narrow(?installed, ?section(restricted))'); do
+    apt-get purge -y $pkg
+done
+
+apt-get purge -y aptitude aptitude-common libcwidget4 libxapian30
+
+# Remove restricted repository
+add-apt-repository -y --remove restricted
+
+# Install gnome-software
+apt-get install -y gnome-software gnome-software-plugin-snap-
+
+# Install nala
+nala-add
+
+# Add Flatpak support
+flatpak-add
+
+# Install Firefox Flatpak
+flatpak install -y org.mozilla.firefox
+
+# Add custom dconf settings profile
+tee /etc/dconf/profile/user > /dev/null << EOF
+user-db:user
+system-db:local
+EOF
+mkdir /etc/dconf/db/local.d/
+
+# Update favorite apps
+tee -a /etc/dconf/db/local.d/01-os-ubuntu > /dev/null << EOF
+[org/gnome/shell]
+favorite-apps=$(gsettings get org.gnome.shell favorite-apps | sed "s/firefox_firefox/org.mozilla.firefox/; s/snap-store_ubuntu-software/org.gnome.Software/")
+EOF
+
+# Apply dconf settings
+dconf update
+
+# Remove Snap support
+snap-remove

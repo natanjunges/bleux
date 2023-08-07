@@ -1,0 +1,3 @@
+#!/bin/sh
+
+apt-get purge -y flatpak gnome-software-plugin-flatpak

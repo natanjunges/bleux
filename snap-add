@@ -1,0 +1,5 @@
+#!/bin/sh
+
+mv /etc/apt/preferences.d/nosnap.pref /etc/apt/preferences.d/nosnap.pref.disabled
+apt-get install -y snapd gnome-software-plugin-snap
+snap install snapd

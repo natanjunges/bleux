@@ -1,0 +1,4 @@
+#!/bin/sh
+
+mv /etc/apt/sources.list.d/nala.list.disabled /etc/apt/sources.list.d/nala.list && apt-get update
+apt-get install -y nala

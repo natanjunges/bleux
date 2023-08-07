@@ -1,0 +1,4 @@
+#!/bin/sh
+
+apt-get purge -y snapd gnome-software-plugin-snap
+mv /etc/apt/preferences.d/nosnap.pref.disabled /etc/apt/preferences.d/nosnap.pref
