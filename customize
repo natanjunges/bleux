@@ -6,6 +6,11 @@ tee /etc/apt/sources.list.d/nala.list.disabled > /dev/null << EOF
 deb [signed-by=/usr/share/keyrings/nala-archive-keyring.gpg arch=amd64] http://deb.volian.org/volian/ scar main
 EOF
 
+# Prepare for apt
+tee -a /etc/bash.bashrc > /dev/null << EOF
+#apt() { /dev/null; }
+EOF
+
 # Prepare for snap
 tee /etc/apt/preferences.d/nosnap.pref.disabled > /dev/null << EOF
 Package: snapd
@@ -21,6 +26,8 @@ EOF
 mkdir /etc/dconf/db/local.d/
 
 # Install customization scripts
+mv ./apt-disable /usr/bin/
+mv ./apt-enable /usr/bin/
 mv ./flatpak-add /usr/bin/
 mv ./flatpak-remove /usr/bin/
 mv ./nala-add /usr/bin/
@@ -50,9 +57,7 @@ apt-get install -y gnome-software gnome-software-plugin-snap-
 nala-add
 
 # Disable apt
-tee -a /etc/bash.bashrc > /dev/null << EOF
-apt() { /dev/null; }
-EOF
+apt-disable
 
 # Add flatpak support
 flatpak-add

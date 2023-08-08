@@ -1,0 +1,3 @@
+#!/bin/sh
+
+sed -i 's|#apt() { /dev/null; }|apt() { /dev/null; }|' /etc/bash.bashrc
