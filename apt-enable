@@ -16,4 +16,4 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-sed -i 's|apt() { /dev/null; }|#apt() { /dev/null; }|' /etc/bash.bashrc
+ln -sf /usr/bin/apt /usr/local/bin/apt
