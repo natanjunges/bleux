@@ -49,6 +49,11 @@ apt-get install -y gnome-software gnome-software-plugin-snap-
 # Install nala
 nala-add
 
+# Disable apt
+tee -a /etc/bash.bashrc > /dev/null << EOF
+apt() { /dev/null; }
+EOF
+
 # Add flatpak support
 flatpak-add
 
