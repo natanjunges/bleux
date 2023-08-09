@@ -18,12 +18,12 @@
 
 ./install-scripts
 
-# Add custom dconf settings profile
+# Add user dconf profile
 tee /etc/dconf/profile/user > /dev/null << EOF
 user-db:user
-system-db:local
+system-db:os-ubuntu
 EOF
-mkdir /etc/dconf/db/local.d/
+mkdir /etc/dconf/db/os-ubuntu.d/
 
 # Add universe repository
 add-apt-repository -y universe
@@ -56,7 +56,7 @@ flatpak-add
 flatpak install -y org.mozilla.firefox
 
 # Update favorite apps
-tee -a /etc/dconf/db/local.d/01-os-ubuntu > /dev/null << EOF
+tee /etc/dconf/db/os-ubuntu.d/00-favorite-apps > /dev/null << EOF
 [org/gnome/shell]
 favorite-apps=$(gsettings get org.gnome.shell favorite-apps | sed "s/firefox_firefox/org.mozilla.firefox/; s/snap-store_ubuntu-software/org.gnome.Software/")
 EOF
