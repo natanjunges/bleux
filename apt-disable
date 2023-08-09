@@ -16,4 +16,4 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-ln -sf /usr/bin/false /usr/local/bin/apt
+ln -sf /usr/bin/apt-disabled /usr/local/bin/apt
