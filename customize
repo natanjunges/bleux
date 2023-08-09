@@ -59,7 +59,7 @@ flatpak install -y org.mozilla.firefox
 # Update favorite apps
 tee /etc/dconf/db/os-ubuntu.d/00-favorite-apps > /dev/null << EOF
 [org/gnome/shell]
-favorite-apps=$(gsettings get org.gnome.shell favorite-apps | sed "s/firefox_firefox/org.mozilla.firefox/; s/snap-store_ubuntu-software/org.gnome.Software/")
+favorite-apps=$(gsettings get org.gnome.shell favorite-apps | sed 's/firefox_firefox/org.mozilla.firefox/; s/snap-store_ubuntu-software/org.gnome.Software/')
 EOF
 
 # Apply dconf settings
