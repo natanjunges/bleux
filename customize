@@ -62,8 +62,11 @@ tee /etc/dconf/db/os-ubuntu.d/00-favorite-apps > /dev/null << EOF
 favorite-apps=$(gsettings get org.gnome.shell favorite-apps | sed "s/firefox_firefox/org.mozilla.firefox/; s/snap-store_ubuntu-software/org.gnome.Software/")
 EOF
 
+# Apply dconf settings
+dconf update
+
 # Remove snap support
 snap-remove
 
-# Apply dconf settings
-dconf update
+# Add pipewire support
+pipewire-add
