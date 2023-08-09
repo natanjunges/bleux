@@ -35,7 +35,7 @@ EOF
 # Install customization scripts
 install -o root -g root -m 754 ./scripts/apt-disable ./scripts/apt-enable /usr/bin/
 install -o root -g root -m 755 ./scripts/apt-disabled /usr/bin/
-install -o root -g root -m 754 ./scripts/flatpak-add ./scripts/flatpak-remove /usr/bin/
-install -o root -g root -m 754 ./scripts/nala-add ./scripts/nala-remove /usr/bin/
-install -o root -g root -m 754 ./scripts/pipewire-add ./scripts/pipewire-remove /usr/bin/
-install -o root -g root -m 754 ./scripts/snap-add ./scripts/snap-remove /usr/bin/
+install -o root -g root -m 754 ./scripts/flatpak-* /usr/bin/
+install -o root -g root -m 754 ./scripts/nala-* /usr/bin/
+install -o root -g root -m 754 ./scripts/pipewire-* /usr/bin/
+install -o root -g root -m 754 ./scripts/snap-* /usr/bin/

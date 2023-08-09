@@ -16,5 +16,11 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-apt-get purge -y snapd gnome-software-plugin-snap
-mv /etc/apt/preferences.d/nosnap.pref.disabled /etc/apt/preferences.d/nosnap.pref
+# Remove restricted repository from installation disk
+rm -rf ./iso/custom-disk/dists/jammy/restricted/
+rm -rf ./iso/custom-disk/pool/restricted/
+
+# Restore sources.list after install because ubiquity overwrites it
+tee -a ./iso/custom-disk/preseed/ubuntu.seed > /dev/null << EOF
+ubiquity ubiquity/success_command string in-target bash -c 'ln -sf /etc/apt/sources.list.d/os-ubuntu.list.main /etc/apt/sources.list'
+EOF
