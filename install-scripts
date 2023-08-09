@@ -33,7 +33,7 @@ Pin-Priority: -10
 EOF
 
 # Install customization scripts
-install -o root -g root -m 774 ./apt-disable ./apt-enable /usr/bin/
-install -o root -g root -m 774 ./flatpak-add ./flatpak-remove /usr/bin/
-install -o root -g root -m 774 ./nala-add ./nala-remove /usr/bin/
-install -o root -g root -m 774 ./snap-add ./snap-remove /usr/bin/
+install -o root -g root -m 754 ./apt-disable ./apt-enable /usr/bin/
+install -o root -g root -m 754 ./flatpak-add ./flatpak-remove /usr/bin/
+install -o root -g root -m 754 ./nala-add ./nala-remove /usr/bin/
+install -o root -g root -m 754 ./snap-add ./snap-remove /usr/bin/
