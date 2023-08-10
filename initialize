@@ -18,9 +18,10 @@
 
 # Remove restricted repository from installation disk
 rm -rf ./iso/custom-disk/dists/jammy/restricted/
+sed -i 's/ restricted$//; /restricted\//d' ./iso/custom-disk/dists/jammy/Release
 rm -rf ./iso/custom-disk/pool/restricted/
 
 # Restore sources.list after install because ubiquity overwrites it
 tee -a ./iso/custom-disk/preseed/ubuntu.seed > /dev/null << EOF
-ubiquity ubiquity/success_command string in-target bash -c 'ln -sf /etc/apt/sources.list.d/os-ubuntu.list.main /etc/apt/sources.list'
+ubiquity ubiquity/success_command string in-target bash -c 'ln -sf /etc/apt/sources.list.d/os-ubuntu.list.disabled /etc/apt/sources.list'
 EOF

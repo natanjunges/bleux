@@ -42,7 +42,7 @@ apt-get purge -y aptitude aptitude-common libcwidget4 libxapian30
 add-apt-repository -y --remove restricted
 
 # Save sources.list so we can restore it after install
-cp /etc/apt/sources.list /etc/apt/sources.list.d/os-ubuntu.list.main
+cp /etc/apt/sources.list /etc/apt/sources.list.d/os-ubuntu.list.disabled
 
 # Install gnome-software
 apt-get install -y gnome-software gnome-software-plugin-snap-
