@@ -17,7 +17,7 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 # Prepare and install customization scripts
-./install-scripts
+./scripts-install
 
 # Add user dconf profile
 tee /etc/dconf/profile/user > /dev/null << EOF
