@@ -11,19 +11,19 @@ Suggests: flatpak, libspa-0.2-bluetooth, libspa-0.2-jack, nala, pipewire-audio-c
 Homepage: https://github.com/natanjunges/os-ubuntu
 Copyright: ../../LICENSE
 Links: /usr/bin/apt /usr/sbin/apt
-Files: nala.list.disabled /etc/apt/sources.list.d/
- nosnap.pref.disabled /etc/apt/preferences.d/
- scripts/apt-disable /usr/bin/
- scripts/apt-disabled /usr/bin/
- scripts/apt-enable /usr/bin/
- scripts/flatpak-add /usr/bin/
- scripts/flatpak-remove /usr/bin/
- scripts/nala-add /usr/bin/
- scripts/nala-remove /usr/bin/
- scripts/pipewire-add /usr/bin/
- scripts/pipewire-remove /usr/bin/
- scripts/snap-add /usr/bin/
- scripts/snap-remove /usr/bin/
+Files: ./nala.list.disabled /etc/apt/sources.list.d/
+ ./nosnap.pref.disabled /etc/apt/preferences.d/
+ ./scripts/apt-disable /usr/bin/
+ ./scripts/apt-disabled /usr/bin/
+ ./scripts/apt-enable /usr/bin/
+ ./scripts/flatpak-add /usr/bin/
+ ./scripts/flatpak-remove /usr/bin/
+ ./scripts/nala-add /usr/bin/
+ ./scripts/nala-remove /usr/bin/
+ ./scripts/pipewire-add /usr/bin/
+ ./scripts/pipewire-remove /usr/bin/
+ ./scripts/snap-add /usr/bin/
+ ./scripts/snap-remove /usr/bin/
 Description: The os-ubuntu feature scripts
  This package has scripts to toggle the core features in the os-ubuntu desktop
  system.

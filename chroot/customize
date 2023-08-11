@@ -17,13 +17,13 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 # Prepare to install os-ubuntu packages
-wget https://github.com/natanjunges/os-ubuntu/raw/main/keyring.gpg -O /usr/share/keyrings/os-ubuntu-archive-keyring.gpg
 wget https://deb.volian.org/volian/scar.key -O /usr/share/keyrings/nala-archive-keyring.gpg
-install -m 644 -o root -g root os-ubuntu.list /etc/apt/sources.list.d/os-ubuntu.list
+install -m 644 -o root -g root ./os-ubuntu-archive-keyring.gpg /usr/share/keyrings/os-ubuntu-archive-keyring.gpg
+install -m 644 -o root -g root ./os-ubuntu.list /etc/apt/sources.list.d/os-ubuntu.list
 apt-get update
 
 # Add user dconf profile
-install -m 644 -o root -g root user /etc/dconf/profile/user
+install -m 644 -o root -g root ./user /etc/dconf/profile/user
 install -m 755 -o root -g root -d /etc/dconf/db/os-ubuntu.d/
 
 # Add universe repository
