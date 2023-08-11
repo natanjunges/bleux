@@ -16,8 +16,13 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-# Prepare and install customization scripts
-./scripts-install
+# Prepare and install os-ubuntu packages
+wget https://github.com/natanjunges/os-ubuntu/raw/main/keyring.gpg -O /usr/share/keyrings/os-ubuntu-archive-keyring.gpg
+wget https://deb.volian.org/volian/scar.key -O /usr/share/keyrings/nala-archive-keyring.gpg
+tee /etc/apt/sources.list.d/os-ubuntu.list > /dev/null << EOF
+deb [signed-by=/usr/share/keyrings/os-ubuntu-archive-keyring.gpg arch=amd64] https://github.com/natanjunges/os-ubuntu/releases/latest/download ./
+EOF
+apt-get install -y os-ubuntu-desktop os-ubuntu-desktop-minimal
 
 # Add user dconf profile
 tee /etc/dconf/profile/user > /dev/null << EOF
@@ -42,7 +47,7 @@ apt-get purge -y aptitude aptitude-common libcwidget4 libxapian30
 add-apt-repository -y --remove restricted
 
 # Save sources.list so we can restore it after install
-cp /etc/apt/sources.list /etc/apt/sources.list.d/os-ubuntu.list.disabled
+cp /etc/apt/sources.list /etc/apt/sources.list.d/sources.list.disabled
 
 # Install gnome-software
 apt-get install -y gnome-software gnome-software-plugin-snap-
