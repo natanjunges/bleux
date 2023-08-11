@@ -17,11 +17,9 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 # Remove restricted repository from installation disk
-rm -rf ./image/custom-disk/dists/jammy/restricted/
-sed -i 's/ restricted$//; /restricted\//d' ./image/custom-disk/dists/jammy/Release
-rm -rf ./image/custom-disk/pool/restricted/
+rm -rf ./custom-disk/dists/jammy/restricted/
+sed -i 's/ restricted$//; /restricted\//d' ./custom-disk/dists/jammy/Release
+rm -rf ./custom-disk/pool/restricted/
 
 # Restore sources.list after install because ubiquity overwrites it
-tee -a ./image/custom-disk/preseed/ubuntu.seed > /dev/null << EOF
-ubiquity ubiquity/success_command string in-target sh -c 'mv -f /etc/apt/sources.list.d/sources.list.disabled /etc/apt/sources.list'
-EOF
+cat ./os-ubuntu.seed >> ./custom-disk/preseed/ubuntu.seed

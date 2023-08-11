@@ -19,17 +19,12 @@
 # Prepare to install os-ubuntu packages
 wget https://github.com/natanjunges/os-ubuntu/raw/main/keyring.gpg -O /usr/share/keyrings/os-ubuntu-archive-keyring.gpg
 wget https://deb.volian.org/volian/scar.key -O /usr/share/keyrings/nala-archive-keyring.gpg
-tee /etc/apt/sources.list.d/os-ubuntu.list > /dev/null << EOF
-deb [signed-by=/usr/share/keyrings/os-ubuntu-archive-keyring.gpg arch=amd64] https://github.com/natanjunges/os-ubuntu/releases/latest/download ./
-EOF
+install -m 644 -o root -g root os-ubuntu.list /etc/apt/sources.list.d/os-ubuntu.list
 apt-get update
 
 # Add user dconf profile
-tee /etc/dconf/profile/user > /dev/null << EOF
-user-db:user
-system-db:os-ubuntu
-EOF
-mkdir /etc/dconf/db/os-ubuntu.d/
+install -m 644 -o root -g root user /etc/dconf/profile/user
+install -m 755 -o root -g root -d /etc/dconf/db/os-ubuntu.d/
 
 # Add universe repository
 add-apt-repository -y universe

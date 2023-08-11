@@ -1,0 +1,1 @@
+ubiquity ubiquity/success_command string in-target sh -c 'mv -f /etc/apt/sources.list.d/sources.list.disabled /etc/apt/sources.list'

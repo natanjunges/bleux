@@ -1,0 +1,1 @@
+deb [signed-by=/usr/share/keyrings/os-ubuntu-archive-keyring.gpg arch=amd64] https://github.com/natanjunges/os-ubuntu/releases/latest/download ./

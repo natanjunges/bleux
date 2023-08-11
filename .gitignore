@@ -1,2 +1,7 @@
 /image/*
 !/image/cubic.conf
+!/image/customize
+!/image/os-ubuntu.seed
+/packages/*/*.buildinfo
+/packages/*/*.changes
+/packages/*/*.deb
