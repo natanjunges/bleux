@@ -49,12 +49,14 @@ apt-get install -y os-ubuntu-desktop os-ubuntu-desktop-minimal gnome-software-pl
 
 # Install nala
 nala-add
+apt-mark auto nala
 
 # Disable apt
 apt-disable
 
 # Add flatpak support
 flatpak-add
+apt-mark auto flatpak
 
 # Install firefox flatpak
 flatpak install -y org.mozilla.firefox
@@ -73,3 +75,4 @@ snap-remove
 
 # Add pipewire support
 pipewire-add
+apt-mark auto libspa-0.2-bluetooth libspa-0.2-jack pipewire-audio-client-libraries wireplumber
