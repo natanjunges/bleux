@@ -14,6 +14,7 @@ Suggests: {suggests}
 Conflicts: kubuntu-desktop, lubuntu-desktop, ubuntu-budgie-desktop, ubuntu-desktop, ubuntu-desktop-minimal, ubuntu-mate-desktop, ubuntu-server, ubuntu-server-minimal, ubuntu-unity-desktop, ubuntu-wsl, ubuntukylin-desktop, ubuntustudio-desktop, xubuntu-desktop
 Replaces: ubuntu-desktop
 Homepage: https://github.com/natanjunges/os-ubuntu
+Copyright: ../../LICENSE
 Task: os-ubuntu-desktop
 Description: The os-ubuntu desktop system
  This package depends on all of the packages in the os-ubuntu desktop system
