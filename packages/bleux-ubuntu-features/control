@@ -30,5 +30,5 @@ Files: nala.list.disabled /etc/apt/sources.list.d/
     scripts/snap-add /usr/bin/
     scripts/snap-remove /usr/bin/
 Description: The bleUX OS - Ubuntu Edition feature scripts
- This package has scripts to toggle the core features in the bleUX OS - Ubuntu
- Version desktop system.
+ This package has scripts to toggle the core features of the bleUX OS - Ubuntu
+ Edition desktop system.

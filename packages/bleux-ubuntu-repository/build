@@ -20,7 +20,7 @@
 
 all: *.deb
 
-*.deb: control nala.list.disabled nosnap.pref.disabled scripts/*
+*.deb: bleux-ubuntu-archive-keyring.gpg bleux-ubuntu.list control
 	equivs-build control
 
 clean:

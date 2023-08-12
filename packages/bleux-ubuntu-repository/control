@@ -1,0 +1,18 @@
+Standards-Version: 4.5.1
+Package: bleux-ubuntu-repository
+Version: 0.1.0
+Architecture: amd64
+Priority: optional
+Essential: yes
+Section: admin
+Maintainer: Natan Junges <natanajunges@gmail.com>
+Bugs: https://github.com/bleux-os/ubuntu/issues
+Homepage: https://github.com/bleux-os/ubuntu
+Copyright: ../../LICENSE
+Files: bleux-ubuntu-archive-keyring.gpg /usr/share/keyrings/
+    bleux-ubuntu.list /etc/apt/sources.list.d/
+Description: The bleUX OS - Ubuntu Edition repository
+ This package has the keyring and list files for the repository of the bleUX OS
+ - Ubuntu Edition desktop system.
+ It is also used to help ensure proper upgrades, so it is recommended that
+ it not be removed.
