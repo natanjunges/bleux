@@ -1,4 +1,4 @@
-#!/usr/bin/sh
+#!/usr/bin/make -f
 
 # bleUX OS - Ubuntu Edition, an Ubuntu-based user-centric desktop Linux distribution
 # Copyright (C) 2023  Natan Junges <natanajunges@gmail.com>
@@ -16,6 +16,12 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-apt-get install -y pipewire-audio-client-libraries wireplumber libspa-0.2-bluetooth libspa-0.2-jack pipewire-media-session- pulseaudio-module-bluetooth-
-ln -sf /usr/share/doc/pipewire/examples/alsa.conf.d/99-pipewire-default.conf /etc/alsa/conf.d/
-ln -sf /usr/share/doc/pipewire/examples/ld.so.conf.d/pipewire-jack-*.conf /etc/ld.so.conf.d/ && ldconfig
+.PHONY: all clean
+
+all: *.deb
+
+*.deb: control
+	equivs-build control
+
+clean:
+	rm -f *.buildinfo *.changes *.deb

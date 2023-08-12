@@ -18,12 +18,12 @@
 
 # Prepare to install bleux-ubuntu packages
 wget https://deb.volian.org/volian/scar.key -O /usr/share/keyrings/nala-archive-keyring.gpg
-install -m 644 -o root -g root ./bleux-ubuntu-archive-keyring.gpg /usr/share/keyrings/bleux-ubuntu-archive-keyring.gpg
-install -m 644 -o root -g root ./bleux-ubuntu.list /etc/apt/sources.list.d/bleux-ubuntu.list
+install -m 644 -o root -g root bleux-ubuntu-archive-keyring.gpg /usr/share/keyrings/
+install -m 644 -o root -g root bleux-ubuntu.list /etc/apt/sources.list.d/
 apt-get update
 
 # Add user dconf profile
-install -m 644 -o root -g root ./user /etc/dconf/profile/user
+install -m 644 -o root -g root user /etc/dconf/profile/
 install -m 755 -o root -g root -d /etc/dconf/db/bleux-ubuntu.d/
 
 # Add universe repository

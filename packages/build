@@ -16,18 +16,16 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-.PHONY: all bleux-ubuntu-desktop bleux-ubuntu-desktop-minimal bleux-ubuntu-features clean
+PACKAGES=$(shell find * -prune -type d | tr '\n' ' ')
 
-all: bleux-ubuntu-desktop bleux-ubuntu-desktop-minimal bleux-ubuntu-features
+.PHONY: all $(PACKAGES) clean
 
-bleux-ubuntu-desktop:
-	cd bleux-ubuntu-desktop && equivs-build control
+all: $(PACKAGES)
 
-bleux-ubuntu-desktop-minimal:
-	cd bleux-ubuntu-desktop-minimal && equivs-build control
-
-bleux-ubuntu-features:
-	cd bleux-ubuntu-features && equivs-build control
+$(PACKAGES):
+	$(MAKE) -C $@ -f build
 
 clean:
-	rm ./*/*.buildinfo ./*/*.changes ./*/*.deb
+	for pkg in $(PACKAGES); do \
+		$(MAKE) -C $$pkg -f build clean; \
+	done
