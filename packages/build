@@ -1,4 +1,4 @@
-#!/usr/bin/sh
+#!/usr/bin/make -f
 
 # bleUX OS - Ubuntu Edition, an Ubuntu-based user-centric desktop Linux distribution
 # Copyright (C) 2023  Natan Junges <natanajunges@gmail.com>
@@ -16,5 +16,18 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-mv /etc/apt/sources.list.d/nala.list.disabled /etc/apt/sources.list.d/nala.list && apt-get update
-apt-get install -y nala
+.PHONY: all bleux-ubuntu-desktop bleux-ubuntu-desktop-minimal bleux-ubuntu-features clean
+
+all: bleux-ubuntu-desktop bleux-ubuntu-desktop-minimal bleux-ubuntu-features
+
+bleux-ubuntu-desktop:
+	cd bleux-ubuntu-desktop && equivs-build control
+
+bleux-ubuntu-desktop-minimal:
+	cd bleux-ubuntu-desktop-minimal && equivs-build control
+
+bleux-ubuntu-features:
+	cd bleux-ubuntu-features && equivs-build control
+
+clean:
+	rm ./*/*.buildinfo ./*/*.changes ./*/*.deb
