@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# os-ubuntu, a desktop Linux distribution
+# bleUX OS - Ubuntu Edition, an Ubuntu-based user-centric desktop Linux distribution
 # Copyright (C) 2023  Natan Junges <natanajunges@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
@@ -16,5 +16,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-flatpak remove -y --all
-apt-get purge -y flatpak gnome-software-plugin-flatpak
+echo '\e[31mapt is disabled.\e[0m' >&2
+echo 'You should use nala instead.' >&2
+echo 'If you really need apt, it can be enabled with:' >&2
+echo '    sudo apt-enable' >&2
+exit 1

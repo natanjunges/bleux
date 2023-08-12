@@ -1,14 +1,14 @@
 Standards-Version: 4.5.1
-Package: os-ubuntu-features
+Package: bleux-ubuntu-features
 Version: 0.1.0
 Architecture: amd64
 Priority: optional
 Section: admin
 Maintainer: Natan Junges <natanajunges@gmail.com>
-Bugs: https://github.com/natanjunges/os-ubuntu/issues
+Bugs: https://github.com/bleux-os/ubuntu/issues
 Depends: apt
 Suggests: flatpak, libspa-0.2-bluetooth, libspa-0.2-jack, nala, pipewire-audio-client-libraries, wireplumber
-Homepage: https://github.com/natanjunges/os-ubuntu
+Homepage: https://github.com/bleux-os/ubuntu
 Copyright: ../../LICENSE
 Links: /usr/bin/apt /usr/sbin/apt
 Files: ./nala.list.disabled /etc/apt/sources.list.d/
@@ -24,6 +24,6 @@ Files: ./nala.list.disabled /etc/apt/sources.list.d/
  ./scripts/pipewire-remove /usr/bin/
  ./scripts/snap-add /usr/bin/
  ./scripts/snap-remove /usr/bin/
-Description: The os-ubuntu feature scripts
- This package has scripts to toggle the core features in the os-ubuntu desktop
- system.
+Description: The bleUX OS - Ubuntu Edition feature scripts
+ This package has scripts to toggle the core features in the bleUX OS - Ubuntu
+ Version desktop system.

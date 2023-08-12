@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# os-ubuntu, a desktop Linux distribution
+# bleUX OS - Ubuntu Edition, an Ubuntu-based user-centric desktop Linux distribution
 # Copyright (C) 2023  Natan Junges <natanajunges@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
@@ -16,15 +16,15 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-# Prepare to install os-ubuntu packages
+# Prepare to install bleux-ubuntu packages
 wget https://deb.volian.org/volian/scar.key -O /usr/share/keyrings/nala-archive-keyring.gpg
-install -m 644 -o root -g root ./os-ubuntu-archive-keyring.gpg /usr/share/keyrings/os-ubuntu-archive-keyring.gpg
-install -m 644 -o root -g root ./os-ubuntu.list /etc/apt/sources.list.d/os-ubuntu.list
+install -m 644 -o root -g root ./bleux-ubuntu-archive-keyring.gpg /usr/share/keyrings/bleux-ubuntu-archive-keyring.gpg
+install -m 644 -o root -g root ./bleux-ubuntu.list /etc/apt/sources.list.d/bleux-ubuntu.list
 apt-get update
 
 # Add user dconf profile
 install -m 644 -o root -g root ./user /etc/dconf/profile/user
-install -m 755 -o root -g root -d /etc/dconf/db/os-ubuntu.d/
+install -m 755 -o root -g root -d /etc/dconf/db/bleux-ubuntu.d/
 
 # Add universe repository
 add-apt-repository -y universe
@@ -44,8 +44,8 @@ add-apt-repository -y --remove restricted
 # Save sources.list so we can restore it after install
 cp /etc/apt/sources.list /etc/apt/sources.list.d/sources.list.disabled
 
-# Install os-ubuntu packages
-apt-get install -y os-ubuntu-desktop os-ubuntu-desktop-minimal gnome-software-plugin-snap-
+# Install bleux-ubuntu packages
+apt-get install -y bleux-ubuntu-desktop bleux-ubuntu-desktop-minimal gnome-software-plugin-snap-
 
 # Install nala
 nala-add
@@ -62,7 +62,7 @@ apt-mark auto flatpak
 flatpak install -y org.mozilla.firefox
 
 # Update favorite apps
-tee /etc/dconf/db/os-ubuntu.d/00-favorite-apps > /dev/null << EOF
+tee /etc/dconf/db/bleux-ubuntu.d/00-favorite-apps > /dev/null << EOF
 [org/gnome/shell]
 favorite-apps=$(gsettings get org.gnome.shell favorite-apps | sed 's/firefox_firefox/org.mozilla.firefox/; s/snap-store_ubuntu-software/org.gnome.Software/')
 EOF

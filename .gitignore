@@ -1,7 +1,7 @@
 /image/*
 !/image/cubic.conf
 !/image/customize
-!/image/os-ubuntu.seed
+!/image/bleux-ubuntu.seed
 /packages/*/*.buildinfo
 /packages/*/*.changes
 /packages/*/*.deb

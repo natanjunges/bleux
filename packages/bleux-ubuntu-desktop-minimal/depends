@@ -3,6 +3,7 @@ alsa-utils
 anacron
 at-spi2-core
 bc
+bleux-ubuntu-features
 ca-certificates
 dmz-cursor-theme
 fonts-dejavu-core
@@ -32,7 +33,6 @@ libsasl2-modules
 libu2f-udev
 nautilus
 openprinting-ppds
-os-ubuntu-features
 printer-driver-pnm2ppa
 pulseaudio
 rfkill

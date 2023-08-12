@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# os-ubuntu, a desktop Linux distribution
+# bleUX OS - Ubuntu Edition, an Ubuntu-based user-centric desktop Linux distribution
 # Copyright (C) 2023  Natan Junges <natanajunges@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
@@ -22,4 +22,4 @@ sed -i 's/ restricted$//; /restricted\//d' ./custom-disk/dists/jammy/Release
 rm -rf ./custom-disk/pool/restricted/
 
 # Apply seed customizations
-cat ./os-ubuntu.seed >> ./custom-disk/preseed/ubuntu.seed
+cat ./bleux-ubuntu.seed >> ./custom-disk/preseed/ubuntu.seed
