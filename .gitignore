@@ -5,3 +5,5 @@
 /packages/*/*.buildinfo
 /packages/*/*.changes
 /packages/*/*.deb
+/repository/*
+!/repository/build

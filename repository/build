@@ -1,0 +1,46 @@
+#!/usr/bin/make -f
+
+# bleUX OS - Ubuntu Edition, an Ubuntu-based user-centric desktop Linux distribution
+# Copyright (C) 2023  Natan Junges <natanajunges@gmail.com>
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+.PHONY: all packages indexes clean
+
+all:
+	$(MAKE) -f build packages
+	$(MAKE) -f build indexes
+
+packages:
+	$(MAKE) -C ../packages -f build
+	cp -u ../packages/*/*.deb .
+
+indexes: InRelease Release.gpg
+
+InRelease: Release
+	rm -f InRelease
+	gpg --clearsign -u 0105929FE7AFB070FD84492CD79521EF764DEAD2 -o InRelease Release
+
+Release.gpg: Release
+	rm -f Release.gpg
+	gpg -abs -u 0105929FE7AFB070FD84492CD79521EF764DEAD2 -o Release.gpg Release
+
+Release: Packages
+	apt-ftparchive release . > Release
+
+Packages: *.deb
+	apt-ftparchive packages . > Packages
+
+clean:
+	rm -f InRelease Packages Release Release.gpg *.deb
