@@ -7,6 +7,8 @@ Section: admin
 Maintainer: Natan Junges <natanajunges@gmail.com>
 Bugs: https://github.com/bleux-os/ubuntu/issues
 Depends: apt
+Recommends: volian-archive-keyring,
+    volian-archive-nala
 Suggests: flatpak,
     libspa-0.2-bluetooth,
     libspa-0.2-jack,
@@ -16,8 +18,7 @@ Suggests: flatpak,
 Homepage: https://github.com/bleux-os/ubuntu
 Copyright: ../../LICENSE
 Links: /usr/bin/apt /usr/sbin/apt
-Files: nala.list.disabled /etc/apt/sources.list.d/
-    nosnap.pref.disabled /etc/apt/preferences.d/
+Files: nosnap.pref.disabled /etc/apt/preferences.d/
     scripts/apt-disable /usr/bin/
     scripts/apt-disabled /usr/bin/
     scripts/apt-enable /usr/bin/

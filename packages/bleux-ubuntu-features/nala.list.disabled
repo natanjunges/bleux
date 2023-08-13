@@ -1,1 +1,0 @@
-deb [signed-by=/usr/share/keyrings/nala-archive-keyring.gpg arch=amd64] http://deb.volian.org/volian/ scar main

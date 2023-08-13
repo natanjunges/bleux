@@ -20,7 +20,7 @@
 
 all: *.deb
 
-*.deb: control nala.list.disabled nosnap.pref.disabled scripts/*
+*.deb: control nosnap.pref.disabled scripts/*
 	equivs-build control
 
 clean:
