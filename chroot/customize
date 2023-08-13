@@ -19,7 +19,7 @@
 # Prepare to install bleux-ubuntu packages
 wget https://deb.volian.org/volian/scar.key -O /usr/share/keyrings/nala-archive-keyring.gpg
 wget https://github.com/bleux-os/ubuntu/releases/latest/download/bleux-ubuntu-repository.deb
-apt-get install -y bleux-ubuntu-repository
+apt-get install -y ./bleux-ubuntu-repository.deb
 apt-get update
 
 # Add user dconf profile
