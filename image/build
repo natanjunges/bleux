@@ -37,4 +37,4 @@ cubic:
 clean:
 	rm -rf custom-disk/
 	sudo rm -rf custom-root/
-	rm -f partition-1.img partition-2.img
+	rm -f partition-1.img partition-2.img bleux-ubuntu-*.iso bleux-ubuntu-*.md5
