@@ -16,12 +16,4 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-# Remove restricted repository from installation disk
-rm -rf custom-disk/dists/jammy/restricted/
-rm -rf custom-disk/pool/restricted/
-
-# Apply seed customizations
-cat bleux-ubuntu.seed >> custom-disk/preseed/ubuntu.seed
-
-# Copy chroot files to chroot
-sudo cp ../chroot/* custom-root/root/
+apt-get install -y pulseaudio

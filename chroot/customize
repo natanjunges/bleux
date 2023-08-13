@@ -73,6 +73,9 @@ dconf update
 # Remove snap support
 snap-remove
 
-# Add pipewire support
+# Add pipewire
 pipewire-add
 apt-mark auto libspa-0.2-bluetooth libspa-0.2-jack pipewire-audio-client-libraries wireplumber
+
+# Remove pulseaudio
+pulseaudio-remove
