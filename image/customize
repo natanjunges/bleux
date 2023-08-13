@@ -17,8 +17,7 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 # Remove restricted repository from installation disk
-rm -rf custom-disk/dists/jammy/restricted/
-rm -rf custom-disk/pool/restricted/
+rm -rf custom-disk/dists/jammy/restricted/ custom-disk/pool/restricted/
 
 # Apply seed customizations
 cat bleux-ubuntu.seed >> custom-disk/preseed/ubuntu.seed

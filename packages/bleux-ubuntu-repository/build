@@ -22,6 +22,8 @@ all: *.deb
 
 *.deb: bleux-ubuntu-archive-keyring.gpg bleux-ubuntu.list control
 	equivs-build control
+	mv -f bleux-ubuntu-repository_*_amd64.buildinfo bleux-ubuntu-repository.buildinfo
+	mv -f bleux-ubuntu-repository_*_amd64.changes bleux-ubuntu-repository.changes
 	mv -f bleux-ubuntu-repository_*_amd64.deb bleux-ubuntu-repository.deb
 
 clean:
