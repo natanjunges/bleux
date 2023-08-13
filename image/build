@@ -1,4 +1,4 @@
-#!/usr/bin/sh
+#!/usr/bin/make -f
 
 # bleUX OS - Ubuntu Edition, an Ubuntu-based user-centric desktop Linux distribution
 # Copyright (C) 2023  Natan Junges <natanajunges@gmail.com>
@@ -16,13 +16,25 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-# Remove restricted repository from installation disk
-rm -rf custom-disk/dists/jammy/restricted/
-sed -i 's/ restricted$//; /restricted\//d' custom-disk/dists/jammy/Release
-rm -rf custom-disk/pool/restricted/
+.PHONY: all extract customize cubic clean
 
-# Apply seed customizations
-cat bleux-ubuntu.seed >> custom-disk/preseed/ubuntu.seed
+all:
+	$(MAKE) -f build extract
+	$(MAKE) -f build customize
+	$(MAKE) -f build cubic
 
-# Copy chroot files to chroot
-sudo cp ../chroot/* custom-root/root/
+extract:
+	if [ -z "$$ISO_DIRECTORY" ]; then exit 1; fi
+	sed -i "s|\$${ISO_DIRECTORY}|$$ISO_DIRECTORY|; s|\$${PWD}|$$PWD|; s/is_success_copy = True/is_success_copy = False/; s/is_success_extract = True/is_success_extract = False/" cubic.conf
+	cubic .
+
+customize:
+	./customize
+
+cubic:
+	cubic .
+
+clean:
+	rm -rf custom-disk/
+	sudo rm -rf custom-root/
+	rm -f partition-1.img partition-2.img

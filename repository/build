@@ -36,11 +36,14 @@ Release.gpg: Release
 	rm -f Release.gpg
 	gpg -abs -u 0105929FE7AFB070FD84492CD79521EF764DEAD2 -o Release.gpg Release
 
-Release: Packages
+Release: Packages.xz
 	apt-ftparchive release . > Release
+
+Packages.xz: Packages
+	xz -k Packages
 
 Packages: *.deb
 	apt-ftparchive packages . > Packages
 
 clean:
-	rm -f InRelease Packages Release Release.gpg *.deb
+	rm -f InRelease Packages Packages.xz Release Release.gpg *.deb

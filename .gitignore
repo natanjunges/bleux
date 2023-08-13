@@ -1,5 +1,5 @@
 /image/*
-!/image/cubic.conf
+!/image/build
 !/image/customize
 !/image/bleux-ubuntu.seed
 /packages/*/*.buildinfo
