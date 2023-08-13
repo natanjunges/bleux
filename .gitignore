@@ -1,7 +1,8 @@
 /image/*
+!/image/bleux-ubuntu.seed
 !/image/build
 !/image/customize
-!/image/bleux-ubuntu.seed
+!/image/version
 /packages/*/*.buildinfo
 /packages/*/*.changes
 /packages/*/*.deb
