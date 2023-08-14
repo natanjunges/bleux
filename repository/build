@@ -16,6 +16,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+KEYRING=0105929FE7AFB070FD84492CD79521EF764DEAD2
+
 .PHONY: all packages indexes clean
 
 all:
@@ -30,11 +32,11 @@ indexes: InRelease Release.gpg
 
 InRelease: Release
 	rm -f InRelease
-	gpg --clearsign -u 0105929FE7AFB070FD84492CD79521EF764DEAD2 -o InRelease Release
+	gpg --clearsign -u $(KEYRING) -o InRelease Release
 
 Release.gpg: Release
 	rm -f Release.gpg
-	gpg -abs -u 0105929FE7AFB070FD84492CD79521EF764DEAD2 -o Release.gpg Release
+	gpg -abs -u $(KEYRING) -o Release.gpg Release
 
 Release: Packages.xz
 	apt-ftparchive release . > Release
