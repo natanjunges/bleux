@@ -20,7 +20,7 @@
 rm -rf custom-disk/dists/jammy/restricted/ custom-disk/pool/restricted/
 
 # Apply seed customizations
-cat bleux-ubuntu.seed >> custom-disk/preseed/ubuntu.seed
+cat bleux.seed >> custom-disk/preseed/ubuntu.seed
 
 # Copy chroot files to chroot
 sudo cp ../chroot/* custom-root/root/

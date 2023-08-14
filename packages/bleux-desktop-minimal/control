@@ -1,5 +1,5 @@
 Standards-Version: 4.5.1
-Package: bleux-ubuntu-desktop-minimal
+Package: bleux-desktop-minimal
 Version: 0.1.0
 Architecture: amd64
 Priority: optional
@@ -13,7 +13,7 @@ Depends: alsa-base,
     anacron,
     at-spi2-core,
     bc,
-    bleux-ubuntu-features,
+    bleux-features,
     ca-certificates,
     dmz-cursor-theme,
     fonts-dejavu-core,
@@ -189,7 +189,7 @@ Conflicts: kubuntu-desktop,
 Replaces: ubuntu-desktop-minimal
 Homepage: https://github.com/bleux-os/ubuntu
 Copyright: ../../LICENSE
-Task: bleux-ubuntu-desktop-minimal, bleux-ubuntu-desktop
+Task: bleux-desktop-minimal, bleux-desktop
 Description: The bleUX OS - Ubuntu Edition desktop minimal system
  This package depends on all of the packages in the bleUX OS - Ubuntu Edition
  desktop minimal system.

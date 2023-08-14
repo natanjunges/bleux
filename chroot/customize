@@ -16,17 +16,17 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-# Prepare to install bleux-ubuntu packages
+# Prepare to install bleux packages
 wget https://gitlab.com/volian/volian-archive/uploads/b20bd8237a9b20f5a82f461ed0704ad4/volian-archive-keyring_0.1.0_all.deb https://gitlab.com/volian/volian-archive/uploads/d6b3a118de5384a0be2462905f7e4301/volian-archive-nala_0.1.0_all.deb
-wget https://github.com/bleux-os/ubuntu/releases/latest/download/bleux-ubuntu-repository.deb
+wget https://github.com/bleux-os/ubuntu/releases/latest/download/bleux-repository.deb
 apt-get install -y ./volian-archive-keyring_0.1.0_all.deb ./volian-archive-nala_0.1.0_all.deb
 mv /etc/apt/sources.list.d/volian-archive-scar-unstable.sources /etc/apt/sources.list.d/volian-archive-scar-unstable.sources.disabled
-apt-get install -y ./bleux-ubuntu-repository.deb
+apt-get install -y ./bleux-repository.deb
 apt-get update
 
 # Add user dconf profile
 install -m 644 -o root -g root user /etc/dconf/profile/
-install -m 755 -o root -g root -d /etc/dconf/db/bleux-ubuntu.d/
+install -m 755 -o root -g root -d /etc/dconf/db/bleux.d/
 
 # Add universe repository
 add-apt-repository -y universe
@@ -46,8 +46,8 @@ add-apt-repository -y --remove restricted
 # Save sources.list so we can restore it after install
 cp /etc/apt/sources.list /etc/apt/sources.list.d/sources.list.disabled
 
-# Install bleux-ubuntu packages
-apt-get install -y bleux-ubuntu-desktop bleux-ubuntu-desktop-minimal gnome-software-plugin-snap-
+# Install bleux packages
+apt-get install -y bleux-desktop bleux-desktop-minimal gnome-software-plugin-snap-
 
 # Install nala
 nala-add
@@ -64,7 +64,7 @@ apt-mark auto flatpak
 flatpak install -y org.mozilla.firefox
 
 # Update favorite apps
-tee /etc/dconf/db/bleux-ubuntu.d/00-favorite-apps > /dev/null << EOF
+tee /etc/dconf/db/bleux.d/00-favorite-apps > /dev/null << EOF
 [org/gnome/shell]
 favorite-apps=$(gsettings get org.gnome.shell favorite-apps | sed 's/firefox_firefox/org.mozilla.firefox/; s/snap-store_ubuntu-software/org.gnome.Software/')
 EOF
