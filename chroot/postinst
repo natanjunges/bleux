@@ -16,14 +16,5 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-# Remove restricted repository from installation disk
-rm -rf custom-disk/dists/jammy/restricted/ custom-disk/pool/restricted/
-
-# Replace Ubuntu seed customizations
-cp bleux.seed custom-disk/preseed/
-rm custom-disk/preseed/ubuntu.seed
-sed -i "s|file=/cdrom/preseed/ubuntu.seed|file=/cdrom/preseed/bleux.seed|" custom-disk/boot/grub/grub.cgf
-sed -i "s|file=/cdrom/preseed/ubuntu.seed|file=/cdrom/preseed/bleux.seed|" custom-disk/boot/grub/loopback.cgf
-
-# Copy chroot files to chroot
-sudo cp ../chroot/* custom-root/root/
+# Restore sources.list after install because ubiquity overwrites it
+mv -f /etc/apt/sources.list.d/sources.list.disabled /etc/apt/sources.list

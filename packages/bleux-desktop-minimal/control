@@ -7,7 +7,6 @@ Essential: yes
 Section: metapackages
 Maintainer: Natan Junges <natanajunges@gmail.com>
 Bugs: https://github.com/bleux-os/ubuntu/issues
-Provides: packagekit-installer
 Depends: alsa-base,
     alsa-utils,
     anacron,
@@ -189,7 +188,6 @@ Conflicts: kubuntu-desktop,
 Replaces: ubuntu-desktop-minimal
 Homepage: https://github.com/bleux-os/ubuntu
 Copyright: ../../LICENSE
-Task: bleux-desktop-minimal, bleux-desktop
 Description: The bleUX OS - Ubuntu Edition desktop minimal system
  This package depends on all of the packages in the bleUX OS - Ubuntu Edition
  desktop minimal system.
