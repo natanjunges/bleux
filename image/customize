@@ -22,8 +22,8 @@ rm -rf custom-disk/dists/jammy/restricted/ custom-disk/pool/restricted/
 # Replace Ubuntu seed customizations
 cp bleux.seed custom-disk/preseed/
 rm custom-disk/preseed/ubuntu.seed
-sed -i "s|file=/cdrom/preseed/ubuntu.seed|file=/cdrom/preseed/bleux.seed|" custom-disk/boot/grub/grub.cgf
-sed -i "s|file=/cdrom/preseed/ubuntu.seed|file=/cdrom/preseed/bleux.seed|" custom-disk/boot/grub/loopback.cgf
+sed -i "s|file=/cdrom/preseed/ubuntu.seed|file=/cdrom/preseed/bleux.seed|" custom-disk/boot/grub/grub.cfg
+sed -i "s|file=/cdrom/preseed/ubuntu.seed|file=/cdrom/preseed/bleux.seed|" custom-disk/boot/grub/loopback.cfg
 
 # Copy chroot files to chroot
 sudo cp ../chroot/* custom-root/root/
