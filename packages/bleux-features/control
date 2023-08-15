@@ -32,6 +32,6 @@ Files: nosnap.pref.disabled /etc/apt/preferences.d/
     scripts/pulseaudio-remove /usr/bin/
     scripts/snap-add /usr/bin/
     scripts/snap-remove /usr/bin/
-Description: The bleUX OS feature scripts
- This package has scripts to toggle the core features of the bleUX OS desktop
+Description: The bleUX feature scripts
+ This package has scripts to toggle the core features of the bleUX desktop
  system.
