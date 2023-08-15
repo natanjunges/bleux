@@ -216,7 +216,7 @@ Conflicts: kubuntu-desktop,
 Replaces: ubuntu-desktop
 Homepage: https://github.com/bleux-os/ubuntu
 Copyright: ../../LICENSE
-Description: The bleUX OS desktop system
- This package depends on all of the packages in the bleUX OS desktop system.
+Description: The bleUX desktop system
+ This package depends on all of the packages in the bleUX desktop system.
  It is also used to help ensure proper upgrades, so it is recommended that
  it not be removed.
