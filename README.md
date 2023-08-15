@@ -1,4 +1,4 @@
-# bleUX OS
+# bleUX
 A user-centric desktop Linux distribution
 
 - Based on Ubuntu Desktop 22.04 LTS, built with [Cubic](https://github.com/PJ-Singh-001/Cubic);
