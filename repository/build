@@ -28,15 +28,11 @@ packages:
 	$(MAKE) -C ../packages -f build
 	cp -u ../packages/*/*.deb .
 
-indexes: InRelease Release.gpg
+indexes: InRelease
 
 InRelease: Release
 	rm -f InRelease
 	gpg --clearsign -u $(KEYRING) -o InRelease Release
-
-Release.gpg: Release
-	rm -f Release.gpg
-	gpg -abs -u $(KEYRING) -o Release.gpg Release
 
 Release: Packages.xz
 	apt-ftparchive release . > Release
@@ -48,4 +44,4 @@ Packages: *.deb
 	apt-ftparchive packages . > Packages
 
 clean:
-	rm -f InRelease Packages Packages.xz Release Release.gpg *.deb
+	rm -f InRelease Packages Packages.xz Release *.deb
