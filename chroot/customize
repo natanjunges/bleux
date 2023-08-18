@@ -48,7 +48,7 @@ add-apt-repository -y --remove restricted
 cp /etc/apt/sources.list /etc/apt/sources.list.d/sources.list.disabled
 
 # Install bleux packages
-apt-get install -y bleux-desktop bleux-desktop-minimal gnome-software-plugin-snap-
+apt-get install -y bleux-desktop gnome-software-plugin-snap-
 
 # Install nala
 nala-add
