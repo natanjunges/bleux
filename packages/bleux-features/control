@@ -14,6 +14,9 @@ Suggests: flatpak,
     libspa-0.2-jack,
     nala,
     pipewire-audio-client-libraries,
+    pulseaudio,
+    pulseaudio-module-bluetooth,
+    snapd,
     wireplumber
 Homepage: https://github.com/bleux-os/ubuntu
 Copyright: ../../LICENSE
