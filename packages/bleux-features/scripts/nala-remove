@@ -17,4 +17,5 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 apt-get purge -y nala
-mv /etc/apt/sources.list.d/volian-archive-scar-unstable.sources /etc/apt/sources.list.d/volian-archive-scar-unstable.sources.disabled && apt-get update
+mv /etc/apt/sources.list.d/volian-archive-scar-unstable.sources /etc/apt/sources.list.d/volian-archive-scar-unstable.sources.disabled \
+&& apt-get update
