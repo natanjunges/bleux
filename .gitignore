@@ -1,4 +1,5 @@
 /image/*
+!/image/chroot/
 !/image/bleux.seed
 !/image/build
 !/image/customize

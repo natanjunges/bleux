@@ -1,0 +1,14 @@
+Standards-Version: 4.5.1
+Package: bleux-settings
+Version: 0.1.0
+Architecture: amd64
+Priority: optional
+Section: admin
+Maintainer: Natan Junges <natanajunges@gmail.com>
+Bugs: https://github.com/bleux-os/ubuntu/issues
+Homepage: https://github.com/bleux-os/ubuntu
+Copyright: ../../LICENSE
+Files: 00-favorite-apps /etc/dconf/db/bleux.d/
+    user /etc/dconf/profile/
+Description: The bleUX default settings
+ This package has the default setting files for the bleUX desktop system.

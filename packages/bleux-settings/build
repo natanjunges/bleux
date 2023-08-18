@@ -20,7 +20,7 @@
 
 all: *.deb
 
-*.deb: user control
+*.deb: 00-favorite-apps user control
 	equivs-build control
 
 clean:
