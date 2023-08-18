@@ -25,10 +25,6 @@ mv /etc/apt/sources.list.d/volian-archive-scar-unstable.sources /etc/apt/sources
 apt-get install -y ./bleux-repository.deb
 apt-get update
 
-# Add user dconf profile
-install -m 644 -o root -g root user /etc/dconf/profile/
-install -m 755 -o root -g root -d /etc/dconf/db/bleux.d/
-
 # Add universe repository
 add-apt-repository -y universe
 
@@ -63,15 +59,6 @@ apt-mark auto flatpak
 
 # Install firefox flatpak
 flatpak install -y org.mozilla.firefox
-
-# Update favorite apps
-tee /etc/dconf/db/bleux.d/00-favorite-apps > /dev/null << EOF
-[org/gnome/shell]
-favorite-apps=$(gsettings get org.gnome.shell favorite-apps | sed 's/firefox_firefox/org.mozilla.firefox/; s/snap-store_ubuntu-software/org.gnome.Software/')
-EOF
-
-# Apply dconf settings
-dconf update
 
 # Remove snap support
 snap-remove
