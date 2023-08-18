@@ -26,4 +26,4 @@ sed -i "s|file=/cdrom/preseed/ubuntu.seed|file=/cdrom/preseed/bleux.seed|" custo
 sed -i "s|file=/cdrom/preseed/ubuntu.seed|file=/cdrom/preseed/bleux.seed|" custom-disk/boot/grub/loopback.cfg
 
 # Copy chroot files to chroot
-sudo cp ../chroot/* custom-root/root/
+sudo cp chroot/* custom-root/root/
