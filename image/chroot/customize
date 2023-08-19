@@ -33,9 +33,6 @@ apt-get install -y ./bleux-repository.deb
 # Add universe repository
 add-apt-repository -y universe
 
-# Save sources.list so we can restore it after install
-cp /etc/apt/sources.list /etc/apt/sources.list.d/sources.list.disabled
-
 # Install bleux packages
 apt-get install -y bleux-desktop gnome-software-plugin-snap-
 

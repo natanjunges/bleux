@@ -15,6 +15,3 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
-# Restore sources.list after install because ubiquity overwrites it
-mv -f /etc/apt/sources.list.d/sources.list.disabled /etc/apt/sources.list

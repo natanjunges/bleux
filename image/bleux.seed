@@ -1,2 +1,6 @@
+# Remove non-free repositories
+d-i apt-setup/multiverse boolean false
+d-i apt-setup/restricted boolean false
+
 # Run post install script and remove it
 ubiquity ubiquity/success_command string in-target sh -c '/root/postinst; rm /root/postinst'
