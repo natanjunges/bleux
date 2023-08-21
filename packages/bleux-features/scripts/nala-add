@@ -18,4 +18,4 @@
 
 mv /etc/apt/sources.list.d/volian-archive-scar-unstable.sources.disabled /etc/apt/sources.list.d/volian-archive-scar-unstable.sources \
 && apt-get update
-apt-get install -y nala
+apt-get install -y --no-install-recommends nala
