@@ -20,7 +20,7 @@
 
 all: *.deb
 
-*.deb: 00-favorite-apps user control
+*.deb: 20_bleux-settings.gschema.override control
 	equivs-build control
 
 clean:
