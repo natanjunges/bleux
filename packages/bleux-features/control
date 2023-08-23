@@ -1,6 +1,6 @@
 Standards-Version: 4.5.1
 Package: bleux-features
-Version: 0.5.0
+Version: 0.6.0
 Architecture: amd64
 Priority: optional
 Section: admin
