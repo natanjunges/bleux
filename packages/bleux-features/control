@@ -6,10 +6,13 @@ Priority: optional
 Section: admin
 Maintainer: Natan Junges <natanajunges@gmail.com>
 Bugs: https://github.com/bleux-os/ubuntu/issues
-Depends: apt
+Depends: apt,
+    gnome-software
 Recommends: volian-archive-keyring,
     volian-archive-nala
 Suggests: flatpak,
+    gnome-software-plugin-flatpak,
+    gnome-software-plugin-snap,
     libspa-0.2-bluetooth,
     libspa-0.2-jack,
     nala,
@@ -17,7 +20,7 @@ Suggests: flatpak,
     pulseaudio,
     pulseaudio-module-bluetooth,
     snapd,
-    wireplumber
+    wireplumber | pipewire-media-session
 Homepage: https://github.com/bleux-os/ubuntu
 Copyright: ../../LICENSE
 Links: /usr/bin/apt /usr/sbin/apt

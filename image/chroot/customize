@@ -38,14 +38,12 @@ apt-get install -y bleux-desktop gnome-software-plugin-snap-
 
 # Install nala
 nala-add
-apt-mark auto nala
 
 # Disable apt
 apt-disable
 
 # Add flatpak support
 flatpak-add
-apt-mark auto flatpak
 
 # Install firefox flatpak
 flatpak install -y org.mozilla.firefox
@@ -55,7 +53,11 @@ snap-remove
 
 # Add pipewire
 pipewire-add
-apt-mark auto libspa-0.2-bluetooth libspa-0.2-jack pipewire-audio-client-libraries wireplumber
 
 # Remove pulseaudio
 pulseaudio-remove
+
+apt-get upgrade -y
+apt-get autoremove -y --purge
+apt-get clean
+rm customize *.deb

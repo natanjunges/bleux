@@ -18,5 +18,6 @@
 
 apt-get install -y pipewire-audio-client-libraries wireplumber libspa-0.2-bluetooth libspa-0.2-jack pipewire-media-session- \
                    pulseaudio-module-bluetooth-
+apt-mark auto pipewire-audio-client-libraries wireplumber libspa-0.2-bluetooth libspa-0.2-jack
 ln -sf /usr/share/doc/pipewire/examples/alsa.conf.d/99-pipewire-default.conf /etc/alsa/conf.d/
 ln -sf /usr/share/doc/pipewire/examples/ld.so.conf.d/pipewire-jack-*.conf /etc/ld.so.conf.d/ && ldconfig
