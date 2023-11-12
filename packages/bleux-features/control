@@ -1,8 +1,8 @@
 Package: bleux-features
 Section: utils
-Depends: apt,
-    gnome-software
-Recommends: volian-archive-keyring,
+Depends: apt
+Recommends: gnome-software,
+    volian-archive-keyring,
     volian-archive-nala
 Suggests: flatpak,
     gnome-software-plugin-flatpak,
