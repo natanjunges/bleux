@@ -1,5 +1,3 @@
-#!/usr/bin/make -f
-
 # bleUX, a user-centric desktop Linux distribution
 # Copyright (C) 2023  Natan Junges <natanajunges@gmail.com>
 #
@@ -16,6 +14,16 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-FILES=nosnap.pref.disabled scripts/*
+FILES ?= changelog
+POSTGEN ?= true
 
-include ../build-common
+.PHONY: all clean
+
+all: *.deb
+
+*.deb: ../control-common control changelog $(FILES)
+	cat ../control-common control | equivs-build -
+	$(POSTGEN)
+
+clean:
+	rm -f *.buildinfo *.changes *.deb

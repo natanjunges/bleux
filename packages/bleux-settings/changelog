@@ -1,0 +1,12 @@
+bleux-settings (0.2.0) jammy; urgency=low
+
+  * Add dependencies.
+  * Replace dconf user DB with glib schema override file.
+
+ -- Natan Junges <natanajunges@gmail.com>  Tue, 22 Aug 2023 20:38:00 -0300
+
+bleux-settings (0.1.0) jammy; urgency=low
+
+  * Initial release.
+
+ -- Natan Junges <natanajunges@gmail.com>  Fri, 18 Aug 2023 20:04:00 -0300

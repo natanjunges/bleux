@@ -1,0 +1,41 @@
+bleux-features (0.6.0) jammy; urgency=low
+
+  * Add gnome-software to Depends.
+  * Add gnome-software-plugin-flatpak and gnome-software-plugin-snap to Suggests.
+  * Add pipewire-media-session as alternative to wireplumber.
+
+ -- Natan Junges <natanajunges@gmail.com>  Tue, 22 Aug 2023 23:40:00 -0300
+
+bleux-features (0.5.0) jammy; urgency=low
+
+  * Update feature scripts.
+
+ -- Natan Junges <natanajunges@gmail.com>  Tue, 22 Aug 2023 20:38:00 -0300
+
+bleux-features (0.4.0) jammy; urgency=low
+
+  * Add removed packages to Suggests.
+  * Remove Ubuntu mention from bleUX branding.
+
+ -- Natan Junges <natanajunges@gmail.com>  Sat, 19 Aug 2023 00:39:00 -0300
+
+bleux-features (0.3.0) jammy; urgency=low
+
+  * Rename package to bleux-features.
+  * Update feature scripts.
+
+ -- Natan Junges <natanajunges@gmail.com>  Mon, 14 Aug 2023 20:49:00 -0300
+
+bleux-ubuntu-features (0.2.0) jammy; urgency=low
+
+  * Rename package to bleux-ubuntu-features.
+  * Add nala archive packages to Recommends.
+  * Remove custom nala list file.
+
+ -- Natan Junges <natanajunges@gmail.com>  Sun, 13 Aug 2023 17:11:00 -0300
+
+os-ubuntu-features (0.1.0) jammy; urgency=low
+
+  * Initial release.
+
+ -- Natan Junges <natanajunges@gmail.com>  Thu, 10 Aug 2023 23:11:00 -0300

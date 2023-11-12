@@ -1,19 +1,11 @@
-Standards-Version: 4.5.1
 Package: bleux-desktop
-Version: 0.3.0
-Architecture: amd64
-Priority: optional
-Essential: yes
 Section: metapackages
-Maintainer: Natan Junges <natanajunges@gmail.com>
-Bugs: https://github.com/bleux-os/ubuntu/issues
+Essential: yes
 Depends: alsa-base,
     alsa-utils,
     anacron,
     at-spi2-core,
     bc,
-    bleux-features,
-    bleux-settings,
     ca-certificates,
     dmz-cursor-theme,
     fonts-dejavu-core,
@@ -29,7 +21,6 @@ Depends: alsa-base,
     gnome-shell-extension-appindicator,
     gnome-shell-extension-desktop-icons-ng,
     gnome-shell-extension-ubuntu-dock,
-    gnome-software,
     gstreamer1.0-alsa,
     gstreamer1.0-packagekit,
     gstreamer1.0-plugins-base-apps,
@@ -44,13 +35,14 @@ Depends: alsa-base,
     nautilus,
     openprinting-ppds,
     printer-driver-pnm2ppa,
+#   pulseaudio,
     rfkill,
     software-properties-gtk,
     spice-vdagent,
     ubuntu-drivers-common,
     ubuntu-release-upgrader-gtk,
     ubuntu-session,
-    ubuntu-settings,
+#   ubuntu-settings,
     unzip,
     update-manager,
     update-notifier,
@@ -69,6 +61,10 @@ Recommends: acpi-support,
     apt-config-icons-hidpi,
     avahi-autoipd,
     avahi-daemon,
+# Added by bleUX:
+    bleux-features,
+# Added by bleUX:
+    bleux-settings,
     bluez,
     bluez-cups,
     brltty,
@@ -80,6 +76,7 @@ Recommends: acpi-support,
     eog,
     evince,
     file-roller,
+#   firefox,
     fonts-indic,
     fonts-kacst-one,
     fonts-khmeros-core,
@@ -111,6 +108,8 @@ Recommends: acpi-support,
     gnome-logs,
     gnome-power-manager,
     gnome-remote-desktop,
+# Added by bleUX:
+    gnome-software,
     gnome-system-monitor,
     gnome-terminal,
     gpg-agent,
@@ -154,7 +153,9 @@ Recommends: acpi-support,
     printer-driver-pxljr,
     printer-driver-sag-gdi,
     printer-driver-splix,
+#   pulseaudio-module-bluetooth,
     seahorse,
+#   snapd,
     speech-dispatcher,
     system-config-printer,
     systemd-oomd,
@@ -197,22 +198,8 @@ Suggests: aisleriot,
     totem,
     transmission-gtk,
     usb-creator-gtk
-Conflicts: kubuntu-desktop,
-    lubuntu-desktop,
-    ubuntu-budgie-desktop,
-    ubuntu-desktop,
-    ubuntu-desktop-minimal,
-    ubuntu-mate-desktop,
-    ubuntu-server,
-    ubuntu-server-minimal,
-    ubuntu-unity-desktop,
-    ubuntu-wsl,
-    ubuntukylin-desktop,
-    ubuntustudio-desktop,
-    xubuntu-desktop
-Replaces: ubuntu-desktop-minimal, ubuntu-desktop
-Homepage: https://github.com/bleux-os/ubuntu
-Copyright: ../../LICENSE
+Conflicts: ubuntu-desktop, ubuntu-desktop-minimal
+Replaces: ubuntu-desktop, ubuntu-desktop-minimal
 Description: The bleUX desktop system
  This package depends on all of the packages in the bleUX desktop system.
  It is also used to help ensure proper upgrades, so it is recommended that

@@ -1,0 +1,25 @@
+bleux-desktop (0.3.0) jammy; urgency=low
+
+  * Merge with bleux-desktop-minimal.
+  * Update dependencies.
+  * Remove Ubuntu mention from bleUX branding.
+
+ -- Natan Junges <natanajunges@gmail.com>  Sat, 19 Aug 2023 00:39:00 -0300
+
+bleux-desktop (0.2.0) jammy; urgency=low
+
+  * Rename package to bleux-desktop.
+  * Remove Provides field.
+  * Replace variables for Depends, Recommends and Suggests with actual values.
+  * Update dependencies.
+  * Add Replaces: ubuntu-desktop field.
+  * Add Copyright field.
+  * Remove Task field.
+
+ -- Natan Junges <natanajunges@gmail.com>  Mon, 14 Aug 2023 20:49:00 -0300
+
+os-ubuntu-desktop (0.1.0) jammy; urgency=low
+
+  * Initial release.
+
+ -- Natan Junges <natanajunges@gmail.com>  Thu, 10 Aug 2023 17:07:00 -0300

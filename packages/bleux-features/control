@@ -1,11 +1,5 @@
-Standards-Version: 4.5.1
 Package: bleux-features
-Version: 0.6.0
-Architecture: amd64
-Priority: optional
-Section: admin
-Maintainer: Natan Junges <natanajunges@gmail.com>
-Bugs: https://github.com/bleux-os/ubuntu/issues
+Section: utils
 Depends: apt,
     gnome-software
 Recommends: volian-archive-keyring,
@@ -21,9 +15,9 @@ Suggests: flatpak,
     pulseaudio-module-bluetooth,
     snapd,
     wireplumber | pipewire-media-session
-Homepage: https://github.com/bleux-os/ubuntu
-Copyright: ../../LICENSE
-Links: /usr/bin/apt /usr/sbin/apt
+Description: The bleUX feature scripts
+ This package has scripts to toggle the core features of the bleUX desktop
+ system.
 Files: nosnap.pref.disabled /etc/apt/preferences.d/
     scripts/apt-disable /usr/bin/
     scripts/apt-disabled /usr/bin/
@@ -38,6 +32,4 @@ Files: nosnap.pref.disabled /etc/apt/preferences.d/
     scripts/pulseaudio-remove /usr/bin/
     scripts/snap-add /usr/bin/
     scripts/snap-remove /usr/bin/
-Description: The bleUX feature scripts
- This package has scripts to toggle the core features of the bleUX desktop
- system.
+Links: /usr/bin/apt /usr/sbin/apt

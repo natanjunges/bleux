@@ -1,0 +1,6 @@
+Priority: optional
+Architecture: amd64
+Maintainer: Natan Junges <natanajunges@gmail.com>
+Homepage: https://github.com/bleux-os/ubuntu
+Changelog: changelog
+Copyright: ../../LICENSE

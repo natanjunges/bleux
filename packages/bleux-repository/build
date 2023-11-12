@@ -16,13 +16,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-.PHONY: all clean
+FILES=bleux-archive-keyring.gpg bleux.list
+POSTGEN=mv -f bleux-repository_*_amd64.deb bleux-repository.deb
 
-all: *.deb
-
-*.deb: bleux-archive-keyring.gpg bleux.list control
-	equivs-build control
-	mv -f bleux-repository_*_amd64.deb bleux-repository.deb
-
-clean:
-	rm -f *.buildinfo *.changes *.deb
+include ../build-common

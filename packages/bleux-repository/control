@@ -1,18 +1,10 @@
-Standards-Version: 4.5.1
 Package: bleux-repository
-Version: 0.3.0
-Architecture: amd64
-Priority: optional
-Essential: yes
 Section: admin
-Maintainer: Natan Junges <natanajunges@gmail.com>
-Bugs: https://github.com/bleux-os/ubuntu/issues
-Homepage: https://github.com/bleux-os/ubuntu
-Copyright: ../../LICENSE
+Essential: yes
+Depends: apt
+Description: GnuPG key and list file of the bleUX archive
+ The bleUX project digitally signs its Release files. This package
+ contains the archive key used for that, as well as the list file for
+ its repository.
 Files: bleux-archive-keyring.gpg /usr/share/keyrings/
     bleux.list /etc/apt/sources.list.d/
-Description: The bleUX repository
- This package has the keyring and list files for the repository of the bleUX
- desktop system.
- It is also used to help ensure proper upgrades, so it is recommended that
- it not be removed.

@@ -1,0 +1,5 @@
+package (0.1.0) jammy; urgency=low
+
+  * Initial release.
+
+ -- Natan Junges <natanajunges@gmail.com>  dow, dd mmm yyyy hh:mm:ss -0300

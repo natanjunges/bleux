@@ -1,15 +1,6 @@
-Standards-Version: 4.5.1
 Package: bleux-settings
-Version: 0.2.0
-Architecture: amd64
-Priority: optional
 Section: admin
-Maintainer: Natan Junges <natanajunges@gmail.com>
-Bugs: https://github.com/bleux-os/ubuntu/issues
-Depends: dconf-gsettings-backend | gsettings-backend,
-    libglib2.0-bin (>= 2.53.4-3ubuntu1~)
-Homepage: https://github.com/bleux-os/ubuntu
-Copyright: ../../LICENSE
-Files: 20_bleux-settings.gschema.override /usr/share/glib-2.0/schemas/
+Depends: ubuntu-settings
 Description: Default settings for the bleUX desktop
  This package contains the default settings used by bleUX.
+Files: 20_bleux-settings.gschema.override /usr/share/glib-2.0/schemas/
