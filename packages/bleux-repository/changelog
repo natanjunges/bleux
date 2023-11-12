@@ -1,3 +1,10 @@
+bleux-repository (0.4.0) jammy; urgency=low
+
+  * Add apt to Depends.
+  * Update Description.
+
+ -- Natan Junges <natanajunges@gmail.com>  Sun, 12 Nov 2023 18:55:33 -0300
+
 bleux-repository (0.3.0) jammy; urgency=low
 
   * Remove Ubuntu mention from bleUX branding.

@@ -1,3 +1,10 @@
+bleux-desktop (0.4.0) jammy; urgency=low
+
+  * Move bleux-features, bleux-settings and gnome-software to Recommends.
+  * Only keep ubuntu-desktop and ubuntu-desktop-minimal in Conflicts.
+
+ -- Natan Junges <natanajunges@gmail.com>  Sun, 12 Nov 2023 18:55:33 -0300
+
 bleux-desktop (0.3.0) jammy; urgency=low
 
   * Merge with bleux-desktop-minimal.

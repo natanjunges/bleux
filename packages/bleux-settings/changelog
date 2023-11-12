@@ -1,3 +1,9 @@
+bleux-settings (0.3.0) jammy; urgency=low
+
+  * Replace Depends with ubuntu-settings.
+
+ -- Natan Junges <natanajunges@gmail.com>  Sun, 12 Nov 2023 18:55:33 -0300
+
 bleux-settings (0.2.0) jammy; urgency=low
 
   * Add dependencies.

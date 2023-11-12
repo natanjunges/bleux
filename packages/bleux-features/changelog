@@ -1,3 +1,13 @@
+bleux-features (0.7.0) jammy; urgency=low
+
+  * Move to utils section.
+  * Optimize nala scripts.
+  * Purge removed packages in pipewire scripts.
+  * Set -e flag to all feature scripts.
+  * Move gnome-software to Recommends.
+
+ -- Natan Junges <natanajunges@gmail.com>  Sun, 12 Nov 2023 18:55:33 -0300
+
 bleux-features (0.6.0) jammy; urgency=low
 
   * Add gnome-software to Depends.
