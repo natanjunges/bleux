@@ -16,7 +16,9 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-mv /etc/apt/sources.list.d/volian-archive-scar-unstable.sources.disabled /etc/apt/sources.list.d/volian-archive-scar-unstable.sources \
-&& apt-get update --no-list-cleanup -o Dir::Etc::SourceList="sources.list.d/volian-archive-scar-unstable.sources" -o Dir::Etc::SourceParts="-"
+set -e
+
+mv /etc/apt/sources.list.d/volian-archive-scar-unstable.sources.disabled /etc/apt/sources.list.d/volian-archive-scar-unstable.sources
+apt-get update --no-list-cleanup -o Dir::Etc::SourceList="sources.list.d/volian-archive-scar-unstable.sources" -o Dir::Etc::SourceParts="-"
 apt-get install -y --no-install-recommends nala
 apt-mark auto nala
