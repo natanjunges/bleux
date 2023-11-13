@@ -1,3 +1,9 @@
+bleux-features (0.8.0) jammy; urgency=low
+
+  * Fix python3-typer (nala dependency) by using version from mantic.
+
+ -- Natan Junges <natanajunges@gmail.com>  Sun, 12 Nov 2023 22:15:53 -0300
+
 bleux-features (0.7.0) jammy; urgency=low
 
   * Move to utils section.
