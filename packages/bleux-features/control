@@ -18,7 +18,9 @@ Suggests: flatpak,
 Description: The bleUX feature scripts
  This package has scripts to toggle the core features of the bleUX desktop
  system.
-Files: nosnap.pref.disabled /etc/apt/preferences.d/
+Files: fix-python3-typer.list.disabled /etc/apt/sources.list.d/
+    fix-python3-typer.pref.disabled /etc/apt/preferences.d/
+    nosnap.pref.disabled /etc/apt/preferences.d/
     scripts/apt-disable /usr/bin/
     scripts/apt-disabled /usr/bin/
     scripts/apt-enable /usr/bin/

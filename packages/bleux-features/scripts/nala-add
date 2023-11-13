@@ -18,7 +18,10 @@
 
 set -e
 
+mv /etc/apt/sources.list.d/fix-python3-typer.list.disabled /etc/apt/sources.list.d/fix-python3-typer.list
+mv /etc/apt/preferences.d/fix-python3-typer.pref.disabled /etc/apt/preferences.d/fix-python3-typer.pref
 mv /etc/apt/sources.list.d/volian-archive-scar-unstable.sources.disabled /etc/apt/sources.list.d/volian-archive-scar-unstable.sources
+apt-get update --no-list-cleanup -o Dir::Etc::SourceList="sources.list.d/fix-python3-typer.list" -o Dir::Etc::SourceParts="-"
 apt-get update --no-list-cleanup -o Dir::Etc::SourceList="sources.list.d/volian-archive-scar-unstable.sources" -o Dir::Etc::SourceParts="-"
 apt-get install -y --no-install-recommends nala
 apt-mark auto nala

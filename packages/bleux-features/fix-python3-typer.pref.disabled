@@ -1,0 +1,11 @@
+Package: *
+Pin: release n=mantic
+Pin-Priority: -1
+
+Package: python3-typer
+Pin: release n=mantic
+Pin-Priority: 1000
+
+Package: python3-typer
+Pin: release n=jammy
+Pin-Priority: -1
