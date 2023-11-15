@@ -49,7 +49,7 @@ apt-disable
 flatpak-add
 
 # Install firefox flatpak
-flatpak install -y --noninteractive org.mozilla.firefox
+flatpak install -y --noninteractive --no-related org.mozilla.firefox
 
 # Remove snap support
 snap-remove

@@ -19,7 +19,6 @@
 set -e
 
 # Finish installation of flatpak runtimes
-flatpak remove -y --noninteractive --system --unused
 flatpak update -y --noninteractive --system
 
 # Fetch nala mirrors
