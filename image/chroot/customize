@@ -18,6 +18,9 @@
 
 set -e -x
 
+# Store old kernel version
+OLD_VERSION=$(apt-cache depends --installed linux-headers-generic-hwe-22.04 | tail -1 | cut -d- -f3-4)
+
 # Purge restricted software
 apt-get purge -y firmware-sof-signed
 
@@ -61,9 +64,6 @@ pipewire-add
 
 # Remove pulseaudio
 pulseaudio-remove
-
-# Store old kernel version
-OLD_VERSION=$(apt-cache depends --installed linux-headers-generic-hwe-22.04 | tail -1 | cut -d- -f3-4)
 
 # Update all packages
 apt-get dist-upgrade -y
