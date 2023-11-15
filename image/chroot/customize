@@ -28,8 +28,7 @@ add-apt-repository -y --remove restricted
 wget https://gitlab.com/volian/volian-archive/uploads/b20bd8237a9b20f5a82f461ed0704ad4/volian-archive-keyring_0.1.0_all.deb \
      https://gitlab.com/volian/volian-archive/uploads/d6b3a118de5384a0be2462905f7e4301/volian-archive-nala_0.1.0_all.deb
 wget https://github.com/bleux-os/ubuntu/releases/latest/download/bleux-repository.deb
-apt-get install -y ./volian-archive-keyring_*_all.deb ./volian-archive-nala_*_all.deb
-apt-mark auto volian-archive-keyring volian-archive-nala
+apt-get install -y --mark-auto ./volian-archive-keyring_*_all.deb ./volian-archive-nala_*_all.deb
 mv /etc/apt/sources.list.d/volian-archive-scar-unstable.sources /etc/apt/sources.list.d/volian-archive-scar-unstable.sources.disabled
 apt-get install -y ./bleux-repository.deb
 

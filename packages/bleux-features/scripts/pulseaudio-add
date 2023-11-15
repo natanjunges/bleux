@@ -18,5 +18,4 @@
 
 set -e
 
-apt-get install -y pulseaudio
-apt-mark auto pulseaudio
+apt-get install -y --mark-auto pulseaudio

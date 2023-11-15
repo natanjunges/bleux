@@ -19,6 +19,5 @@
 set -e
 
 mv /etc/apt/preferences.d/nosnap.pref /etc/apt/preferences.d/nosnap.pref.disabled
-apt-get install -y snapd gnome-software-plugin-snap
-apt-mark auto snapd gnome-software-plugin-snap
+apt-get install -y --mark-auto snapd gnome-software-plugin-snap
 snap install snapd
