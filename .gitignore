@@ -9,3 +9,4 @@
 /packages/*/*.deb
 /repository/*
 !/repository/build
+/os-release
