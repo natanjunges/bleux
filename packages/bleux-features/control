@@ -34,4 +34,4 @@ Files: fix-python3-typer.list.disabled /etc/apt/sources.list.d/
     scripts/pulseaudio-remove /usr/bin/
     scripts/snap-add /usr/bin/
     scripts/snap-remove /usr/bin/
-Links: /usr/bin/apt /usr/sbin/apt
+Links: ../bin/apt /usr/sbin/apt
