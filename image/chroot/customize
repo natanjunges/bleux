@@ -39,7 +39,7 @@ apt-get install -y ./bleux-repository.deb
 add-apt-repository -y universe
 
 # Install bleux packages
-apt-get install -y bleux-desktop gnome-software-plugin-snap-
+apt-get install -y bleux-desktop bleux-release gnome-software-plugin-snap-
 
 # Purge undesired packages
 apt-get purge -y gstreamer1.0-pulseaudio firefox libwmf0.2-7-gtk libreoffice-ogltrans libreoffice-pdfimport
