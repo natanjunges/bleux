@@ -16,18 +16,10 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-OBJECTS=$(shell find * -prune -type d | tr '\n' ' ')
+FILES=os-release
+CLEAN=os-release
 
-.PHONY: $(OBJECTS) clean
-
-$(OBJECTS):
-	$(MAKE) -C $@ -f build
+include ../build-common
 
 os-release: os-release-custom
 	./customize
-
-clean:
-	for obj in $(OBJECTS); do \
-		$(MAKE) -C $$obj -f build clean; \
-	done
-	rm -f os-release

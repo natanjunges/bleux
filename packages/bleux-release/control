@@ -1,0 +1,7 @@
+Package: bleux-release
+Section: admin
+Essential: yes
+Replaces: base-files
+Description: bleUX release file
+ This package contains the os-release file of a bleUX system.
+Files: os-release /usr/lib/

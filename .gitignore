@@ -7,6 +7,6 @@
 /packages/*/*.buildinfo
 /packages/*/*.changes
 /packages/*/*.deb
+/packages/bleux-release/os-release
 /repository/*
 !/repository/build
-/os-release
