@@ -1,6 +1,6 @@
 ID=bleux
 ID_LIKE="ubuntu debian"
-VERSION_ID=0.9.0
+VERSION_ID=0.10.0
 VERSION_CODENAME=alpha
 UBUNTU_CODENAME=jammy
 
