@@ -41,8 +41,8 @@ add-apt-repository -y universe
 # Install bleux packages
 apt-get install -y bleux-desktop gnome-software-plugin-snap-
 
-# Purge transitional packages
-apt-get purge -y gstreamer1.0-pulseaudio libwmf0.2-7-gtk libreoffice-ogltrans libreoffice-pdfimport
+# Purge undesired packages
+apt-get purge -y gstreamer1.0-pulseaudio firefox libwmf0.2-7-gtk libreoffice-ogltrans libreoffice-pdfimport
 
 # Install nala
 nala-add
