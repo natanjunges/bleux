@@ -19,4 +19,4 @@
 set -e
 
 apt-get purge -y snapd gnome-software-plugin-snap
-mv /etc/apt/preferences.d/nosnap.pref.disabled /etc/apt/preferences.d/nosnap.pref
+ln -s ../../../usr/lib/bleux-features/nosnap.pref /etc/apt/preferences.d/

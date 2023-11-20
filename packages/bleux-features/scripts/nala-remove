@@ -20,5 +20,5 @@ set -e
 
 apt-get purge -y nala
 mv /etc/apt/sources.list.d/volian-archive-scar-unstable.sources /etc/apt/sources.list.d/volian-archive-scar-unstable.sources.disabled
-mv /etc/apt/preferences.d/fix-python3-typer.pref /etc/apt/preferences.d/fix-python3-typer.pref.disabled
-mv /etc/apt/sources.list.d/fix-python3-typer.list /etc/apt/sources.list.d/fix-python3-typer.list.disabled
+rm /etc/apt/preferences.d/fix-python3-typer.pref
+rm /etc/apt/sources.list.d/fix-python3-typer.list

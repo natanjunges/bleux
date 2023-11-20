@@ -18,4 +18,4 @@
 
 set -e
 
-ln -sf ../bin/apt-disabled /usr/sbin/apt
+ln -s ../bin/apt-disabled /usr/sbin/apt

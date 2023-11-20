@@ -16,6 +16,6 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-FILES=fix-python3-typer.list.disabled fix-python3-typer.pref.disabled nosnap.pref.disabled scripts/*
+FILES=fix-python3-typer.list fix-python3-typer.pref nosnap.pref scripts/*
 
 include ../build-common

@@ -18,4 +18,4 @@
 
 set -e
 
-ln -sf ../bin/apt /usr/sbin/
+rm -f /usr/sbin/apt
