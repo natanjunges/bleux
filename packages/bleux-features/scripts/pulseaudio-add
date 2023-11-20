@@ -18,4 +18,4 @@
 
 set -e
 
-apt-get install -y --mark-auto pulseaudio
+apt-get install -y --mark-auto pulseaudio pulseaudio-module-bluetooth

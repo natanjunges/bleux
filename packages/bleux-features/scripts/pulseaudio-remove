@@ -18,4 +18,4 @@
 
 set -e
 
-apt-get purge -y pulseaudio
+apt-get purge -y pulseaudio pulseaudio-module-bluetooth
