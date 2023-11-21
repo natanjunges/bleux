@@ -1,6 +1,7 @@
 Package: bleux-release
 Section: admin
 Essential: yes
+Depends: base-files
 Replaces: base-files
 Description: bleUX release file
  This package contains the os-release file of a bleUX system.
