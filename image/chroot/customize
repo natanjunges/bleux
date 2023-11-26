@@ -18,8 +18,10 @@
 
 set -e -x
 
-# Store old kernel version
-OLD_VERSION=$(apt-cache depends --installed linux-headers-generic-hwe-22.04 | tail -1 | cut -d- -f3-4)
+if [ -n "$RELEASE" ]; then
+    # Store old kernel version
+    OLD_VERSION=$(apt-cache depends --installed linux-headers-generic-hwe-22.04 | tail -1 | cut -d- -f3-4)
+fi
 
 # Purge restricted software
 apt-get purge -y firmware-sof-signed
@@ -41,8 +43,10 @@ add-apt-repository -y universe
 # Install bleux packages
 apt-get install -y bleux-desktop bleux-release gnome-software-plugin-snap-
 
-# Purge undesired packages
-apt-get purge -y gstreamer1.0-pulseaudio firefox libwmf0.2-7-gtk libreoffice-ogltrans libreoffice-pdfimport
+if [ -n "$RELEASE" ]; then
+    # Purge undesired packages
+    apt-get purge -y gstreamer1.0-pulseaudio firefox libwmf0.2-7-gtk libreoffice-ogltrans libreoffice-pdfimport
+fi
 
 # Install nala
 nala-add
@@ -65,21 +69,32 @@ pipewire-add
 # Remove pulseaudio
 pulseaudio-remove
 
-# Update all packages
-apt-get dist-upgrade -y
+if [ -n "$RELEASE" ]; then
+    # Update all packages
+    apt-get dist-upgrade -y
 
-# Store new kernel version
-NEW_VERSION=$(apt-cache depends --installed linux-headers-generic-hwe-22.04 | tail -1 | cut -d- -f3-4)
+    # Store new kernel version
+    NEW_VERSION=$(apt-cache depends --installed linux-headers-generic-hwe-22.04 | tail -1 | cut -d- -f3-4)
 
-# Purge unused packages
-apt-get autoremove -y --purge
+    # Purge unused packages
+    apt-get autoremove -y --purge
 
-# Decide if it needs to purge an older kernel version
-if [ $OLD_VERSION != $NEW_VERSION ]; then
-    apt-get purge -y linux-headers-$OLD_VERSION-generic linux-hwe-*-headers-$OLD_VERSION linux-image-$OLD_VERSION-generic \
-                     linux-modules-$OLD_VERSION-generic linux-modules-extra-$OLD_VERSION-generic
+    # Decide if it needs to purge an older kernel version
+    if [ $OLD_VERSION != $NEW_VERSION ]; then
+        apt-get purge -y linux-headers-$OLD_VERSION-generic linux-hwe-*-headers-$OLD_VERSION linux-image-$OLD_VERSION-generic \
+                         linux-modules-$OLD_VERSION-generic linux-modules-extra-$OLD_VERSION-generic
+    fi
+
+    # Clean everything up
+    apt-get clean
+else
+    tee postinst > /dev/null << EOF
+#!/usr/bin/sh
+
+set -e -x
+
+rm /root/postinst
+EOF
 fi
 
-# Clean everything up
-apt-get clean
 rm customize *.deb
