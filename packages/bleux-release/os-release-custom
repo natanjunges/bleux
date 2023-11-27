@@ -1,12 +1,12 @@
 ID=bleux
 ID_LIKE="ubuntu debian"
 VERSION_ID=0.10.0
-VERSION_CODENAME=alpha
+VERSION_CODENAME=jammy
 UBUNTU_CODENAME=jammy
 
 NAME="bleUX"
 # VERSION_CODENAME in a format suitable for presentation to the user
-CODENAME="Alpha"
+CODENAME="Jammy Jellyfish"
 HOME_URL="https://github.com/bleux-os/ubuntu"
 DOCUMENTATION_URL="https://github.com/bleux-os/ubuntu/wiki"
 BUG_REPORT_URL="https://github.com/bleux-os/ubuntu/issues"
