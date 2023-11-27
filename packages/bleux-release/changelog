@@ -1,3 +1,11 @@
+bleux-release (0.2.0) jammy; urgency=low
+
+  * Add base-files to Depends.
+  * Revert to using Ubuntu's codename as it is used to generate the apt source file.
+  * Update bleUX to 0.11.0.
+
+ -- Natan Junges <natanajunges@gmail.com>  Mon, 27 Nov 2023 00:48:25 -0300
+
 bleux-release (0.1.0) jammy; urgency=low
 
   * Initial release.

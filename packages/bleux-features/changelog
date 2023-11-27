@@ -1,3 +1,10 @@
+bleux-features (0.10.0) jammy; urgency=low
+
+  * Move addition/removal of pulseaudio-module-bluetooth to pulseaudio scripts.
+  * Move static config files to /usr/lib/bleux-features/ and link to them whenever needed.
+
+ -- Natan Junges <natanajunges@gmail.com>  Mon, 27 Nov 2023 00:48:25 -0300
+
 bleux-features (0.9.0) jammy; urgency=low
 
   * Replace separate apt-mark auto with --mark-auto flag in apt-get install.
