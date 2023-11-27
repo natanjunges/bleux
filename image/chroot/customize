@@ -41,7 +41,7 @@ apt-get install -y ./bleux-repository.deb
 add-apt-repository -y universe
 
 # Install bleux packages
-apt-get install -y bleux-desktop bleux-release gnome-software-plugin-snap-
+apt-get install -y bleux-desktop bleux-release bleux-no-signed-grub gnome-software-plugin-snap-
 
 if [ -n "$RELEASE" ]; then
     # Purge undesired packages

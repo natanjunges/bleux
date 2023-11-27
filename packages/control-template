@@ -4,7 +4,9 @@ Section:
 [Depends]:
 [Recommends]:
 [Suggests]:
+[Breaks]:
 [Conflicts]:
+[Provides]:
 [Replaces]:
 Description:
 [Files]:
