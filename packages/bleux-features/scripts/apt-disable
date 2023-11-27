@@ -19,3 +19,4 @@
 set -e
 
 ln -s ../bin/apt-disabled /usr/sbin/apt
+hash apt
