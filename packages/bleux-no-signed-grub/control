@@ -1,4 +1,3 @@
-Package: bleux-no-signed-grub
 Section: utils
 Essential: yes
 Breaks: shim-signed

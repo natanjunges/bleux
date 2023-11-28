@@ -1,4 +1,3 @@
-Package: bleux-settings
 Section: admin
 Depends: ubuntu-settings
 Description: Default settings for the bleUX desktop

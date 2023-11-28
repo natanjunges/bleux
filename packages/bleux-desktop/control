@@ -1,4 +1,3 @@
-Package: bleux-desktop
 Section: metapackages
 Essential: yes
 Depends: alsa-base,

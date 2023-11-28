@@ -1,4 +1,3 @@
-Package: bleux-repository
 Section: admin
 Essential: yes
 Depends: apt

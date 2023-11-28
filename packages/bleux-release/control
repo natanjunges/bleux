@@ -1,4 +1,3 @@
-Package: bleux-release
 Section: admin
 Essential: yes
 Depends: base-files

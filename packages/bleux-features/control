@@ -1,4 +1,3 @@
-Package: bleux-features
 Section: utils
 Depends: apt
 Recommends: gnome-software,
