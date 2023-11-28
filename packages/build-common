@@ -14,7 +14,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-FILES ?= changelog
+FILES += $(shell grep -m 1 -P -z -o 'Files:[^\n]*(\n [^\n]*)*' control | sed -E 's/^(Files:)? *//' | cut -d ' ' -f 1 | tr '\n' ' ')
 POSTGEN ?= true
 CLEAN ?= *.deb
 
