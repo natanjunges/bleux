@@ -29,4 +29,5 @@ nala fetch -y --ubuntu jammy --auto
 sed -i 's/ multiverse//' /etc/apt/sources.list.d/nala-sources.list
 sed -i 's/ restricted//' /etc/apt/sources.list.d/nala-sources.list
 
+# Autoremove this script
 rm /root/postinst

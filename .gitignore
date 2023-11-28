@@ -3,7 +3,6 @@
 !/image/bleux.seed
 !/image/build
 !/image/customize
-!/image/version
 /packages/*/*.buildinfo
 /packages/*/*.changes
 /packages/*/*.deb
