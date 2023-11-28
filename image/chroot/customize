@@ -43,13 +43,13 @@ add-apt-repository -y universe
 # Install bleux packages
 apt-get install -y bleux-desktop bleux-release gnome-software-plugin-snap-
 
-# Fix GRUB
+# Remove signed version of GRUB
 apt-get install -y --allow-remove-essential bleux-no-signed-grub grub-efi-amd64-signed- shim-signed-
-apt-get purge -y --allow-remove-essential shim-signed
 
 if [ -n "$RELEASE" ]; then
     # Purge undesired packages
     apt-get purge -y gstreamer1.0-pulseaudio firefox libwmf0.2-7-gtk libreoffice-ogltrans libreoffice-pdfimport
+    apt-get purge -y --allow-remove-essential shim-signed
 fi
 
 # Install nala
