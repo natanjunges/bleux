@@ -41,7 +41,11 @@ apt-get install -y ./bleux-repository.deb
 add-apt-repository -y universe
 
 # Install bleux packages
-apt-get install -y bleux-desktop bleux-release bleux-no-signed-grub gnome-software-plugin-snap-
+apt-get install -y bleux-desktop bleux-release gnome-software-plugin-snap-
+
+# Fix GRUB
+apt-get install -y --allow-remove-essential bleux-no-signed-grub grub-efi-amd64-signed- shim-signed-
+apt-get purge -y --allow-remove-essential shim-signed
 
 if [ -n "$RELEASE" ]; then
     # Purge undesired packages
@@ -96,5 +100,8 @@ set -e -x
 rm /root/postinst
 EOF
 fi
+
+# Make ubiquity use unsigned version of GRUB
+sudo sed -i "s|grub_package=\"grub-efi-amd64-signed\"|grub_package=\"bleux-no-signed-grub\"|" /usr/share/grub-installer/grub-installer
 
 rm customize *.deb
