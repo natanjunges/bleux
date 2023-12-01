@@ -2,7 +2,6 @@
 !/image/chroot/
 !/image/bleux.seed
 !/image/build
-!/image/customize
 /packages/*/*.buildinfo
 /packages/*/*.changes
 /packages/*/*.deb

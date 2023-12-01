@@ -16,27 +16,55 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-.PHONY: all extract customize cubic clean
+.PHONY: all extract customize repository chroot clean
 
 all:
 	$(MAKE) -f build extract
 	$(MAKE) -f build customize
-	$(MAKE) -f build cubic
+	$(MAKE) -f build chroot
 
 extract: ../packages/bleux-release/os-release-custom
 	if [ -z '$(ISO_DIRECTORY)' ]; then exit 1; fi
+
+	# Force (re-)extraction of ISO
 	sed -i 's/is_success_copy = True/is_success_copy = False/' cubic.conf
 	sed -i 's/is_success_extract = True/is_success_extract = False/' cubic.conf
+
+	# Replace variables with values in cubic.conf
 	sed -i 's|$${PWD}|$(PWD)|' cubic.conf
 	sed -i 's|$${ISO_DIRECTORY}|$(ISO_DIRECTORY)|' cubic.conf
 	sed -i "s/\$${VERSION_ID}/$$(grep -m 1 ^VERSION_ID= ../packages/bleux-release/os-release-custom | cut -d= -f2)/" cubic.conf
 	sed -i "s/\$${CODENAME}/$$(grep -m 1 ^CODENAME= ../packages/bleux-release/os-release-custom | cut -d\" -f2)/" cubic.conf
+
 	cubic .
 
 customize:
-	./customize
+	# Remove repositories from installation disk
+	rm -r custom-disk/dists/jammy/restricted/ custom-disk/pool/
 
-cubic:
+	# Replace Ubuntu seed customizations
+	cp bleux.seed custom-disk/preseed/
+	rm custom-disk/preseed/ubuntu.seed
+	sed -i 's|file=/cdrom/preseed/ubuntu.seed|file=/cdrom/preseed/bleux.seed|' custom-disk/boot/grub/grub.cfg
+	sed -i 's|file=/cdrom/preseed/ubuntu.seed|file=/cdrom/preseed/bleux.seed|' custom-disk/boot/grub/loopback.cfg
+
+	# Replace Ubuntu name in bootloader menu
+	sed -i s/Ubuntu/bleUX/ custom-disk/boot/grub/grub.cfg
+	sed -i s/Ubuntu/bleUX/ custom-disk/boot/grub/loopback.cfg
+
+	# Copy chroot files to chroot
+	sudo cp chroot/* custom-root/root/
+
+repository:
+	# Copy local repository to chroot
+	sudo mkdir custom-root/usr/local/bleux/
+	sudo cp ../repository/Packages ../repository/Packages.xz ../repository/Release custom-root/usr/local/bleux/
+	echo 'deb [trusted=yes arch=amd64] file:/usr/local/bleux ./' | sudo tee custom-root/etc/apt/sources.list.d/bleux.list > /dev/null
+
+	# Copy local repository packages to chroot apt cache
+	sudo cp ../repository/*.deb custom-root/var/cache/apt/archives/
+
+chroot:
 	cubic .
 
 clean:

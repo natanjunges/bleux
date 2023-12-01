@@ -18,7 +18,7 @@
 
 set -e -x
 
-if [ -n "$RELEASE" ]; then
+if [ -n "$UPGRADE" ]; then
     # Store old kernel version
     OLD_VERSION=$(apt-cache depends --installed linux-headers-generic-hwe-22.04 | tail -1 | cut -d- -f3-4)
 fi
@@ -29,13 +29,17 @@ apt-get purge -y firmware-sof-signed
 # Remove restricted repository
 add-apt-repository -y --remove restricted
 
-# Prepare to install bleux packages
+# Prepare to install nala packages
 wget https://gitlab.com/volian/volian-archive/uploads/b20bd8237a9b20f5a82f461ed0704ad4/volian-archive-keyring_0.1.0_all.deb \
      https://gitlab.com/volian/volian-archive/uploads/d6b3a118de5384a0be2462905f7e4301/volian-archive-nala_0.1.0_all.deb
-wget https://github.com/bleux-os/ubuntu/releases/latest/download/bleux-repository.deb
 apt-get install -y --mark-auto ./volian-archive-keyring_*_all.deb ./volian-archive-nala_*_all.deb
 mv /etc/apt/sources.list.d/volian-archive-scar-unstable.sources /etc/apt/sources.list.d/volian-archive-scar-unstable.sources.disabled
-apt-get install -y ./bleux-repository.deb
+
+# Prepare to install bleux packages
+if [ ! -d /usr/local/bleux/ ]; then
+    wget https://github.com/bleux-os/ubuntu/releases/latest/download/bleux-repository.deb
+    apt-get install -y ./bleux-repository.deb
+fi
 
 # Add universe repository
 add-apt-repository -y universe
@@ -43,14 +47,12 @@ add-apt-repository -y universe
 # Install bleux packages
 apt-get install -y bleux-desktop bleux-release gnome-software-plugin-snap-
 
+# Purge undesired packages
+apt-get purge -y gstreamer1.0-pulseaudio firefox libwmf0.2-7-gtk libreoffice-ogltrans libreoffice-pdfimport
+
 # Remove signed version of GRUB
 apt-get install -y --allow-remove-essential bleux-no-signed-grub grub-efi-amd64-signed- shim-signed-
-
-if [ -n "$RELEASE" ]; then
-    # Purge undesired packages
-    apt-get purge -y gstreamer1.0-pulseaudio firefox libwmf0.2-7-gtk libreoffice-ogltrans libreoffice-pdfimport
-    apt-get purge -y --allow-remove-essential shim-signed
-fi
+apt-get purge -y --allow-remove-essential shim-signed
 
 # Install nala
 nala-add
@@ -73,35 +75,28 @@ pipewire-add
 # Remove pulseaudio
 pulseaudio-remove
 
-if [ -n "$RELEASE" ]; then
+if [ -n "$UPGRADE" ]; then
     # Update all packages
     apt-get dist-upgrade -y
 
     # Store new kernel version
     NEW_VERSION=$(apt-cache depends --installed linux-headers-generic-hwe-22.04 | tail -1 | cut -d- -f3-4)
 
-    # Purge unused packages
-    apt-get autoremove -y --purge
-
     # Decide if it needs to purge an older kernel version
     if [ $OLD_VERSION != $NEW_VERSION ]; then
         apt-get purge -y linux-headers-$OLD_VERSION-generic linux-hwe-*-headers-$OLD_VERSION linux-image-$OLD_VERSION-generic \
                          linux-modules-$OLD_VERSION-generic linux-modules-extra-$OLD_VERSION-generic
     fi
-
-    # Clean everything up
-    apt-get clean
-else
-    tee postinst > /dev/null << EOF
-#!/usr/bin/sh
-
-set -e -x
-
-rm /root/postinst
-EOF
 fi
 
 # Make ubiquity use unsigned version of GRUB
-sudo sed -i 's/grub_package="grub-efi-amd64-signed"/grub_package="bleux-no-signed-grub"/' /usr/share/grub-installer/grub-installer
+sed -i 's/grub_package="grub-efi-amd64-signed"/grub_package="bleux-no-signed-grub"/' /usr/share/grub-installer/grub-installer
 
+# Purge unused packages
+apt-get autoremove -y --purge
+
+# Clean everything up
+apt-get clean
+
+# Autoremove this script and downloaded packages
 rm customize *.deb
