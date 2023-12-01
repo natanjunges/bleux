@@ -20,5 +20,5 @@ CLEAN=os-release
 
 include ../build-common
 
-os-release: os-release-custom
-	./customize
+os-release: os-release-seed
+	./generate-os-release
