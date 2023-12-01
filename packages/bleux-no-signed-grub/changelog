@@ -1,3 +1,9 @@
+bleux-no-signed-grub (0.2.0) jammy; urgency=low
+
+  * Make it be essential and break and provide shim-signed instead of grub-efi-amd64-signed.
+
+ -- Natan Junges <natanajunges@gmail.com>  Fri, 01 Dec 2023 01:32:30 -0300
+
 bleux-no-signed-grub (0.1.0) jammy; urgency=low
 
   * Initial release.

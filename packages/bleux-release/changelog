@@ -1,3 +1,9 @@
+bleux-release (0.3.0) jammy; urgency=low
+
+  * Update bleUX to 0.12.0.
+
+ -- Natan Junges <natanajunges@gmail.com>  Fri, 01 Dec 2023 01:32:30 -0300
+
 bleux-release (0.2.0) jammy; urgency=low
 
   * Add base-files to Depends.
