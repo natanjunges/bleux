@@ -2,7 +2,7 @@
 
 set -e -x
 
-. ./os-release-custom
+. ./os-release-seed
 
 VERSION="$VERSION_ID ($CODENAME)"
 PRETTY_NAME="$NAME $VERSION"
