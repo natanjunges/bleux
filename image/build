@@ -23,7 +23,7 @@ all:
 	$(MAKE) -f build customize
 	$(MAKE) -f build chroot
 
-extract: ../packages/bleux-release/os-release-custom
+extract: ../packages/bleux-release/os-release-seed
 	if [ -z '$(ISO_DIRECTORY)' ]; then exit 1; fi
 
 	# Force (re-)extraction of ISO
@@ -33,8 +33,8 @@ extract: ../packages/bleux-release/os-release-custom
 	# Replace variables with values in cubic.conf
 	sed -i 's|$${PWD}|$(PWD)|' cubic.conf
 	sed -i 's|$${ISO_DIRECTORY}|$(ISO_DIRECTORY)|' cubic.conf
-	sed -i "s/\$${VERSION_ID}/$$(grep -m 1 ^VERSION_ID= ../packages/bleux-release/os-release-custom | cut -d= -f2)/" cubic.conf
-	sed -i "s/\$${CODENAME}/$$(grep -m 1 ^CODENAME= ../packages/bleux-release/os-release-custom | cut -d\" -f2)/" cubic.conf
+	sed -i "s/\$${VERSION_ID}/$$(grep -m 1 ^VERSION_ID= ../packages/bleux-release/os-release-seed | cut -d= -f2)/" cubic.conf
+	sed -i "s/\$${CODENAME}/$$(grep -m 1 ^CODENAME= ../packages/bleux-release/os-release-seed | cut -d\" -f2)/" cubic.conf
 
 	cubic .
 
