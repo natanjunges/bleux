@@ -19,17 +19,17 @@
 set -e -x
 
 # Remove repositories from installation disk
-rm -rf custom-disk/dists/jammy/restricted/ custom-disk/pool/
+rm -r custom-disk/dists/jammy/restricted/ custom-disk/pool/
 
 # Replace Ubuntu seed customizations
 cp bleux.seed custom-disk/preseed/
 rm custom-disk/preseed/ubuntu.seed
-sed -i "s|file=/cdrom/preseed/ubuntu.seed|file=/cdrom/preseed/bleux.seed|" custom-disk/boot/grub/grub.cfg
-sed -i "s|file=/cdrom/preseed/ubuntu.seed|file=/cdrom/preseed/bleux.seed|" custom-disk/boot/grub/loopback.cfg
+sed -i 's|file=/cdrom/preseed/ubuntu.seed|file=/cdrom/preseed/bleux.seed|' custom-disk/boot/grub/grub.cfg
+sed -i 's|file=/cdrom/preseed/ubuntu.seed|file=/cdrom/preseed/bleux.seed|' custom-disk/boot/grub/loopback.cfg
 
 # Replace Ubuntu name in bootloader menu
-sed -i "s|Ubuntu|bleUX|" custom-disk/boot/grub/grub.cfg
-sed -i "s|Ubuntu|bleUX|" custom-disk/boot/grub/loopback.cfg
+sed -i s/Ubuntu/bleUX/ custom-disk/boot/grub/grub.cfg
+sed -i s/Ubuntu/bleUX/ custom-disk/boot/grub/loopback.cfg
 
 # Copy chroot files to chroot
 sudo cp chroot/* custom-root/root/

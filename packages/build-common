@@ -23,7 +23,7 @@ CLEAN ?= *.deb
 all: *.deb
 
 *.deb: ../control-common control changelog $(FILES)
-	echo "Package: $$(basename "$(CURDIR)")" | cat - ../control-common control | equivs-build -
+	echo "Package: $$(basename '$(CURDIR)')" | cat - ../control-common control | equivs-build -
 	$(POSTGEN)
 
 clean:

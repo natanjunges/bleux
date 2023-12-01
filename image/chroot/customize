@@ -102,6 +102,6 @@ EOF
 fi
 
 # Make ubiquity use unsigned version of GRUB
-sudo sed -i "s|grub_package=\"grub-efi-amd64-signed\"|grub_package=\"bleux-no-signed-grub\"|" /usr/share/grub-installer/grub-installer
+sudo sed -i 's/grub_package="grub-efi-amd64-signed"/grub_package="bleux-no-signed-grub"/' /usr/share/grub-installer/grub-installer
 
 rm customize *.deb

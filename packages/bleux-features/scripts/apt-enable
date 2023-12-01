@@ -18,5 +18,5 @@
 
 set -e
 
-rm -f /usr/sbin/apt
+rm /usr/sbin/apt
 hash apt
