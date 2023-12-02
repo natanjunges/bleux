@@ -18,5 +18,5 @@
 
 set -e
 
-ln -s ../bin/apt-disabled /usr/sbin/apt
+ln -s /usr/bin/apt-disabled /usr/local/bin/apt
 hash apt

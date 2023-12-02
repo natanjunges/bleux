@@ -20,6 +20,6 @@ set -e
 
 apt-get install -y --mark-auto pipewire-audio-client-libraries wireplumber libspa-0.2-bluetooth libspa-0.2-jack
 apt-get purge -y pipewire-media-session
-ln -s ../../../usr/share/doc/pipewire/examples/alsa.conf.d/99-pipewire-default.conf /etc/alsa/conf.d/
-ln -s ../../../usr/share/doc/pipewire/examples/ld.so.conf.d/pipewire-jack-*.conf /etc/ld.so.conf.d/
+ln -s /usr/share/doc/pipewire/examples/alsa.conf.d/99-pipewire-default.conf /etc/alsa/conf.d/
+ln -s /usr/share/doc/pipewire/examples/ld.so.conf.d/pipewire-jack-*.conf /etc/ld.so.conf.d/
 ldconfig
