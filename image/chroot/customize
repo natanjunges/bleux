@@ -23,17 +23,8 @@ if [ -n "$UPGRADE" ]; then
     OLD_VERSION=$(apt-cache depends --installed linux-headers-generic-hwe-22.04 | tail -1 | cut -d- -f3-4)
 fi
 
-# Purge restricted software
-apt-get purge -y firmware-sof-signed
-
-# Remove restricted repository
-add-apt-repository -y --remove restricted
-
-# Prepare to install nala packages
-wget https://gitlab.com/volian/volian-archive/uploads/b20bd8237a9b20f5a82f461ed0704ad4/volian-archive-keyring_0.1.0_all.deb \
-     https://gitlab.com/volian/volian-archive/uploads/d6b3a118de5384a0be2462905f7e4301/volian-archive-nala_0.1.0_all.deb
-apt-get install -y --mark-auto ./volian-archive-keyring_*_all.deb ./volian-archive-nala_*_all.deb
-mv /etc/apt/sources.list.d/volian-archive-scar-unstable.sources /etc/apt/sources.list.d/volian-archive-scar-unstable.sources.disabled
+# Add universe repository
+add-apt-repository -y -n universe
 
 # Prepare to install bleux packages
 if [ ! -d /usr/local/bleux/ ]; then
@@ -41,39 +32,54 @@ if [ ! -d /usr/local/bleux/ ]; then
     apt-get install -y ./bleux-repository.deb
 fi
 
-# Add universe repository
-add-apt-repository -y universe
+# Prepare to install nala packages
+wget https://gitlab.com/volian/volian-archive/uploads/b20bd8237a9b20f5a82f461ed0704ad4/volian-archive-keyring_0.1.0_all.deb \
+     https://gitlab.com/volian/volian-archive/uploads/d6b3a118de5384a0be2462905f7e4301/volian-archive-nala_0.1.0_all.deb
+apt-get install -y --mark-auto ./volian-archive-keyring_*_all.deb ./volian-archive-nala_*_all.deb
+mv /etc/apt/sources.list.d/volian-archive-scar-unstable.sources /etc/apt/sources.list.d/volian-archive-scar-unstable.sources.disabled
+
+# Remove restricted repository
+add-apt-repository -y --remove restricted
+
+# Remove signed version of GRUB
+apt-get install -y --allow-remove-essential bleux-no-signed-grub grub-efi-amd64-signed- shim-signed-
 
 # Install bleux packages
 apt-get install -y bleux-desktop bleux-release gnome-software-plugin-snap-
 
-# Purge undesired packages
-apt-get purge -y gstreamer1.0-pulseaudio firefox libwmf0.2-7-gtk libreoffice-ogltrans libreoffice-pdfimport
-
-# Remove signed version of GRUB
-apt-get install -y --allow-remove-essential bleux-no-signed-grub grub-efi-amd64-signed- shim-signed-
-apt-get purge -y --allow-remove-essential shim-signed
-
 # Install nala
 nala-add
-
-# Disable apt
-apt-disable
 
 # Add flatpak support
 flatpak-add
 
 # Install firefox flatpak
 flatpak install -y --noninteractive --no-related org.mozilla.firefox
-
-# Remove snap support
-snap-remove
+flatpak override --env=MOZ_ENABLE_WAYLAND=1 --nosocket=x11 org.mozilla.firefox
 
 # Add pipewire
 pipewire-add
 
+# Purge restricted software
+apt-get purge -y firmware-sof-signed
+
+# Remove signed version of GRUB
+apt-get purge -y --allow-remove-essential shim-signed
+
+# Purge undesired packages
+apt-get purge -y gstreamer1.0-pulseaudio firefox libwmf0.2-7-gtk libreoffice-ogltrans libreoffice-pdfimport
+
+# Disable apt
+apt-disable
+
+# Remove snap support
+snap-remove
+
 # Remove pulseaudio
 pulseaudio-remove
+
+# Purge unused packages
+apt-get autoremove -y --purge
 
 if [ -n "$UPGRADE" ]; then
     # Update all packages
@@ -91,9 +97,6 @@ fi
 
 # Make ubiquity use unsigned version of GRUB
 sed -i 's/grub_package="grub-efi-amd64-signed"/grub_package="bleux-no-signed-grub"/' /usr/share/grub-installer/grub-installer
-
-# Purge unused packages
-apt-get autoremove -y --purge
 
 # Clean everything up
 apt-get clean

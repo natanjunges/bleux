@@ -16,22 +16,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-set -e -x
+set -e
 
-# Remove x11
-x11-remove
-apt-get autoremove -y --purge
-
-# Finish installation of language support
-apt-get install -y $(check-language-support)
-
-# Finish installation of flatpak runtimes
-flatpak update -y --noninteractive --system
-
-# Fetch nala mirrors
-nala fetch -y --ubuntu jammy --auto
-sed -i 's/ multiverse//' /etc/apt/sources.list.d/nala-sources.list
-sed -i 's/ restricted//' /etc/apt/sources.list.d/nala-sources.list
-
-# Autoremove this script
-rm /root/postinst
+apt-get install -y --mark-auto dbus-x11 libx11-protocol-perl x11-apps x11-session-utils x11-utils xorg-docs-core xserver-xephyr xserver-xorg-core \
+                               xserver-xorg-legacy

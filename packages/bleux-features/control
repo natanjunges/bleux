@@ -3,17 +3,26 @@ Depends: apt
 Recommends: gnome-software,
     volian-archive-keyring,
     volian-archive-nala
-Suggests: flatpak,
+Suggests: dbus-x11,
+    flatpak,
     gnome-software-plugin-flatpak,
     gnome-software-plugin-snap,
     libspa-0.2-bluetooth,
     libspa-0.2-jack,
+    libx11-protocol-perl,
     nala,
     pipewire-audio-client-libraries,
     pulseaudio,
     pulseaudio-module-bluetooth,
     snapd,
-    wireplumber | pipewire-media-session
+    wireplumber | pipewire-media-session,
+    x11-apps,
+    x11-session-utils,
+    x11-utils,
+    xorg-docs-core,
+    xserver-xephyr,
+    xserver-xorg-core,
+    xserver-xorg-legacy
 Description: The bleUX feature scripts
  This package has scripts to toggle the core features of the bleUX desktop
  system.
@@ -33,3 +42,5 @@ Files: fix-python3-typer.list /usr/lib/bleux-features/
     scripts/pulseaudio-remove /usr/bin/
     scripts/snap-add /usr/bin/
     scripts/snap-remove /usr/bin/
+    scripts/x11-add /usr/bin/
+    scripts/x11-remove /usr/bin/

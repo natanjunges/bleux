@@ -50,7 +50,7 @@ Depends: alsa-base,
     xdg-user-dirs,
     xdg-user-dirs-gtk,
     xkb-data,
-    xorg,
+#   xorg,
     yelp,
     zenity,
     zip
