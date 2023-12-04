@@ -1,3 +1,9 @@
+bleux-desktop (0.6.0) jammy; urgency=low
+
+  * Add x11 addition/removal scripts.
+
+ -- Natan Junges <natanajunges@gmail.com>  Sun, 03 Dec 2023 23:52:43 -0300
+
 bleux-desktop (0.5.0) jammy; urgency=low
 
   * Remove or replace transitional packages.

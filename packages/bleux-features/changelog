@@ -1,3 +1,10 @@
+bleux-features (0.12.0) jammy; urgency=low
+
+  * Move apt-disabled symlink to /usr/local/bin/apt and use absolute paths for symlinks in scripts.
+  * Add x11 addition/removal scripts.
+
+ -- Natan Junges <natanajunges@gmail.com>  Sun, 03 Dec 2023 23:52:43 -0300
+
 bleux-features (0.11.0) jammy; urgency=low
 
   * Update shell hash entry for apt when enabling/disabling apt.
