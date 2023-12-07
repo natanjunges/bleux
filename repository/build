@@ -38,6 +38,7 @@ Release: Packages.xz
 	apt-ftparchive release . > Release
 
 Packages.xz: Packages
+	rm -f Packages.xz
 	xz -k Packages
 
 Packages: *.deb

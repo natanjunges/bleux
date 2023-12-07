@@ -56,6 +56,10 @@ customize:
 	sudo cp chroot/* custom-root/root/
 
 repository:
+	# Build local repository
+	$(MAKE) -C ../repository -f build packages
+	$(MAKE) -C ../repository -f build Release
+
 	# Copy local repository to chroot
 	sudo mkdir custom-root/usr/local/bleux/
 	sudo cp ../repository/Packages ../repository/Packages.xz ../repository/Release custom-root/usr/local/bleux/
