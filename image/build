@@ -61,12 +61,12 @@ repository:
 	$(MAKE) -C ../repository -f build Release
 
 	# Copy local repository to chroot
-	sudo mkdir custom-root/usr/local/bleux/
-	sudo cp ../repository/Packages ../repository/Packages.xz ../repository/Release custom-root/usr/local/bleux/
+	sudo mkdir -p custom-root/usr/local/bleux/
+	sudo cp -u ../repository/Packages ../repository/Packages.xz ../repository/Release custom-root/usr/local/bleux/
 	echo 'deb [trusted=yes arch=amd64] file:/usr/local/bleux ./' | sudo tee custom-root/etc/apt/sources.list.d/bleux.list > /dev/null
 
 	# Copy local repository packages to chroot apt cache
-	sudo cp ../repository/*.deb custom-root/var/cache/apt/archives/
+	sudo cp -u ../repository/*.deb custom-root/var/cache/apt/archives/
 
 chroot:
 	cubic .
