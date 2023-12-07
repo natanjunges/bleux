@@ -1,6 +1,8 @@
 Section: utils
 Depends: apt
 Recommends: gnome-software,
+    libglu1-mesa,
+    mesa-vulkan-drivers,
     volian-archive-keyring,
     volian-archive-nala
 Suggests: dbus-x11,
