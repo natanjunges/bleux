@@ -1,3 +1,9 @@
+bleux-release (0.5.0) jammy; urgency=low
+
+  * Update bleUX to 0.14.0.
+
+ -- Natan Junges <natanajunges@gmail.com>  Fri, 08 Dec 2023 17:26:36 -0300
+
 bleux-release (0.4.0) jammy; urgency=low
 
   * Update bleUX to 0.13.0.

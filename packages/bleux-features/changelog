@@ -1,3 +1,13 @@
+bleux-features (0.13.0) jammy; urgency=low
+
+  * Keep mesa libraries when removing x11.
+  * Don't update shell hash entry for apt when enabling/disabling apt as it will not propagate to the caller shell.
+  * Minor improvements.
+  * Include ghostscript-x and xcursor-themes in x11 addition/removal scripts.
+  * Unify feature scripts under the feature command.
+
+ -- Natan Junges <natanajunges@gmail.com>  Fri, 08 Dec 2023 17:26:36 -0300
+
 bleux-features (0.12.0) jammy; urgency=low
 
   * Move apt-disabled symlink to /usr/local/bin/apt and use absolute paths for symlinks in scripts.

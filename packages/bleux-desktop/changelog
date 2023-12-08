@@ -1,3 +1,9 @@
+bleux-desktop (0.7.0) jammy; urgency=low
+
+  * Include ghostscript-x and xcursor-themes in x11 addition/removal scripts.
+
+ -- Natan Junges <natanajunges@gmail.com>  Fri, 08 Dec 2023 17:26:36 -0300
+
 bleux-desktop (0.6.0) jammy; urgency=low
 
   * Add x11 addition/removal scripts.
