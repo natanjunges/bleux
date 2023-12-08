@@ -1,5 +1,3 @@
-#!/usr/bin/sh
-
 # bleUX, a user-centric desktop Linux distribution
 # Copyright (C) 2023  Natan Junges <natanajunges@gmail.com>
 #
@@ -16,7 +14,5 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-set -e
-
-apt-get purge -y snapd gnome-software-plugin-snap
-ln -s /usr/lib/bleux-features/nosnap.pref /etc/apt/preferences.d/
+apt-get purge -y dbus-x11 ghostscript-x libx11-protocol-perl x11-apps x11-session-utils x11-utils xcursor-themes xorg-docs-core xserver-xephyr \
+                 xserver-xorg-core xserver-xorg-legacy

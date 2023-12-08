@@ -1,5 +1,3 @@
-#!/usr/bin/sh
-
 # bleUX, a user-centric desktop Linux distribution
 # Copyright (C) 2023  Natan Junges <natanajunges@gmail.com>
 #
@@ -15,7 +13,5 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
-set -e
 
 ln -s /usr/bin/apt-disabled /usr/local/bin/apt

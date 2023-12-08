@@ -30,21 +30,22 @@ Suggests: dbus-x11,
 Description: The bleUX feature scripts
  This package has scripts to toggle the core features of the bleUX desktop
  system.
-Files: fix-python3-typer.list /usr/lib/bleux-features/
+Files: apt-disabled /usr/bin/
+    feature /usr/bin/
+    features/apt/disable.sh /usr/lib/bleux-features/features/apt/
+    features/apt/enable.sh /usr/lib/bleux-features/features/apt/
+    features/flatpak/add.sh /usr/lib/bleux-features/features/flatpak/
+    features/flatpak/remove.sh /usr/lib/bleux-features/features/flatpak/
+    features/nala/add.sh /usr/lib/bleux-features/features/nala/
+    features/nala/remove.sh /usr/lib/bleux-features/features/nala/
+    features/pipewire/add.sh /usr/lib/bleux-features/features/pipewire/
+    features/pipewire/remove.sh /usr/lib/bleux-features/features/pipewire/
+    features/pulseaudio/add.sh /usr/lib/bleux-features/features/pulseaudio/
+    features/pulseaudio/remove.sh /usr/lib/bleux-features/features/pulseaudio/
+    features/snap/add.sh /usr/lib/bleux-features/features/snap/
+    features/snap/remove.sh /usr/lib/bleux-features/features/snap/
+    features/x11/add.sh /usr/lib/bleux-features/features/x11/
+    features/x11/remove.sh /usr/lib/bleux-features/features/x11/
+    fix-python3-typer.list /usr/lib/bleux-features/
     fix-python3-typer.pref /usr/lib/bleux-features/
     nosnap.pref /usr/lib/bleux-features/
-    scripts/apt-disable /usr/bin/
-    scripts/apt-disabled /usr/bin/
-    scripts/apt-enable /usr/bin/
-    scripts/flatpak-add /usr/bin/
-    scripts/flatpak-remove /usr/bin/
-    scripts/nala-add /usr/bin/
-    scripts/nala-remove /usr/bin/
-    scripts/pipewire-add /usr/bin/
-    scripts/pipewire-remove /usr/bin/
-    scripts/pulseaudio-add /usr/bin/
-    scripts/pulseaudio-remove /usr/bin/
-    scripts/snap-add /usr/bin/
-    scripts/snap-remove /usr/bin/
-    scripts/x11-add /usr/bin/
-    scripts/x11-remove /usr/bin/

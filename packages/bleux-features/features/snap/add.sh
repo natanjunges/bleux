@@ -1,5 +1,3 @@
-#!/usr/bin/sh
-
 # bleUX, a user-centric desktop Linux distribution
 # Copyright (C) 2023  Natan Junges <natanajunges@gmail.com>
 #
@@ -16,6 +14,6 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-set -e
-
-apt-get purge -y pulseaudio pulseaudio-module-bluetooth
+rm /etc/apt/preferences.d/nosnap.pref
+apt-get install -y --mark-auto snapd gnome-software-plugin-snap
+snap install snapd

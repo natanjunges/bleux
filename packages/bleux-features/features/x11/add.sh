@@ -1,5 +1,3 @@
-#!/usr/bin/sh
-
 # bleUX, a user-centric desktop Linux distribution
 # Copyright (C) 2023  Natan Junges <natanajunges@gmail.com>
 #
@@ -16,10 +14,5 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-set -e
-
-apt-get install -y --mark-auto pipewire-audio-client-libraries wireplumber libspa-0.2-bluetooth libspa-0.2-jack
-apt-get purge -y pipewire-media-session
-ln -s /usr/share/doc/pipewire/examples/alsa.conf.d/99-pipewire-default.conf /etc/alsa/conf.d/
-ln -s /usr/share/doc/pipewire/examples/ld.so.conf.d/pipewire-jack-*.conf /etc/ld.so.conf.d/
-ldconfig
+apt-get install -y --mark-auto dbus-x11 ghostscript-x libx11-protocol-perl x11-apps x11-session-utils x11-utils xcursor-themes xorg-docs-core \
+                               xserver-xephyr xserver-xorg-core xserver-xorg-legacy

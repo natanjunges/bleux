@@ -1,5 +1,3 @@
-#!/usr/bin/sh
-
 # bleUX, a user-centric desktop Linux distribution
 # Copyright (C) 2023  Natan Junges <natanajunges@gmail.com>
 #
@@ -16,21 +14,4 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-set -e -x
-
-# Remove x11
-feature remove x11
-apt-get autoremove -y --purge
-
-# Finish installation of language support
-apt-get install -y $(check-language-support)
-
-# Finish installation of flatpak runtimes
-flatpak update -y --noninteractive --system
-
-# Fetch nala mirrors
-nala fetch -y --ubuntu jammy --auto
-sed -i 's/ multiverse//; s/ restricted//' /etc/apt/sources.list.d/nala-sources.list
-
-# Autoremove this script
-rm /root/postinst
+apt-get purge -y pulseaudio pulseaudio-module-bluetooth

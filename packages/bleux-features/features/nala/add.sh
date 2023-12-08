@@ -1,5 +1,3 @@
-#!/usr/bin/sh
-
 # bleUX, a user-centric desktop Linux distribution
 # Copyright (C) 2023  Natan Junges <natanajunges@gmail.com>
 #
@@ -16,8 +14,9 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-set -e
-
-apt-get purge -y nala
-mv /etc/apt/sources.list.d/volian-archive-scar-unstable.sources /etc/apt/sources.list.d/volian-archive-scar-unstable.sources.disabled
-rm /etc/apt/preferences.d/fix-python3-typer.pref /etc/apt/sources.list.d/fix-python3-typer.list
+ln -s /usr/lib/bleux-features/fix-python3-typer.list /etc/apt/sources.list.d/
+ln -s /usr/lib/bleux-features/fix-python3-typer.pref /etc/apt/preferences.d/
+mv /etc/apt/sources.list.d/volian-archive-scar-unstable.sources.disabled /etc/apt/sources.list.d/volian-archive-scar-unstable.sources
+apt-get update --no-list-cleanup -o Dir::Etc::SourceList="sources.list.d/fix-python3-typer.list" -o Dir::Etc::SourceParts="-"
+apt-get update --no-list-cleanup -o Dir::Etc::SourceList="sources.list.d/volian-archive-scar-unstable.sources" -o Dir::Etc::SourceParts="-"
+apt-get install -y --mark-auto --no-install-recommends nala

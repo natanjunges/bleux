@@ -1,5 +1,3 @@
-#!/usr/bin/sh
-
 # bleUX, a user-centric desktop Linux distribution
 # Copyright (C) 2023  Natan Junges <natanajunges@gmail.com>
 #
@@ -16,8 +14,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-set -e
-
-rm /etc/apt/preferences.d/nosnap.pref
-apt-get install -y --mark-auto snapd gnome-software-plugin-snap
-snap install snapd
+rm /etc/alsa/conf.d/99-pipewire-default.conf /etc/ld.so.conf.d/pipewire-jack-*.conf
+ldconfig
+apt-get install -y --mark-auto pipewire-media-session
+apt-get purge -y pipewire-audio-client-libraries wireplumber libspa-0.2-bluetooth libspa-0.2-jack
