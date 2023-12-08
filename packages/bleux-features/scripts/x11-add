@@ -18,5 +18,5 @@
 
 set -e
 
-apt-get install -y --mark-auto dbus-x11 libx11-protocol-perl x11-apps x11-session-utils x11-utils xorg-docs-core xserver-xephyr xserver-xorg-core \
-                               xserver-xorg-legacy
+apt-get install -y --mark-auto dbus-x11 ghostscript-x libx11-protocol-perl x11-apps x11-session-utils x11-utils xcursor-themes xorg-docs-core \
+                               xserver-xephyr xserver-xorg-core xserver-xorg-legacy
