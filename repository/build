@@ -31,15 +31,13 @@ packages:
 indexes: InRelease
 
 InRelease: Release
-	rm -f InRelease
-	gpg --clearsign -u $(KEYRING) -o InRelease Release
+	gpg --clearsign --yes -u $(KEYRING) -o InRelease Release
 
 Release: Packages.xz
 	apt-ftparchive release . > Release
 
 Packages.xz: Packages
-	rm -f Packages.xz
-	xz -k Packages
+	xz -k -f Packages
 
 Packages: *.deb
 	apt-ftparchive packages . > Packages

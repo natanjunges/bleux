@@ -20,7 +20,7 @@ set -e -x
 
 if [ -n "$UPGRADE" ]; then
     # Store old kernel version
-    OLD_VERSION=$(apt-cache depends --installed linux-headers-generic-hwe-22.04 | tail -1 | cut -d- -f3-4)
+    OLD_VERSION=$(dpkg -s linux-headers-generic-hwe-22.04 | grep ^Depends: | cut -d- -f3-4)
 fi
 
 # Add universe repository
@@ -86,7 +86,7 @@ if [ -n "$UPGRADE" ]; then
     apt-get dist-upgrade -y
 
     # Store new kernel version
-    NEW_VERSION=$(apt-cache depends --installed linux-headers-generic-hwe-22.04 | tail -1 | cut -d- -f3-4)
+    NEW_VERSION=$(dpkg -s linux-headers-generic-hwe-22.04 | grep ^Depends: | cut -d- -f3-4)
 
     # Decide if it needs to purge an older kernel version
     if [ $OLD_VERSION != $NEW_VERSION ]; then
