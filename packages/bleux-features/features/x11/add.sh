@@ -14,5 +14,5 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-apt-get install -y --mark-auto dbus-x11 ghostscript-x libx11-protocol-perl x11-apps x11-session-utils x11-utils xcursor-themes xorg-docs-core \
-                               xserver-xephyr xserver-xorg-core xserver-xorg-legacy
+apt-get install -y --mark-auto ghostscript-x libx11-protocol-perl x11-apps x11-session-utils x11-utils xcursor-themes xorg-docs-core xserver-xephyr \
+                               xserver-xorg-core xserver-xorg-legacy
