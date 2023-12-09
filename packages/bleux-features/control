@@ -7,12 +7,15 @@ Recommends: gnome-software,
     volian-archive-nala
 Suggests: flatpak,
     ghostscript-x,
+    gnome-console,
     gnome-software-plugin-flatpak,
     gnome-software-plugin-snap,
+    gnome-terminal,
     libspa-0.2-bluetooth,
     libspa-0.2-jack,
     libx11-protocol-perl,
     nala,
+    nautilus-extension-gnome-console,
     pipewire-audio-client-libraries,
     pulseaudio,
     pulseaudio-module-bluetooth,
@@ -35,6 +38,10 @@ Files: apt-disabled /usr/bin/
     features/apt/enable.sh /usr/lib/bleux-features/features/apt/
     features/flatpak/add.sh /usr/lib/bleux-features/features/flatpak/
     features/flatpak/remove.sh /usr/lib/bleux-features/features/flatpak/
+    features/gnome-console/add.sh /usr/lib/bleux-features/features/gnome-console/
+    features/gnome-console/remove.sh /usr/lib/bleux-features/features/gnome-console/
+    features/gnome-terminal/add.sh /usr/lib/bleux-features/features/gnome-terminal/
+    features/gnome-terminal/remove.sh /usr/lib/bleux-features/features/gnome-terminal/
     features/nala/add.sh /usr/lib/bleux-features/features/nala/
     features/nala/remove.sh /usr/lib/bleux-features/features/nala/
     features/pipewire/add.sh /usr/lib/bleux-features/features/pipewire/

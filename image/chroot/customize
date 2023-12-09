@@ -47,14 +47,20 @@ apt-get install -y --allow-remove-essential bleux-no-signed-grub grub-efi-amd64-
 # Install bleux packages
 apt-get install -y bleux-desktop bleux-release gnome-software-plugin-snap-
 
+# Install gnome-console
+feature add gnome-console
+
 # Install nala
 feature add nala
 
 # Add flatpak support
 feature add flatpak
 
-# Install firefox flatpak
-flatpak install -y --noninteractive --no-related org.mozilla.firefox
+# Install flatpaks
+# org.gnome.FileRoller: after removing gnome-shell-extension-desktop-icons-ng
+flatpak install -y --noninteractive --no-related org.gnome.Calculator org.gnome.Characters org.gnome.Evince org.gnome.font-viewer org.gnome.Logs \
+                                                 org.gnome.Loupe org.gnome.PowerStats org.gnome.seahorse.Application org.gnome.TextEditor \
+                                                 org.mozilla.firefox
 flatpak override --env=MOZ_ENABLE_WAYLAND=1 --nosocket=x11 org.mozilla.firefox
 
 # Add pipewire
@@ -67,7 +73,11 @@ apt-get purge -y firmware-sof-signed
 apt-get purge -y --allow-remove-essential shim-signed
 
 # Purge undesired packages
-apt-get purge -y gstreamer1.0-pulseaudio firefox libwmf0.2-7-gtk libreoffice-ogltrans libreoffice-pdfimport
+# file-roller: after removing gnome-shell-extension-desktop-icons-ng
+apt-get purge -y eog evince firefox gedit gnome-calculator gnome-characters gnome-font-viewer gnome-logs gnome-power-manager gstreamer1.0-pulseaudio libreoffice-ogltrans libreoffice-pdfimport libwmf0.2-7-gtk seahorse
+
+# Remove gnome-terminal
+feature remove gnome-terminal
 
 # Disable apt
 feature disable apt
