@@ -14,4 +14,5 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+update-alternatives --remove x-terminal-emulator /usr/bin/kgx
 apt-get purge -y gnome-console nautilus-extension-gnome-console

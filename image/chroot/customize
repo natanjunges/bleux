@@ -61,7 +61,16 @@ feature add flatpak
 flatpak install -y --noninteractive --no-related org.gnome.Calculator org.gnome.Characters org.gnome.Evince org.gnome.font-viewer org.gnome.Logs \
                                                  org.gnome.Loupe org.gnome.PowerStats org.gnome.seahorse.Application org.gnome.TextEditor \
                                                  org.mozilla.firefox
-flatpak override --env=MOZ_ENABLE_WAYLAND=1 --nosocket=x11 org.mozilla.firefox
+flatpak override --nosocket=x11 --nosocket=fallback-x11 org.gnome.Calculator
+flatpak override --nosocket=x11 --nosocket=fallback-x11 org.gnome.Characters
+flatpak override --nosocket=x11 --nosocket=fallback-x11 org.gnome.Evince
+flatpak override --nosocket=x11 --nosocket=fallback-x11 org.gnome.font-viewer
+flatpak override --nosocket=x11 --nosocket=fallback-x11 org.gnome.Logs
+flatpak override --nosocket=x11 --nosocket=fallback-x11 org.gnome.Loupe
+flatpak override --nosocket=x11 --nosocket=fallback-x11 org.gnome.PowerStats
+flatpak override --nosocket=x11 --nosocket=fallback-x11 org.gnome.seahorse.Application
+flatpak override --nosocket=x11 --nosocket=fallback-x11 org.gnome.TextEditor
+flatpak override --nosocket=x11 org.mozilla.firefox
 
 # Add pipewire
 feature add pipewire
