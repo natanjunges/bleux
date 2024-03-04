@@ -25,6 +25,15 @@ apt-get autoremove -y --purge
 # Finish installation of language support
 apt-get install -y $(check-language-support)
 
+# Remove normal packages in minimal install
+if ! which usb-creator-gtk; then
+    flatpak remove -y --noninteractive --system com.transmissionbt.Transmission org.gnome.Aisleriot org.gnome.baobab org.gnome.Calendar \
+                                                         org.gnome.DejaDup org.gnome.Mahjongg org.gnome.Mines org.gnome.Music org.gnome.Shotwell \
+                                                         org.gnome.SimpleScan org.gnome.Snapshot org.gnome.Sudoku org.gnome.Todo \
+                                                         org.libreoffice.LibreOffice org.mozilla.Thunderbird org.remmina.Remmina
+    flatpak remove -y --noninteractive --system --unused
+fi
+
 # Finish installation of flatpak runtimes
 flatpak update -y --noninteractive --system
 

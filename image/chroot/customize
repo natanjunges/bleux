@@ -57,20 +57,13 @@ feature add nala
 feature add flatpak
 
 # Install flatpaks
-# org.gnome.FileRoller: after removing gnome-shell-extension-desktop-icons-ng
-flatpak install -y --noninteractive --no-related org.gnome.Calculator org.gnome.Characters org.gnome.Evince org.gnome.font-viewer org.gnome.Logs \
-                                                 org.gnome.Loupe org.gnome.PowerStats org.gnome.seahorse.Application org.gnome.TextEditor \
-                                                 org.mozilla.firefox
-flatpak override --nosocket=x11 --nosocket=fallback-x11 org.gnome.Calculator
-flatpak override --nosocket=x11 --nosocket=fallback-x11 org.gnome.Characters
-flatpak override --nosocket=x11 --nosocket=fallback-x11 org.gnome.Evince
-flatpak override --nosocket=x11 --nosocket=fallback-x11 org.gnome.font-viewer
-flatpak override --nosocket=x11 --nosocket=fallback-x11 org.gnome.Logs
-flatpak override --nosocket=x11 --nosocket=fallback-x11 org.gnome.Loupe
-flatpak override --nosocket=x11 --nosocket=fallback-x11 org.gnome.PowerStats
-flatpak override --nosocket=x11 --nosocket=fallback-x11 org.gnome.seahorse.Application
-flatpak override --nosocket=x11 --nosocket=fallback-x11 org.gnome.TextEditor
-flatpak override --nosocket=x11 org.mozilla.firefox
+flatpak install -y --noninteractive --no-related com.transmissionbt.Transmission org.gnome.Aisleriot org.gnome.baobab org.gnome.Calculator \
+                                                 org.gnome.Calendar org.gnome.Characters org.gnome.DejaDup org.gnome.Evince org.gnome.FileRoller \
+                                                 org.gnome.font-viewer org.gnome.Logs org.gnome.Loupe org.gnome.Mahjongg org.gnome.Mines \
+                                                 org.gnome.Music org.gnome.PowerStats org.gnome.seahorse.Application org.gnome.Shotwell \
+                                                 org.gnome.SimpleScan org.gnome.Snapshot org.gnome.Sudoku org.gnome.TextEditor org.gnome.Todo \
+                                                 org.libreoffice.LibreOffice org.mozilla.firefox org.mozilla.Thunderbird org.remmina.Remmina
+flatpak override --nosocket=x11 org.mozilla.Thunderbird
 
 # Add pipewire
 feature add pipewire
@@ -82,8 +75,12 @@ apt-get purge -y firmware-sof-signed
 apt-get purge -y --allow-remove-essential shim-signed
 
 # Purge undesired packages
-# file-roller: after removing gnome-shell-extension-desktop-icons-ng
-apt-get purge -y eog evince firefox gedit gnome-calculator gnome-characters gnome-font-viewer gnome-logs gnome-power-manager gstreamer1.0-pulseaudio libreoffice-ogltrans libreoffice-pdfimport libwmf0.2-7-gtk seahorse
+# TODO: file-roller: after removing gnome-shell-extension-desktop-icons-ng
+apt-get purge -y aisleriot baobab cheese deja-dup eog evince firefox gedit gnome-calculator gnome-calendar gnome-characters gnome-font-viewer \
+                 gnome-logs gnome-mahjongg gnome-mines gnome-power-manager gnome-sudoku gnome-todo gstreamer1.0-pulseaudio libreoffice-calc \
+                 libreoffice-common libreoffice-gnome libreoffice-impress libreoffice-math libreoffice-ogltrans libreoffice-pdfimport \
+                 libreoffice-style-breeze libreoffice-writer libwmf0.2-7-gtk remmina rhythmbox seahorse shotwell simple-scan thunderbird \
+                 thunderbird-gnome-support transmission-gtk
 
 # Remove gnome-terminal
 feature remove gnome-terminal
