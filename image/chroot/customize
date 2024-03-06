@@ -75,12 +75,12 @@ apt-get purge -y firmware-sof-signed
 apt-get purge -y --allow-remove-essential shim-signed
 
 # Purge undesired packages
-# TODO: file-roller: after removing gnome-shell-extension-desktop-icons-ng
-apt-get purge -y aisleriot baobab cheese deja-dup eog evince firefox gedit gnome-calculator gnome-calendar gnome-characters gnome-font-viewer \
-                 gnome-logs gnome-mahjongg gnome-mines gnome-power-manager gnome-sudoku gnome-todo gstreamer1.0-pulseaudio libreoffice-calc \
-                 libreoffice-common libreoffice-gnome libreoffice-impress libreoffice-math libreoffice-ogltrans libreoffice-pdfimport \
-                 libreoffice-style-breeze libreoffice-writer libwmf0.2-7-gtk remmina rhythmbox seahorse shotwell simple-scan thunderbird \
-                 thunderbird-gnome-support transmission-gtk
+apt-get purge -y aisleriot baobab branding-ubuntu cheese deja-dup eog evince file-roller firefox gedit gnome-calculator gnome-calendar \
+                 gnome-characters gnome-font-viewer gnome-logs gnome-mahjongg gnome-mines gnome-power-manager gnome-shell-extension-desktop-icons-ng \
+                 gnome-shell-extension-ubuntu-dock gnome-sudoku gnome-todo gstreamer1.0-pulseaudio libreoffice-calc libreoffice-common \
+                 libreoffice-gnome libreoffice-impress libreoffice-math libreoffice-ogltrans libreoffice-pdfimport libreoffice-style-breeze \
+                 libreoffice-writer libwmf0.2-7-gtk remmina rhythmbox seahorse shotwell simple-scan thunderbird thunderbird-gnome-support \
+                 transmission-gtk
 
 # Remove gnome-terminal
 feature remove gnome-terminal
