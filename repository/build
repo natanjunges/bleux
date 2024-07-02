@@ -16,7 +16,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-KEYRING=0105929FE7AFB070FD84492CD79521EF764DEAD2
+KEYRING=0F414886C2FA986B9D4BEF65ED8B2A17CFC1DE23
 
 .PHONY: all packages indexes clean
 

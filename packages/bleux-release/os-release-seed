@@ -7,6 +7,6 @@ UBUNTU_CODENAME=jammy
 NAME="bleUX"
 # VERSION_CODENAME in a format suitable for presentation to the user
 CODENAME="Jammy Jellyfish"
-HOME_URL="https://github.com/bleux-os/ubuntu"
-DOCUMENTATION_URL="https://github.com/bleux-os/ubuntu/wiki"
-BUG_REPORT_URL="https://github.com/bleux-os/ubuntu/issues"
+HOME_URL="https://github.com/natanjunges/bleux"
+DOCUMENTATION_URL="https://github.com/natanjunges/bleux/wiki"
+BUG_REPORT_URL="https://github.com/natanjunges/bleux/issues"

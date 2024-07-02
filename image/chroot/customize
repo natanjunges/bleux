@@ -28,7 +28,7 @@ add-apt-repository -y -n universe
 
 # Prepare to install bleux packages
 if [ ! -d /usr/local/bleux/ ]; then
-    wget https://github.com/bleux-os/ubuntu/releases/latest/download/bleux-repository.deb
+    wget https://github.com/natanjunges/bleux/releases/latest/download/bleux-repository.deb
     apt-get install -y ./bleux-repository.deb
 fi
 

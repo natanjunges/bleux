@@ -1,1 +1,1 @@
-deb [signed-by=/usr/share/keyrings/bleux-archive-keyring.gpg arch=amd64] https://github.com/bleux-os/ubuntu/releases/latest/download ./
+deb [signed-by=/usr/share/keyrings/bleux-archive-keyring.gpg arch=amd64] https://github.com/natanjunges/bleux/releases/latest/download ./
