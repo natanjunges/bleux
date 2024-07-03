@@ -68,9 +68,6 @@ feature add pipewire
 # Purge restricted software
 apt-get purge -y firmware-sof-signed
 
-# Remove signed version of GRUB
-apt-get purge -y --allow-remove-essential shim-signed
-
 # Purge undesired packages
 apt-get purge -y aisleriot baobab branding-ubuntu cheese deja-dup eog evince file-roller firefox gedit gnome-calculator gnome-calendar \
                  gnome-characters gnome-font-viewer gnome-logs gnome-mahjongg gnome-mines gnome-power-manager gnome-shell-extension-desktop-icons-ng \
