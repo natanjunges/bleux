@@ -1,7 +1,0 @@
-Section: utils
-Essential: yes
-Breaks: shim-signed
-Provides: shim-signed
-Description: Prevent bleUX from using signed GRUB images
- Dummy package to prevent bleUX from using Ubuntu's signed GRUB
- images.
