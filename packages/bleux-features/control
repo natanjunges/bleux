@@ -44,16 +44,28 @@ Files: apt-disabled /usr/bin/
     features/apt/enable.sh /usr/lib/bleux-features/features/apt/
     features/flatpak/add.sh /usr/lib/bleux-features/features/flatpak/
     features/flatpak/remove.sh /usr/lib/bleux-features/features/flatpak/
+    features/gedit/add.sh /usr/lib/bleux-features/features/gedit/
+    features/gedit/remove.sh /usr/lib/bleux-features/features/gedit/
+    features/gnome-connections/add.sh /usr/lib/bleux-features/features/gnome-connections/
+    features/gnome-connections/remove.sh /usr/lib/bleux-features/features/gnome-connections/
     features/gnome-console/add.sh /usr/lib/bleux-features/features/gnome-console/
     features/gnome-console/remove.sh /usr/lib/bleux-features/features/gnome-console/
+    features/gnome-music/add.sh /usr/lib/bleux-features/features/gnome-music/
+    features/gnome-music/remove.sh /usr/lib/bleux-features/features/gnome-music/
     features/gnome-terminal/add.sh /usr/lib/bleux-features/features/gnome-terminal/
     features/gnome-terminal/remove.sh /usr/lib/bleux-features/features/gnome-terminal/
+    features/gnome-text-editor/add.sh /usr/lib/bleux-features/features/gnome-text-editor/
+    features/gnome-text-editor/remove.sh /usr/lib/bleux-features/features/gnome-text-editor/
     features/nala/add.sh /usr/lib/bleux-features/features/nala/
     features/nala/remove.sh /usr/lib/bleux-features/features/nala/
     features/pipewire/add.sh /usr/lib/bleux-features/features/pipewire/
     features/pipewire/remove.sh /usr/lib/bleux-features/features/pipewire/
     features/pulseaudio/add.sh /usr/lib/bleux-features/features/pulseaudio/
     features/pulseaudio/remove.sh /usr/lib/bleux-features/features/pulseaudio/
+    features/remmina/add.sh /usr/lib/bleux-features/features/remmina/
+    features/remmina/remove.sh /usr/lib/bleux-features/features/remmina/
+    features/rhythmbox/add.sh /usr/lib/bleux-features/features/rhythmbox/
+    features/rhythmbox/remove.sh /usr/lib/bleux-features/features/rhythmbox/
     features/snap/add.sh /usr/lib/bleux-features/features/snap/
     features/snap/remove.sh /usr/lib/bleux-features/features/snap/
     features/x11/add.sh /usr/lib/bleux-features/features/x11/
