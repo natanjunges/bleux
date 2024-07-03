@@ -2,9 +2,9 @@
 !/image/chroot/
 !/image/bleux.seed
 !/image/build
+!/image/release
 /packages/*/*.buildinfo
 /packages/*/*.changes
 /packages/*/*.deb
-/packages/bleux-release/os-release
 /repository/*
 !/repository/build
