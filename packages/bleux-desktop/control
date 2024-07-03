@@ -174,7 +174,7 @@ Recommends: acpi-support,
     yaru-theme-sound
 Suggests: aisleriot,
     baobab,
-#   branding-ubuntu,
+    branding-ubuntu,
     cheese,
     deja-dup,
     gnome-calendar,
