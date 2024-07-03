@@ -65,10 +65,9 @@ feature add pipewire
 apt-get purge -y firmware-sof-signed
 
 # Purge undesired packages
-apt-get purge -y branding-ubuntu firefox gnome-shell-extension-desktop-icons-ng gnome-shell-extension-ubuntu-dock gstreamer1.0-pulseaudio \
-                 libreoffice-calc libreoffice-common libreoffice-gnome libreoffice-impress libreoffice-math libreoffice-ogltrans \
-                 libreoffice-pdfimport libreoffice-style-breeze libreoffice-writer libwmf0.2-7-gtk remmina thunderbird thunderbird-gnome-support \
-                 transmission-gtk
+apt-get purge -y firefox gnome-shell-extension-desktop-icons-ng gnome-shell-extension-ubuntu-dock gstreamer1.0-pulseaudio libreoffice-calc \
+                 libreoffice-common libreoffice-gnome libreoffice-impress libreoffice-math libreoffice-ogltrans libreoffice-pdfimport \
+                 libreoffice-style-breeze libreoffice-writer libwmf0.2-7-gtk remmina thunderbird thunderbird-gnome-support transmission-gtk
 
 # Remove gnome-terminal
 feature remove gnome-terminal
