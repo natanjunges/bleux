@@ -1,9 +1,9 @@
 Package: *
-Pin: release n=mantic
+Pin: release n=noble
 Pin-Priority: -1
 
 Package: python3-typer
-Pin: release n=mantic
+Pin: release n=noble
 Pin-Priority: 1000
 
 Package: python3-typer
