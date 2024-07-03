@@ -1,12 +1,2 @@
-ID=bleux
-ID_LIKE="ubuntu debian"
-VERSION_ID=0.14.0
-VERSION_CODENAME=jammy
-UBUNTU_CODENAME=jammy
-
-NAME="bleUX"
-# VERSION_CODENAME in a format suitable for presentation to the user
-CODENAME="Jammy Jellyfish"
-HOME_URL="https://github.com/natanjunges/bleux"
-DOCUMENTATION_URL="https://github.com/natanjunges/bleux/wiki"
-BUG_REPORT_URL="https://github.com/natanjunges/bleux/issues"
+ISO_VERSION_NUMBER=0.14.0
+ISO_RELEASE_NAME="Jammy Jellyfish"
