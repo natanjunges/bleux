@@ -27,7 +27,8 @@ apt-get install -y $(check-language-support)
 
 # Remove normal packages in minimal install
 if ! which usb-creator-gtk; then
-    flatpak remove -y --noninteractive --system com.transmissionbt.Transmission org.libreoffice.LibreOffice org.mozilla.Thunderbird org.remmina.Remmina
+    flatpak remove -y --noninteractive --system com.transmissionbt.Transmission org.libreoffice.LibreOffice org.mozilla.Thunderbird \
+                                                org.remmina.Remmina
     flatpak remove -y --noninteractive --system --unused
 fi
 
