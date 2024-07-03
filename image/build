@@ -23,7 +23,7 @@ all:
 	$(MAKE) -f build customize
 	$(MAKE) -f build chroot
 
-extract: ../packages/bleux-release/os-release-seed
+extract: release
 	if [ -z '$(ISO_DIRECTORY)' ]; then exit 1; fi
 
 	# Force (re-)extraction of ISO
