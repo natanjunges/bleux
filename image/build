@@ -46,9 +46,6 @@ customize:
 	sed -i 's|file=/cdrom/preseed/ubuntu.seed|file=/cdrom/preseed/bleux.seed|' custom-disk/boot/grub/grub.cfg
 	sed -i 's|file=/cdrom/preseed/ubuntu.seed|file=/cdrom/preseed/bleux.seed|' custom-disk/boot/grub/loopback.cfg
 
-	# Replace Ubuntu name in bootloader menu
-	sed -i s/Ubuntu/bleUX/ custom-disk/boot/grub/grub.cfg custom-disk/boot/grub/loopback.cfg
-
 	# Copy chroot files to chroot
 	sudo cp chroot/* custom-root/root/
 
