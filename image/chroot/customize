@@ -41,11 +41,8 @@ mv /etc/apt/sources.list.d/volian-archive-scar-unstable.sources /etc/apt/sources
 # Remove restricted repository
 add-apt-repository -y --remove restricted
 
-# Remove signed version of GRUB
-apt-get install -y --allow-remove-essential bleux-no-signed-grub grub-efi-amd64-signed- shim-signed-
-
 # Install bleux packages
-apt-get install -y bleux-desktop bleux-release gnome-software-plugin-snap-
+apt-get install -y bleux-desktop gnome-software-plugin-snap-
 
 # Install gnome-console
 feature add gnome-console
@@ -110,9 +107,6 @@ if [ -n "$UPGRADE" ]; then
                          linux-modules-$OLD_VERSION-generic linux-modules-extra-$OLD_VERSION-generic
     fi
 fi
-
-# Make ubiquity use unsigned version of GRUB
-sed -i 's/grub_package="grub-efi-amd64-signed"/grub_package="bleux-no-signed-grub"/' /usr/share/grub-installer/grub-installer
 
 # Clean everything up
 apt-get clean
