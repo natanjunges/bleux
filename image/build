@@ -1,7 +1,7 @@
 #!/usr/bin/make -f
 
 # bleUX, a user-centric desktop Linux distribution
-# Copyright (C) 2023  Natan Junges <natanajunges@gmail.com>
+# Copyright (C) 2023, 2024  Natan Junges <natanajunges@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -31,8 +31,8 @@ extract: ../packages/bleux-release/os-release-seed
 
 	# Replace variables with values in cubic.conf
 	sed -i 's|$${PWD}|$(PWD)|; s|$${ISO_DIRECTORY}|$(ISO_DIRECTORY)|' cubic.conf
-	sed -i "s/\$${VERSION_ID}/$$(grep -m 1 ^VERSION_ID= ../packages/bleux-release/os-release-seed | cut -d= -f2)/" cubic.conf
-	sed -i "s/\$${CODENAME}/$$(grep -m 1 ^CODENAME= ../packages/bleux-release/os-release-seed | cut -d\" -f2)/" cubic.conf
+	sed -i "s/\$${ISO_VERSION_NUMBER}/$$(grep -m 1 ^ISO_VERSION_NUMBER= release | cut -d= -f2)/" cubic.conf
+	sed -i "s/\$${ISO_RELEASE_NAME}/$$(grep -m 1 ^ISO_RELEASE_NAME= release | cut -d\" -f2)/" cubic.conf
 
 	cubic .
 
