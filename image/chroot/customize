@@ -44,8 +44,17 @@ add-apt-repository -y --remove restricted
 # Install bleux packages
 apt-get install -y bleux-desktop gnome-software-plugin-snap-
 
+# Install gnome-connections
+feature add gnome-connections
+
 # Install gnome-console
 feature add gnome-console
+
+# Install gnome-music
+feature add gnome-music
+
+# Install gnome-text-editor
+feature add gnome-text-editor
 
 # Install nala
 feature add nala
@@ -69,8 +78,17 @@ apt-get purge -y firefox gnome-shell-extension-desktop-icons-ng gnome-shell-exte
                  libreoffice-common libreoffice-gnome libreoffice-impress libreoffice-math libreoffice-ogltrans libreoffice-pdfimport \
                  libreoffice-style-breeze libreoffice-writer libwmf0.2-7-gtk thunderbird thunderbird-gnome-support transmission-gtk
 
+# Remove gedit
+feature remove gedit
+
 # Remove gnome-terminal
 feature remove gnome-terminal
+
+# Remove remmina
+feature remove remmina
+
+# Remove rhythmbox
+feature remove rhythmbox
 
 # Disable apt
 feature disable apt
