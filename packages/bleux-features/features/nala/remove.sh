@@ -16,5 +16,5 @@
 
 apt-get purge -y nala
 apt-mark hold volian-archive-nala
-mv /etc/apt/sources.list.d/volian-archive-scar-unstable.sources /etc/apt/sources.list.d/volian-archive-scar-unstable.sources.disabled
+mv /etc/apt/sources.list.d/volian-archive-nala-unstable.sources /etc/apt/sources.list.d/volian-archive-nala-unstable.sources.disabled
 rm /etc/apt/preferences.d/fix-python3-typer.pref /etc/apt/sources.list.d/fix-python3-typer.list
