@@ -34,7 +34,7 @@ extract: release
 	sed -i "s/\$${ISO_VERSION_NUMBER}/$$(grep -m 1 ^ISO_VERSION_NUMBER= release | cut -d= -f2)/" cubic.conf
 	sed -i "s/\$${ISO_RELEASE_NAME}/$$(grep -m 1 ^ISO_RELEASE_NAME= release | cut -d\" -f2)/" cubic.conf
 
-	cubic .
+	./cubic_extract.py -v .
 
 customize:
 	# Remove repositories from installation disk
@@ -67,7 +67,7 @@ repository:
 	sudo cp -u ../repository/*.deb custom-root/var/cache/apt/archives/
 
 chroot:
-	cubic .
+	./cubic_chroot.py -v .
 
 clean:
 	rm -rf custom-disk/

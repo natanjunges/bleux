@@ -2,6 +2,8 @@
 !/image/chroot/
 !/image/bleux.seed
 !/image/build
+!/image/cubic_chroot.py
+!/image/cubic_extract.py
 !/image/release
 /packages/*/*.buildinfo
 /packages/*/*.changes
