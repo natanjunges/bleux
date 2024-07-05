@@ -1,10 +1,9 @@
-/image/*
-!/image/chroot/
-!/image/bleux.seed
-!/image/build
-!/image/cubic_chroot.py
-!/image/cubic_extract.py
-!/image/release
+/image/bleux-*.iso
+/image/bleux-*.md5
+/image/custom-disk/
+/image/custom-root/
+/image/partition-1.img
+/image/partition-2.img
 /packages/*/*.buildinfo
 /packages/*/*.changes
 /packages/*/*.deb
