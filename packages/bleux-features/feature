@@ -18,4 +18,7 @@
 
 set -e
 
-. /usr/lib/bleux-features/features/$2/$1.sh
+command=$1
+shift
+feature=$(echo $@ | tr ' ' /)
+. /usr/lib/bleux-features/features/$feature.sh $command

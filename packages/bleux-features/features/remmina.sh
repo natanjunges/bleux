@@ -14,4 +14,14 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-apt-get install -y --mark-auto gnome-music
+case $1 in
+    add)
+        apt-get install -y --mark-auto remmina
+    ;;
+    remove)
+        apt-get purge -y remmina
+    ;;
+    *)
+        exit 1
+    ;;
+esac

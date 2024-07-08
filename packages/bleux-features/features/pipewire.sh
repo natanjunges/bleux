@@ -14,5 +14,21 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-update-alternatives --remove x-terminal-emulator /usr/bin/kgx
-apt-get purge -y gnome-console nautilus-extension-gnome-console
+case $1 in
+    add)
+        apt-get install -y --mark-auto pipewire-audio-client-libraries wireplumber libspa-0.2-bluetooth libspa-0.2-jack
+        apt-get purge -y pipewire-media-session
+        ln -s /usr/share/doc/pipewire/examples/alsa.conf.d/99-pipewire-default.conf /etc/alsa/conf.d/
+        ln -s /usr/share/doc/pipewire/examples/ld.so.conf.d/pipewire-jack-*.conf /etc/ld.so.conf.d/
+        ldconfig
+    ;;
+    remove)
+        rm /etc/alsa/conf.d/99-pipewire-default.conf /etc/ld.so.conf.d/pipewire-jack-*.conf
+        ldconfig
+        apt-get install -y --mark-auto pipewire-media-session
+        apt-get purge -y pipewire-audio-client-libraries wireplumber libspa-0.2-bluetooth libspa-0.2-jack
+    ;;
+    *)
+        exit 1
+    ;;
+esac

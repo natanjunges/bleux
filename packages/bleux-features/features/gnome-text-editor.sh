@@ -14,4 +14,14 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-apt-get purge -y gedit
+case $1 in
+    add)
+        apt-get install -y --mark-auto gnome-text-editor
+    ;;
+    remove)
+        apt-get purge -y gnome-text-editor
+    ;;
+    *)
+        exit 1
+    ;;
+esac

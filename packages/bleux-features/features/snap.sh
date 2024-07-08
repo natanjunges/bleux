@@ -14,5 +14,17 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-apt-get install -y --mark-auto gnome-console nautilus-extension-gnome-console
-update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator /usr/bin/kgx 50
+case $1 in
+    add)
+        rm /etc/apt/preferences.d/nosnap.pref
+        apt-get install -y --mark-auto snapd gnome-software-plugin-snap
+        snap install snapd
+    ;;
+    remove)
+        apt-get purge -y snapd gnome-software-plugin-snap
+        ln -s /usr/lib/bleux-features/nosnap.pref /etc/apt/preferences.d/
+    ;;
+    *)
+        exit 1
+    ;;
+esac

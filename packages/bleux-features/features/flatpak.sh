@@ -1,5 +1,5 @@
 # bleUX, a user-centric desktop Linux distribution
-# Copyright (C) 2023  Natan Junges <natanajunges@gmail.com>
+# Copyright (C) 2023, 2024  Natan Junges <natanajunges@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -14,6 +14,16 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-rm /etc/apt/preferences.d/nosnap.pref
-apt-get install -y --mark-auto snapd gnome-software-plugin-snap
-snap install snapd
+case $1 in
+    add)
+        apt-get install -y --mark-auto flatpak gnome-software-plugin-flatpak
+        flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+    ;;
+    remove)
+        flatpak remove -y --all
+        apt-get purge -y flatpak gnome-software-plugin-flatpak
+    ;;
+    *)
+        exit 1
+    ;;
+esac

@@ -26,7 +26,7 @@ fi
 # Add universe repository
 add-apt-repository -y -n universe
 
-# Prepare to install bleux packages
+# Prepare to install bleUX packages
 if [ ! -d /usr/local/bleux/ ]; then
     wget https://github.com/natanjunges/bleux/releases/latest/download/bleux-repository.deb
     apt-get install -y ./bleux-repository.deb
@@ -42,7 +42,7 @@ mv /etc/apt/sources.list.d/volian-archive-nala-unstable.sources /etc/apt/sources
 # Remove restricted repository
 add-apt-repository -y --remove restricted
 
-# Install bleux packages
+# Install bleUX packages
 apt-get install -y bleux-desktop gnome-software-plugin-snap-
 
 # Install gnome-connections

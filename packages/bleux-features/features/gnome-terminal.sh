@@ -1,5 +1,5 @@
 # bleUX, a user-centric desktop Linux distribution
-# Copyright (C) 2024  Natan Junges <natanajunges@gmail.com>
+# Copyright (C) 2023, 2024  Natan Junges <natanajunges@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -14,4 +14,14 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-apt-get install -y --mark-auto remmina
+case $1 in
+    add)
+        apt-get install -y --mark-auto gnome-terminal
+    ;;
+    remove)
+        apt-get purge -y gnome-terminal xterm
+    ;;
+    *)
+        exit 1
+    ;;
+esac

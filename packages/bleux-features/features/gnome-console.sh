@@ -1,5 +1,5 @@
 # bleUX, a user-centric desktop Linux distribution
-# Copyright (C) 2023  Natan Junges <natanajunges@gmail.com>
+# Copyright (C) 2023, 2024  Natan Junges <natanajunges@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -14,4 +14,16 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-apt-get install -y --mark-auto gnome-terminal
+case $1 in
+    add)
+        apt-get install -y --mark-auto gnome-console nautilus-extension-gnome-console
+        update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator /usr/bin/kgx 50
+    ;;
+    remove)
+        update-alternatives --remove x-terminal-emulator /usr/bin/kgx
+        apt-get purge -y gnome-console nautilus-extension-gnome-console
+    ;;
+    *)
+        exit 1
+    ;;
+esac
