@@ -64,9 +64,10 @@ feature add nala
 feature add flatpak
 
 # Install flatpaks
-flatpak install -y --noninteractive --no-related com.transmissionbt.Transmission org.libreoffice.LibreOffice org.mozilla.firefox \
-                                                 org.mozilla.Thunderbird
-flatpak override --nosocket=x11 org.mozilla.Thunderbird
+feature add flatpak firefox
+feature add flatpak libreoffice
+feature add flatpak thunderbird
+feature add flatpak transmission
 
 # Add pipewire
 feature add pipewire
@@ -75,9 +76,8 @@ feature add pipewire
 apt-get purge -y firmware-sof-signed
 
 # Purge undesired packages
-apt-get purge -y firefox gnome-shell-extension-desktop-icons-ng gnome-shell-extension-ubuntu-dock gstreamer1.0-pulseaudio libreoffice-calc \
-                 libreoffice-common libreoffice-gnome libreoffice-impress libreoffice-math libreoffice-ogltrans libreoffice-pdfimport \
-                 libreoffice-style-breeze libreoffice-writer libwmf0.2-7-gtk thunderbird thunderbird-gnome-support transmission-gtk
+apt-get purge -y firefox gnome-shell-extension-desktop-icons-ng gnome-shell-extension-ubuntu-dock gstreamer1.0-pulseaudio libreoffice-ogltrans \
+                 libreoffice-pdfimport libwmf0.2-7-gtk
 
 # Remove gedit
 feature remove gedit
@@ -96,6 +96,11 @@ feature disable apt
 
 # Remove snap support
 feature remove snap
+
+# Remove debs
+feature remove libreoffice
+feature remove thunderbird
+feature remove transmission
 
 # Remove pulseaudio
 feature remove pulseaudio

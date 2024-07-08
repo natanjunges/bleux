@@ -15,6 +15,13 @@ Suggests: flatpak,
     gnome-software-plugin-snap,
     gnome-terminal,
     gnome-text-editor,
+    libreoffice-calc,
+    libreoffice-common,
+    libreoffice-gnome,
+    libreoffice-impress,
+    libreoffice-math,
+    libreoffice-style-breeze,
+    libreoffice-writer,
     libspa-0.2-bluetooth,
     libspa-0.2-jack,
     libx11-protocol-perl,
@@ -26,6 +33,9 @@ Suggests: flatpak,
     remmina,
     rhythmbox,
     snapd,
+    thunderbird,
+    thunderbird-gnome-support,
+    transmission-gtk,
     wireplumber | pipewire-media-session,
     x11-apps,
     x11-session-utils,
@@ -42,18 +52,26 @@ Files: apt-disabled /usr/bin/
     feature /usr/bin/
     features/apt.sh /usr/lib/bleux-features/features/
     features/flatpak.sh /usr/lib/bleux-features/features/
+    features/flatpak/firefox.sh /usr/lib/bleux-features/features/flatpak/
+    features/flatpak/libreoffice.sh /usr/lib/bleux-features/features/flatpak/
+    features/flatpak/thunderbird.sh /usr/lib/bleux-features/features/flatpak/
+    features/flatpak/transmission.sh /usr/lib/bleux-features/features/flatpak/
     features/gedit.sh /usr/lib/bleux-features/features/
     features/gnome-connections.sh /usr/lib/bleux-features/features/
     features/gnome-console.sh /usr/lib/bleux-features/features/
     features/gnome-music.sh /usr/lib/bleux-features/features/
     features/gnome-terminal.sh /usr/lib/bleux-features/features/
     features/gnome-text-editor.sh /usr/lib/bleux-features/features/
+    features/libreoffice.sh /usr/lib/bleux-features/features/
     features/nala.sh /usr/lib/bleux-features/features/
     features/pipewire.sh /usr/lib/bleux-features/features/
     features/pulseaudio.sh /usr/lib/bleux-features/features/
     features/remmina.sh /usr/lib/bleux-features/features/
     features/rhythmbox.sh /usr/lib/bleux-features/features/
     features/snap.sh /usr/lib/bleux-features/features/
+    features/snap/firefox.sh /usr/lib/bleux-features/features/snap/
+    features/thunderbird.sh /usr/lib/bleux-features/features/
+    features/transmission.sh /usr/lib/bleux-features/features/
     features/x11.sh /usr/lib/bleux-features/features/
     fix-python3-typer.list /usr/lib/bleux-features/
     fix-python3-typer.pref /usr/lib/bleux-features/
