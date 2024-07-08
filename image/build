@@ -34,7 +34,7 @@ extract: release
 	sed -i "s/\$${ISO_VERSION_NUMBER}/$$(grep -m 1 ^ISO_VERSION_NUMBER= release | cut -d= -f2)/" cubic.conf
 	sed -i "s/\$${ISO_RELEASE_NAME}/$$(grep -m 1 ^ISO_RELEASE_NAME= release | cut -d\" -f2)/" cubic.conf
 
-	./cubic_extract.py -v .
+	PAGE=$@ ./cubic_wrapper.py -v .
 
 customize:
 	# Remove repositories from installation disk
@@ -47,8 +47,8 @@ customize:
 	sed -i 's|file=/cdrom/preseed/ubuntu.seed|file=/cdrom/preseed/bleux.seed|' custom-disk/boot/grub/loopback.cfg
 
 	# Mark packages for removal
-	cp remove custom-disk/casper/filesystem.manifest-remove
-	cat remove minimal-remove > custom-disk/casper/filesystem.manifest-minimal-remove
+	cat remove >> custom-disk/casper/filesystem.manifest-remove
+	cat minimal-remove >> custom-disk/casper/filesystem.manifest-minimal-remove
 
 	# Copy chroot files to chroot
 	sudo cp chroot/* custom-root/root/
@@ -67,7 +67,7 @@ repository:
 	sudo cp -u ../repository/*.deb custom-root/var/cache/apt/archives/
 
 chroot:
-	./cubic_chroot.py -v .
+	PAGE=$@ UPGRADE=$(UPGRADE) ./cubic_wrapper.py -v .
 
 clean:
 	rm -rf custom-disk/
