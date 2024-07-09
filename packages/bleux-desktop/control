@@ -107,8 +107,6 @@ Recommends: acpi-support,
     gnome-logs,
     gnome-power-manager,
     gnome-remote-desktop,
-# Added by bleUX:
-    gnome-software,
     gnome-system-monitor,
 #   gnome-terminal,
     gpg-agent,

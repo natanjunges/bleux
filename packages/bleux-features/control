@@ -1,7 +1,6 @@
 Section: utils
 Depends: apt
-Recommends: gnome-software,
-    libglu1-mesa,
+Recommends: libglu1-mesa,
     mesa-vulkan-drivers,
     volian-archive-keyring,
     volian-archive-nala
@@ -11,6 +10,9 @@ Suggests: flatpak,
     gnome-connections,
     gnome-console,
     gnome-music,
+    gnome-shell-extension-desktop-icons-ng,
+    gnome-shell-extension-ubuntu-dock,
+    gnome-software,
     gnome-software-plugin-flatpak,
     gnome-software-plugin-snap,
     gnome-terminal,
@@ -51,6 +53,7 @@ Description: The bleUX feature scripts
 Files: apt-disabled /usr/bin/
     feature /usr/bin/
     features/apt.sh /usr/lib/bleux-features/features/
+    features/desktop-icons.sh /usr/lib/bleux-features/features/
     features/flatpak.sh /usr/lib/bleux-features/features/
     features/flatpak/firefox.sh /usr/lib/bleux-features/features/flatpak/
     features/flatpak/libreoffice.sh /usr/lib/bleux-features/features/flatpak/
@@ -60,6 +63,7 @@ Files: apt-disabled /usr/bin/
     features/gnome-connections.sh /usr/lib/bleux-features/features/
     features/gnome-console.sh /usr/lib/bleux-features/features/
     features/gnome-music.sh /usr/lib/bleux-features/features/
+    features/gnome-software.sh /usr/lib/bleux-features/features/
     features/gnome-terminal.sh /usr/lib/bleux-features/features/
     features/gnome-text-editor.sh /usr/lib/bleux-features/features/
     features/libreoffice.sh /usr/lib/bleux-features/features/
@@ -70,8 +74,10 @@ Files: apt-disabled /usr/bin/
     features/rhythmbox.sh /usr/lib/bleux-features/features/
     features/snap.sh /usr/lib/bleux-features/features/
     features/snap/firefox.sh /usr/lib/bleux-features/features/snap/
+    features/snap/snap-store.sh /usr/lib/bleux-features/features/snap/
     features/thunderbird.sh /usr/lib/bleux-features/features/
     features/transmission.sh /usr/lib/bleux-features/features/
+    features/ubuntu-dock.sh /usr/lib/bleux-features/features/
     features/x11.sh /usr/lib/bleux-features/features/
     fix-python3-typer.list /usr/lib/bleux-features/
     fix-python3-typer.pref /usr/lib/bleux-features/

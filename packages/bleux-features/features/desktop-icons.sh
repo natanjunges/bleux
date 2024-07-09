@@ -14,16 +14,12 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-if ! dpkg-query -f '${db:Status-abbrev}' -W snapd 2> /dev/null | grep -q '^.i'; then
-    exit 1
-fi
-
 case $1 in
     add)
-        snap install firefox
+        apt-get install -y --mark-auto gnome-shell-extension-desktop-icons-ng
     ;;
     remove)
-        snap remove --purge firefox
+        apt-get purge -y gnome-shell-extension-desktop-icons-ng
     ;;
     *)
         exit 1

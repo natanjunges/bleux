@@ -17,8 +17,12 @@
 case $1 in
     add)
         rm /etc/apt/preferences.d/nosnap.pref
-        apt-get install -y --mark-auto snapd gnome-software-plugin-snap
+        apt-get install -y --mark-auto snapd
         snap install snapd
+
+        if dpkg-query -f '${db:Status-abbrev}' -W gnome-software 2> /dev/null | grep -q '^.i'; then
+            apt-get install -y --mark-auto gnome-software-plugin-snap
+        fi
     ;;
     remove)
         apt-get purge -y snapd gnome-software-plugin-snap

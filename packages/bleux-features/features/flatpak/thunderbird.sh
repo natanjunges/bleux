@@ -14,6 +14,10 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+if ! dpkg-query -f '${db:Status-abbrev}' -W flatpak 2> /dev/null | grep -q '^.i'; then
+    exit 1
+fi
+
 case $1 in
     add)
         flatpak install -y --noninteractive --no-related org.mozilla.Thunderbird

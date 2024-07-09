@@ -14,16 +14,20 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-if ! dpkg-query -f '${db:Status-abbrev}' -W snapd 2> /dev/null | grep -q '^.i'; then
-    exit 1
-fi
-
 case $1 in
     add)
-        snap install firefox
+        apt-get install -y --mark-auto gnome-software gnome-software-plugin-snap-
+
+        if dpkg-query -f '${db:Status-abbrev}' -W flatpak 2> /dev/null | grep -q '^.i'; then
+            apt-get install -y --mark-auto gnome-software-plugin-flatpak
+        fi
+
+        if dpkg-query -f '${db:Status-abbrev}' -W snapd 2> /dev/null | grep -q '^.i'; then
+            apt-get install -y --mark-auto gnome-software-plugin-snap
+        fi
     ;;
     remove)
-        snap remove --purge firefox
+        apt-get purge -y gnome-software gnome-software-plugin-flatpak gnome-software-plugin-snap
     ;;
     *)
         exit 1

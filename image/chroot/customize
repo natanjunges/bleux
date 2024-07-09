@@ -23,93 +23,67 @@ if [ -n "$UPGRADE" ]; then
     OLD_VERSION=$(dpkg -s linux-headers-generic-hwe-22.04 | grep ^Depends: | cut -d- -f3-4)
 fi
 
-# Add universe repository
-add-apt-repository -y -n universe
+# Remove restricted repository
+add-apt-repository -y -n --remove restricted
 
-# Prepare to install bleUX packages
+# Install bleUX repository
 if [ ! -d /usr/local/bleux/ ]; then
     wget https://github.com/natanjunges/bleux/releases/latest/download/bleux-repository.deb
     apt-get install -y ./bleux-repository.deb
 fi
 
-# Prepare to install nala packages
+# Install nala repository
 wget https://deb.volian.org/volian/pool/main/v/volian-archive/volian-archive-keyring_0.3.1_all.deb \
      https://deb.volian.org/volian/pool/main/v/volian-archive/volian-archive-nala_0.3.1_all.deb
 apt-get install -y --mark-auto ./volian-archive-keyring_*_all.deb ./volian-archive-nala_*_all.deb
 apt-mark hold volian-archive-nala
 mv /etc/apt/sources.list.d/volian-archive-nala-unstable.sources /etc/apt/sources.list.d/volian-archive-nala-unstable.sources.disabled
 
-# Remove restricted repository
-add-apt-repository -y --remove restricted
-
-# Install bleUX packages
-apt-get install -y bleux-desktop gnome-software-plugin-snap-
-
-# Install gnome-connections
-feature add gnome-connections
-
-# Install gnome-console
-feature add gnome-console
-
-# Install gnome-music
-feature add gnome-music
-
-# Install gnome-text-editor
-feature add gnome-text-editor
-
-# Install nala
-feature add nala
-
-# Add flatpak support
-feature add flatpak
-
-# Install flatpaks
-feature add flatpak firefox
-feature add flatpak libreoffice
-feature add flatpak thunderbird
-feature add flatpak transmission
-
-# Add pipewire
-feature add pipewire
+# Add universe repository
+add-apt-repository -y universe
 
 # Purge restricted software
 apt-get purge -y firmware-sof-signed
 
-# Purge undesired packages
-apt-get purge -y firefox gnome-shell-extension-desktop-icons-ng gnome-shell-extension-ubuntu-dock gstreamer1.0-pulseaudio libreoffice-ogltrans \
-                 libreoffice-pdfimport libwmf0.2-7-gtk
+# Purge transitional packages
+apt-get purge -y firefox gstreamer1.0-pulseaudio libreoffice-ogltrans libreoffice-pdfimport libwmf0.2-7-gtk
 
-# Remove gedit
-feature remove gedit
+# Install bleUX packages
+apt-get install -y bleux-desktop
 
-# Remove gnome-terminal
-feature remove gnome-terminal
-
-# Remove remmina
-feature remove remmina
-
-# Remove rhythmbox
-feature remove rhythmbox
-
-# Disable apt
+# Disable/remove features
 feature disable apt
-
-# Remove snap support
-feature remove snap
-
-# Remove debs
+feature remove desktop-icons
+feature remove gedit
+feature remove gnome-terminal
 feature remove libreoffice
+feature remove pulseaudio
+feature remove remmina
+feature remove rhythmbox
+feature remove snap
 feature remove thunderbird
 feature remove transmission
+feature remove ubuntu-dock
 
-# Remove pulseaudio
-feature remove pulseaudio
+# Add features
+feature add flatpak
+feature add flatpak firefox
+feature add flatpak libreoffice
+feature add flatpak thunderbird
+feature add flatpak transmission
+feature add gnome-connections
+feature add gnome-console
+feature add gnome-music
+feature add gnome-software
+feature add gnome-text-editor
+feature add nala
+feature add pipewire
 
 # Purge unused packages
 apt-get autoremove -y --purge
 
 if [ -n "$UPGRADE" ]; then
-    # Update all packages
+    # Upgrade all packages
     apt-get dist-upgrade -y
 
     # Store new kernel version
@@ -122,7 +96,7 @@ if [ -n "$UPGRADE" ]; then
     fi
 fi
 
-# Clean everything up
+# Clean up apt cache
 apt-get clean
 
 # Autoremove this script and downloaded packages

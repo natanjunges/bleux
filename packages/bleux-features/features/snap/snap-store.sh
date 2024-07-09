@@ -20,10 +20,10 @@ fi
 
 case $1 in
     add)
-        snap install firefox
+        snap install snap-store
     ;;
     remove)
-        snap remove --purge firefox
+        snap remove --purge snap-store
     ;;
     *)
         exit 1
