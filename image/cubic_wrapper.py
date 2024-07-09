@@ -63,9 +63,17 @@ def navigate():
     wait_gui()
     terminal_page.console.reenter = False
     terminal_page.terminal.feed_child(bytes(command, encoding="UTF-8"))
+    last_position = (0, 0)
 
     # Wait for terminal_page to complete
     while terminal_page.is_running:
+        current_position = terminal_page.terminal.get_cursor_position()
+
+        if last_position[1] != current_position[1] or current_position[0] != 0:
+            print("\r", end="")
+            print(terminal_page.terminal.get_text_range(last_position[1], 0, current_position[1], current_position[0])[0], end="")
+            last_position = current_position
+
         time.sleep(1/FPS)
 
     wait_gui()
