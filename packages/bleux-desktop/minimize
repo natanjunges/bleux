@@ -16,13 +16,13 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+
 set -e
 
-case $1 in
-    configure)
-        update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator /usr/bin/kgx 40
-    ;;
-    *)
-        exit 1
-    ;;
-esac
+apt-get purge -y baobab deja-dup gnome-calendar simple-scan totem usb-creator-gtk
+apt-get autoremove -y --purge
+feature remove flatpak libreoffice
+feature remove flatpak snapshot
+feature remove flatpak thunderbird
+feature remove flatpak transmission
+flatpak remove -y --noninteractive --system --unused
