@@ -26,7 +26,7 @@ apt-get autoremove -y --purge
 apt-get install -y $(check-language-support)
 
 # Remove normal packages in minimal install
-if ! which usb-creator-gtk; then
+if ! dpkg-query -f '${db:Status-abbrev}' -W usb-creator-gtk 2> /dev/null | grep -q '^.i'; then
     feature remove flatpak libreoffice
     feature remove flatpak thunderbird
     feature remove flatpak transmission
