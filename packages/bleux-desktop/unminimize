@@ -20,6 +20,8 @@
 set -e
 
 apt-get install -y --mark-auto baobab deja-dup gnome-calendar simple-scan totem usb-creator-gtk
+feature add gnome-connections
+feature add gnome-music
 feature add flatpak libreoffice
 feature add flatpak snapshot
 feature add flatpak thunderbird
