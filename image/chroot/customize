@@ -52,14 +52,25 @@ apt-get purge -y firefox gstreamer1.0-pulseaudio libreoffice-ogltrans libreoffic
 apt-get install -y bleux-desktop
 
 # Disable/remove features
+feature remove aisleriot
 feature disable apt
+feature remove branding-ubuntu
+feature remove cheese
 feature remove desktop-icons
+feature remove eog
 feature remove gedit
+feature remove gnome-mahjongg
+feature remove gnome-mines
+feature remove gnome-power-manager
+feature remove gnome-sudoku
 feature remove gnome-terminal
+feature remove gnome-todo
 feature remove libreoffice
 feature remove pulseaudio
 feature remove remmina
 feature remove rhythmbox
+feature remove seahorse
+feature remove shotwell
 feature remove snap
 feature remove thunderbird
 feature remove transmission
@@ -69,6 +80,8 @@ feature remove ubuntu-dock
 feature add flatpak
 feature add flatpak firefox
 feature add flatpak libreoffice
+feature add flatpak loupe
+feature add flatpak snapshot
 feature add flatpak thunderbird
 feature add flatpak transmission
 feature add gnome-connections
