@@ -16,12 +16,10 @@
 
 case $1 in
     add)
-        apt-get install -y --mark-auto gnome-console nautilus-extension-gnome-console
-        update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator /usr/bin/kgx 40
+        apt-get install -y --mark-auto bleux-console
     ;;
     remove)
-        update-alternatives --remove x-terminal-emulator /usr/bin/kgx
-        apt-get purge -y gnome-console nautilus-extension-gnome-console
+        apt-get purge -y bleux-console
     ;;
     *)
         exit 1

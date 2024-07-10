@@ -1,0 +1,9 @@
+Section: gnome
+Depends: gnome-console
+Recommends: nautilus-extension-gnome-console
+Provides: x-terminal-emulator
+Description: Simple user-friendly terminal emulator for the GNOME desktop
+ Console is a simple terminal emulator for GNOME that adjusts nicely
+ to small screen sizes and touch usage.
+Postinst: postinst
+Prerm: prerm
