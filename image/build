@@ -46,10 +46,6 @@ customize:
 	sed -i 's|file=/cdrom/preseed/ubuntu.seed|file=/cdrom/preseed/bleux.seed|' custom-disk/boot/grub/grub.cfg
 	sed -i 's|file=/cdrom/preseed/ubuntu.seed|file=/cdrom/preseed/bleux.seed|' custom-disk/boot/grub/loopback.cfg
 
-	# Mark packages for removal
-	cat remove >> custom-disk/casper/filesystem.manifest-remove
-	cat minimal-remove >> custom-disk/casper/filesystem.manifest-minimal-remove
-
 	# Copy chroot files to chroot
 	sudo cp chroot/* custom-root/root/
 

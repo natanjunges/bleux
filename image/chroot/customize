@@ -78,18 +78,14 @@ feature remove ubuntu-dock
 # Add features
 feature add flatpak
 feature add flatpak firefox
-feature add flatpak libreoffice
 feature add flatpak loupe
-feature add flatpak snapshot
-feature add flatpak thunderbird
-feature add flatpak transmission
-feature add gnome-connections
 feature add gnome-console
-feature add gnome-music
 feature add gnome-software
 feature add gnome-text-editor
 feature add nala
 feature add pipewire
+
+unminimize customize
 
 # Only remove gnome-terminal after gnome-console is added
 feature remove gnome-terminal

@@ -20,12 +20,12 @@
 set -e
 
 if [ "$1" != postinst ]; then
-    apt-get purge -y baobab deja-dup gnome-calendar simple-scan totem usb-creator-gtk
-    feature remove gnome-connections
-    feature remove gnome-music
-    apt-get autoremove -y --purge
+    apt-get purge -y $(dpkg-query -f '${Suggests}' -W bleux-desktop | tr -d ,)
 fi
 
+feature remove gnome-connections
+feature remove gnome-music
+apt-get autoremove -y --purge
 feature remove flatpak libreoffice
 feature remove flatpak snapshot
 feature remove flatpak thunderbird

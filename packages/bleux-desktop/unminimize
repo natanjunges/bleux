@@ -19,11 +19,17 @@
 
 set -e
 
-apt-get install -y --mark-auto baobab deja-dup gnome-calendar simple-scan totem usb-creator-gtk
+if [ "$1" != customize ]; then
+    apt-get install -y --mark-auto $(dpkg-query -f '${Suggests}' -W bleux-desktop | tr -d ,)
+fi
+
 feature add gnome-connections
 feature add gnome-music
 feature add flatpak libreoffice
 feature add flatpak snapshot
 feature add flatpak thunderbird
 feature add flatpak transmission
-flatpak update -y --noninteractive --system
+
+if [ "$1" != customize ]; then
+    flatpak update -y --noninteractive --system
+fi
