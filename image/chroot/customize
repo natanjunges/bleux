@@ -84,7 +84,6 @@ feature add gnome-software
 feature add gnome-text-editor
 feature add nala
 feature add pipewire
-
 unminimize customize
 
 # Only remove gnome-terminal after gnome-console is added

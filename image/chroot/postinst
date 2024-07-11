@@ -18,17 +18,17 @@
 
 set -e -x
 
+# Remove normal packages in minimal install
+if ! dpkg-query -f '${db:Status-abbrev}' -W usb-creator-gtk 2> /dev/null | grep -q '^.i'; then
+    minimize postinst
+fi
+
 # Remove x11
 feature remove x11
 apt-get autoremove -y --purge
 
 # Finish installation of language support
 apt-get install -y $(check-language-support)
-
-# Remove normal packages in minimal install
-if ! dpkg-query -f '${db:Status-abbrev}' -W usb-creator-gtk 2> /dev/null | grep -q '^.i'; then
-    minimize postinst
-fi
 
 # Finish installation of flatpak runtimes
 flatpak update -y --noninteractive --system
