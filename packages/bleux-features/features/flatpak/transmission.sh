@@ -15,14 +15,22 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 if ! dpkg-query -f '${db:Status-abbrev}' -W flatpak 2> /dev/null | grep -q '^.i'; then
-    exit 1
+    no_flatpak=1
 fi
 
 case $1 in
     add)
+        if [ $no_flatpak ]; then
+            exit 1
+        fi
+
         flatpak install -y --noninteractive --no-related com.transmissionbt.Transmission
     ;;
     remove)
+        if [ $no_flatpak ]; then
+            exit 0
+        fi
+
         flatpak remove -y --noninteractive --system com.transmissionbt.Transmission
     ;;
     *)

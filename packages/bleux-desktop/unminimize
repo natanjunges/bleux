@@ -19,6 +19,10 @@
 
 set -e
 
+if ! dpkg-query -f '${db:Status-abbrev}' -W bleux-features 2> /dev/null | grep -q '^.i'; then
+    exit 1
+fi
+
 if [ "$1" != customize ]; then
     apt-get install -y --mark-auto $(dpkg-query -f '${Suggests}' -W bleux-desktop | tr -d ,)
 fi

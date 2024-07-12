@@ -15,14 +15,22 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 if ! dpkg-query -f '${db:Status-abbrev}' -W snapd 2> /dev/null | grep -q '^.i'; then
-    exit 1
+    no_snap=1
 fi
 
 case $1 in
     add)
+        if [ $no_snap ]; then
+            exit 1
+        fi
+
         snap install snap-store
     ;;
     remove)
+        if [ $no_snap ]; then
+            exit 0
+        fi
+
         snap remove --purge snap-store
     ;;
     *)
