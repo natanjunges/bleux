@@ -79,6 +79,7 @@ feature remove ubuntu-dock
 feature add flatpak
 feature add flatpak firefox
 feature add flatpak loupe
+feature add gnome-backgrounds
 feature add gnome-console
 feature add gnome-software
 feature add gnome-text-editor
@@ -88,6 +89,9 @@ unminimize customize
 
 # Only remove gnome-terminal after gnome-console is added
 feature remove gnome-terminal
+
+# Only remove ubuntu-wallpapers after gnome-backgrounds is added
+feature remove ubuntu-wallpapers
 
 # Purge unused packages
 apt-get autoremove -y --purge

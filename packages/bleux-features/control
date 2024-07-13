@@ -5,6 +5,7 @@ Recommends: libglu1-mesa,
     volian-archive-keyring,
     volian-archive-nala
 Suggests: aisleriot,
+    bleux-backgrounds,
     bleux-console,
     branding-ubuntu,
     cheese,
@@ -48,6 +49,7 @@ Suggests: aisleriot,
     thunderbird,
     thunderbird-gnome-support,
     transmission-gtk,
+    ubuntu-wallpapers,
     wireplumber | pipewire-media-session,
     x11-apps,
     x11-session-utils,
@@ -76,6 +78,7 @@ Files: apt-disabled /usr/bin/
     features/flatpak/thunderbird.sh /usr/lib/bleux-features/features/flatpak/
     features/flatpak/transmission.sh /usr/lib/bleux-features/features/flatpak/
     features/gedit.sh /usr/lib/bleux-features/features/
+    features/gnome-backgrounds.sh /usr/lib/bleux-features/features/
     features/gnome-connections.sh /usr/lib/bleux-features/features/
     features/gnome-console.sh /usr/lib/bleux-features/features/
     features/gnome-mahjongg.sh /usr/lib/bleux-features/features/
@@ -101,6 +104,7 @@ Files: apt-disabled /usr/bin/
     features/thunderbird.sh /usr/lib/bleux-features/features/
     features/transmission.sh /usr/lib/bleux-features/features/
     features/ubuntu-dock.sh /usr/lib/bleux-features/features/
+    features/ubuntu-wallpapers.sh /usr/lib/bleux-features/features/
     features/x11.sh /usr/lib/bleux-features/features/
     fix-python3-typer.list /usr/lib/bleux-features/
     fix-python3-typer.pref /usr/lib/bleux-features/

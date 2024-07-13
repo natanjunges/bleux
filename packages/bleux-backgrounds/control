@@ -1,0 +1,6 @@
+Section: gnome
+Depends: gnome-backgrounds
+Provides: ubuntu-wallpapers
+Description: Set of backgrounds packaged with the GNOME desktop
+ This is a collection of desktop wallpapers created with GNOME users in
+ mind.

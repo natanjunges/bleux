@@ -1,9 +1,16 @@
 [org.gnome.Console]
 theme = 'auto'
 
+[org.gnome.desktop.background]
+picture-uri = 'file:///usr/share/backgrounds/gnome/adwaita-l.jpg'
+picture-uri-dark = 'file:///usr/share/backgrounds/gnome/adwaita-d.jpg'
+
 [org.gnome.desktop.interface:ubuntu]
 gtk-theme = 'Yaru-blue'
 icon-theme = 'Yaru-blue'
+
+[org.gnome.desktop.screensaver]
+picture-uri = 'file:///usr/share/backgrounds/gnome/adwaita-l.jpg'
 
 [org.gnome.desktop.wm.preferences:ubuntu]
 button-layout = ':close'
