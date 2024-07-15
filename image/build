@@ -46,11 +46,8 @@ customize:
 	sed -i 's|file=/cdrom/preseed/ubuntu.seed|file=/cdrom/preseed/bleux.seed|' custom-disk/boot/grub/grub.cfg
 	sed -i 's|file=/cdrom/preseed/ubuntu.seed|file=/cdrom/preseed/bleux.seed|' custom-disk/boot/grub/loopback.cfg
 
-	# Disable Ubuntu slideshow
-	sudo sed -i 's/height:442/height:0/' custom-root/usr/share/ubiquity-slideshow/slideshow.conf
-	sudo sed -i 's/width:752/height:0/' custom-root/usr/share/ubiquity-slideshow/slideshow.conf
-	sudo sed -i 's|<html lang="en">|<!--html lang="en">|' custom-root/usr/share/ubiquity-slideshow/slides/index.html
-	sudo sed -i 's|</html>|</html-->|' custom-root/usr/share/ubiquity-slideshow/slides/index.html
+	# Fix bug #1888451 of ubiquity that chashes when slideshow is disabled
+	sudo patch -u custom-root/usr/lib/ubiquity/ubiquity/frontend/gtk_ui.py -i gtk_ui.py.patch
 
 	# Copy chroot files to chroot
 	sudo cp chroot/* custom-root/root/

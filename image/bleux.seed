@@ -2,5 +2,8 @@
 d-i apt-setup/multiverse boolean false
 d-i apt-setup/restricted boolean false
 
+# Disable Ubuntu slideshow
+ubiquity ubiquity/hide_slideshow boolean true
+
 # Run post install script
 ubiquity ubiquity/success_command string in-target sh -c '/root/postinst > /var/log/installer/postinst 2>&1'
