@@ -76,15 +76,15 @@ feature remove transmission
 feature remove ubuntu-dock
 
 # Add features
-feature add flatpak
-feature add flatpak firefox
-feature add flatpak loupe
 feature add gnome-backgrounds
 feature add gnome-console
 feature add gnome-software
 feature add gnome-text-editor
 feature add nala
 feature add pipewire
+feature add flatpak
+feature add flatpak firefox
+feature add flatpak loupe
 unminimize customize
 
 # Only remove gnome-terminal after gnome-console is added

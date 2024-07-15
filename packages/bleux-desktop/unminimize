@@ -29,6 +29,9 @@ fi
 
 feature add gnome-connections
 feature add gnome-music
+feature add gufw
+feature add preload
+feature add timeshift
 feature add flatpak libreoffice
 feature add flatpak snapshot
 feature add flatpak thunderbird

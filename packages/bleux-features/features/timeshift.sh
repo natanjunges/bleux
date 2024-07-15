@@ -1,5 +1,3 @@
-#!/usr/bin/sh
-
 # bleUX, a user-centric desktop Linux distribution
 # Copyright (C) 2024  Natan Junges <natanajunges@gmail.com>
 #
@@ -16,29 +14,14 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-
-set -e
-
-if ! dpkg-query -f '${db:Status-abbrev}' -W bleux-features 2> /dev/null | grep -q '^.i'; then
-    exit 1
-fi
-
-if [ "$1" != postinst ]; then
-    apt-get purge -y $(dpkg-query -f '${Suggests}' -W bleux-desktop | tr -d ,)
-fi
-
-feature remove gnome-connections
-feature remove gnome-music
-feature remove gufw
-feature remove preload
-feature remove timeshift
-
-if [ "$1" != postinst ]; then
-    apt-get autoremove -y --purge
-fi
-
-feature remove flatpak libreoffice
-feature remove flatpak snapshot
-feature remove flatpak thunderbird
-feature remove flatpak transmission
-flatpak remove -y --noninteractive --system --unused
+case $1 in
+    add)
+        apt-get install -y --mark-auto timeshift
+    ;;
+    remove)
+        apt-get purge -y timeshift
+    ;;
+    *)
+        exit 1
+    ;;
+esac

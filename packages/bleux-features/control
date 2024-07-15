@@ -27,6 +27,7 @@ Suggests: aisleriot,
     gnome-terminal,
     gnome-text-editor,
     gnome-todo,
+    gufw,
     libreoffice-calc,
     libreoffice-common,
     libreoffice-gnome,
@@ -39,6 +40,7 @@ Suggests: aisleriot,
     libx11-protocol-perl,
     nala,
     pipewire-audio-client-libraries,
+    preload,
     pulseaudio,
     pulseaudio-module-bluetooth,
     remmina,
@@ -48,6 +50,7 @@ Suggests: aisleriot,
     snapd,
     thunderbird,
     thunderbird-gnome-support,
+    timeshift,
     transmission-gtk,
     ubuntu-wallpapers,
     wireplumber | pipewire-media-session,
@@ -90,9 +93,11 @@ Files: apt-disabled /usr/bin/
     features/gnome-terminal.sh /usr/lib/bleux-features/features/
     features/gnome-text-editor.sh /usr/lib/bleux-features/features/
     features/gnome-todo.sh /usr/lib/bleux-features/features/
+    features/gufw.sh /usr/lib/bleux-features/features/
     features/libreoffice.sh /usr/lib/bleux-features/features/
     features/nala.sh /usr/lib/bleux-features/features/
     features/pipewire.sh /usr/lib/bleux-features/features/
+    features/preload.sh /usr/lib/bleux-features/features/
     features/pulseaudio.sh /usr/lib/bleux-features/features/
     features/remmina.sh /usr/lib/bleux-features/features/
     features/rhythmbox.sh /usr/lib/bleux-features/features/
@@ -102,9 +107,11 @@ Files: apt-disabled /usr/bin/
     features/snap/firefox.sh /usr/lib/bleux-features/features/snap/
     features/snap/snap-store.sh /usr/lib/bleux-features/features/snap/
     features/thunderbird.sh /usr/lib/bleux-features/features/
+    features/timeshift.sh /usr/lib/bleux-features/features/
     features/transmission.sh /usr/lib/bleux-features/features/
     features/ubuntu-dock.sh /usr/lib/bleux-features/features/
     features/ubuntu-wallpapers.sh /usr/lib/bleux-features/features/
+    features/ufw.sh /usr/lib/bleux-features/features/
     features/x11.sh /usr/lib/bleux-features/features/
     fix-python3-typer.list /usr/lib/bleux-features/
     fix-python3-typer.pref /usr/lib/bleux-features/
