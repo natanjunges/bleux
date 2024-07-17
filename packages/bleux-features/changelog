@@ -1,3 +1,21 @@
+bleux-features (1.0.0) jammy; urgency=low
+
+  * Remove dbus-x11 from x11 addition/removal scripts as it is removed during install.
+  * Fix message of apt-disabled.
+  * Use gnome-console as x-terminal-emulator.
+  * Hold package volian-archive-nala when the nala feature is removed to prevent breakage.
+  * Unify scripts of same features, allow subfeatures.
+  * Add feature scripts for flatpaks and snaps.
+  * Replace non-GNOME apps with flatpaks.
+  * Remove desktop-icons-ng and ubuntu-dock gnome extensions, remove branding-ubuntu.
+  * Add features for gnome-software and snap-store.
+  * Replace old GNOME apps with new ones.
+  * Remove non-essential GNOME packages, replace cheese and eog with snapshot and loupe flatpaks.
+  * Replace ubuntu-wallpapers with gnome-backgrounds.
+  * Add features for gufw, preload, timeshift and ufw.
+
+ -- Natan Junges <natanajunges@gmail.com>  Tue, 16 Jul 2024 19:40:51 -0300
+
 bleux-features (0.13.0) jammy; urgency=low
 
   * Keep mesa libraries when removing x11.

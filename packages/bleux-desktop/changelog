@@ -1,3 +1,15 @@
+bleux-desktop (1.0.0) jammy; urgency=low
+
+  * Replace non-GNOME apps with flatpaks.
+  * Remove desktop-icons-ng and ubuntu-dock gnome extensions, remove branding-ubuntu.
+  * Add feature for gnome-software.
+  * Replace old GNOME apps with new ones.
+  * Remove non-essential GNOME packages, replace cheese and eog with snapshot and loupe flatpaks.
+  * Add minimize and unminimize scripts.
+  * Replace ubuntu-wallpapers with gnome-backgrounds.
+
+ -- Natan Junges <natanajunges@gmail.com>  Tue, 16 Jul 2024 19:40:51 -0300
+
 bleux-desktop (0.7.0) jammy; urgency=low
 
   * Include ghostscript-x and xcursor-themes in x11 addition/removal scripts.

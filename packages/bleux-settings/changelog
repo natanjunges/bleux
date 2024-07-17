@@ -1,3 +1,13 @@
+bleux-settings (1.0.0) jammy; urgency=low
+
+  * Make gnome-console follow system theme.
+  * Replace non-GNOME apps with flatpaks.
+  * Use blue accent color, remove minimize and maximize window buttons.
+  * Replace old GNOME apps with new ones.
+  * Replace ubuntu-wallpapers with gnome-backgrounds.
+
+ -- Natan Junges <natanajunges@gmail.com>  Tue, 16 Jul 2024 19:40:51 -0300
+
 bleux-settings (0.3.0) jammy; urgency=low
 
   * Replace Depends with ubuntu-settings.
