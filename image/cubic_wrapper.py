@@ -20,6 +20,7 @@ import sys
 import os
 import time
 import threading
+import subprocess
 
 import gi
 gi.require_version("GLib", "2.0")
@@ -27,6 +28,7 @@ from gi.repository import GLib
 
 sys.path.append("/usr/share/cubic")
 PAGE = os.environ["PAGE"]
+HEADLESS = len(os.environ.get("HEADLESS", "")) > 0
 FPS = 60
 
 def navigate():
@@ -106,6 +108,17 @@ def wait_gui():
 def gui_done(barrier):
     barrier.wait()
 
-threading.Thread(target=navigate, daemon=True).start()
+if HEADLESS:
+    headless_display = subprocess.Popen(["mutter", "--wayland", "--headless", "--virtual-monitor", "1280x720"])
+    time.sleep(10)
 
-import cubic_wizard
+try:
+    threading.Thread(target=navigate, daemon=True).start()
+
+    import cubic_wizard
+except Exception as e:
+    print(e)
+finally:
+    if HEADLESS:
+        headless_display.terminate()
+        headless_display.wait()
