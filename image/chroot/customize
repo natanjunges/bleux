@@ -108,6 +108,9 @@ if [ -n "$UPGRADE" ]; then
         apt-get purge -y linux-headers-$OLD_VERSION-generic linux-hwe-*-headers-$OLD_VERSION linux-image-$OLD_VERSION-generic \
                          linux-modules-$OLD_VERSION-generic linux-modules-extra-$OLD_VERSION-generic
     fi
+
+    # Purge unused packages
+    apt-get autoremove -y --purge
 fi
 
 # Clean up apt cache
