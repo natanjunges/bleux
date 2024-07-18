@@ -109,8 +109,10 @@ def gui_done(barrier):
     barrier.wait()
 
 if HEADLESS:
-    headless_display = pexpect.spawn("mutter --wayland --headless --virtual-monitor 1280x720")
-    headless_display.expect("Added virtual monitor")
+    display_name = f"wayland-{os.getpid()}"
+    os.environ["WAYLAND_DISPLAY"] = display_name
+    headless_display = pexpect.spawn(f"weston --no-config --backend=headless-backend.so --socket={display_name}")
+    headless_display.expect("Output '[^']+' enabled with head\\(s\\) headless")
 
 try:
     threading.Thread(target=navigate, daemon=True).start()
