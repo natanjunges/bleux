@@ -20,6 +20,7 @@ import sys
 import os
 import time
 import threading
+import pexpect
 
 import gi
 gi.require_version("GLib", "2.0")
@@ -27,6 +28,7 @@ from gi.repository import GLib
 
 sys.path.append("/usr/share/cubic")
 PAGE = os.environ["PAGE"]
+HEADLESS = len(os.environ.get("WAYLAND_DISPLAY", "")) == 0
 FPS = 60
 
 def navigate():
@@ -106,6 +108,18 @@ def wait_gui():
 def gui_done(barrier):
     barrier.wait()
 
-threading.Thread(target=navigate, daemon=True).start()
+if HEADLESS:
+    display_name = f"wayland-{os.getpid()}"
+    os.environ["WAYLAND_DISPLAY"] = display_name
+    headless_display = pexpect.spawn(f"weston --no-config --backend=headless-backend.so --socket={display_name}")
+    headless_display.expect("Output '[^']+' enabled with head\\(s\\) headless")
 
-import cubic_wizard
+try:
+    threading.Thread(target=navigate, daemon=True).start()
+
+    import cubic_wizard
+except Exception as e:
+    print(e)
+finally:
+    if HEADLESS:
+        headless_display.close()
