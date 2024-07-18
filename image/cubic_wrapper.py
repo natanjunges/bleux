@@ -20,7 +20,7 @@ import sys
 import os
 import time
 import threading
-import subprocess
+import pexpect
 
 import gi
 gi.require_version("GLib", "2.0")
@@ -109,8 +109,8 @@ def gui_done(barrier):
     barrier.wait()
 
 if HEADLESS:
-    headless_display = subprocess.Popen(["mutter", "--wayland", "--headless", "--virtual-monitor", "1280x720"])
-    time.sleep(10)
+    headless_display = pexpect.spawn("mutter --wayland --headless --virtual-monitor 1280x720")
+    headless_display.expect("Added virtual monitor")
 
 try:
     threading.Thread(target=navigate, daemon=True).start()
@@ -120,5 +120,4 @@ except Exception as e:
     print(e)
 finally:
     if HEADLESS:
-        headless_display.terminate()
-        headless_display.wait()
+        headless_display.close()
