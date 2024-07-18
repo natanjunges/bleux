@@ -28,7 +28,7 @@ from gi.repository import GLib
 
 sys.path.append("/usr/share/cubic")
 PAGE = os.environ["PAGE"]
-HEADLESS = len(os.environ.get("HEADLESS", "")) > 0
+HEADLESS = len(os.environ.get("WAYLAND_DISPLAY", "")) == 0
 FPS = 60
 
 def navigate():
