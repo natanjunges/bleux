@@ -24,6 +24,6 @@ case $1 in
                          libreoffice-writer
     ;;
     *)
-        exit 1
+        exit 37
     ;;
 esac
