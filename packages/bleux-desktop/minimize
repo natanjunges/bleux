@@ -20,6 +20,7 @@
 set -e
 
 if ! dpkg-query -f '${db:Status-abbrev}' -W bleux-features 2> /dev/null | grep -q '^.i'; then
+    echo 'The \e[1mbleux-features\e[0m package is not installed.' >&2
     exit 1
 fi
 
