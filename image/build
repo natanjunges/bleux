@@ -24,7 +24,10 @@ all:
 	$(MAKE) -f build chroot
 
 extract: release
-	if [ -z '$(ISO_DIRECTORY)' ]; then exit 1; fi
+	if [ -z '$(ISO_DIRECTORY)' ]; then \
+		echo 'The \e[1mISO_DIRECTORY\e[0m environment variable is required.' >&2; \
+		exit 1; \
+	fi
 
 	# Force (re-)extraction of ISO
 	sed -i 's/is_success_copy = True/is_success_copy = False/; s/is_success_extract = True/is_success_extract = False/' cubic.conf
