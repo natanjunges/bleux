@@ -31,6 +31,6 @@ case $1 in
         rm /etc/apt/preferences.d/fix-python3-typer.pref /etc/apt/sources.list.d/fix-python3-typer.list
     ;;
     *)
-        exit 1
+        exit 37
     ;;
 esac
