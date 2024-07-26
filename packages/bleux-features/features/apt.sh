@@ -22,6 +22,6 @@ case $1 in
         ln -s /usr/bin/apt-disabled /usr/local/bin/apt
     ;;
     *)
-        exit 1
+        exit 37
     ;;
 esac
