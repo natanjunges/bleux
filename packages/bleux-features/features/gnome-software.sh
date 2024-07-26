@@ -30,6 +30,6 @@ case $1 in
         apt-get purge -y gnome-software gnome-software-plugin-flatpak gnome-software-plugin-snap
     ;;
     *)
-        exit 1
+        exit 37
     ;;
 esac
