@@ -14,7 +14,9 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-case $1 in
+set -e
+
+case "$1" in
     enable)
         ufw enable
     ;;
@@ -22,6 +24,6 @@ case $1 in
         ufw disable
     ;;
     *)
-        exit 1
+        exit 37
     ;;
 esac

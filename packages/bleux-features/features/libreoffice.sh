@@ -14,7 +14,9 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-case $1 in
+set -e
+
+case "$1" in
     add)
         apt-get install -y --mark-auto libreoffice-calc libreoffice-common libreoffice-gnome libreoffice-impress libreoffice-math \
                                        libreoffice-style-breeze libreoffice-writer
@@ -24,6 +26,6 @@ case $1 in
                          libreoffice-writer
     ;;
     *)
-        exit 1
+        exit 37
     ;;
 esac

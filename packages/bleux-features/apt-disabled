@@ -18,6 +18,6 @@
 
 echo '\e[31mapt is disabled.\e[0m' >&2
 echo 'You should use \e[1mnala\e[0m instead.' >&2
-echo 'If you really need apt, it can be enabled with:' >&2
-echo '    sudo feature enable apt' >&2
+echo 'If you really need \e[1mapt\e[0m, it can be enabled with:' >&2
+echo '    \e[1msudo feature enable apt\e[0m' >&2
 exit 1

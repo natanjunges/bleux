@@ -18,4 +18,19 @@
 
 set -e
 
-. /usr/lib/bleux-features/features/$(echo $@ | cut -d ' ' -f 2- | tr ' ' /).sh
+subcommand="$1"
+shift
+feature="/usr/lib/bleux-features/features/$(echo "$@" | cut -d ' ' -f 2- | tr ' ' /).sh"
+
+if [ ! -e "$feature" ]; then
+    echo 'Unknown feature.' >&2
+    exit 1
+fi
+
+ret=$("$feature" "$subcommand" && echo 0 || echo $?)
+
+if [ $ret = 37 ]; then
+    echo 'Unknown subcommand.' >&2
+fi
+
+exit $ret

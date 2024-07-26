@@ -14,7 +14,9 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-case $1 in
+set -e
+
+case "$1" in
     add)
         apt-get install -y --mark-auto ghostscript-x libx11-protocol-perl x11-apps x11-session-utils x11-utils xcursor-themes xorg-docs-core \
                                        xserver-xephyr xserver-xorg-core xserver-xorg-legacy
@@ -24,6 +26,6 @@ case $1 in
                          xserver-xorg-core xserver-xorg-legacy
     ;;
     *)
-        exit 1
+        exit 37
     ;;
 esac

@@ -14,7 +14,9 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-case $1 in
+set -e
+
+case "$1" in
     add)
         rm /etc/apt/preferences.d/nosnap.pref
         apt-get install -y --mark-auto snapd
@@ -29,6 +31,6 @@ case $1 in
         ln -s /usr/lib/bleux-features/nosnap.pref /etc/apt/preferences.d/
     ;;
     *)
-        exit 1
+        exit 37
     ;;
 esac

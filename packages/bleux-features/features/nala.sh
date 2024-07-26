@@ -14,7 +14,9 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-case $1 in
+set -e
+
+case "$1" in
     add)
         ln -s /usr/lib/bleux-features/fix-python3-typer.list /etc/apt/sources.list.d/
         ln -s /usr/lib/bleux-features/fix-python3-typer.pref /etc/apt/preferences.d/
@@ -31,6 +33,6 @@ case $1 in
         rm /etc/apt/preferences.d/fix-python3-typer.pref /etc/apt/sources.list.d/fix-python3-typer.list
     ;;
     *)
-        exit 1
+        exit 37
     ;;
 esac

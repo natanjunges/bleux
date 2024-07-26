@@ -14,7 +14,9 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-case $1 in
+set -e
+
+case "$1" in
     add)
         apt-get install -y --mark-auto cheese
     ;;
@@ -22,6 +24,6 @@ case $1 in
         apt-get purge -y cheese
     ;;
     *)
-        exit 1
+        exit 37
     ;;
 esac

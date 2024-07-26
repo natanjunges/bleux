@@ -14,13 +14,16 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+set -e
+
 if ! dpkg-query -f '${db:Status-abbrev}' -W snapd 2> /dev/null | grep -q '^.i'; then
     no_snap=1
 fi
 
-case $1 in
+case "$1" in
     add)
         if [ $no_snap ]; then
+            echo 'The \e[1msnap\e[0m feature is not enabled.' >&2
             exit 1
         fi
 
@@ -34,6 +37,6 @@ case $1 in
         snap remove --purge snap-store
     ;;
     *)
-        exit 1
+        exit 37
     ;;
 esac
