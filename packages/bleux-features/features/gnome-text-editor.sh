@@ -22,6 +22,6 @@ case $1 in
         apt-get purge -y gnome-text-editor
     ;;
     *)
-        exit 1
+        exit 37
     ;;
 esac
