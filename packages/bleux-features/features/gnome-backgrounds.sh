@@ -22,6 +22,6 @@ case $1 in
         apt-get purge -y bleux-backgrounds
     ;;
     *)
-        exit 1
+        exit 37
     ;;
 esac
