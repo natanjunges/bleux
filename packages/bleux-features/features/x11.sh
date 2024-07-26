@@ -24,6 +24,6 @@ case $1 in
                          xserver-xorg-core xserver-xorg-legacy
     ;;
     *)
-        exit 1
+        exit 37
     ;;
 esac
