@@ -21,6 +21,7 @@ fi
 case $1 in
     add)
         if [ $no_flatpak ]; then
+            echo 'The \e[1mflatpak\e[0m feature is not enabled.' >&2
             exit 1
         fi
 
@@ -34,6 +35,6 @@ case $1 in
         flatpak remove -y --noninteractive --system org.mozilla.firefox
     ;;
     *)
-        exit 1
+        exit 37
     ;;
 esac
