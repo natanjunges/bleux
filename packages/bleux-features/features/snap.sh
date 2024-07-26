@@ -29,6 +29,6 @@ case $1 in
         ln -s /usr/lib/bleux-features/nosnap.pref /etc/apt/preferences.d/
     ;;
     *)
-        exit 1
+        exit 37
     ;;
 esac
