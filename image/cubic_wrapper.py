@@ -52,7 +52,7 @@ def navigate():
     next_button.emit("clicked")
 
     if PAGE == "chroot":
-        command = f"clear; UPGRADE={os.environ.get('UPGRADE', '')} ./customize; exit\n"
+        command = f"clear; UPGRADE={os.environ.get('UPGRADE', '')} ./customize && exit\n"
     else:
         command = "exit\n"
 
