@@ -22,6 +22,6 @@ case $1 in
         apt-get purge -y shotwell
     ;;
     *)
-        exit 1
+        exit 37
     ;;
 esac
