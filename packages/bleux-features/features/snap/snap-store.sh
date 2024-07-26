@@ -21,6 +21,7 @@ fi
 case $1 in
     add)
         if [ $no_snap ]; then
+            echo 'The \e[1msnap\e[0m feature is not enabled.' >&2
             exit 1
         fi
 
@@ -34,6 +35,6 @@ case $1 in
         snap remove --purge snap-store
     ;;
     *)
-        exit 1
+        exit 37
     ;;
 esac
