@@ -22,6 +22,6 @@ case $1 in
         ufw disable
     ;;
     *)
-        exit 1
+        exit 37
     ;;
 esac
