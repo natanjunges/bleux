@@ -29,6 +29,6 @@ case $1 in
         apt-get purge -y pipewire-audio-client-libraries wireplumber libspa-0.2-bluetooth libspa-0.2-jack
     ;;
     *)
-        exit 1
+        exit 37
     ;;
 esac
