@@ -22,6 +22,6 @@ case $1 in
         apt-get purge -y pulseaudio pulseaudio-module-bluetooth
     ;;
     *)
-        exit 1
+        exit 37
     ;;
 esac
