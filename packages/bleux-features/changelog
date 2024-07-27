@@ -1,3 +1,14 @@
+bleux-features (1.1.0) jammy; urgency=low
+
+  * Improve apt-disabled error message.
+  * Add error messages to feature command.
+  * Return code 37 when a feature subcommand is unknown.
+  * Add error message for when flatpak is not enabled in flatpak features.
+  * Add error message for when snap is not enabled in snap features.
+  * Escape subcommand argument in feature scripts, set error flag to not suppress errors in feature scripts.
+
+ -- Natan Junges <natanajunges@gmail.com>  Fri, 26 Jul 2024 21:18:38 -0300
+
 bleux-features (1.0.0) jammy; urgency=low
 
   * Remove dbus-x11 from x11 addition/removal scripts as it is removed during install.
