@@ -33,13 +33,13 @@ apt-get install -y $(check-language-support)
 apt-get autoremove -y --purge
 
 # Finish installation of flatpak runtimes
-flatpak update -y --noninteractive --system
+feature update flatpak
 
 # Enable UFW
 feature enable ufw
 
 # Fetch nala mirrors
-nala fetch -y --ubuntu jammy --auto
+feature fetch nala
 sed -i 's/ multiverse//; s/ restricted//' /etc/apt/sources.list.d/nala-sources.list
 
 # Autoremove this script

@@ -32,6 +32,9 @@ case "$1" in
         mv /etc/apt/sources.list.d/volian-archive-nala-unstable.sources /etc/apt/sources.list.d/volian-archive-nala-unstable.sources.disabled
         rm /etc/apt/preferences.d/fix-python3-typer.pref /etc/apt/sources.list.d/fix-python3-typer.list
     ;;
+    fetch)
+        nala fetch -y --ubuntu jammy --auto
+    ;;
     *)
         exit 37
     ;;

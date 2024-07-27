@@ -39,5 +39,5 @@ feature add flatpak thunderbird
 feature add flatpak transmission
 
 if [ "$1" != customize ]; then
-    flatpak update -y --noninteractive --system
+    feature update flatpak
 fi
