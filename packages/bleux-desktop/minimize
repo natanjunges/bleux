@@ -42,4 +42,4 @@ feature remove flatpak libreoffice
 feature remove flatpak snapshot
 feature remove flatpak thunderbird
 feature remove flatpak transmission
-flatpak remove -y --noninteractive --system --unused
+feature remove-unused flatpak
