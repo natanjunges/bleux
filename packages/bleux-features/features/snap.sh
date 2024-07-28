@@ -16,21 +16,23 @@
 
 set -e
 
+. /usr/lib/bleux-features/utils.sh
+
 case "$1" in
     add)
         rm /etc/apt/preferences.d/nosnap.pref
-        apt-get install -y --mark-auto snapd
-        snap install snapd
+        apt_get_install snapd
+        snap_install snapd
 
-        if dpkg-query -f '${db:Status-abbrev}' -W gnome-software 2> /dev/null | grep -q '^.i'; then
-            apt-get install -y --mark-auto gnome-software-plugin-snap
+        if [ "$(check_gnome_software)" ]; then
+            apt_get_install gnome-software-plugin-snap
         fi
     ;;
     remove)
-        apt-get purge -y snapd gnome-software-plugin-snap
+        apt_get_purge snapd gnome-software-plugin-snap
         ln -s /usr/lib/bleux-features/nosnap.pref /etc/apt/preferences.d/
     ;;
     *)
-        exit 37
+        die_subcommand
     ;;
 esac

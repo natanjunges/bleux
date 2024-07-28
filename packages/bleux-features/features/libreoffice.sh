@@ -16,16 +16,7 @@
 
 set -e
 
-case "$1" in
-    add)
-        apt-get install -y --mark-auto libreoffice-calc libreoffice-common libreoffice-gnome libreoffice-impress libreoffice-math \
-                                       libreoffice-style-breeze libreoffice-writer
-    ;;
-    remove)
-        apt-get purge -y libreoffice-calc libreoffice-common libreoffice-gnome libreoffice-impress libreoffice-math libreoffice-style-breeze \
-                         libreoffice-writer
-    ;;
-    *)
-        exit 37
-    ;;
-esac
+. /usr/lib/bleux-features/utils.sh
+
+feature_deb "$1" libreoffice-calc libreoffice-common libreoffice-gnome libreoffice-impress libreoffice-math libreoffice-style-breeze \
+                 libreoffice-writer

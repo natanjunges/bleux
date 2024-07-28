@@ -27,10 +27,4 @@ if [ ! -e "$feature" ]; then
     exit 1
 fi
 
-ret=$(sh "$feature" "$subcommand" >&2 && echo 0 || echo $?)
-
-if [ $ret = 37 ]; then
-    echo 'Unknown subcommand.' >&2
-fi
-
-exit $ret
+sh "$feature" "$subcommand"

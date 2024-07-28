@@ -16,27 +16,6 @@
 
 set -e
 
-if ! dpkg-query -f '${db:Status-abbrev}' -W snapd 2> /dev/null | grep -q '^.i'; then
-    no_snap=1
-fi
+. /usr/lib/bleux-features/utils.sh
 
-case "$1" in
-    add)
-        if [ $no_snap ]; then
-            echo 'The \e[1msnap\e[0m feature is not enabled.' >&2
-            exit 1
-        fi
-
-        snap install firefox
-    ;;
-    remove)
-        if [ $no_snap ]; then
-            exit 0
-        fi
-
-        snap remove --purge firefox
-    ;;
-    *)
-        exit 37
-    ;;
-esac
+feature_snap "$1" firefox

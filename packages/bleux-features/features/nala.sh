@@ -16,6 +16,8 @@
 
 set -e
 
+. /usr/lib/bleux-features/utils.sh
+
 case "$1" in
     add)
         ln -s /usr/lib/bleux-features/fix-python3-typer.list /etc/apt/sources.list.d/
@@ -24,10 +26,10 @@ case "$1" in
         apt-mark unhold volian-archive-nala
         apt-get update --no-list-cleanup -o Dir::Etc::SourceList="sources.list.d/fix-python3-typer.list" -o Dir::Etc::SourceParts="-"
         apt-get update --no-list-cleanup -o Dir::Etc::SourceList="sources.list.d/volian-archive-nala-unstable.sources" -o Dir::Etc::SourceParts="-"
-        apt-get install -y --mark-auto --no-install-recommends nala
+        apt_get_install --no-install-recommends nala
     ;;
     remove)
-        apt-get purge -y nala
+        apt_get_purge nala
         apt-mark hold volian-archive-nala
         mv /etc/apt/sources.list.d/volian-archive-nala-unstable.sources /etc/apt/sources.list.d/volian-archive-nala-unstable.sources.disabled
         rm /etc/apt/preferences.d/fix-python3-typer.pref /etc/apt/sources.list.d/fix-python3-typer.list
@@ -36,6 +38,6 @@ case "$1" in
         nala fetch -y --ubuntu jammy --auto
     ;;
     *)
-        exit 37
+        die_subcommand
     ;;
 esac

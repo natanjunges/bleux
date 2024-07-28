@@ -16,14 +16,6 @@
 
 set -e
 
-case "$1" in
-    add)
-        apt-get install -y --mark-auto thunderbird thunderbird-gnome-support
-    ;;
-    remove)
-        apt-get purge -y thunderbird thunderbird-gnome-support
-    ;;
-    *)
-        exit 37
-    ;;
-esac
+. /usr/lib/bleux-features/utils.sh
+
+feature_deb "$1" thunderbird thunderbird-gnome-support

@@ -16,14 +16,16 @@
 
 set -e
 
+. /usr/lib/bleux-features/utils.sh
+
 case "$1" in
     <enable>)
-        [apt-get install -y --mark-auto <package>]
+        <commands>
     ;;
     <disable>)
-        [apt-get purge -y <package>]
+        <commands>
     ;;
     *)
-        exit 37
+        die_subcommand
     ;;
 esac

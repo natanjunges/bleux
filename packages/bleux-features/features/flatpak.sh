@@ -16,18 +16,20 @@
 
 set -e
 
+. /usr/lib/bleux-features/utils.sh
+
 case "$1" in
     add)
-        apt-get install -y --mark-auto flatpak
+        apt_get_install flatpak
         flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
-        if dpkg-query -f '${db:Status-abbrev}' -W gnome-software 2> /dev/null | grep -q '^.i'; then
-            apt-get install -y --mark-auto gnome-software-plugin-flatpak
+        if [ "$(check_gnome_software)" ]; then
+            apt_get_install gnome-software-plugin-flatpak
         fi
     ;;
     remove)
         flatpak remove -y --all
-        apt-get purge -y flatpak gnome-software-plugin-flatpak
+        apt_get_purge flatpak gnome-software-plugin-flatpak
     ;;
     update)
         flatpak update -y --noninteractive --system
@@ -36,6 +38,6 @@ case "$1" in
         flatpak remove -y --noninteractive --system --unused
     ;;
     *)
-        exit 37
+        die_subcommand
     ;;
 esac

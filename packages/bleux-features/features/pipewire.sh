@@ -16,10 +16,12 @@
 
 set -e
 
+. /usr/lib/bleux-features/utils.sh
+
 case "$1" in
     add)
-        apt-get install -y --mark-auto pipewire-audio-client-libraries wireplumber libspa-0.2-bluetooth libspa-0.2-jack
-        apt-get purge -y pipewire-media-session
+        apt_get_install pipewire-audio-client-libraries wireplumber libspa-0.2-bluetooth libspa-0.2-jack
+        apt_get_purge pipewire-media-session
         ln -s /usr/share/doc/pipewire/examples/alsa.conf.d/99-pipewire-default.conf /etc/alsa/conf.d/
         ln -s /usr/share/doc/pipewire/examples/ld.so.conf.d/pipewire-jack-*.conf /etc/ld.so.conf.d/
         ldconfig
@@ -27,10 +29,10 @@ case "$1" in
     remove)
         rm /etc/alsa/conf.d/99-pipewire-default.conf /etc/ld.so.conf.d/pipewire-jack-*.conf
         ldconfig
-        apt-get install -y --mark-auto pipewire-media-session
-        apt-get purge -y pipewire-audio-client-libraries wireplumber libspa-0.2-bluetooth libspa-0.2-jack
+        apt_get_install pipewire-media-session
+        apt_get_purge pipewire-audio-client-libraries wireplumber libspa-0.2-bluetooth libspa-0.2-jack
     ;;
     *)
-        exit 37
+        die_subcommand
     ;;
 esac
