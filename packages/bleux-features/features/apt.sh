@@ -16,6 +16,8 @@
 
 set -e
 
+. /usr/lib/bleux-features/utils.sh
+
 case "$1" in
     enable)
         rm /usr/local/bin/apt
@@ -24,6 +26,6 @@ case "$1" in
         ln -s /usr/bin/apt-disabled /usr/local/bin/apt
     ;;
     *)
-        exit 37
+        die_subcommand
     ;;
 esac

@@ -16,28 +16,27 @@
 
 set -e
 
-if ! dpkg-query -f '${db:Status-abbrev}' -W flatpak 2> /dev/null | grep -q '^.i'; then
-    no_flatpak=1
-fi
+. /usr/lib/bleux-features/utils.sh
+
+has_flatpak="$(check_flatpak)"
 
 case "$1" in
     add)
-        if [ $no_flatpak ]; then
-            echo 'The \e[1mflatpak\e[0m feature is not enabled.' >&2
-            exit 1
+        if [ -z "$has_flatpak" ]; then
+            die_flatpak
         fi
 
-        flatpak install -y --noninteractive --no-related org.mozilla.Thunderbird
+        flatpak_install org.mozilla.Thunderbird
         flatpak override --nosocket=x11 org.mozilla.Thunderbird
     ;;
     remove)
-        if [ $no_flatpak ]; then
+        if [ -z "$has_flatpak" ]; then
             exit 0
         fi
 
-        flatpak remove -y --noninteractive --system org.mozilla.Thunderbird
+        flatpak_remove org.mozilla.Thunderbird
     ;;
     *)
-        exit 37
+        die_subcommand
     ;;
 esac

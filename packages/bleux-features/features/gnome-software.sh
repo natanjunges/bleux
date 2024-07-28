@@ -16,22 +16,24 @@
 
 set -e
 
+. /usr/lib/bleux-features/utils.sh
+
 case "$1" in
     add)
-        apt-get install -y --mark-auto gnome-software gnome-software-plugin-snap-
+        apt_get_install gnome-software gnome-software-plugin-snap-
 
-        if dpkg-query -f '${db:Status-abbrev}' -W flatpak 2> /dev/null | grep -q '^.i'; then
-            apt-get install -y --mark-auto gnome-software-plugin-flatpak
+        if [ "$(check_flatpak)" ]; then
+            apt_get_install gnome-software-plugin-flatpak
         fi
 
-        if dpkg-query -f '${db:Status-abbrev}' -W snapd 2> /dev/null | grep -q '^.i'; then
-            apt-get install -y --mark-auto gnome-software-plugin-snap
+        if [ "$(check_snap)" ]; then
+            apt_get_install gnome-software-plugin-snap
         fi
     ;;
     remove)
-        apt-get purge -y gnome-software gnome-software-plugin-flatpak gnome-software-plugin-snap
+        apt_get_purge gnome-software gnome-software-plugin-flatpak gnome-software-plugin-snap
     ;;
     *)
-        exit 37
+        die_subcommand
     ;;
 esac

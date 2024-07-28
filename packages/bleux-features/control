@@ -116,3 +116,4 @@ Files: apt-disabled /usr/bin/
     fix-python3-typer.list /usr/lib/bleux-features/
     fix-python3-typer.pref /usr/lib/bleux-features/
     nosnap.pref /usr/lib/bleux-features/
+    utils.sh /usr/lib/bleux-features/

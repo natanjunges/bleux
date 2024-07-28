@@ -16,14 +16,6 @@
 
 set -e
 
-case "$1" in
-    add)
-        apt-get install -y --mark-auto gnome-music
-    ;;
-    remove)
-        apt-get purge -y gnome-music
-    ;;
-    *)
-        exit 37
-    ;;
-esac
+. /usr/lib/bleux-features/utils.sh
+
+feature_deb "$1" gnome-music

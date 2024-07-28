@@ -16,6 +16,8 @@
 
 set -e
 
+. /usr/lib/bleux-features/utils.sh
+
 case "$1" in
     enable)
         ufw enable
@@ -24,6 +26,6 @@ case "$1" in
         ufw disable
     ;;
     *)
-        exit 37
+        die_subcommand
     ;;
 esac

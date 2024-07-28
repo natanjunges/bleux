@@ -16,27 +16,6 @@
 
 set -e
 
-if ! dpkg-query -f '${db:Status-abbrev}' -W flatpak 2> /dev/null | grep -q '^.i'; then
-    no_flatpak=1
-fi
+. /usr/lib/bleux-features/utils.sh
 
-case "$1" in
-    add)
-        if [ $no_flatpak ]; then
-            echo 'The \e[1mflatpak\e[0m feature is not enabled.' >&2
-            exit 1
-        fi
-
-        flatpak install -y --noninteractive --no-related org.gnome.Loupe
-    ;;
-    remove)
-        if [ $no_flatpak ]; then
-            exit 0
-        fi
-
-        flatpak remove -y --noninteractive --system org.gnome.Loupe
-    ;;
-    *)
-        exit 37
-    ;;
-esac
+feature_flatpak "$1" org.gnome.Loupe
