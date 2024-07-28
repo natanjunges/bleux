@@ -24,8 +24,8 @@ case "$1" in
         ln -s /usr/lib/bleux-features/fix-python3-typer.pref /etc/apt/preferences.d/
         mv /etc/apt/sources.list.d/volian-archive-nala-unstable.sources.disabled /etc/apt/sources.list.d/volian-archive-nala-unstable.sources
         apt-mark unhold volian-archive-nala
-        apt_get_update fix-python3-typer.list
-        apt_get_update volian-archive-nala-unstable.sources
+        apt-get update --no-list-cleanup -o Dir::Etc::SourceList="sources.list.d/fix-python3-typer.list" -o Dir::Etc::SourceParts="-"
+        apt-get update --no-list-cleanup -o Dir::Etc::SourceList="sources.list.d/volian-archive-nala-unstable.sources" -o Dir::Etc::SourceParts="-"
         apt_get_install --no-install-recommends nala
     ;;
     remove)

@@ -53,10 +53,6 @@ check_snap() {
     check_package snapd
 }
 
-apt_get_update() {
-    apt-get update --no-list-cleanup -o Dir::Etc::SourceList="sources.list.d/$1" -o Dir::Etc::SourceParts="-"
-}
-
 apt_get_install() {
     apt-get install -y --mark-auto $@
 }
