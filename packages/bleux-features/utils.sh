@@ -83,7 +83,7 @@ snap_purge() {
 
 feature() {
     subcommand="$1"
-    has_feature=$2
+    has_feature="$2"
     die_command=$3
     add_command=$4
     remove_command=$5
