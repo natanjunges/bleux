@@ -1,3 +1,9 @@
+bleux-desktop (1.1.1) jammy; urgency=low
+
+  * Add update and remove-unused subcommands to flatpak feature.
+
+ -- Natan Junges <natanajunges@gmail.com>  Sun, 28 Jul 2024 20:55:21 -0300
+
 bleux-desktop (1.1.0) jammy; urgency=low
 
   * Add error message to when bleux-features is not installed.
