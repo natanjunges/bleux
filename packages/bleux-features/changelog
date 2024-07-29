@@ -1,3 +1,10 @@
+bleux-features (1.2.0) jammy; urgency=low
+
+  * Add update and remove-unused subcommands to flatpak feature, add fetch subcommand to nala feature.
+  * Modularize feature scripts by using a utils library script.
+
+ -- Natan Junges <natanajunges@gmail.com>  Sun, 28 Jul 2024 20:55:21 -0300
+
 bleux-features (1.1.0) jammy; urgency=low
 
   * Improve apt-disabled error message.
