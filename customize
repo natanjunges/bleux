@@ -18,19 +18,9 @@
 
 set -e -x
 
-if [ -n "$UPGRADE" ]; then
-    # Store old kernel version
-    OLD_VERSION=$(dpkg -s linux-headers-generic-hwe-22.04 | grep ^Depends: | cut -d- -f3-4)
-fi
-
-# Remove restricted repository
-add-apt-repository -y -n --remove restricted
-
 # Install bleUX repository
-if [ ! -d /usr/local/bleux/ ]; then
-    wget https://github.com/natanjunges/bleux/releases/latest/download/bleux-repository.deb
-    apt-get install -y ./bleux-repository.deb
-fi
+wget https://github.com/natanjunges/bleux/releases/latest/download/bleux-repository.deb
+apt-get install -y ./bleux-repository.deb
 
 # Install nala repository
 wget https://deb.volian.org/volian/pool/main/v/volian-archive/volian-archive-keyring_0.3.1_all.deb \
@@ -39,11 +29,8 @@ apt-get install -y --mark-auto ./volian-archive-keyring_*_all.deb ./volian-archi
 apt-mark hold volian-archive-nala
 mv /etc/apt/sources.list.d/volian-archive-nala-unstable.sources /etc/apt/sources.list.d/volian-archive-nala-unstable.sources.disabled
 
-# Add universe repository
-add-apt-repository -y universe
-
-# Purge restricted software
-apt-get purge -y firmware-sof-signed
+# Load added repositories
+apt-get update
 
 # Purge transitional packages
 apt-get purge -y firefox gstreamer1.0-pulseaudio libreoffice-ogltrans libreoffice-pdfimport libwmf0.2-7-gtk
@@ -85,7 +72,11 @@ feature add pipewire
 feature add flatpak
 feature add flatpak firefox
 feature add flatpak loupe
-unminimize customize
+
+# Install normal packages in normal install
+if dpkg-query -f '${db:Status-abbrev}' -W usb-creator-gtk 2> /dev/null | grep -q '^.i'; then
+    unminimize customize
+fi
 
 # Only remove gnome-terminal after gnome-console is added
 feature remove gnome-terminal
@@ -93,28 +84,23 @@ feature remove gnome-terminal
 # Only remove ubuntu-wallpapers after gnome-backgrounds is added
 feature remove ubuntu-wallpapers
 
+# Autoremove downloaded packages
+rm *.deb
+
+# Remove x11
+feature remove x11
+
+# Finish installation of language support
+apt-get install -y $(check-language-support)
+
 # Purge unused packages
 apt-get autoremove -y --purge
 
-if [ -n "$UPGRADE" ]; then
-    # Upgrade all packages
-    apt-get dist-upgrade -y
+# Finish installation of flatpak runtimes
+feature update flatpak
 
-    # Store new kernel version
-    NEW_VERSION=$(dpkg -s linux-headers-generic-hwe-22.04 | grep ^Depends: | cut -d- -f3-4)
+# Enable UFW
+feature enable ufw
 
-    # Decide if it needs to purge an older kernel version
-    if [ $OLD_VERSION != $NEW_VERSION ]; then
-        apt-get purge -y linux-headers-$OLD_VERSION-generic linux-hwe-*-headers-$OLD_VERSION linux-image-$OLD_VERSION-generic \
-                         linux-modules-$OLD_VERSION-generic linux-modules-extra-$OLD_VERSION-generic
-    fi
-
-    # Purge unused packages
-    apt-get autoremove -y --purge
-fi
-
-# Clean up apt cache
-apt-get clean
-
-# Autoremove this script and downloaded packages
-rm customize *.deb
+# Fetch nala mirrors
+feature fetch nala
