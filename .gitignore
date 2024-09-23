@@ -1,11 +1,3 @@
-/image/.#custom-root.lck
-/image/bleux-*.iso
-/image/bleux-*.md5
-/image/custom-disk/
-/image/custom-root/
-/image/partition-1.img
-/image/partition-2.img
-/image/source-disk/
 /packages/*/*.buildinfo
 /packages/*/*.changes
 /packages/*/*.deb
