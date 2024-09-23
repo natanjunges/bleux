@@ -20,87 +20,87 @@ set -e -x
 
 # Install bleUX repository
 wget https://github.com/natanjunges/bleux/releases/latest/download/bleux-repository.deb
-apt-get install -y ./bleux-repository.deb
+sudo apt-get install -y ./bleux-repository.deb
 
 # Install nala repository
 wget https://deb.volian.org/volian/pool/main/v/volian-archive/volian-archive-keyring_0.3.1_all.deb \
      https://deb.volian.org/volian/pool/main/v/volian-archive/volian-archive-nala_0.3.1_all.deb
-apt-get install -y --mark-auto ./volian-archive-keyring_*_all.deb ./volian-archive-nala_*_all.deb
-apt-mark hold volian-archive-nala
-mv /etc/apt/sources.list.d/volian-archive-nala-unstable.sources /etc/apt/sources.list.d/volian-archive-nala-unstable.sources.disabled
+sudo apt-get install -y --mark-auto ./volian-archive-keyring_*_all.deb ./volian-archive-nala_*_all.deb
+sudo apt-mark hold volian-archive-nala
+sudo mv /etc/apt/sources.list.d/volian-archive-nala-unstable.sources /etc/apt/sources.list.d/volian-archive-nala-unstable.sources.disabled
 
 # Load added repositories
-apt-get update
+sudo apt-get update
 
 # Purge transitional packages
-apt-get purge -y firefox gstreamer1.0-pulseaudio libreoffice-ogltrans libreoffice-pdfimport libwmf0.2-7-gtk
+sudo apt-get purge -y firefox gstreamer1.0-pulseaudio libreoffice-ogltrans libreoffice-pdfimport libwmf0.2-7-gtk
 
 # Install bleUX packages
-apt-get install -y bleux-desktop
+sudo apt-get install -y bleux-desktop
 
 # Disable/remove features
-feature remove aisleriot
-feature disable apt
-feature remove branding-ubuntu
-feature remove cheese
-feature remove desktop-icons
-feature remove eog
-feature remove gedit
-feature remove gnome-mahjongg
-feature remove gnome-mines
-feature remove gnome-power-manager
-feature remove gnome-sudoku
-feature remove gnome-todo
-feature remove libreoffice
-feature remove pulseaudio
-feature remove remmina
-feature remove rhythmbox
-feature remove seahorse
-feature remove shotwell
-feature remove snap
-feature remove thunderbird
-feature remove transmission
-feature remove ubuntu-dock
+sudo feature remove aisleriot
+sudo feature disable apt
+sudo feature remove branding-ubuntu
+sudo feature remove cheese
+sudo feature remove desktop-icons
+sudo feature remove eog
+sudo feature remove gedit
+sudo feature remove gnome-mahjongg
+sudo feature remove gnome-mines
+sudo feature remove gnome-power-manager
+sudo feature remove gnome-sudoku
+sudo feature remove gnome-todo
+sudo feature remove libreoffice
+sudo feature remove pulseaudio
+sudo feature remove remmina
+sudo feature remove rhythmbox
+sudo feature remove seahorse
+sudo feature remove shotwell
+sudo feature remove snap
+sudo feature remove thunderbird
+sudo feature remove transmission
+sudo feature remove ubuntu-dock
 
 # Add features
-feature add gnome-backgrounds
-feature add gnome-console
-feature add gnome-software
-feature add gnome-text-editor
-feature add nala
-feature add pipewire
-feature add flatpak
+sudo feature add gnome-backgrounds
+sudo feature add gnome-console
+sudo feature add gnome-software
+sudo feature add gnome-text-editor
+sudo feature add nala
+sudo feature add pipewire
+sudo feature add flatpak
 feature add flatpak firefox
 feature add flatpak loupe
 
 # Install normal packages in normal install
 if dpkg-query -f '${db:Status-abbrev}' -W usb-creator-gtk 2> /dev/null | grep -q '^.i'; then
-    unminimize customize
+    sudo unminimize customize
 fi
 
 # Only remove gnome-terminal after gnome-console is added
-feature remove gnome-terminal
+sudo feature remove gnome-terminal
 
 # Only remove ubuntu-wallpapers after gnome-backgrounds is added
-feature remove ubuntu-wallpapers
+sudo feature remove ubuntu-wallpapers
 
 # Autoremove downloaded packages
 rm *.deb
 
 # Remove x11
-feature remove x11
+sudo feature remove x11
 
 # Finish installation of language support
-apt-get install -y $(check-language-support)
+sudo apt-get install -y $(check-language-support)
 
 # Purge unused packages
-apt-get autoremove -y --purge
+sudo apt-get autoremove -y --purge
 
 # Finish installation of flatpak runtimes
 feature update flatpak
 
 # Enable UFW
-feature enable ufw
+sudo feature enable ufw
 
 # Fetch nala mirrors
-feature fetch nala
+sudo feature fetch nala
