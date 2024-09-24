@@ -19,8 +19,11 @@
 set -e -x
 
 # Install bleUX repository
-wget https://github.com/natanjunges/bleux/releases/latest/download/bleux-repository.deb
-sudo apt-get install -y ./bleux-repository.deb
+if [ ! -d /usr/local/bleux/ ]; then
+     wget https://github.com/natanjunges/bleux/releases/latest/download/bleux-repository.deb
+     sudo apt-get install -y ./bleux-repository.deb
+fi
+
 sudo apt-get update --no-list-cleanup -o Dir::Etc::SourceList="sources.list.d/bleux.list" -o Dir::Etc::SourceParts="-"
 
 # Install nala repository
