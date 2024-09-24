@@ -42,6 +42,9 @@ sudo apt-get install -y bleux-desktop
 # Purge transitional packages
 sudo apt-get purge -y firefox gstreamer1.0-pulseaudio libreoffice-ogltrans libreoffice-pdfimport libwmf0.2-7-gtk
 
+# Remove snap before adding gnome-software
+sudo feature remove snap
+
 # Add features
 sudo feature add gnome-backgrounds
 sudo feature add gnome-console
@@ -78,7 +81,6 @@ sudo feature remove remmina
 sudo feature remove rhythmbox
 sudo feature remove seahorse
 sudo feature remove shotwell
-sudo feature remove snap
 sudo feature remove thunderbird
 sudo feature remove transmission
 sudo feature remove ubuntu-dock
