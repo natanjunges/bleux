@@ -18,7 +18,7 @@
 
 KEYRING=0F414886C2FA986B9D4BEF65ED8B2A17CFC1DE23
 
-.PHONY: all packages indexes clean
+.PHONY: all packages indexes install clean
 
 all:
 	$(MAKE) -f build packages
@@ -41,6 +41,16 @@ Packages.xz: Packages
 
 Packages: *.deb
 	apt-ftparchive packages . > Packages
+
+install:
+	# Build local repository
+	$(MAKE) -f build packages
+	$(MAKE) -f build Release
+
+	# Copy local repository to usr
+	sudo mkdir -p /usr/local/bleux/
+	sudo cp -u ../repository/*.deb ../repository/Packages ../repository/Packages.xz ../repository/Release /usr/local/bleux/
+	echo 'deb [trusted=yes arch=amd64] file:/usr/local/bleux ./' | sudo tee /etc/apt/sources.list.d/bleux.list > /dev/null
 
 clean:
 	rm -f InRelease Packages Packages.xz Release *.deb
