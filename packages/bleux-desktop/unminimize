@@ -16,8 +16,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-
-set -e
+set -e -x
 
 if ! dpkg-query -f '${db:Status-abbrev}' -W bleux-features 2> /dev/null | grep -q '^.i'; then
     echo 'The \e[1mbleux-features\e[0m package is not installed.' >&2
@@ -25,14 +24,14 @@ if ! dpkg-query -f '${db:Status-abbrev}' -W bleux-features 2> /dev/null | grep -
 fi
 
 if [ "$1" != customize ]; then
-    apt-get install -y --mark-auto $(dpkg-query -f '${Suggests}' -W bleux-desktop | tr -d ,)
+    sudo apt-get install -y --mark-auto $(dpkg-query -f '${Suggests}' -W bleux-desktop | tr -d ,)
 fi
 
-feature add gnome-connections
-feature add gnome-music
-feature add gufw
-feature add preload
-feature add timeshift
+sudo feature add gnome-connections
+sudo feature add gnome-music
+sudo feature add gufw
+sudo feature add preload
+sudo feature add timeshift
 feature add flatpak libreoffice
 feature add flatpak snapshot
 feature add flatpak thunderbird

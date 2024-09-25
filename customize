@@ -1,0 +1,103 @@
+#!/usr/bin/sh
+
+# bleUX, a user-centric desktop Linux distribution
+# Copyright (C) 2023, 2024  Natan Junges <natanajunges@gmail.com>
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+set -e -x
+
+# Install bleUX repository
+if [ ! -d /usr/local/bleux/ ]; then
+     wget https://github.com/natanjunges/bleux/releases/latest/download/bleux-repository.deb
+     sudo apt-get install -y ./bleux-repository.deb
+fi
+
+sudo apt-get update --no-list-cleanup -o Dir::Etc::SourceList="sources.list.d/bleux.list" -o Dir::Etc::SourceParts="-"
+
+# Install nala repository
+wget https://deb.volian.org/volian/pool/main/v/volian-archive/volian-archive-keyring_0.3.1_all.deb \
+     https://deb.volian.org/volian/pool/main/v/volian-archive/volian-archive-nala_0.3.1_all.deb
+sudo apt-get install -y --mark-auto ./volian-archive-keyring_*_all.deb ./volian-archive-nala_*_all.deb
+sudo apt-mark hold volian-archive-nala
+sudo mv /etc/apt/sources.list.d/volian-archive-nala-unstable.sources /etc/apt/sources.list.d/volian-archive-nala-unstable.sources.disabled
+
+# Autoremove downloaded packages
+rm *.deb
+
+# Install bleUX packages
+sudo apt-get install -y bleux-desktop
+
+# Purge transitional packages
+sudo apt-get purge -y firefox gstreamer1.0-pulseaudio libreoffice-ogltrans libreoffice-pdfimport libwmf0.2-7-gtk
+
+# Remove snap before adding gnome-software
+sudo feature remove snap
+
+# Add features
+sudo feature add gnome-backgrounds
+sudo feature add gnome-console
+sudo feature add gnome-software
+sudo feature add gnome-text-editor
+sudo feature add nala
+sudo feature add pipewire
+sudo feature add flatpak
+feature add flatpak firefox
+feature add flatpak loupe
+
+# Install normal packages in normal install
+if dpkg-query -f '${db:Status-abbrev}' -W usb-creator-gtk 2> /dev/null | grep -q '^.i'; then
+    unminimize customize
+fi
+
+# Disable/remove features
+sudo feature remove aisleriot
+sudo feature disable apt
+sudo feature remove branding-ubuntu
+sudo feature remove cheese
+sudo feature remove desktop-icons
+sudo feature remove eog
+sudo feature remove gedit
+sudo feature remove gnome-mahjongg
+sudo feature remove gnome-mines
+sudo feature remove gnome-power-manager
+sudo feature remove gnome-sudoku
+sudo feature remove gnome-terminal
+sudo feature remove gnome-todo
+sudo feature remove libreoffice
+sudo feature remove pulseaudio
+sudo feature remove remmina
+sudo feature remove rhythmbox
+sudo feature remove seahorse
+sudo feature remove shotwell
+sudo feature remove thunderbird
+sudo feature remove transmission
+sudo feature remove ubuntu-dock
+sudo feature remove ubuntu-wallpapers
+sudo feature remove x11
+
+# Finish installation of language support
+sudo apt-get install -y $(check-language-support)
+
+# Purge unused packages
+sudo apt-get autoremove -y --purge
+
+# Finish installation of flatpak runtimes
+feature update flatpak
+
+# Enable UFW
+sudo feature enable ufw
+
+# Fetch nala mirrors
+sudo feature fetch nala

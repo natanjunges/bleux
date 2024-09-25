@@ -16,27 +16,22 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-
-set -e
+set -e -x
 
 if ! dpkg-query -f '${db:Status-abbrev}' -W bleux-features 2> /dev/null | grep -q '^.i'; then
     echo 'The \e[1mbleux-features\e[0m package is not installed.' >&2
     exit 1
 fi
 
-if [ "$1" != postinst ]; then
-    apt-get purge -y $(dpkg-query -f '${Suggests}' -W bleux-desktop | tr -d ,)
-fi
+sudo apt-get purge -y $(dpkg-query -f '${Suggests}' -W bleux-desktop | tr -d ,)
 
-feature remove gnome-connections
-feature remove gnome-music
-feature remove gufw
-feature remove preload
-feature remove timeshift
+sudo feature remove gnome-connections
+sudo feature remove gnome-music
+sudo feature remove gufw
+sudo feature remove preload
+sudo feature remove timeshift
 
-if [ "$1" != postinst ]; then
-    apt-get autoremove -y --purge
-fi
+sudo apt-get autoremove -y --purge
 
 feature remove flatpak libreoffice
 feature remove flatpak snapshot
