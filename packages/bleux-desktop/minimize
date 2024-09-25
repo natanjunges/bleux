@@ -24,15 +24,15 @@ if ! dpkg-query -f '${db:Status-abbrev}' -W bleux-features 2> /dev/null | grep -
     exit 1
 fi
 
-apt-get purge -y $(dpkg-query -f '${Suggests}' -W bleux-desktop | tr -d ,)
+sudo apt-get purge -y $(dpkg-query -f '${Suggests}' -W bleux-desktop | tr -d ,)
 
-feature remove gnome-connections
-feature remove gnome-music
-feature remove gufw
-feature remove preload
-feature remove timeshift
+sudo feature remove gnome-connections
+sudo feature remove gnome-music
+sudo feature remove gufw
+sudo feature remove preload
+sudo feature remove timeshift
 
-apt-get autoremove -y --purge
+sudo apt-get autoremove -y --purge
 
 feature remove flatpak libreoffice
 feature remove flatpak snapshot
