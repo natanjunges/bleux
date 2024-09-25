@@ -1,8 +1,6 @@
 Section: utils
 Depends: apt
-Recommends: libglu1-mesa,
-    mesa-vulkan-drivers,
-    volian-archive-keyring,
+Recommends: volian-archive-keyring,
     volian-archive-nala
 Suggests: aisleriot,
     bleux-backgrounds,
@@ -12,7 +10,6 @@ Suggests: aisleriot,
     eog,
     flatpak,
     gedit,
-    ghostscript-x,
     gnome-connections,
     gnome-mahjongg,
     gnome-mines,
@@ -37,7 +34,6 @@ Suggests: aisleriot,
     libreoffice-writer,
     libspa-0.2-bluetooth,
     libspa-0.2-jack,
-    libx11-protocol-perl,
     nala,
     pipewire-audio-client-libraries,
     preload,
@@ -53,15 +49,7 @@ Suggests: aisleriot,
     timeshift,
     transmission-gtk,
     ubuntu-wallpapers,
-    wireplumber | pipewire-media-session,
-    x11-apps,
-    x11-session-utils,
-    x11-utils,
-    xcursor-themes,
-    xorg-docs-core,
-    xserver-xephyr,
-    xserver-xorg-core,
-    xserver-xorg-legacy
+    wireplumber | pipewire-media-session
 Description: The bleUX feature scripts
  This package has scripts to toggle the core features of the bleUX desktop
  system.
@@ -112,7 +100,8 @@ Files: apt-disabled /usr/bin/
     features/ubuntu-dock.sh /usr/lib/bleux-features/features/
     features/ubuntu-wallpapers.sh /usr/lib/bleux-features/features/
     features/ufw.sh /usr/lib/bleux-features/features/
-    features/x11.sh /usr/lib/bleux-features/features/
+    features/wayland.sh /usr/lib/bleux-features/features/
+    features/xorg.sh /usr/lib/bleux-features/features/
     fix-python3-typer.list /usr/lib/bleux-features/
     fix-python3-typer.pref /usr/lib/bleux-features/
     nosnap.pref /usr/lib/bleux-features/
