@@ -27,7 +27,7 @@ case "$1" in
         fi
 
         flatpak_install org.mozilla.Thunderbird
-        flatpak override --socket=fallback-x11 org.mozilla.Thunderbird
+        sudo flatpak override --socket=fallback-x11 org.mozilla.Thunderbird
     ;;
     remove)
         if [ -z "$has_flatpak" ]; then
