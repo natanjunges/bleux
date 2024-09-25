@@ -58,7 +58,7 @@ feature add flatpak loupe
 
 # Install normal packages in normal install
 if dpkg-query -f '${db:Status-abbrev}' -W usb-creator-gtk 2> /dev/null | grep -q '^.i'; then
-    sudo unminimize customize
+    unminimize customize
 fi
 
 # Disable/remove features
