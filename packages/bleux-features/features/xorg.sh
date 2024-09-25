@@ -20,7 +20,7 @@ set -e
 
 case "$1" in
     init)
-        sed -i s/WaylandEnable=false/WaylandEnable=false\n#XorgEnable=false/ /etc/gdm3/custom.conf
+        sed -i 's/WaylandEnable=false/WaylandEnable=false\n#XorgEnable=false/' /etc/gdm3/custom.conf
     ;;
     enable)
         sed -i s/^XorgEnable=false/#XorgEnable=false/ /etc/gdm3/custom.conf
