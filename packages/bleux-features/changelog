@@ -1,3 +1,9 @@
+bleux-features (1.2.1) jammy; urgency=low
+
+  * Clarify version of license to use.
+
+ -- Natan Junges <natanajunges@gmail.com>  Thu, 26 Sep 2024 19:58:01 -0300
+
 bleux-features (1.2.0) jammy; urgency=low
 
   * Add update and remove-unused subcommands to flatpak feature, add fetch subcommand to nala feature.
