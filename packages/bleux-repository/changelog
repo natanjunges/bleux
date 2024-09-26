@@ -1,3 +1,9 @@
+bleux-repository (1.0.1) jammy; urgency=low
+
+  * Clarify version of license to use.
+
+ -- Natan Junges <natanajunges@gmail.com>  Thu, 26 Sep 2024 19:58:01 -0300
+
 bleux-repository (1.0.0) jammy; urgency=low
 
   * Update URLs, update keyring.
