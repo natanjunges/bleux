@@ -27,7 +27,7 @@ fi
 sudo apt-get update --no-list-cleanup -o Dir::Etc::SourceList="sources.list.d/bleux.list" -o Dir::Etc::SourceParts="-"
 
 # Autoremove downloaded packages
-rm *.deb
+rm -f *.deb
 
 # Install bleUX packages
 sudo apt-get install -y bleux-desktop
