@@ -34,7 +34,6 @@ sudo feature remove timeshift
 sudo apt-get autoremove -y --purge
 
 feature remove flatpak libreoffice
-feature remove flatpak snapshot
 feature remove flatpak thunderbird
 feature remove flatpak transmission
 feature remove-unused flatpak
