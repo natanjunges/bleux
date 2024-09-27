@@ -16,4 +16,4 @@ picture-uri = 'file:///usr/share/backgrounds/gnome/adwaita-l.jpg'
 button-layout = ':close'
 
 [org.gnome.shell]
-favorite-apps = ['ubuntu-desktop-installer_ubuntu-desktop-installer.desktop', 'ubiquity.desktop', 'org.mozilla.firefox.desktop', 'org.mozilla.Thunderbird.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Music.desktop', 'org.libreoffice.LibreOffice.writer.desktop', 'org.gnome.Software.desktop', 'yelp.desktop']
+favorite-apps = ['ubuntu-desktop-bootstrap_ubuntu-desktop-bootstrap.desktop', 'org.mozilla.firefox.desktop', 'org.mozilla.Thunderbird.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Music.desktop', 'org.libreoffice.LibreOffice.writer.desktop', 'org.gnome.Software.desktop', 'yelp.desktop']
