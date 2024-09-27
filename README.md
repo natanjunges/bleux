@@ -12,7 +12,7 @@ A user-centric desktop Linux distribution
 sudo apt-get install --no-install-recommends -y equivs git make
 git clone https://github.com/natanjunges/bleux.git
 cd bleux/repository
-./build -j 6 install
+./build -j 5 install
 cd ..
 ./customize
 ```
