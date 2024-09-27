@@ -26,13 +26,6 @@ fi
 
 sudo apt-get update --no-list-cleanup -o Dir::Etc::SourceList="sources.list.d/bleux.list" -o Dir::Etc::SourceParts="-"
 
-# Install nala repository
-wget https://deb.volian.org/volian/pool/main/v/volian-archive/volian-archive-keyring_0.3.1_all.deb \
-     https://deb.volian.org/volian/pool/main/v/volian-archive/volian-archive-nala_0.3.1_all.deb
-sudo apt-get install -y --mark-auto ./volian-archive-keyring_*_all.deb ./volian-archive-nala_*_all.deb
-sudo apt-mark hold volian-archive-nala
-sudo mv /etc/apt/sources.list.d/volian-archive-nala-unstable.sources /etc/apt/sources.list.d/volian-archive-nala-unstable.sources.disabled
-
 # Autoremove downloaded packages
 rm *.deb
 
