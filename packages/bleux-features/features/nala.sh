@@ -20,15 +20,10 @@ set -e
 
 case "$1" in
     add)
-        mv /etc/apt/sources.list.d/volian-archive-nala-unstable.sources.disabled /etc/apt/sources.list.d/volian-archive-nala-unstable.sources
-        apt-mark unhold volian-archive-nala
-        apt-get update --no-list-cleanup -o Dir::Etc::SourceList="sources.list.d/volian-archive-nala-unstable.sources" -o Dir::Etc::SourceParts="-"
         apt_get_install --no-install-recommends nala
     ;;
     remove)
         apt_get_purge nala
-        apt-mark hold volian-archive-nala
-        mv /etc/apt/sources.list.d/volian-archive-nala-unstable.sources /etc/apt/sources.list.d/volian-archive-nala-unstable.sources.disabled
     ;;
     fetch)
         nala fetch -y --ubuntu jammy --auto
