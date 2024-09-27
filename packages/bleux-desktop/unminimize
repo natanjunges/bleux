@@ -33,7 +33,6 @@ sudo feature add gufw
 sudo feature add preload
 sudo feature add timeshift
 feature add flatpak libreoffice
-feature add flatpak snapshot
 feature add flatpak thunderbird
 feature add flatpak transmission
 
