@@ -1,7 +1,5 @@
 Section: utils
 Depends: apt
-Recommends: volian-archive-keyring,
-    volian-archive-nala
 Suggests: bleux-backgrounds,
     eog,
     flatpak,
