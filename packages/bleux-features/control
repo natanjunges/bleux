@@ -3,10 +3,10 @@ Depends: apt
 Recommends: volian-archive-keyring,
     volian-archive-nala
 Suggests: bleux-backgrounds,
-    bleux-console,
     eog,
     flatpak,
     gnome-connections,
+    gnome-console,
     gnome-music,
     gnome-power-manager,
     gnome-shell-extension-desktop-icons-ng,
