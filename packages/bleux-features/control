@@ -2,17 +2,11 @@ Section: utils
 Depends: apt
 Recommends: volian-archive-keyring,
     volian-archive-nala
-Suggests: aisleriot,
-    bleux-backgrounds,
+Suggests: bleux-backgrounds,
     bleux-console,
-    branding-ubuntu,
-    cheese,
     eog,
     flatpak,
-    gedit,
     gnome-connections,
-    gnome-mahjongg,
-    gnome-mines,
     gnome-music,
     gnome-power-manager,
     gnome-shell-extension-desktop-icons-ng,
@@ -20,81 +14,60 @@ Suggests: aisleriot,
     gnome-software,
     gnome-software-plugin-flatpak,
     gnome-software-plugin-snap,
-    gnome-sudoku,
     gnome-terminal,
-    gnome-text-editor,
-    gnome-todo,
     gufw,
     libreoffice-calc,
     libreoffice-common,
     libreoffice-gnome,
     libreoffice-impress,
     libreoffice-math,
-    libreoffice-style-breeze,
+    libreoffice-style-yaru,
     libreoffice-writer,
-    libspa-0.2-bluetooth,
-    libspa-0.2-jack,
+    loupe,
     nala,
-    pipewire-audio-client-libraries,
     preload,
-    pulseaudio,
-    pulseaudio-module-bluetooth,
     remmina,
     rhythmbox,
     seahorse,
     shotwell,
     snapd,
-    thunderbird,
-    thunderbird-gnome-support,
     timeshift,
     transmission-gtk,
     ubuntu-wallpapers,
-    wireplumber | pipewire-media-session
 Description: The bleUX feature scripts
  This package has scripts to toggle the core features of the bleUX desktop
  system.
 Files: apt-disabled /usr/bin/
     feature /usr/bin/
-    features/aisleriot.sh /usr/lib/bleux-features/features/
     features/apt.sh /usr/lib/bleux-features/features/
-    features/branding-ubuntu.sh /usr/lib/bleux-features/features/
-    features/cheese.sh /usr/lib/bleux-features/features/
     features/desktop-icons.sh /usr/lib/bleux-features/features/
     features/eog.sh /usr/lib/bleux-features/features/
     features/flatpak.sh /usr/lib/bleux-features/features/
     features/flatpak/firefox.sh /usr/lib/bleux-features/features/flatpak/
     features/flatpak/libreoffice.sh /usr/lib/bleux-features/features/flatpak/
-    features/flatpak/loupe.sh /usr/lib/bleux-features/features/flatpak/
-    features/flatpak/snapshot.sh /usr/lib/bleux-features/features/flatpak/
     features/flatpak/thunderbird.sh /usr/lib/bleux-features/features/flatpak/
     features/flatpak/transmission.sh /usr/lib/bleux-features/features/flatpak/
-    features/gedit.sh /usr/lib/bleux-features/features/
     features/gnome-backgrounds.sh /usr/lib/bleux-features/features/
     features/gnome-connections.sh /usr/lib/bleux-features/features/
     features/gnome-console.sh /usr/lib/bleux-features/features/
-    features/gnome-mahjongg.sh /usr/lib/bleux-features/features/
-    features/gnome-mines.sh /usr/lib/bleux-features/features/
     features/gnome-music.sh /usr/lib/bleux-features/features/
     features/gnome-power-manager.sh /usr/lib/bleux-features/features/
     features/gnome-software.sh /usr/lib/bleux-features/features/
-    features/gnome-sudoku.sh /usr/lib/bleux-features/features/
     features/gnome-terminal.sh /usr/lib/bleux-features/features/
-    features/gnome-text-editor.sh /usr/lib/bleux-features/features/
-    features/gnome-todo.sh /usr/lib/bleux-features/features/
     features/gufw.sh /usr/lib/bleux-features/features/
     features/libreoffice.sh /usr/lib/bleux-features/features/
+    features/loupe.sh /usr/lib/bleux-features/features/
     features/nala.sh /usr/lib/bleux-features/features/
-    features/pipewire.sh /usr/lib/bleux-features/features/
     features/preload.sh /usr/lib/bleux-features/features/
-    features/pulseaudio.sh /usr/lib/bleux-features/features/
     features/remmina.sh /usr/lib/bleux-features/features/
     features/rhythmbox.sh /usr/lib/bleux-features/features/
     features/seahorse.sh /usr/lib/bleux-features/features/
     features/shotwell.sh /usr/lib/bleux-features/features/
     features/snap.sh /usr/lib/bleux-features/features/
     features/snap/firefox.sh /usr/lib/bleux-features/features/snap/
+    features/snap/firmware-updater.sh /usr/lib/bleux-features/features/snap/
     features/snap/snap-store.sh /usr/lib/bleux-features/features/snap/
-    features/thunderbird.sh /usr/lib/bleux-features/features/
+    features/snap/thunderbird.sh /usr/lib/bleux-features/features/snap/
     features/timeshift.sh /usr/lib/bleux-features/features/
     features/transmission.sh /usr/lib/bleux-features/features/
     features/ubuntu-dock.sh /usr/lib/bleux-features/features/
