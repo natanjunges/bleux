@@ -177,6 +177,7 @@ Suggests: deja-dup,
 #   transmission-gtk,
     usb-creator-gtk
 Conflicts: ubuntu-desktop, ubuntu-desktop-minimal
+Provides: packagekit-installer
 Replaces: ubuntu-desktop, ubuntu-desktop-minimal
 Description: The bleUX desktop system
  This package depends on all of the packages in the bleUX desktop system.
