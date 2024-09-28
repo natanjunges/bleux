@@ -18,4 +18,4 @@ set -e
 
 . /usr/lib/bleux-features/utils.sh
 
-feature_deb "$1" bleux-console
+feature_deb "$1" gnome-console

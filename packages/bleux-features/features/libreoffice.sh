@@ -18,5 +18,5 @@ set -e
 
 . /usr/lib/bleux-features/utils.sh
 
-feature_deb "$1" libreoffice-calc libreoffice-common libreoffice-gnome libreoffice-impress libreoffice-math libreoffice-style-breeze \
+feature_deb "$1" libreoffice-calc libreoffice-common libreoffice-gnome libreoffice-impress libreoffice-math libreoffice-style-yaru \
                  libreoffice-writer

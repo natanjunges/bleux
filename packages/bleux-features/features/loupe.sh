@@ -18,4 +18,4 @@ set -e
 
 . /usr/lib/bleux-features/utils.sh
 
-feature_deb "$1" branding-ubuntu
+feature_deb "$1" loupe

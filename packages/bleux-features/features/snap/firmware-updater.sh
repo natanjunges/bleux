@@ -1,5 +1,3 @@
-#!/usr/bin/sh
-
 # bleUX, a user-centric desktop Linux distribution
 # Copyright (C) 2024  Natan Junges <natanajunges@gmail.com>
 #
@@ -18,14 +16,6 @@
 
 set -e
 
-case $1 in
-    remove|deconfigure)
-        update-alternatives --remove x-terminal-emulator /usr/bin/kgx
-    ;;
-    upgrade)
-        exit 0
-    ;;
-    *)
-        exit 1
-    ;;
-esac
+. /usr/lib/bleux-features/utils.sh
+
+feature_snap "$1" firmware-updater

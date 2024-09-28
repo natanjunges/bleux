@@ -1,7 +1,7 @@
 [org.gnome.Console]
 theme = 'auto'
 
-[org.gnome.desktop.background]
+[org.gnome.desktop.background:ubuntu]
 picture-uri = 'file:///usr/share/backgrounds/gnome/adwaita-l.jpg'
 picture-uri-dark = 'file:///usr/share/backgrounds/gnome/adwaita-d.jpg'
 
@@ -9,11 +9,11 @@ picture-uri-dark = 'file:///usr/share/backgrounds/gnome/adwaita-d.jpg'
 gtk-theme = 'Yaru-blue'
 icon-theme = 'Yaru-blue'
 
-[org.gnome.desktop.screensaver]
+[org.gnome.desktop.screensaver:ubuntu]
 picture-uri = 'file:///usr/share/backgrounds/gnome/adwaita-l.jpg'
 
 [org.gnome.desktop.wm.preferences:ubuntu]
 button-layout = ':close'
 
-[org.gnome.shell]
-favorite-apps = ['ubuntu-desktop-installer_ubuntu-desktop-installer.desktop', 'ubiquity.desktop', 'org.mozilla.firefox.desktop', 'org.mozilla.Thunderbird.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Music.desktop', 'org.libreoffice.LibreOffice.writer.desktop', 'org.gnome.Software.desktop', 'yelp.desktop']
+[org.gnome.shell:ubuntu]
+favorite-apps = ['ubuntu-desktop-bootstrap_ubuntu-desktop-bootstrap.desktop', 'org.mozilla.firefox.desktop', 'org.mozilla.Thunderbird.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Music.desktop', 'org.libreoffice.LibreOffice.writer.desktop', 'org.gnome.Software.desktop', 'yelp.desktop']
