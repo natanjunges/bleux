@@ -24,15 +24,12 @@ if ! dpkg-query -f '${db:Status-abbrev}' -W bleux-features 2> /dev/null | grep -
 fi
 
 sudo apt-get purge -y $(dpkg-query -f '${Suggests}' -W bleux-desktop | tr -d ,)
-
 sudo feature remove gnome-connections
 sudo feature remove gnome-music
 sudo feature remove gufw
 sudo feature remove preload
 sudo feature remove timeshift
-
 sudo apt-get autoremove -y --purge
-
 feature remove flatpak libreoffice
 feature remove flatpak thunderbird
 feature remove flatpak transmission
