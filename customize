@@ -22,12 +22,11 @@ set -e -x
 if [ ! -d /usr/local/bleux/ ]; then
      wget https://github.com/natanjunges/bleux/releases/latest/download/bleux-repository.deb
      sudo apt-get install -y ./bleux-repository.deb
+     rm bleux-repository.deb
 fi
 
+# Update bleUX repository
 sudo apt-get update --no-list-cleanup -o Dir::Etc::SourceList="sources.list.d/bleux.list" -o Dir::Etc::SourceParts="-"
-
-# Autoremove downloaded packages
-rm -f *.deb
 
 # Install bleUX packages
 sudo apt-get install -y bleux-desktop
@@ -41,12 +40,16 @@ sudo feature init xorg
 # Remove snap before adding gnome-software
 sudo feature remove snap
 
+# Add nala before other features to speedup downloads
+sudo feature add nala
+sudo feature fetch nala
+
 # Add features
 sudo feature add gnome-backgrounds
 sudo feature add gnome-console
 sudo feature add gnome-software
 sudo feature add loupe
-sudo feature add nala
+sudo feature enable ufw
 sudo feature add flatpak
 feature add flatpak firefox
 
@@ -79,9 +82,3 @@ sudo apt-get autoremove -y --purge
 
 # Finish installation of flatpak runtimes
 feature update flatpak
-
-# Enable UFW
-sudo feature enable ufw
-
-# Fetch nala mirrors
-sudo feature fetch nala
