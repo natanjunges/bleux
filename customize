@@ -43,6 +43,7 @@ sudo feature remove snap
 # Add nala before other features to speedup downloads
 sudo feature add nala
 sudo feature fetch nala
+sudo apt-get update --no-list-cleanup -o Dir::Etc::SourceList="sources.list.d/nala-sources.list" -o Dir::Etc::SourceParts="-"
 
 # Add features
 sudo feature add gnome-backgrounds
