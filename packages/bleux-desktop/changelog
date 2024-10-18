@@ -1,3 +1,13 @@
+bleux-desktop (2.0.0) noble; urgency=low
+
+  * Increase verbosity of (un)minimize scripts.
+  * Add sudo to commands that require root privileges in (un)minimize scripts.
+  * Remove postinst parameter from minimize.
+  * Don't install/remove packages when enabling/disabling xorg.
+  * Update bleUX to noble.
+
+ -- Natan Junges <natanajunges@gmail.com>  Fri, 18 Oct 2024 14:53:15 -0300
+
 bleux-desktop (1.1.2) jammy; urgency=low
 
   * Clarify version of license to use.
