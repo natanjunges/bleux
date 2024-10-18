@@ -1,3 +1,9 @@
+bleux-repository (1.0.2) jammy noble; urgency=low
+
+  * Update bleUX to noble.
+
+ -- Natan Junges <natanajunges@gmail.com>  Fri, 18 Oct 2024 14:53:15 -0300
+
 bleux-repository (1.0.1) jammy; urgency=low
 
   * Clarify version of license to use.

@@ -1,3 +1,36 @@
+bleux-features (2.0.0) noble; urgency=low
+
+  * Add sudo to command that requires root privileges in flatpak thunderbird feature script.
+  * Tweak sockets in flatpak thunderbird feature to provide better Wayland/X.org support.
+  * Remove redundant system parameter from flatpak remove function.
+  * Replace feature x11 with xorg.
+  * Don't install/remove packages when enabling/disabling xorg, change GDM config instead.
+  * Add feature wayland.
+  * Update bleUX to noble.
+  * Remove python3-typer fix.
+  * Remove nala repository.
+  * Delete pipewire feature.
+  * Delete pulseaudio feature.
+  * Delete gedit feature.
+  * Delete gnome-text-editor feature.
+  * Delete aisleriot feature.
+  * Delete branding-ubuntu feature.
+  * Delete cheese feature.
+  * Delete flatpak snapshot feature.
+  * Delete gnome-mahjongg feature.
+  * Delete gnome-mines feature.
+  * Delete gnome-sudoku feature.
+  * Delete gnome-todo feature.
+  * Update libreoffice feature.
+  * Delete thunderbird feature.
+  * Add snap thunderbird feature.
+  * Delete flatpak loupe feature.
+  * Add loupe feature.
+  * Add snap firmware-updater feature.
+  * Update gnome-console feature.
+
+ -- Natan Junges <natanajunges@gmail.com>  Fri, 18 Oct 2024 14:53:15 -0300
+
 bleux-features (1.2.1) jammy; urgency=low
 
   * Clarify version of license to use.
