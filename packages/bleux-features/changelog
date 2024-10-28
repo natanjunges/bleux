@@ -1,3 +1,9 @@
+bleux-features (2.0.1) noble; urgency=low
+
+  * Fix Ubuntu codename used in nala fetch.
+
+ -- Natan Junges <natanajunges@gmail.com>  Mon, 28 Oct 2024 11:21:57 -0300
+
 bleux-features (2.0.0) noble; urgency=low
 
   * Add sudo to command that requires root privileges in flatpak thunderbird feature script.
