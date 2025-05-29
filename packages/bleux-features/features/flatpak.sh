@@ -28,7 +28,7 @@ case "$1" in
         fi
     ;;
     remove)
-        flatpak remove -y --all
+        flatpak remove -y --all --delete-data
         apt_get_purge flatpak gnome-software-plugin-flatpak
     ;;
     update)
