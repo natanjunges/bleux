@@ -66,7 +66,7 @@ flatpak_install() {
 }
 
 flatpak_remove() {
-    flatpak remove -y --noninteractive $1
+    flatpak remove -y --noninteractive --delete-data $1
 }
 
 snap_install() {
