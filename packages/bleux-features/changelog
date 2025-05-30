@@ -1,3 +1,9 @@
+bleux-features (2.0.2) noble; urgency=low
+
+  * Delete data when removing flatpaks.
+
+ -- Natan Junges <natanajunges@gmail.com>  Fri, 30 May 2025 11:12:00 -0300
+
 bleux-features (2.0.1) noble; urgency=low
 
   * Fix Ubuntu codename used in nala fetch.
