@@ -26,7 +26,7 @@ case "$1" in
         apt_get_purge nala
     ;;
     fetch)
-        nala fetch -y --ubuntu noble --auto
+        nala fetch -y --ubuntu resolute --auto
     ;;
     *)
         die_subcommand
