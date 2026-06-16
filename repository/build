@@ -50,7 +50,11 @@ install:
 	# Copy local repository to usr
 	sudo mkdir -p /usr/local/bleux/
 	sudo cp -u ../repository/*.deb ../repository/Packages ../repository/Packages.xz ../repository/Release /usr/local/bleux/
-	echo 'deb [trusted=yes arch=amd64] file:/usr/local/bleux ./' | sudo tee /etc/apt/sources.list.d/bleux.list > /dev/null
+	echo 'Types: deb' | sudo tee /etc/apt/sources.list.d/bleux.sources > /dev/null
+	echo 'URIs: file:/usr/local/bleux' | sudo tee -a /etc/apt/sources.list.d/bleux.sources > /dev/null
+	echo 'Suites: /' | sudo tee -a /etc/apt/sources.list.d/bleux.sources > /dev/null
+	echo 'Trusted: yes' | sudo tee -a /etc/apt/sources.list.d/bleux.sources > /dev/null
+	echo 'Architectures: amd64' | sudo tee -a /etc/apt/sources.list.d/bleux.sources > /dev/null
 
 clean:
 	rm -f InRelease Packages Packages.xz Release *.deb
