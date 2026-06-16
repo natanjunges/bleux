@@ -26,7 +26,7 @@ if [ ! -d /usr/local/bleux/ ]; then
 fi
 
 # Update bleUX repository
-sudo apt-get update --no-list-cleanup -o Dir::Etc::SourceList="sources.list.d/bleux.list" -o Dir::Etc::SourceParts="-"
+sudo apt-get update --no-list-cleanup -o Dir::Etc::SourceList="sources.list.d/bleux.sources" -o Dir::Etc::SourceParts="-"
 
 # Install bleUX packages
 sudo apt-get install -y bleux-desktop
