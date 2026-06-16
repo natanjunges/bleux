@@ -6,4 +6,4 @@ Description: GnuPG key and list file of the bleUX archive
  contains the archive key used for that, as well as the list file for
  its repository.
 Files: bleux-archive-keyring.gpg /usr/share/keyrings/
-    bleux.list /etc/apt/sources.list.d/
+    bleux.sources /etc/apt/sources.list.d/
