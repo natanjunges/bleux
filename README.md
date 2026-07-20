@@ -9,7 +9,7 @@ A user-centric desktop Linux distribution
 ### Development
 
 ```shell
-sudo apt-get install --no-install-recommends -y equivs git make
+sudo apt-get install --no-install-recommends -y apt-utils equivs git make
 git clone https://github.com/natanjunges/bleux.git
 cd bleux/repository
 ./build -j 5 install
