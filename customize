@@ -1,7 +1,7 @@
 #!/usr/bin/sh
 
 # bleUX, a user-centric desktop Linux distribution
-# Copyright (C) 2023, 2024  Natan Junges <natanajunges@gmail.com>
+# Copyright (C) 2023, 2024, 2026  Natan Junges <natanajunges@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -32,10 +32,7 @@ sudo apt-get update --no-list-cleanup -o Dir::Etc::SourceList="sources.list.d/bl
 sudo apt-get install -y bleux-desktop
 
 # Purge transitional packages
-sudo apt-get purge -y firefox libwmf0.2-7-gtk thunderbird
-
-# Initialize GDM X.org configuration
-sudo feature init xorg
+sudo apt-get purge -y firefox thunderbird
 
 # Remove snap before adding gnome-software
 sudo feature remove snap
@@ -44,32 +41,47 @@ sudo feature remove snap
 sudo feature add gnome-backgrounds
 sudo feature add gnome-console
 sudo feature add gnome-software
-sudo feature add loupe
-sudo feature add nala
+sudo feature add gnome-system-monitor
+sudo feature add software-properties
 sudo feature enable ufw
 sudo feature add flatpak
+feature add flatpak baobab
 feature add flatpak firefox
+feature add flatpak gnome-calculator
+feature add flatpak gnome-characters
+feature add flatpak gnome-clocks
+feature add flatpak gnome-font-viewer
+feature add flatpak gnome-logs
+feature add flatpak gnome-text-editor
+feature add flatpak loupe
+feature add flatpak papers
 
-# Install normal packages in normal install
+# Install extended packages in extended install
 if dpkg-query -f '${db:Status-abbrev}' -W usb-creator-gtk 2> /dev/null | grep -q '^.i'; then
     unminimize customize
 fi
 
 # Disable/remove features
-sudo feature disable apt
+sudo feature remove baobab
 sudo feature remove desktop-icons
-sudo feature remove eog
-sudo feature remove gnome-power-manager
-sudo feature remove gnome-terminal
 sudo feature remove libreoffice
+sudo feature remove gnome-calculator
+sudo feature remove gnome-characters
+sudo feature remove gnome-clocks
+sudo feature remove gnome-font-viewer
+sudo feature remove gnome-logs
+sudo feature remove gnome-text-editor
+sudo feature remove loupe
+sudo feature remove papers
+sudo feature remove ptyxis
 sudo feature remove remmina
+sudo feature remove resources
 sudo feature remove rhythmbox
 sudo feature remove seahorse
 sudo feature remove shotwell
 sudo feature remove transmission
 sudo feature remove ubuntu-dock
 sudo feature remove ubuntu-wallpapers
-sudo feature disable xorg
 
 # Finish installation of language support
 sudo apt-get install -y $(check-language-support)
@@ -79,6 +91,3 @@ sudo apt-get autoremove -y --purge
 
 # Finish installation of flatpak runtimes
 feature update flatpak
-
-# Fetch nala mirrors
-sudo feature fetch nala
