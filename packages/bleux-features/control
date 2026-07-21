@@ -74,6 +74,7 @@ Files: feature /usr/bin/
     features/showtime.sh /usr/lib/bleux-features/features/
     features/simple-scan.sh /usr/lib/bleux-features/features/
     features/snap.sh /usr/lib/bleux-features/features/
+    features/snap/desktop-security-center.sh /usr/lib/bleux-features/features/snap/
     features/snap/firefox.sh /usr/lib/bleux-features/features/snap/
     features/snap/firmware-updater.sh /usr/lib/bleux-features/features/snap/
     features/snap/snap-store.sh /usr/lib/bleux-features/features/snap/
