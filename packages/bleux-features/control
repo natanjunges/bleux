@@ -14,6 +14,7 @@ Suggests: baobab,
     gnome-software,
     gnome-software-plugin-flatpak,
     gnome-software-plugin-snap,
+    gnome-system-monitor,
     gnome-text-editor,
     gufw,
     libreoffice-calc,
@@ -45,8 +46,23 @@ Files: feature /usr/bin/
     features/baobab.sh /usr/lib/bleux-features/features/
     features/desktop-icons.sh /usr/lib/bleux-features/features/
     features/flatpak.sh /usr/lib/bleux-features/features/
+    features/flatpak/baobab.sh /usr/lib/bleux-features/features/flatpak/
     features/flatpak/firefox.sh /usr/lib/bleux-features/features/flatpak/
+    features/flatpak/gnome-calculator.sh /usr/lib/bleux-features/features/flatpak/
+    features/flatpak/gnome-calendar.sh /usr/lib/bleux-features/features/flatpak/
+    features/flatpak/gnome-characters.sh /usr/lib/bleux-features/features/flatpak/
+    features/flatpak/gnome-clocks.sh /usr/lib/bleux-features/features/flatpak/
+    features/flatpak/gnome-connections.sh /usr/lib/bleux-features/features/flatpak/
+    features/flatpak/gnome-font-viewer.sh /usr/lib/bleux-features/features/flatpak/
+    features/flatpak/gnome-logs.sh /usr/lib/bleux-features/features/flatpak/
+    features/flatpak/gnome-music.sh /usr/lib/bleux-features/features/flatpak/
+    features/flatpak/gnome-snapshot.sh /usr/lib/bleux-features/features/flatpak/
+    features/flatpak/gnome-text-editor.sh /usr/lib/bleux-features/features/flatpak/
     features/flatpak/libreoffice.sh /usr/lib/bleux-features/features/flatpak/
+    features/flatpak/loupe.sh /usr/lib/bleux-features/features/flatpak/
+    features/flatpak/papers.sh /usr/lib/bleux-features/features/flatpak/
+    features/flatpak/showtime.sh /usr/lib/bleux-features/features/flatpak/
+    features/flatpak/simple-scan.sh /usr/lib/bleux-features/features/flatpak/
     features/flatpak/thunderbird.sh /usr/lib/bleux-features/features/flatpak/
     features/flatpak/transmission.sh /usr/lib/bleux-features/features/flatpak/
     features/gnome-backgrounds.sh /usr/lib/bleux-features/features/
@@ -59,6 +75,7 @@ Files: feature /usr/bin/
     features/gnome-logs.sh /usr/lib/bleux-features/features/
     features/gnome-snapshot.sh /usr/lib/bleux-features/features/
     features/gnome-software.sh /usr/lib/bleux-features/features/
+    features/gnome-system-monitor.sh /usr/lib/bleux-features/features/
     features/gnome-text-editor.sh /usr/lib/bleux-features/features/
     features/gufw.sh /usr/lib/bleux-features/features/
     features/libreoffice.sh /usr/lib/bleux-features/features/
