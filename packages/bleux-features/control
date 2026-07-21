@@ -24,7 +24,6 @@ Suggests: baobab,
     libreoffice-style-yaru,
     libreoffice-writer,
     loupe,
-    nala,
     papers,
     preload,
     ptyxis,
@@ -42,27 +41,19 @@ Suggests: baobab,
 Description: The bleUX feature scripts
  This package has scripts to toggle the core features of the bleUX desktop
  system.
-Files: apt-disabled /usr/bin/
-    feature /usr/bin/
-    features/apt.sh /usr/lib/bleux-features/features/
+Files: feature /usr/bin/
     features/desktop-icons.sh /usr/lib/bleux-features/features/
-    features/eog.sh /usr/lib/bleux-features/features/
     features/flatpak.sh /usr/lib/bleux-features/features/
     features/flatpak/firefox.sh /usr/lib/bleux-features/features/flatpak/
     features/flatpak/libreoffice.sh /usr/lib/bleux-features/features/flatpak/
     features/flatpak/thunderbird.sh /usr/lib/bleux-features/features/flatpak/
     features/flatpak/transmission.sh /usr/lib/bleux-features/features/flatpak/
     features/gnome-backgrounds.sh /usr/lib/bleux-features/features/
-    features/gnome-connections.sh /usr/lib/bleux-features/features/
     features/gnome-console.sh /usr/lib/bleux-features/features/
-    features/gnome-music.sh /usr/lib/bleux-features/features/
-    features/gnome-power-manager.sh /usr/lib/bleux-features/features/
     features/gnome-software.sh /usr/lib/bleux-features/features/
-    features/gnome-terminal.sh /usr/lib/bleux-features/features/
     features/gufw.sh /usr/lib/bleux-features/features/
     features/libreoffice.sh /usr/lib/bleux-features/features/
     features/loupe.sh /usr/lib/bleux-features/features/
-    features/nala.sh /usr/lib/bleux-features/features/
     features/preload.sh /usr/lib/bleux-features/features/
     features/remmina.sh /usr/lib/bleux-features/features/
     features/rhythmbox.sh /usr/lib/bleux-features/features/
@@ -78,7 +69,5 @@ Files: apt-disabled /usr/bin/
     features/ubuntu-dock.sh /usr/lib/bleux-features/features/
     features/ubuntu-wallpapers.sh /usr/lib/bleux-features/features/
     features/ufw.sh /usr/lib/bleux-features/features/
-    features/wayland.sh /usr/lib/bleux-features/features/
-    features/xorg.sh /usr/lib/bleux-features/features/
     nosnap.pref /usr/lib/bleux-features/
     utils.sh /usr/lib/bleux-features/
