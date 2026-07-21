@@ -36,6 +36,7 @@ Suggests: baobab,
     showtime,
     simple-scan,
     snapd,
+    software-properties-gtk,
     timeshift,
     transmission-gtk,
     ubuntu-wallpapers,
@@ -96,6 +97,7 @@ Files: feature /usr/bin/
     features/snap/firmware-updater.sh /usr/lib/bleux-features/features/snap/
     features/snap/snap-store.sh /usr/lib/bleux-features/features/snap/
     features/snap/thunderbird.sh /usr/lib/bleux-features/features/snap/
+    features/software-properties.sh /usr/lib/bleux-features/features/
     features/timeshift.sh /usr/lib/bleux-features/features/
     features/transmission.sh /usr/lib/bleux-features/features/
     features/ubuntu-dock.sh /usr/lib/bleux-features/features/
