@@ -42,6 +42,7 @@ Description: The bleUX feature scripts
  This package has scripts to toggle the core features of the bleUX desktop
  system.
 Files: feature /usr/bin/
+    features/baobab.sh /usr/lib/bleux-features/features/
     features/desktop-icons.sh /usr/lib/bleux-features/features/
     features/flatpak.sh /usr/lib/bleux-features/features/
     features/flatpak/firefox.sh /usr/lib/bleux-features/features/flatpak/
@@ -49,16 +50,29 @@ Files: feature /usr/bin/
     features/flatpak/thunderbird.sh /usr/lib/bleux-features/features/flatpak/
     features/flatpak/transmission.sh /usr/lib/bleux-features/features/flatpak/
     features/gnome-backgrounds.sh /usr/lib/bleux-features/features/
+    features/gnome-calculator.sh /usr/lib/bleux-features/features/
+    features/gnome-calendar.sh /usr/lib/bleux-features/features/
+    features/gnome-characters.sh /usr/lib/bleux-features/features/
+    features/gnome-clocks.sh /usr/lib/bleux-features/features/
     features/gnome-console.sh /usr/lib/bleux-features/features/
+    features/gnome-font-viewer.sh /usr/lib/bleux-features/features/
+    features/gnome-logs.sh /usr/lib/bleux-features/features/
+    features/gnome-snapshot.sh /usr/lib/bleux-features/features/
     features/gnome-software.sh /usr/lib/bleux-features/features/
+    features/gnome-text-editor.sh /usr/lib/bleux-features/features/
     features/gufw.sh /usr/lib/bleux-features/features/
     features/libreoffice.sh /usr/lib/bleux-features/features/
     features/loupe.sh /usr/lib/bleux-features/features/
+    features/papers.sh /usr/lib/bleux-features/features/
     features/preload.sh /usr/lib/bleux-features/features/
+    features/ptyxis.sh /usr/lib/bleux-features/features/
     features/remmina.sh /usr/lib/bleux-features/features/
+    features/resources.sh /usr/lib/bleux-features/features/
     features/rhythmbox.sh /usr/lib/bleux-features/features/
     features/seahorse.sh /usr/lib/bleux-features/features/
     features/shotwell.sh /usr/lib/bleux-features/features/
+    features/showtime.sh /usr/lib/bleux-features/features/
+    features/simple-scan.sh /usr/lib/bleux-features/features/
     features/snap.sh /usr/lib/bleux-features/features/
     features/snap/firefox.sh /usr/lib/bleux-features/features/snap/
     features/snap/firmware-updater.sh /usr/lib/bleux-features/features/snap/
