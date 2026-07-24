@@ -18,25 +18,4 @@ set -e
 
 . /usr/lib/bleux-features/utils.sh
 
-has_flatpak="$(check_flatpak)"
-
-case "$1" in
-    add)
-        if [ -z "$has_flatpak" ]; then
-            die_flatpak
-        fi
-
-        flatpak_install org.mozilla.Thunderbird
-        sudo flatpak override --socket=fallback-x11 org.mozilla.Thunderbird
-    ;;
-    remove)
-        if [ -z "$has_flatpak" ]; then
-            exit 0
-        fi
-
-        flatpak_remove org.mozilla.Thunderbird
-    ;;
-    *)
-        die_subcommand
-    ;;
-esac
+feature_flatpak "$1" org.mozilla.thunderbird
