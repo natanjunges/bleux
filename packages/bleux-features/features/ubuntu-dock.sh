@@ -18,4 +18,14 @@ set -e
 
 . /usr/lib/bleux-features/utils.sh
 
-feature_deb "$1" gnome-shell-extension-ubuntu-dock
+case "$1" in
+    enable)
+        gnome-extensions enable ubuntu-dock@ubuntu.com
+    ;;
+    disable)
+        gnome-extensions disable ubuntu-dock@ubuntu.com
+    ;;
+    *)
+        die_subcommand
+    ;;
+esac
