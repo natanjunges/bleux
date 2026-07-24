@@ -2,6 +2,8 @@ Section: utils
 Depends: apt
 Suggests: baobab,
     bleux-backgrounds,
+    deja-dup,
+    file-roller,
     flatpak,
     gnome-calculator,
     gnome-calendar,
@@ -45,9 +47,12 @@ Description: The bleUX feature scripts
  system.
 Files: feature /usr/bin/
     features/baobab.sh /usr/lib/bleux-features/features/
+    features/deja-dup.sh /usr/lib/bleux-features/features/
     features/desktop-icons.sh /usr/lib/bleux-features/features/
+    features/file-roller.sh /usr/lib/bleux-features/features/
     features/flatpak.sh /usr/lib/bleux-features/features/
     features/flatpak/baobab.sh /usr/lib/bleux-features/features/flatpak/
+    features/flatpak/deja-dup.sh /usr/lib/bleux-features/features/flatpak/
     features/flatpak/firefox.sh /usr/lib/bleux-features/features/flatpak/
     features/flatpak/gnome-calculator.sh /usr/lib/bleux-features/features/flatpak/
     features/flatpak/gnome-calendar.sh /usr/lib/bleux-features/features/flatpak/
