@@ -28,6 +28,7 @@ sudo feature remove gufw
 sudo feature remove preload
 sudo feature remove timeshift
 sudo apt-get autoremove -y --purge
+feature remove flatpak deja-dup
 feature remove flatpak gnome-calendar
 feature remove flatpak gnome-connections
 feature remove flatpak gnome-music
