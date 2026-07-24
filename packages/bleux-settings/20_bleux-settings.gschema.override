@@ -17,5 +17,4 @@ picture-uri = 'file:///usr/share/backgrounds/gnome/adwaita-l.jxl'
 button-layout = ':close'
 
 [org.gnome.shell:ubuntu]
-enabled-extensions = ['tiling-assistant@ubuntu.com', 'ubuntu-appindicators@ubuntu.com', 'web-search-provider@ubuntu.com']
-favorite-apps = ['ubuntu-desktop-bootstrap_ubuntu-desktop-bootstrap.desktop', 'org.mozilla.firefox.desktop', 'org.mozilla.Thunderbird.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Music.desktop', 'org.libreoffice.LibreOffice.writer.desktop', 'org.gnome.Software.desktop', 'org.gnome.Yelp.desktop']
+favorite-apps = ['ubuntu-desktop-bootstrap_ubuntu-desktop-bootstrap.desktop', 'org.mozilla.firefox.desktop', 'org.mozilla.thunderbird.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Music.desktop', 'org.libreoffice.LibreOffice.writer.desktop', 'org.gnome.Software.desktop', 'org.gnome.Yelp.desktop']
