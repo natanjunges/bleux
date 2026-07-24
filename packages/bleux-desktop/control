@@ -154,8 +154,9 @@ Recommends: apport-gtk,
     yaru-theme-gtk,
     yaru-theme-icon,
     yaru-theme-sound
-Suggests: deja-dup,
-    file-roller,
+# Suggests: deja-dup,
+Suggests:
+#   file-roller,
 #   gnome-calendar,
 #   gnome-snapshot,
 #   libreoffice-calc,
