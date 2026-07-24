@@ -20,7 +20,7 @@ set -e
 
 case "$1" in
     add)
-        apt_get_install gnome-software gnome-software-plugin-snap-
+        apt_get_install gnome-software
 
         if [ "$(check_flatpak)" ]; then
             apt_get_install gnome-software-plugin-flatpak
