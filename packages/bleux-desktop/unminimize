@@ -30,6 +30,7 @@ fi
 sudo feature add gufw
 sudo feature add preload
 sudo feature add timeshift
+feature add flatpak deja-dup
 feature add flatpak gnome-calendar
 feature add flatpak gnome-connections
 feature add flatpak gnome-music
