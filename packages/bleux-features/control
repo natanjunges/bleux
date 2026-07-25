@@ -11,6 +11,7 @@ Suggests: baobab,
     gnome-clocks,
     gnome-console,
     gnome-font-viewer,
+    gnome-initial-setup,
     gnome-logs,
     gnome-snapshot,
     gnome-software,
@@ -18,6 +19,7 @@ Suggests: baobab,
     gnome-software-plugin-snap,
     gnome-system-monitor,
     gnome-text-editor,
+    gnome-tour,
     gufw,
     libreoffice-calc,
     libreoffice-common,
@@ -78,11 +80,13 @@ Files: feature /usr/bin/
     features/gnome-clocks.sh /usr/lib/bleux-features/features/
     features/gnome-console.sh /usr/lib/bleux-features/features/
     features/gnome-font-viewer.sh /usr/lib/bleux-features/features/
+    features/gnome-initial-setup.sh /usr/lib/bleux-features/features/
     features/gnome-logs.sh /usr/lib/bleux-features/features/
     features/gnome-snapshot.sh /usr/lib/bleux-features/features/
     features/gnome-software.sh /usr/lib/bleux-features/features/
     features/gnome-system-monitor.sh /usr/lib/bleux-features/features/
     features/gnome-text-editor.sh /usr/lib/bleux-features/features/
+    features/gnome-tour.sh /usr/lib/bleux-features/features/
     features/gufw.sh /usr/lib/bleux-features/features/
     features/libreoffice.sh /usr/lib/bleux-features/features/
     features/loupe.sh /usr/lib/bleux-features/features/
