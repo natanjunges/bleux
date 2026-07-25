@@ -43,4 +43,5 @@ feature add flatpak transmission
 
 if [ "$1" != customize ]; then
     feature update flatpak
+    dconf reset /org/gnome/shell/app-picker-layout
 fi
