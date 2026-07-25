@@ -67,10 +67,12 @@ sudo feature remove deja-dup
 feature disable desktop-icons
 sudo feature remove file-roller
 sudo feature remove gnome-calculator
+sudo feature remove gnome-calendar
 sudo feature remove gnome-characters
 sudo feature remove gnome-clocks
 sudo feature remove gnome-font-viewer
 sudo feature remove gnome-logs
+sudo feature remove gnome-snapshot
 sudo feature remove gnome-text-editor
 sudo feature remove libreoffice
 sudo feature remove loupe
@@ -81,6 +83,8 @@ sudo feature remove resources
 sudo feature remove rhythmbox
 sudo feature remove seahorse
 sudo feature remove shotwell
+sudo feature remove showtime
+sudo feature remove simple-scan
 sudo feature remove transmission
 feature disable ubuntu-dock
 sudo feature remove ubuntu-wallpapers
