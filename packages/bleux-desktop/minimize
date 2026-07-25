@@ -39,3 +39,4 @@ feature remove flatpak simple-scan
 feature remove flatpak thunderbird
 feature remove flatpak transmission
 feature remove-unused flatpak
+dconf reset /org/gnome/shell/app-picker-layout
