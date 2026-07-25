@@ -42,6 +42,7 @@ sudo feature add gnome-backgrounds
 sudo feature add gnome-console
 sudo feature add gnome-software
 sudo feature add gnome-system-monitor
+sudo feature add gnome-tour
 sudo feature add software-properties
 sudo feature enable ufw
 sudo feature add flatpak
@@ -71,6 +72,7 @@ sudo feature remove gnome-calendar
 sudo feature remove gnome-characters
 sudo feature remove gnome-clocks
 sudo feature remove gnome-font-viewer
+sudo feature remove gnome-initial-setup
 sudo feature remove gnome-logs
 sudo feature remove gnome-snapshot
 sudo feature remove gnome-text-editor
@@ -103,3 +105,6 @@ dconf reset /org/gnome/desktop/interface/icon-theme
 
 # Reset app picker layout
 dconf reset /org/gnome/shell/app-picker-layout
+
+# Reset welcome dialog last shown version
+dconf reset /org/gnome/shell/welcome-dialog-last-shown-version
