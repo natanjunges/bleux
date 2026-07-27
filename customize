@@ -65,7 +65,7 @@ fi
 # Disable/remove features
 sudo feature remove baobab
 sudo feature remove deja-dup
-feature disable desktop-icons
+sudo feature disable desktop-icons
 sudo feature remove file-roller
 sudo feature remove gnome-calculator
 sudo feature remove gnome-calendar
@@ -88,7 +88,7 @@ sudo feature remove shotwell
 sudo feature remove showtime
 sudo feature remove simple-scan
 sudo feature remove transmission
-feature disable ubuntu-dock
+sudo feature disable ubuntu-dock
 sudo feature remove ubuntu-wallpapers
 
 # Finish installation of language support
