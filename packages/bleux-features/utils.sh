@@ -123,3 +123,17 @@ feature_flatpak() {
 feature_snap() {
     feature "$1" "$(check_snap)" die_snap snap_install snap_purge $2
 }
+
+feature_extension() {
+    case "$1" in
+        enable)
+            dpkg-divert --add --rename --divert /usr/share/gnome-shell/extensions/$2/metadata.json.disabled /usr/share/gnome-shell/extensions/$2/metadata.json
+        ;;
+        disable)
+            dpkg-divert --remove --rename /usr/share/gnome-shell/extensions/$2/metadata.json
+        ;;
+        *)
+            die_subcommand
+        ;;
+    esac
+}
