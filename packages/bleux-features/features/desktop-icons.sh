@@ -18,14 +18,4 @@ set -e
 
 . /usr/lib/bleux-features/utils.sh
 
-case "$1" in
-    enable)
-        gnome-extensions enable ding@rastersoft.com
-    ;;
-    disable)
-        gnome-extensions disable ding@rastersoft.com
-    ;;
-    *)
-        die_subcommand
-    ;;
-esac
+feature_extension "$1" ding@rastersoft.com
