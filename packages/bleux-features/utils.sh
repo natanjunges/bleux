@@ -127,10 +127,10 @@ feature_snap() {
 feature_extension() {
     case "$1" in
         enable)
-            dpkg-divert --add --rename --divert /usr/share/gnome-shell/extensions/$2/metadata.json.disabled /usr/share/gnome-shell/extensions/$2/metadata.json
+            dpkg-divert --remove --rename --divert /usr/share/gnome-shell/extensions/$2/metadata.json.disabled /usr/share/gnome-shell/extensions/$2/metadata.json
         ;;
         disable)
-            dpkg-divert --remove --rename --divert /usr/share/gnome-shell/extensions/$2/metadata.json.disabled /usr/share/gnome-shell/extensions/$2/metadata.json
+            dpkg-divert --add --rename --divert /usr/share/gnome-shell/extensions/$2/metadata.json.disabled /usr/share/gnome-shell/extensions/$2/metadata.json
         ;;
         *)
             die_subcommand
