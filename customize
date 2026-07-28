@@ -43,6 +43,7 @@ sudo feature add gnome-console
 sudo feature add gnome-software
 sudo feature add gnome-system-monitor
 sudo feature add gnome-tour
+sudo feature add preload
 sudo feature add software-properties
 sudo feature enable ufw
 sudo feature add flatpak
