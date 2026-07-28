@@ -28,7 +28,6 @@ if [ "$1" != customize ]; then
 fi
 
 sudo feature add gufw
-sudo feature add preload
 sudo feature add timeshift
 feature add flatpak deja-dup
 feature add flatpak gnome-calendar
