@@ -25,7 +25,6 @@ fi
 
 sudo apt-get purge -y $(dpkg-query -f '${Suggests}' -W bleux-desktop | tr -d ,)
 sudo feature remove gufw
-sudo feature remove preload
 sudo feature remove timeshift
 sudo apt-get autoremove -y --purge
 feature remove flatpak deja-dup
