@@ -171,6 +171,11 @@ case "$1" in
             ;;
             *)
                 feature_resources="$(echo "$feature" | cut -d , -f 3)"
+
+                if [ -z "$feature_resources" ]; then
+                    feature_resources="$@"
+                fi
+
                 eval "$(generate "$feature_type" --check "$subcommand" $feature_resources)"
             ;;
         esac
