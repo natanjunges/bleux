@@ -72,7 +72,7 @@ generate() {
                 add)
                     if [ "$check" ]; then
                         echo 'if ! dpkg-query -f '\''${db:Status-abbrev}'\'' -W flatpak 2> /dev/null | grep -q '\''^.i'\''; then'
-                        echo '    echo '\''The\e[1mflatpak\e[0mfeature is not enabled.'\'' >&2'
+                        echo '    echo '\''The\\e[1mflatpak\\e[0mfeature is not enabled.'\'' >&2'
                         echo '    exit 1'
                         echo fi
                     fi
@@ -109,7 +109,7 @@ generate() {
                 add)
                     if [ "$check" ]; then
                         echo 'if ! dpkg-query -f '\''${db:Status-abbrev}'\'' -W snapd 2> /dev/null | grep -q '\''^.i'\''; then'
-                        echo '    echo '\''The\e[1msnap\e[0mfeature is not enabled.'\'' >&2'
+                        echo '    echo '\''The\\e[1msnap\\e[0mfeature is not enabled.'\'' >&2'
                         echo '    exit 1'
                         echo fi
                     fi
