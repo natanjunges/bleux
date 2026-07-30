@@ -30,11 +30,11 @@ generate() {
             case "$1" in
                 add)
                     shift
-                    echo "sudo apt-get install -y --mark-auto $@"
+                    echo "sudo apt-get install -y --mark-auto $*"
                 ;;
                 remove)
                     shift
-                    echo "sudo apt-get purge -y $@"
+                    echo "sudo apt-get purge -y $*"
                 ;;
                 *)
                     echo 'echo Unknown subcommand. >&2'
@@ -149,7 +149,7 @@ case "$1" in
     *)
         subcommand="$1"
         shift
-        feature="$(cat /usr/lib/bleux-features/features/preremove.csv /usr/lib/bleux-features/features/add.csv /usr/lib/bleux-features/features/extended.csv /usr/lib/bleux-features/features/remove.csv /usr/lib/bleux-features/features/extras.csv | grep -Em 1 "^$@," | grep -Evm 1 '^feature_name,')"
+        feature="$(cat /usr/lib/bleux-features/features/preremove.csv /usr/lib/bleux-features/features/add.csv /usr/lib/bleux-features/features/extended.csv /usr/lib/bleux-features/features/remove.csv /usr/lib/bleux-features/features/extras.csv | grep -Em 1 "^$*," | grep -Evm 1 '^feature_name,')"
 
         if [ -z "$feature" ]; then
             echo 'Unknown feature.' >&2
@@ -160,7 +160,7 @@ case "$1" in
 
         case "$feature_type" in
             custom)
-                feature="/usr/lib/bleux-features/features/$(echo "$@" | tr ' ' /).sh"
+                feature="/usr/lib/bleux-features/features/$(echo "$*" | tr ' ' /).sh"
 
                 if [ ! -e "$feature" ]; then
                     echo 'Unknown feature.' >&2
@@ -173,7 +173,7 @@ case "$1" in
                 feature_resources="$(echo "$feature" | cut -d , -f 3)"
 
                 if [ -z "$feature_resources" ]; then
-                    feature_resources="$@"
+                    feature_resources="$*"
                 fi
 
                 eval "$(generate "$feature_type" --check "$subcommand" $feature_resources)"
