@@ -27,8 +27,8 @@ if [ "$1" != customize ]; then
     sudo apt-get install -y --mark-auto $(dpkg-query -f '${Suggests}' -W bleux-desktop | tr -d ,)
 fi
 
-sudo feature add gufw
-sudo feature add timeshift
+feature add gufw
+feature add timeshift
 feature add flatpak deja-dup
 feature add flatpak gnome-calendar
 feature add flatpak gnome-connections

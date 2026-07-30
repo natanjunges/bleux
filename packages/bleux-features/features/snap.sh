@@ -18,17 +18,17 @@ set -e
 
 case "$1" in
     add)
-        rm /etc/apt/preferences.d/nosnap.pref
-        apt-get install -y --mark-auto snapd
-        snap install snapd
+        sudo rm /etc/apt/preferences.d/nosnap.pref
+        sudo apt-get install -y --mark-auto snapd
+        sudo snap install snapd
 
         if dpkg-query -f '${db:Status-abbrev}' -W gnome-software 2> /dev/null | grep -q '^.i'; then
-            apt-get install -y --mark-auto gnome-software-plugin-snap
+            sudo apt-get install -y --mark-auto gnome-software-plugin-snap
         fi
     ;;
     remove)
-        apt-get purge -y snapd gnome-software-plugin-snap
-        ln -s /usr/lib/bleux-features/nosnap.pref /etc/apt/preferences.d/
+        sudo apt-get purge -y snapd gnome-software-plugin-snap
+        sudo ln -s /usr/lib/bleux-features/nosnap.pref /etc/apt/preferences.d/
     ;;
     *)
         echo Unknown subcommand. >&2

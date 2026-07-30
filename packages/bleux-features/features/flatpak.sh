@@ -18,16 +18,16 @@ set -e
 
 case "$1" in
     add)
-        apt-get install -y --mark-auto flatpak
+        sudo apt-get install -y --mark-auto flatpak
         flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
         if dpkg-query -f '${db:Status-abbrev}' -W gnome-software 2> /dev/null | grep -q '^.i'; then
-            apt-get install -y --mark-auto gnome-software-plugin-flatpak
+            sudo apt-get install -y --mark-auto gnome-software-plugin-flatpak
         fi
     ;;
     remove)
         flatpak remove -y --all --delete-data
-        apt-get purge -y flatpak gnome-software-plugin-flatpak
+        sudo apt-get purge -y flatpak gnome-software-plugin-flatpak
     ;;
     update)
         flatpak update -y --noninteractive --system

@@ -18,18 +18,18 @@ set -e
 
 case "$1" in
     add)
-        apt-get install -y --mark-auto gnome-software
+        sudo apt-get install -y --mark-auto gnome-software
 
         if dpkg-query -f '${db:Status-abbrev}' -W flatpak 2> /dev/null | grep -q '^.i'; then
-            apt-get install -y --mark-auto gnome-software-plugin-flatpak
+            sudo apt-get install -y --mark-auto gnome-software-plugin-flatpak
         fi
 
         if dpkg-query -f '${db:Status-abbrev}' -W snapd 2> /dev/null | grep -q '^.i'; then
-            apt-get install -y --mark-auto gnome-software-plugin-snap
+            sudo apt-get install -y --mark-auto gnome-software-plugin-snap
         fi
     ;;
     remove)
-        apt-get purge -y gnome-software gnome-software-plugin-flatpak gnome-software-plugin-snap
+        sudo apt-get purge -y gnome-software gnome-software-plugin-flatpak gnome-software-plugin-snap
     ;;
     *)
         echo Unknown subcommand. >&2

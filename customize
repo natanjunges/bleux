@@ -35,18 +35,18 @@ sudo apt-get install -y bleux-desktop
 sudo apt-get purge -y firefox thunderbird
 
 # Remove snap before adding gnome-software
-sudo feature remove snap
+feature remove snap
 
 # Add features
-sudo feature add gnome-backgrounds
-sudo feature add gnome-console
-sudo feature add gnome-software
-sudo feature add gnome-system-monitor
-sudo feature add gnome-tour
-sudo feature add preload
-sudo feature add software-properties
-sudo feature enable ufw
-sudo feature add flatpak
+feature add gnome-backgrounds
+feature add gnome-console
+feature add gnome-software
+feature add gnome-system-monitor
+feature add gnome-tour
+feature add preload
+feature add software-properties
+feature enable ufw
+feature add flatpak
 feature add flatpak baobab
 feature add flatpak firefox
 feature add flatpak gnome-calculator
@@ -64,33 +64,33 @@ if dpkg-query -f '${db:Status-abbrev}' -W usb-creator-gtk 2> /dev/null | grep -q
 fi
 
 # Disable/remove features
-sudo feature remove baobab
-sudo feature remove deja-dup
-sudo feature disable desktop-icons
-sudo feature remove file-roller
-sudo feature remove gnome-calculator
-sudo feature remove gnome-calendar
-sudo feature remove gnome-characters
-sudo feature remove gnome-clocks
-sudo feature remove gnome-font-viewer
-sudo feature remove gnome-initial-setup
-sudo feature remove gnome-logs
-sudo feature remove gnome-snapshot
-sudo feature remove gnome-text-editor
-sudo feature remove libreoffice
-sudo feature remove loupe
-sudo feature remove papers
-sudo feature remove ptyxis
-sudo feature remove remmina
-sudo feature remove resources
-sudo feature remove rhythmbox
-sudo feature remove seahorse
-sudo feature remove shotwell
-sudo feature remove showtime
-sudo feature remove simple-scan
-sudo feature remove transmission
-sudo feature disable ubuntu-dock
-sudo feature remove ubuntu-wallpapers
+feature remove baobab
+feature remove deja-dup
+feature disable desktop-icons
+feature remove file-roller
+feature remove gnome-calculator
+feature remove gnome-calendar
+feature remove gnome-characters
+feature remove gnome-clocks
+feature remove gnome-font-viewer
+feature remove gnome-initial-setup
+feature remove gnome-logs
+feature remove gnome-snapshot
+feature remove gnome-text-editor
+feature remove libreoffice
+feature remove loupe
+feature remove papers
+feature remove ptyxis
+feature remove remmina
+feature remove resources
+feature remove rhythmbox
+feature remove seahorse
+feature remove shotwell
+feature remove showtime
+feature remove simple-scan
+feature remove transmission
+feature disable ubuntu-dock
+feature remove ubuntu-wallpapers
 
 # Finish installation of language support
 sudo apt-get install -y $(check-language-support)

@@ -1,20 +1,20 @@
-feature_name,feature_type,feature_resources,command_prefix,default_subcommand
-gnome-backgrounds,deb,bleux-backgrounds,,
-gnome-console,deb,,,
-gnome-software,custom,gnome-software gnome-software-plugin-flatpak gnome-software-plugin-snap,sudo,add
-gnome-system-monitor,deb,,,
-gnome-tour,deb,,,
-preload,deb,,,
-software-properties,deb,software-properties-gtk,,
-ufw,custom,,sudo,enable
-flatpak,custom,flatpak gnome-software-plugin-flatpak,sudo,add
-flatpak baobab,flatpak,org.gnome.baobab,,
-flatpak firefox,flatpak,org.mozilla.firefox,,
-flatpak gnome-calculator,flatpak,org.gnome.Calculator,,
-flatpak gnome-characters,flatpak,org.gnome.Characters,,
-flatpak gnome-clocks,flatpak,org.gnome.clocks,,
-flatpak gnome-font-viewer,flatpak,org.gnome.font-viewer,,
-flatpak gnome-logs,flatpak,org.gnome.Logs,,
-flatpak gnome-text-editor,flatpak,org.gnome.TextEditor,,
-flatpak loupe,flatpak,org.gnome.Loupe,,
-flatpak papers,flatpak,org.gnome.Papers,,
+feature_name,feature_type,feature_resources,default_subcommand
+gnome-backgrounds,deb,bleux-backgrounds,
+gnome-console,deb,,
+gnome-software,custom,gnome-software gnome-software-plugin-flatpak gnome-software-plugin-snap,add
+gnome-system-monitor,deb,,
+gnome-tour,deb,,
+preload,deb,,
+software-properties,deb,software-properties-gtk,
+ufw,custom,,enable
+flatpak,custom,flatpak gnome-software-plugin-flatpak,add
+flatpak baobab,flatpak,org.gnome.baobab,
+flatpak firefox,flatpak,org.mozilla.firefox,
+flatpak gnome-calculator,flatpak,org.gnome.Calculator,
+flatpak gnome-characters,flatpak,org.gnome.Characters,
+flatpak gnome-clocks,flatpak,org.gnome.clocks,
+flatpak gnome-font-viewer,flatpak,org.gnome.font-viewer,
+flatpak gnome-logs,flatpak,org.gnome.Logs,
+flatpak gnome-text-editor,flatpak,org.gnome.TextEditor,
+flatpak loupe,flatpak,org.gnome.Loupe,
+flatpak papers,flatpak,org.gnome.Papers,
