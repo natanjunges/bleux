@@ -19,7 +19,7 @@ set -e
 case "$1" in
     add)
         sudo apt-get install -y --mark-auto flatpak
-        flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+        sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
         if dpkg-query -f '${db:Status-abbrev}' -W gnome-software 2> /dev/null | grep -q '^.i'; then
             sudo apt-get install -y --mark-auto gnome-software-plugin-flatpak
