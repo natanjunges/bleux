@@ -1,0 +1,6 @@
+feature_name,feature_type,feature_resources
+snap desktop-security-center,snap,desktop-security-center
+snap firefox,snap,firefox
+snap firmware-updater,snap,firmware-updater
+snap snap-store,snap,snap-store
+snap thunderbird,snap,thunderbird

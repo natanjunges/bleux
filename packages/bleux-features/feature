@@ -1,7 +1,7 @@
 #!/usr/bin/sh
 
 # bleUX, a user-centric desktop Linux distribution
-# Copyright (C) 2023, 2024  Natan Junges <natanajunges@gmail.com>
+# Copyright (C) 2023, 2024, 2026  Natan Junges <natanajunges@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,13 +18,161 @@
 
 set -e
 
-subcommand="$1"
-shift
-feature="/usr/lib/bleux-features/features/$(echo "$@" | tr ' ' /).sh"
+generate() {
+    case "$1" in
+        deb)
+            shift
 
-if [ ! -e "$feature" ]; then
-    echo 'Unknown feature.' >&2
-    exit 1
-fi
+            if [ "$1" = --check ]; then
+                shift
+            fi
 
-sh "$feature" "$subcommand"
+            case "$1" in
+                add)
+                    shift
+                    echo "sudo apt-get install -y --mark-auto $@"
+                ;;
+                remove)
+                    shift
+                    echo "sudo apt-get purge -y $@"
+                ;;
+                *)
+                    echo 'echo Unknown subcommand. >&2'
+                    echo exit 1
+                ;;
+            esac
+        ;;
+        extension)
+            if [ "$2" = --check ]; then
+                shift
+            fi
+
+            case "$2" in
+                disable)
+                    echo "sudo dpkg-divert --add --rename --divert /usr/share/gnome-shell/extensions/$3/metadata.json.disabled /usr/share/gnome-shell/extensions/$3/metadata.json"
+                ;;
+                enable)
+                    echo "sudo dpkg-divert --remove --rename --divert /usr/share/gnome-shell/extensions/$3/metadata.json.disabled /usr/share/gnome-shell/extensions/$3/metadata.json"
+                ;;
+                *)
+                    echo 'echo Unknown subcommand. >&2'
+                    echo exit 1
+                ;;
+            esac
+        ;;
+        flatpak)
+            check=''
+
+            if [ "$2" = --check ]; then
+                shift
+                check=1
+            fi
+
+            case "$2" in
+                add)
+                    if [ "$check" ]; then
+                        echo 'if ! dpkg-query -f '\''${db:Status-abbrev}'\'' -W flatpak 2> /dev/null | grep -q '\''^.i'\''; then'
+                        echo '    echo '\''The\e[1mflatpak\e[0mfeature is not enabled.'\'' >&2'
+                        echo '    exit 1'
+                        echo fi
+                    fi
+
+                    echo "flatpak install -y --noninteractive --no-related $3"
+                ;;
+                remove)
+                    if [ "$check" ]; then
+                        echo 'if dpkg-query -f '\''${db:Status-abbrev}'\'' -W flatpak 2> /dev/null | grep -q '\''^.i'\''; then'
+                        printf '    '
+                    fi
+
+                    echo "flatpak remove -y --noninteractive --delete-data $3"
+
+                    if [ "$check" ]; then
+                        echo fi
+                    fi
+                ;;
+                *)
+                    echo 'echo Unknown subcommand. >&2'
+                    echo exit 1
+                ;;
+            esac
+        ;;
+        snap)
+            check=''
+
+            if [ "$2" = --check ]; then
+                shift
+                check=1
+            fi
+
+            case "$2" in
+                add)
+                    if [ "$check" ]; then
+                        echo 'if ! dpkg-query -f '\''${db:Status-abbrev}'\'' -W snapd 2> /dev/null | grep -q '\''^.i'\''; then'
+                        echo '    echo '\''The\e[1msnap\e[0mfeature is not enabled.'\'' >&2'
+                        echo '    exit 1'
+                        echo fi
+                    fi
+
+                    echo "sudo snap install $3"
+                ;;
+                remove)
+                    if [ "$check" ]; then
+                        echo 'if dpkg-query -f '\''${db:Status-abbrev}'\'' -W snapd 2> /dev/null | grep -q '\''^.i'\''; then'
+                        printf '    '
+                    fi
+
+                    echo "sudo snap remove --purge $3"
+
+                    if [ "$check" ]; then
+                        echo fi
+                    fi
+                ;;
+                *)
+                    echo 'echo Unknown subcommand. >&2'
+                    echo exit 1
+                ;;
+            esac
+        ;;
+        *)
+            echo 'echo Unknown feature type. >&2'
+            echo exit 1
+        ;;
+    esac
+}
+
+case "$1" in
+    generate)
+        shift
+        generate $@
+    ;;
+    *)
+        subcommand="$1"
+        shift
+        feature="$(cat /usr/lib/bleux-features/features/preremove.csv /usr/lib/bleux-features/features/add.csv /usr/lib/bleux-features/features/extended.csv /usr/lib/bleux-features/features/remove.csv /usr/lib/bleux-features/features/extras.csv | grep -Em 1 "^$@," | grep -Evm 1 '^feature_name,')"
+
+        if [ -z "$feature" ]; then
+            echo 'Unknown feature.' >&2
+            exit 1
+        fi
+
+        feature_type="$(echo "$feature" | cut -d , -f 2)"
+
+        case "$feature_type" in
+            custom)
+                feature="/usr/lib/bleux-features/features/$(echo "$@" | tr ' ' /).sh"
+
+                if [ ! -e "$feature" ]; then
+                    echo 'Unknown feature.' >&2
+                    exit 1
+                fi
+
+                sh "$feature" "$subcommand"
+            ;;
+            *)
+                feature_resources="$(echo "$feature" | cut -d , -f 3)"
+                eval "$(generate "$feature_type" --check "$subcommand" $feature_resources)"
+            ;;
+        esac
+    ;;
+esac

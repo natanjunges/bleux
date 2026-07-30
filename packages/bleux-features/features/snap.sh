@@ -1,5 +1,5 @@
 # bleUX, a user-centric desktop Linux distribution
-# Copyright (C) 2024  Natan Junges <natanajunges@gmail.com>
+# Copyright (C) 2024, 2026  Natan Junges <natanajunges@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -16,23 +16,22 @@
 
 set -e
 
-. /usr/lib/bleux-features/utils.sh
-
 case "$1" in
     add)
         rm /etc/apt/preferences.d/nosnap.pref
-        apt_get_install snapd
-        snap_install snapd
+        apt-get install -y --mark-auto snapd
+        snap install snapd
 
-        if [ "$(check_gnome_software)" ]; then
-            apt_get_install gnome-software-plugin-snap
+        if dpkg-query -f '${db:Status-abbrev}' -W gnome-software 2> /dev/null | grep -q '^.i'; then
+            apt-get install -y --mark-auto gnome-software-plugin-snap
         fi
     ;;
     remove)
-        apt_get_purge snapd gnome-software-plugin-snap
+        apt-get purge -y snapd gnome-software-plugin-snap
         ln -s /usr/lib/bleux-features/nosnap.pref /etc/apt/preferences.d/
     ;;
     *)
-        die_subcommand
+        echo Unknown subcommand. >&2
+        exit 1
     ;;
 esac

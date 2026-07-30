@@ -1,5 +1,5 @@
 # bleUX, a user-centric desktop Linux distribution
-# Copyright (C) 2024  Natan Junges <natanajunges@gmail.com>
+# Copyright (C) 2024, 2026  Natan Junges <natanajunges@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -16,8 +16,6 @@
 
 set -e
 
-. /usr/lib/bleux-features/utils.sh
-
 case "$1" in
     enable)
         ufw enable
@@ -26,6 +24,7 @@ case "$1" in
         ufw disable
     ;;
     *)
-        die_subcommand
+        echo Unknown subcommand. >&2
+        exit 1
     ;;
 esac
