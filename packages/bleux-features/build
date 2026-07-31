@@ -17,3 +17,28 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 include ../build-common
+
+control: FORCE
+	sed -i "/^####begin\$$/,/^####end\$$/c\\####begin\\n$$( \
+		cat features/preremove.csv features/add.csv features/extended.csv features/remove.csv | while read feature; do \
+			feature_type="$$(echo "$$feature" | cut -d , -f 2)"; \
+			if [ "$$feature_type" = deb ]; then \
+				feature_resources="$$(echo "$$feature" | cut -d , -f 3)"; \
+				if [ -z "$$feature_resources" ]; then \
+					feature_resources="$$(echo "$$feature" | cut -d , -f 1)"; \
+				fi; \
+				for package in $$feature_resources; do \
+					echo "    $$package,\\"; \
+				done; \
+			elif [ "$$feature_type" = custom ]; then \
+				feature_resources="$$(echo "$$feature" | cut -d , -f 3)"; \
+				if [ "$$feature_resources" ]; then \
+					for package in $$feature_resources; do \
+						echo "    $$package,\\"; \
+					done; \
+				fi; \
+			fi; \
+		done | sort -u; \
+	)n####end" control
+
+FORCE:

@@ -1,6 +1,8 @@
 Section: utils
 Depends: apt
-Suggests: baobab,
+Suggests:
+####begin
+    baobab,
     bleux-backgrounds,
     deja-dup,
     file-roller,
@@ -45,6 +47,7 @@ Suggests: baobab,
     timeshift,
     transmission-gtk,
     ubuntu-wallpapers,
+####end
 Description: The bleUX feature scripts
  This package has scripts to toggle the core features of the bleUX desktop
  system.
