@@ -149,7 +149,15 @@ case "$1" in
     *)
         subcommand="$1"
         shift
-        feature="$(cat /usr/lib/bleux-features/features/preremove.csv /usr/lib/bleux-features/features/add.csv /usr/lib/bleux-features/features/extended.csv /usr/lib/bleux-features/features/remove.csv /usr/lib/bleux-features/features/extras.csv | grep -Em 1 "^$*," | grep -Evm 1 '^feature_name,')"
+
+        case "$*" in
+            feature_name)
+                feature=''
+            ;;
+            *)
+                feature="$(cat /usr/lib/bleux-features/features/preremove.csv /usr/lib/bleux-features/features/add.csv /usr/lib/bleux-features/features/extended.csv /usr/lib/bleux-features/features/remove.csv /usr/lib/bleux-features/features/extras.csv | grep -Em 1 "^$*,")"
+            ;;
+        esac
 
         if [ -z "$feature" ]; then
             echo 'Unknown feature.' >&2

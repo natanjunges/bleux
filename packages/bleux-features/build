@@ -18,27 +18,25 @@
 
 include ../build-common
 
-control: FORCE
+control: features/preremove.csv features/add.csv features/extended.csv features/remove.csv
 	sed -i "/^####begin\$$/,/^####end\$$/c\\####begin\\n$$( \
 		cat features/preremove.csv features/add.csv features/extended.csv features/remove.csv | while read feature; do \
 			feature_type="$$(echo "$$feature" | cut -d , -f 2)"; \
-			if [ "$$feature_type" = deb ]; then \
-				feature_resources="$$(echo "$$feature" | cut -d , -f 3)"; \
-				if [ -z "$$feature_resources" ]; then \
-					feature_resources="$$(echo "$$feature" | cut -d , -f 1)"; \
-				fi; \
-				for package in $$feature_resources; do \
-					echo "    $$package,\\"; \
-				done; \
-			elif [ "$$feature_type" = custom ]; then \
-				feature_resources="$$(echo "$$feature" | cut -d , -f 3)"; \
-				if [ "$$feature_resources" ]; then \
+			case "$$feature_type" in \
+				deb) \
+					feature_resources="$$(echo "$$feature" | cut -d , -f 3)"; \
+					if [ -z "$$feature_resources" ]; then \
+						feature_resources="$$(echo "$$feature" | cut -d , -f 1)"; \
+					fi; \
 					for package in $$feature_resources; do \
 						echo "    $$package,\\"; \
 					done; \
-				fi; \
-			fi; \
+				;; \
+				custom) \
+					for package in $$(echo "$$feature" | cut -d , -f 3); do \
+						echo "    $$package,\\"; \
+					done; \
+				;; \
+			esac; \
 		done | sort -u; \
 	)n####end" control
-
-FORCE:

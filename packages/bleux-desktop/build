@@ -17,3 +17,67 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 include ../build-common
+
+minimize: ../bleux-features/features/extended.csv
+	sed -i "/^####begin\$$/,/^####end\$$/c\\####begin\\n$$( \
+		while read feature; do \
+			feature_type="$$(echo "$$feature" | cut -d , -f 2)"; \
+			case "$$feature_type" in \
+				feature_type) \
+				;; \
+				custom) \
+					echo "sh '/usr/lib/bleux-features/features/$$(echo "$$feature" | cut -d , -f 1 | tr ' ' /).sh' '$$(echo "$$feature" | cut -d , -f 5)'\\"; \
+				;; \
+				*) \
+					case "$$feature_type" in \
+						deb|flatpak|snap) \
+							subcommand=remove; \
+						;; \
+						extension) \
+							subcommand=disable; \
+						;; \
+						*) \
+							subcommand="$$feature_type"; \
+						;; \
+					esac; \
+					feature_resources="$$(echo "$$feature" | cut -d , -f 3)"; \
+					if [ -z "$$feature_resources" ]; then \
+						feature_resources="$$(echo "$$feature" | cut -d , -f 1)"; \
+					fi; \
+					sh ../bleux-features/feature generate "$$feature_type" "$$subcommand" $$feature_resources | sed 's/^\(.*\)$$/\1\\/'; \
+				;; \
+			esac; \
+		done < ../bleux-features/features/extended.csv; \
+	)n####end" minimize
+
+unminimize: ../bleux-features/features/extended.csv
+	sed -i "/^####begin\$$/,/^####end\$$/c\\####begin\\n$$( \
+		while read feature; do \
+			feature_type="$$(echo "$$feature" | cut -d , -f 2)"; \
+			case "$$feature_type" in \
+				feature_type) \
+				;; \
+				custom) \
+					echo "sh '/usr/lib/bleux-features/features/$$(echo "$$feature" | cut -d , -f 1 | tr ' ' /).sh' '$$(echo "$$feature" | cut -d , -f 4)'\\"; \
+				;; \
+				*) \
+					case "$$feature_type" in \
+						deb|flatpak|snap) \
+							subcommand=add; \
+						;; \
+						extension) \
+							subcommand=enable; \
+						;; \
+						*) \
+							subcommand="$$feature_type"; \
+						;; \
+					esac; \
+					feature_resources="$$(echo "$$feature" | cut -d , -f 3)"; \
+					if [ -z "$$feature_resources" ]; then \
+						feature_resources="$$(echo "$$feature" | cut -d , -f 1)"; \
+					fi; \
+					sh ../bleux-features/feature generate "$$feature_type" "$$subcommand" $$feature_resources | sed 's/^\(.*\)$$/\1\\/'; \
+				;; \
+			esac; \
+		done < ../bleux-features/features/extended.csv; \
+	)n####end" unminimize
