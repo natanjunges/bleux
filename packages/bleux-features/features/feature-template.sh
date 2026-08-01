@@ -17,10 +17,10 @@
 set -e
 
 case "$1" in
-    <enable>)
+    <disable>)
         <commands>
     ;;
-    <disable>)
+    <enable>)
         <commands>
     ;;
     *)

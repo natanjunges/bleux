@@ -1,7 +1,7 @@
 #!/usr/bin/make -f
 
 # bleUX, a user-centric desktop Linux distribution
-# Copyright (C) 2023  Natan Junges <natanajunges@gmail.com>
+# Copyright (C) 2023, 2026  Natan Junges <natanajunges@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -23,17 +23,17 @@ control: features/preremove.csv features/add.csv features/extended.csv features/
 		cat features/preremove.csv features/add.csv features/extended.csv features/remove.csv | while read feature; do \
 			feature_type="$$(echo "$$feature" | cut -d , -f 2)"; \
 			case "$$feature_type" in \
+				custom) \
+					for package in $$(echo "$$feature" | cut -d , -f 3); do \
+						echo "    $$package,\\"; \
+					done; \
+				;; \
 				deb) \
 					feature_resources="$$(echo "$$feature" | cut -d , -f 3)"; \
 					if [ -z "$$feature_resources" ]; then \
 						feature_resources="$$(echo "$$feature" | cut -d , -f 1)"; \
 					fi; \
 					for package in $$feature_resources; do \
-						echo "    $$package,\\"; \
-					done; \
-				;; \
-				custom) \
-					for package in $$(echo "$$feature" | cut -d , -f 3); do \
 						echo "    $$package,\\"; \
 					done; \
 				;; \

@@ -17,11 +17,11 @@
 set -e
 
 case "$1" in
-    enable)
-        sudo ufw enable
-    ;;
     disable)
         sudo ufw disable
+    ;;
+    enable)
+        sudo ufw enable
     ;;
     *)
         echo Unknown subcommand. >&2

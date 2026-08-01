@@ -1,6 +1,7 @@
 Section: metapackages
 Essential: yes
-Depends: alsa-base,
+Depends:
+    alsa-base,
     alsa-utils,
     anacron,
     at-spi2-core,
@@ -50,8 +51,9 @@ Depends: alsa-base,
     xkb-data,
     yelp,
     zenity,
-    zip
-Recommends: apport-gtk,
+    zip,
+Recommends:
+    apport-gtk,
     appstream,
     apt-config-icons-hidpi,
     avahi-daemon,
@@ -70,7 +72,7 @@ Recommends: apport-gtk,
     cups-filters,
     dirmngr,
     dracut,
-#   firefox,
+####firefox,
     fonts-liberation,
     fonts-noto-cjk,
     fonts-noto-color-emoji,
@@ -153,9 +155,9 @@ Recommends: apport-gtk,
     yaru-theme-gnome-shell,
     yaru-theme-gtk,
     yaru-theme-icon,
-    yaru-theme-sound
-# Suggests: deja-dup,
+    yaru-theme-sound,
 Suggests:
+#   deja-dup,
 #   file-roller,
 #   gnome-calendar,
 #   gnome-snapshot,
@@ -170,9 +172,9 @@ Suggests:
 #   shotwell,
 #   showtime,
 #   simple-scan,
-#   thunderbird,
+####thunderbird,
 #   transmission-gtk,
-    usb-creator-gtk
+    usb-creator-gtk,
 Conflicts: ubuntu-desktop, ubuntu-desktop-minimal
 Provides: packagekit-installer
 Replaces: ubuntu-desktop, ubuntu-desktop-minimal

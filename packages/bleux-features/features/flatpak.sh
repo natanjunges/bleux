@@ -29,11 +29,11 @@ case "$1" in
         flatpak remove -y --all --delete-data
         sudo apt-get purge -y flatpak gnome-software-plugin-flatpak
     ;;
-    update)
-        flatpak update -y --noninteractive --system
-    ;;
     remove-unused)
         flatpak remove -y --noninteractive --system --unused
+    ;;
+    update)
+        flatpak update -y --noninteractive --system
     ;;
     *)
         echo Unknown subcommand. >&2

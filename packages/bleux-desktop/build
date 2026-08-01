@@ -1,7 +1,7 @@
 #!/usr/bin/make -f
 
 # bleUX, a user-centric desktop Linux distribution
-# Copyright (C) 2023  Natan Junges <natanajunges@gmail.com>
+# Copyright (C) 2023, 2026  Natan Junges <natanajunges@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,15 +18,37 @@
 
 include ../build-common
 
+control: ../bleux-features/features/preremove.csv ../bleux-features/features/remove.csv
+	sed -i 's/^#   /    /' control
+	sed -Ei "s/^    ($$( \
+		cat ../bleux-features/features/preremove.csv ../bleux-features/features/remove.csv | while read feature; do \
+			feature_type="$$(echo "$$feature" | cut -d , -f 2)"; \
+			feature_resources="$$(echo "$$feature" | cut -d , -f 3)"; \
+			case "$$feature_type" in \
+				custom) \
+					if [ "$$feature_resources" ]; then \
+						printf "$$feature_resources|" | tr ' ' '|'; \
+					fi; \
+				;; \
+				deb) \
+					if [ -z "$$feature_resources" ]; then \
+						feature_resources="$$(echo "$$feature" | cut -d , -f 1)"; \
+					fi; \
+					printf "$$feature_resources|" | tr ' ' '|'; \
+				;; \
+			esac; \
+		done; \
+	)),/#   \1,/" control
+
 minimize: ../bleux-features/features/extended.csv
 	sed -i "/^####begin\$$/,/^####end\$$/c\\####begin\\n$$( \
 		while read feature; do \
 			feature_type="$$(echo "$$feature" | cut -d , -f 2)"; \
 			case "$$feature_type" in \
-				feature_type) \
-				;; \
 				custom) \
 					echo "sh '/usr/lib/bleux-features/features/$$(echo "$$feature" | cut -d , -f 1 | tr ' ' /).sh' '$$(echo "$$feature" | cut -d , -f 5)'\\"; \
+				;; \
+				feature_type) \
 				;; \
 				*) \
 					case "$$feature_type" in \
@@ -44,7 +66,7 @@ minimize: ../bleux-features/features/extended.csv
 					if [ -z "$$feature_resources" ]; then \
 						feature_resources="$$(echo "$$feature" | cut -d , -f 1)"; \
 					fi; \
-					sh ../bleux-features/feature generate "$$feature_type" "$$subcommand" $$feature_resources | sed 's/^\(.*\)$$/\1\\/'; \
+					sh ../bleux-features/feature generate "$$feature_type" "$$subcommand" $$feature_resources | sed -E 's/^(.*)$$/\1\\/'; \
 				;; \
 			esac; \
 		done < ../bleux-features/features/extended.csv; \
@@ -55,10 +77,10 @@ unminimize: ../bleux-features/features/extended.csv
 		while read feature; do \
 			feature_type="$$(echo "$$feature" | cut -d , -f 2)"; \
 			case "$$feature_type" in \
-				feature_type) \
-				;; \
 				custom) \
 					echo "sh '/usr/lib/bleux-features/features/$$(echo "$$feature" | cut -d , -f 1 | tr ' ' /).sh' '$$(echo "$$feature" | cut -d , -f 4)'\\"; \
+				;; \
+				feature_type) \
 				;; \
 				*) \
 					case "$$feature_type" in \
@@ -76,7 +98,7 @@ unminimize: ../bleux-features/features/extended.csv
 					if [ -z "$$feature_resources" ]; then \
 						feature_resources="$$(echo "$$feature" | cut -d , -f 1)"; \
 					fi; \
-					sh ../bleux-features/feature generate "$$feature_type" "$$subcommand" $$feature_resources | sed 's/^\(.*\)$$/\1\\/'; \
+					sh ../bleux-features/feature generate "$$feature_type" "$$subcommand" $$feature_resources | sed -E 's/^(.*)$$/\1\\/'; \
 				;; \
 			esac; \
 		done < ../bleux-features/features/extended.csv; \
