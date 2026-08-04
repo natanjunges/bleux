@@ -18,6 +18,13 @@
 
 set -e -x
 
+if [ "$1" = replace ]; then
+    sh packages/bleux-features/feature replace_features ' preremove' packages/bleux-features/features/preremove.csv 4 remove disable customize
+	sh packages/bleux-features/feature replace_features ' add' packages/bleux-features/features/add.csv 4 add enable customize
+	sh packages/bleux-features/feature replace_features ' remove' packages/bleux-features/features/remove.csv 4 remove disable customize
+    exit
+fi
+
 # Install bleUX repository
 if [ ! -d /usr/local/bleux/ ]; then
      wget https://github.com/natanjunges/bleux/releases/latest/download/bleux-repository.deb
@@ -34,63 +41,66 @@ sudo apt-get install -y bleux-desktop
 # Purge transitional packages
 sudo apt-get purge -y firefox thunderbird
 
-# Remove snap before adding gnome-software
-feature remove snap
+####begin preremove
+sh '/usr/lib/bleux-features/features/snap.sh' 'remove'
+####end preremove
 
-# Add features
-feature add gnome-backgrounds
-feature add gnome-console
-feature add gnome-software
-feature add gnome-system-monitor
-feature add gnome-tour
-feature add preload
-feature add software-properties
-feature enable ufw
-feature add flatpak
-feature add flatpak baobab
-feature add flatpak firefox
-feature add flatpak gnome-calculator
-feature add flatpak gnome-characters
-feature add flatpak gnome-clocks
-feature add flatpak gnome-font-viewer
-feature add flatpak gnome-logs
-feature add flatpak gnome-text-editor
-feature add flatpak loupe
-feature add flatpak papers
+####begin add
+sudo apt-get install -y --mark-auto bleux-backgrounds
+sudo apt-get install -y --mark-auto gnome-console
+sh '/usr/lib/bleux-features/features/gnome-software.sh' 'add'
+sudo apt-get install -y --mark-auto gnome-system-monitor
+sudo apt-get install -y --mark-auto gnome-tour
+sudo apt-get install -y --mark-auto preload
+sudo apt-get install -y --mark-auto software-properties-gtk
+sh '/usr/lib/bleux-features/features/ufw.sh' 'enable'
+sh '/usr/lib/bleux-features/features/flatpak.sh' 'add'
+flatpak install -y --noninteractive --no-related org.gnome.baobab
+flatpak install -y --noninteractive --no-related org.mozilla.firefox
+flatpak install -y --noninteractive --no-related org.gnome.Calculator
+flatpak install -y --noninteractive --no-related org.gnome.Characters
+flatpak install -y --noninteractive --no-related org.gnome.clocks
+flatpak install -y --noninteractive --no-related org.gnome.font-viewer
+flatpak install -y --noninteractive --no-related org.gnome.Logs
+flatpak install -y --noninteractive --no-related org.gnome.TextEditor
+flatpak install -y --noninteractive --no-related org.gnome.Loupe
+flatpak install -y --noninteractive --no-related org.gnome.Papers
+####end add
 
 # Install extended packages in extended install
 if dpkg-query -f '${db:Status-abbrev}' -W usb-creator-gtk 2> /dev/null | grep -q '^.i'; then
     unminimize customize
 fi
 
-# Disable/remove features
-feature remove baobab
-feature remove deja-dup
-feature disable desktop-icons
-feature remove file-roller
-feature remove gnome-calculator
-feature remove gnome-calendar
-feature remove gnome-characters
-feature remove gnome-clocks
-feature remove gnome-font-viewer
-feature remove gnome-initial-setup
-feature remove gnome-logs
-feature remove gnome-snapshot
-feature remove gnome-text-editor
-feature remove libreoffice
-feature remove loupe
-feature remove papers
-feature remove ptyxis
-feature remove remmina
-feature remove resources
-feature remove rhythmbox
-feature remove seahorse
-feature remove shotwell
-feature remove showtime
-feature remove simple-scan
-feature remove transmission
-feature disable ubuntu-dock
-feature remove ubuntu-wallpapers
+####begin remove
+sudo dpkg-divert --add --rename --divert /usr/share/gnome-shell/extensions/ding@rastersoft.com/metadata.json.disabled /usr/share/gnome-shell/extensions/ding@rastersoft.com/metadata.json
+sudo dpkg-divert --add --rename --divert /usr/share/gnome-shell/extensions/ubuntu-dock@ubuntu.com/metadata.json.disabled /usr/share/gnome-shell/extensions/ubuntu-dock@ubuntu.com/metadata.json
+sudo apt-get purge -y baobab
+sudo apt-get purge -y deja-dup
+sudo apt-get purge -y file-roller
+sudo apt-get purge -y gnome-calculator
+sudo apt-get purge -y gnome-calendar
+sudo apt-get purge -y gnome-characters
+sudo apt-get purge -y gnome-clocks
+sudo apt-get purge -y gnome-font-viewer
+sudo apt-get purge -y gnome-initial-setup
+sudo apt-get purge -y gnome-logs
+sudo apt-get purge -y gnome-snapshot
+sudo apt-get purge -y gnome-text-editor
+sudo apt-get purge -y libreoffice-calc libreoffice-gnome libreoffice-impress libreoffice-math libreoffice-style-colibre libreoffice-style-yaru libreoffice-uiconfig-common libreoffice-writer
+sudo apt-get purge -y loupe
+sudo apt-get purge -y papers
+sudo apt-get purge -y ptyxis
+sudo apt-get purge -y remmina
+sudo apt-get purge -y resources
+sudo apt-get purge -y rhythmbox
+sudo apt-get purge -y seahorse
+sudo apt-get purge -y shotwell
+sudo apt-get purge -y showtime
+sudo apt-get purge -y simple-scan
+sudo apt-get purge -y transmission-gtk
+sudo apt-get purge -y ubuntu-wallpapers
+####end remove
 
 # Finish installation of language support
 sudo apt-get install -y $(check-language-support)

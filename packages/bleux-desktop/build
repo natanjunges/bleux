@@ -19,9 +19,8 @@
 include ../build-common
 
 control: ../bleux-features/features/preremove.csv ../bleux-features/features/remove.csv
-	sed -i 's/^#   /    /' control
-	sed -Ei "s/^    ($$( \
-		cat ../bleux-features/features/preremove.csv ../bleux-features/features/remove.csv | while read feature; do \
+	sed -Ei "s/^#   /    /; s/^    ($$( \
+		cat $^ | while read feature; do \
 			feature_type="$$(echo "$$feature" | cut -d , -f 2)"; \
 			feature_resources="$$(echo "$$feature" | cut -d , -f 3)"; \
 			case "$$feature_type" in \
@@ -38,68 +37,10 @@ control: ../bleux-features/features/preremove.csv ../bleux-features/features/rem
 				;; \
 			esac; \
 		done; \
-	)),/#   \1,/" control
+	)),/#   \1,/" '$@'
 
 minimize: ../bleux-features/features/extended.csv
-	sed -i "/^####begin\$$/,/^####end\$$/c\\####begin\\n$$( \
-		while read feature; do \
-			feature_type="$$(echo "$$feature" | cut -d , -f 2)"; \
-			case "$$feature_type" in \
-				custom) \
-					echo "sh '/usr/lib/bleux-features/features/$$(echo "$$feature" | cut -d , -f 1 | tr ' ' /).sh' '$$(echo "$$feature" | cut -d , -f 5)'\\"; \
-				;; \
-				feature_type) \
-				;; \
-				*) \
-					case "$$feature_type" in \
-						deb|flatpak|snap) \
-							subcommand=remove; \
-						;; \
-						extension) \
-							subcommand=disable; \
-						;; \
-						*) \
-							subcommand="$$feature_type"; \
-						;; \
-					esac; \
-					feature_resources="$$(echo "$$feature" | cut -d , -f 3)"; \
-					if [ -z "$$feature_resources" ]; then \
-						feature_resources="$$(echo "$$feature" | cut -d , -f 1)"; \
-					fi; \
-					sh ../bleux-features/feature generate "$$feature_type" "$$subcommand" $$feature_resources | sed -E 's/^(.*)$$/\1\\/'; \
-				;; \
-			esac; \
-		done < ../bleux-features/features/extended.csv; \
-	)n####end" minimize
+	sh ../bleux-features/feature replace_features '' '$^' 5 remove disable '$@'
 
 unminimize: ../bleux-features/features/extended.csv
-	sed -i "/^####begin\$$/,/^####end\$$/c\\####begin\\n$$( \
-		while read feature; do \
-			feature_type="$$(echo "$$feature" | cut -d , -f 2)"; \
-			case "$$feature_type" in \
-				custom) \
-					echo "sh '/usr/lib/bleux-features/features/$$(echo "$$feature" | cut -d , -f 1 | tr ' ' /).sh' '$$(echo "$$feature" | cut -d , -f 4)'\\"; \
-				;; \
-				feature_type) \
-				;; \
-				*) \
-					case "$$feature_type" in \
-						deb|flatpak|snap) \
-							subcommand=add; \
-						;; \
-						extension) \
-							subcommand=enable; \
-						;; \
-						*) \
-							subcommand="$$feature_type"; \
-						;; \
-					esac; \
-					feature_resources="$$(echo "$$feature" | cut -d , -f 3)"; \
-					if [ -z "$$feature_resources" ]; then \
-						feature_resources="$$(echo "$$feature" | cut -d , -f 1)"; \
-					fi; \
-					sh ../bleux-features/feature generate "$$feature_type" "$$subcommand" $$feature_resources | sed -E 's/^(.*)$$/\1\\/'; \
-				;; \
-			esac; \
-		done < ../bleux-features/features/extended.csv; \
-	)n####end" unminimize
+	sh ../bleux-features/feature replace_features '' '$^' 4 add enable '$@'

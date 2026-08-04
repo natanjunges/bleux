@@ -141,10 +141,66 @@ generate() {
     esac
 }
 
+replace() {
+    sed -i "/^####begin$1\$/,/^####end$1\$/c\\####begin$1\\n$(
+        cat $2 | while read feature; do
+            feature_type="$(echo "$feature" | cut -d , -f 2)"
+
+            case "$feature_type" in
+                custom)
+                    eval "$3"
+                ;;
+                feature_type)
+                ;;
+                $4)
+                    eval "$5"
+                    feature_resources="$(echo "$feature" | cut -d , -f 3)"
+
+                    if [ -z "$feature_resources" ]; then
+                        feature_resources="$(echo "$feature" | cut -d , -f 1)"
+                    fi
+
+                    eval "$6"
+                ;;
+            esac
+        done | $7
+    )n####end$1" $8
+}
+
+replace_features() {
+    replace "$1" "$2" 'echo "sh '\''/usr/lib/bleux-features/features/$(echo "$feature" | cut -d , -f 1 | tr '\'' '\'' /).sh'\'' '\''$(echo "$feature" | cut -d , -f '$3')'\''\\"' '*' 'case "$feature_type" in
+        deb|flatpak|snap)
+            subcommand='$4'
+        ;;
+        extension)
+            subcommand='$5'
+        ;;
+        *)
+            subcommand="$feature_type"
+        ;;
+    esac' 'generate "$feature_type" "$subcommand" $feature_resources | sed -E '\''s/^(.*)$/\1\\/'\' cat "$6"
+}
+
+replace_packages() {
+    replace "$1" "$2" 'for package in $(echo "$feature" | cut -d , -f 3); do
+        echo "    $package,\\"
+    done' deb true 'for package in $feature_resources; do
+        echo "    $package,\\"
+    done' 'sort -u' "$3"
+}
+
 case "$1" in
     generate)
         shift
-        generate $@
+        generate "$@"
+    ;;
+    replace_features)
+        shift
+        replace_features "$@"
+    ;;
+    replace_packages)
+        shift
+        replace_packages "$@"
     ;;
     *)
         subcommand="$1"
