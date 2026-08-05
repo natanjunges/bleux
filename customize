@@ -38,6 +38,7 @@ sudo apt-get update --no-list-cleanup -o Dir::Etc::SourceList="sources.list.d/bl
 # Install bleUX packages
 sudo apt-get install -y bleux-desktop
 
+# Enable bleUX settings
 ux setting enable accent-color
 ux setting enable button-layout
 ux setting enable favorite-apps
