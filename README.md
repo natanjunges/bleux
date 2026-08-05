@@ -14,6 +14,7 @@ git clone https://github.com/natanjunges/bleux.git
 cd bleux/repository
 ./build -j 5 install
 cd ..
+./customize replace
 ./customize
 ```
 
