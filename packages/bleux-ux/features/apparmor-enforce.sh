@@ -27,6 +27,11 @@ aa_unconfined() {
 
 case "$1" in
     disable)
+        if ! dpkg-query -f '${db:Status-abbrev}' -W apparmor-utils 2> /dev/null | grep -q '^.i'; then
+            echo 'The \e[1mapparmor-extras\e[0m feature is not enabled.' >&2
+            exit 1
+        fi
+
         sudo aa-complain /usr/bin/irssi /usr/sbin/sssd Xorg Xorg_wrap
         aa_unconfined 1password
         aa_unconfined Discord
@@ -104,6 +109,11 @@ case "$1" in
         aa_unconfined wpcom
     ;;
     enable)
+        if ! dpkg-query -f '${db:Status-abbrev}' -W apparmor-utils 2> /dev/null | grep -q '^.i'; then
+            echo 'The \e[1mapparmor-extras\e[0m feature is not enabled.' >&2
+            exit 1
+        fi
+
         sudo aa-enforce /usr/bin/irssi /usr/sbin/sssd Xorg Xorg_wrap 1password Discord 'MongoDB Compass' QtWebEngineProcess balena-etcher brave buildah cam ch-checkns ch-run chrome chromium crun desktop-icons-ng devhelp element-desktop epiphany evolution firefox foliate geary github-desktop goldendict kchmviewer keybase lc-compliance libcamerify linux-sandbox loupe lxc-attach lxc-create lxc-destroy lxc-execute lxc-stop lxc-unshare lxc-usernsexec mmdebstrap msedge notepadqq obsidian opam opera pageedit podman polypane privacybrowser qcam qmapshack qutebrowser rootlesskit rpm rssguard runc scide signal-desktop slack slirp4netns steam stress-ng surfshark systemd-coredump thunderbird trinity tup tuxedo-control-center userbindmount uwsgi-core vdens virtiofsd vivaldi-bin vpnns vscode wike wpcom
     ;;
     *)
