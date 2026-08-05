@@ -18,6 +18,7 @@
 
 set -ex
 
+# Update features in this script
 if [ "$1" = replace ]; then
     sh packages/bleux-ux/ux feature replace_features ' preremove' packages/bleux-ux/features/preremove.csv 4 remove disable customize
     sh packages/bleux-ux/ux feature replace_features ' add' packages/bleux-ux/features/add.csv 4 add enable customize
