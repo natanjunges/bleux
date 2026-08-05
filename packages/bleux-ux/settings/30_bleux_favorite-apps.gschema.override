@@ -1,0 +1,2 @@
+[org.gnome.shell:ubuntu]
+favorite-apps = ['ubuntu-desktop-bootstrap_ubuntu-desktop-bootstrap.desktop', 'org.mozilla.firefox.desktop', 'org.mozilla.thunderbird.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Music.desktop', 'org.libreoffice.LibreOffice.writer.desktop', 'org.gnome.Software.desktop', 'org.gnome.Yelp.desktop']

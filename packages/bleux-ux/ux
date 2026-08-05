@@ -18,7 +18,7 @@
 
 set -e
 
-generate() {
+feature_generate() {
     case "$1" in
         deb)
             shift
@@ -37,7 +37,7 @@ generate() {
                     echo "sudo apt-get purge -y $*"
                 ;;
                 *)
-                    echo 'echo Unknown subcommand. >&2'
+                    echo 'echo Unknown feature subcommand. >&2'
                     echo exit 1
                 ;;
             esac
@@ -55,7 +55,7 @@ generate() {
                     echo "sudo dpkg-divert --remove --rename --divert /usr/share/gnome-shell/extensions/$3/metadata.json.disabled /usr/share/gnome-shell/extensions/$3/metadata.json"
                 ;;
                 *)
-                    echo 'echo Unknown subcommand. >&2'
+                    echo 'echo Unknown feature subcommand. >&2'
                     echo exit 1
                 ;;
             esac
@@ -92,7 +92,7 @@ generate() {
                     fi
                 ;;
                 *)
-                    echo 'echo Unknown subcommand. >&2'
+                    echo 'echo Unknown feature subcommand. >&2'
                     echo exit 1
                 ;;
             esac
@@ -129,7 +129,7 @@ generate() {
                     fi
                 ;;
                 *)
-                    echo 'echo Unknown subcommand. >&2'
+                    echo 'echo Unknown feature subcommand. >&2'
                     echo exit 1
                 ;;
             esac
@@ -141,7 +141,7 @@ generate() {
     esac
 }
 
-replace() {
+feature_replace() {
     sed -i "/^####begin$1\$/,/^####end$1\$/c\\####begin$1\\n$(
         cat $2 | while read feature; do
             feature_type="$(echo "$feature" | cut -d , -f 2)"
@@ -167,8 +167,8 @@ replace() {
     )n####end$1" $8
 }
 
-replace_features() {
-    replace "$1" "$2" 'echo "sh '\''/usr/lib/bleux-features/features/$(echo "$feature" | cut -d , -f 1 | tr '\'' '\'' /).sh'\'' '\''$(echo "$feature" | cut -d , -f '$3')'\''\\"' '*' 'case "$feature_type" in
+feature_replace_features() {
+    feature_replace "$1" "$2" 'echo "sh '\''/usr/lib/bleux-ux/features/$(echo "$feature" | cut -d , -f 1 | tr '\'' '\'' /).sh'\'' '\''$(echo "$feature" | cut -d , -f '$3')'\''\\"' '*' 'case "$feature_type" in
         deb|flatpak|snap)
             subcommand='$4'
         ;;
@@ -178,11 +178,11 @@ replace_features() {
         *)
             subcommand="$feature_type"
         ;;
-    esac' 'generate "$feature_type" "$subcommand" $feature_resources | sed -E '\''s/^(.*)$/\1\\/'\' cat "$6"
+    esac' 'feature_generate "$feature_type" "$subcommand" $feature_resources | sed -E '\''s/^(.*)$/\1\\/'\' cat "$6"
 }
 
-replace_packages() {
-    replace "$1" "$2" 'for package in $(echo "$feature" | cut -d , -f 3); do
+feature_replace_packages() {
+    feature_replace "$1" "$2" 'for package in $(echo "$feature" | cut -d , -f 3); do
         echo "    $package,\\"
     done' deb true 'for package in $feature_resources; do
         echo "    $package,\\"
@@ -190,58 +190,112 @@ replace_packages() {
 }
 
 case "$1" in
-    generate)
-        shift
-        generate "$@"
-    ;;
-    replace_features)
-        shift
-        replace_features "$@"
-    ;;
-    replace_packages)
-        shift
-        replace_packages "$@"
-    ;;
-    *)
-        subcommand="$1"
+    feature)
         shift
 
-        case "$*" in
-            feature_name)
-                feature=''
+        case "$1" in
+            generate)
+                shift
+                feature_generate "$@"
+            ;;
+            replace_features)
+                shift
+                feature_replace_features "$@"
+            ;;
+            replace_packages)
+                shift
+                feature_replace_packages "$@"
             ;;
             *)
-                feature="$(cat /usr/lib/bleux-features/features/preremove.csv /usr/lib/bleux-features/features/add.csv /usr/lib/bleux-features/features/extended.csv /usr/lib/bleux-features/features/remove.csv /usr/lib/bleux-features/features/extras.csv | grep -m 1 "^$*,")"
-            ;;
-        esac
+                subcommand="$1"
+                shift
 
-        if [ -z "$feature" ]; then
-            echo 'Unknown feature.' >&2
-            exit 1
-        fi
+                case "$*" in
+                    feature_name)
+                        feature=''
+                    ;;
+                    *)
+                        feature="$(cat /usr/lib/bleux-ux/features/preremove.csv /usr/lib/bleux-ux/features/add.csv /usr/lib/bleux-ux/features/extended.csv /usr/lib/bleux-ux/features/remove.csv /usr/lib/bleux-ux/features/extras.csv | grep -m 1 "^$*,")"
+                    ;;
+                esac
 
-        feature_type="$(echo "$feature" | cut -d , -f 2)"
-
-        case "$feature_type" in
-            custom)
-                feature="/usr/lib/bleux-features/features/$(echo "$*" | tr ' ' /).sh"
-
-                if [ ! -e "$feature" ]; then
+                if [ -z "$feature" ]; then
                     echo 'Unknown feature.' >&2
                     exit 1
                 fi
 
-                sh "$feature" "$subcommand"
-            ;;
-            *)
-                feature_resources="$(echo "$feature" | cut -d , -f 3)"
+                feature_type="$(echo "$feature" | cut -d , -f 2)"
 
-                if [ -z "$feature_resources" ]; then
-                    feature_resources="$*"
-                fi
+                case "$feature_type" in
+                    custom)
+                        feature="/usr/lib/bleux-ux/features/$(echo "$*" | tr ' ' /).sh"
 
-                eval "$(generate "$feature_type" --check "$subcommand" $feature_resources)"
+                        if [ ! -e "$feature" ]; then
+                            echo 'Unknown feature.' >&2
+                            exit 1
+                        fi
+
+                        sh "$feature" "$subcommand"
+                    ;;
+                    *)
+                        feature_resources="$(echo "$feature" | cut -d , -f 3)"
+
+                        if [ -z "$feature_resources" ]; then
+                            feature_resources="$*"
+                        fi
+
+                        eval "$(feature_generate "$feature_type" --check "$subcommand" $feature_resources)"
+                    ;;
+                esac
             ;;
         esac
+    ;;
+    setting)
+        shift
+
+        case "$1" in
+            disable)
+                shift
+
+                case "$1" in
+                    accent-color|button-layout|favorite-apps|gnome-backgrounds|gnome-console)
+                        sudo rm -f "/usr/share/glib-2.0/schemas/30_bleux_$1.gschema.override"
+                        sudo glib-compile-schemas /usr/share/glib-2.0/schemas
+                    ;;
+                    nosnap)
+                        sudo rm -f "/etc/apt/preferences.d/$1.pref"
+                    ;;
+                    *)
+                        echo Unknown setting. >&2
+                        exit 1
+                    ;;
+                esac
+            ;;
+            enable)
+                shift
+
+                case "$1" in
+                    accent-color|button-layout|favorite-apps|gnome-backgrounds|gnome-console)
+                        sudo ln -s "/usr/lib/bleux-ux/settings/30_bleux_$1.gschema.override" /usr/share/glib-2.0/schemas/
+                        sudo glib-compile-schemas /usr/share/glib-2.0/schemas
+                    ;;
+                    nosnap)
+                        sudo ln -s "/usr/lib/bleux-ux/settings/$1.pref" /etc/apt/preferences.d/
+                    ;;
+                    *)
+                        echo Unknown setting. >&2
+                        exit 1
+                    ;;
+                esac
+            ;;
+            *)
+                echo Unknown setting subcommand. >&2
+                exit 1
+            ;;
+        esac
+    ;;
+    *)
+        echo Unknown subcommand. >&2
+        exit 1
     ;;
 esac

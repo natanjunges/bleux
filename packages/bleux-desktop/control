@@ -59,9 +59,7 @@ Recommends:
     avahi-daemon,
 #   baobab,
 # Added by bleUX:
-    bleux-features,
-# Added by bleUX:
-    bleux-settings,
+    bleux-ux,
     bluez,
     bluez-cups,
     brltty,

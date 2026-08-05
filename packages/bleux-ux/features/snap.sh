@@ -1,5 +1,5 @@
 # bleUX, a user-centric desktop Linux distribution
-# Copyright (C) 2023, 2024-2026  Natan Junges <natanajunges@gmail.com>
+# Copyright (C) 2024, 2026  Natan Junges <natanajunges@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,25 +18,20 @@ set -e
 
 case "$1" in
     add)
-        sudo apt-get install -y --mark-auto flatpak
-        sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+        ux setting disable nosnap
+        sudo apt-get install -y --mark-auto snapd
+        sudo snap install snapd
 
         if dpkg-query -f '${db:Status-abbrev}' -W gnome-software 2> /dev/null | grep -q '^.i'; then
-            sudo apt-get install -y --mark-auto gnome-software-plugin-flatpak
+            sudo apt-get install -y --mark-auto gnome-software-plugin-snap
         fi
     ;;
     remove)
-        flatpak remove -y --all --delete-data
-        sudo apt-get purge -y flatpak gnome-software-plugin-flatpak
-    ;;
-    remove-unused)
-        flatpak remove -y --noninteractive --system --unused
-    ;;
-    update)
-        flatpak update -y --noninteractive --system
+        sudo apt-get purge -y snapd gnome-software-plugin-snap
+        ux setting enable nosnap
     ;;
     *)
-        echo Unknown subcommand. >&2
+        echo Unknown feature subcommand. >&2
         exit 1
     ;;
 esac

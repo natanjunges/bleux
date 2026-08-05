@@ -19,9 +19,9 @@
 set -ex
 
 if [ "$1" = replace ]; then
-    sh packages/bleux-features/feature replace_features ' preremove' packages/bleux-features/features/preremove.csv 4 remove disable customize
-	sh packages/bleux-features/feature replace_features ' add' packages/bleux-features/features/add.csv 4 add enable customize
-	sh packages/bleux-features/feature replace_features ' remove' packages/bleux-features/features/remove.csv 4 remove disable customize
+    sh packages/bleux-ux/ux feature replace_features ' preremove' packages/bleux-ux/features/preremove.csv 4 remove disable customize
+    sh packages/bleux-ux/ux feature replace_features ' add' packages/bleux-ux/features/add.csv 4 add enable customize
+    sh packages/bleux-ux/ux feature replace_features ' remove' packages/bleux-ux/features/remove.csv 4 remove disable customize
     exit
 fi
 
@@ -38,23 +38,29 @@ sudo apt-get update --no-list-cleanup -o Dir::Etc::SourceList="sources.list.d/bl
 # Install bleUX packages
 sudo apt-get install -y bleux-desktop
 
+ux setting enable accent-color
+ux setting enable button-layout
+ux setting enable favorite-apps
+ux setting enable gnome-backgrounds
+ux setting enable gnome-console
+
 # Purge transitional packages
 sudo apt-get purge -y firefox thunderbird
 
 ####begin preremove
-sh '/usr/lib/bleux-features/features/snap.sh' 'remove'
+sh '/usr/lib/bleux-ux/features/snap.sh' 'remove'
 ####end preremove
 
 ####begin add
 sudo apt-get install -y --mark-auto bleux-backgrounds
 sudo apt-get install -y --mark-auto gnome-console
-sh '/usr/lib/bleux-features/features/gnome-software.sh' 'add'
+sh '/usr/lib/bleux-ux/features/gnome-software.sh' 'add'
 sudo apt-get install -y --mark-auto gnome-system-monitor
 sudo apt-get install -y --mark-auto gnome-tour
 sudo apt-get install -y --mark-auto preload
 sudo apt-get install -y --mark-auto software-properties-gtk
-sh '/usr/lib/bleux-features/features/ufw.sh' 'enable'
-sh '/usr/lib/bleux-features/features/flatpak.sh' 'add'
+sh '/usr/lib/bleux-ux/features/ufw.sh' 'enable'
+sh '/usr/lib/bleux-ux/features/flatpak.sh' 'add'
 flatpak install -y --noninteractive --no-related org.gnome.baobab
 flatpak install -y --noninteractive --no-related org.mozilla.firefox
 flatpak install -y --noninteractive --no-related org.gnome.Calculator
@@ -109,7 +115,7 @@ sudo apt-get install -y $(check-language-support)
 sudo apt-get autoremove -y --purge
 
 # Finish installation of flatpak runtimes
-feature update flatpak
+ux feature update flatpak
 
 # Reset icon theme
 dconf reset /org/gnome/desktop/interface/icon-theme

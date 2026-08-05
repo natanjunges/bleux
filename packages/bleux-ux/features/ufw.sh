@@ -1,7 +1,5 @@
-#!/usr/bin/make -f
-
 # bleUX, a user-centric desktop Linux distribution
-# Copyright (C) 2023  Natan Junges <natanajunges@gmail.com>
+# Copyright (C) 2024, 2026  Natan Junges <natanajunges@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -16,4 +14,17 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-include ../build-common
+set -e
+
+case "$1" in
+    disable)
+        sudo ufw disable
+    ;;
+    enable)
+        sudo ufw enable
+    ;;
+    *)
+        echo Unknown feature subcommand. >&2
+        exit 1
+    ;;
+esac

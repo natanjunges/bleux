@@ -18,20 +18,21 @@ set -e
 
 case "$1" in
     add)
-        sudo rm /etc/apt/preferences.d/nosnap.pref
-        sudo apt-get install -y --mark-auto snapd
-        sudo snap install snapd
+        sudo apt-get install -y --mark-auto gnome-software
 
-        if dpkg-query -f '${db:Status-abbrev}' -W gnome-software 2> /dev/null | grep -q '^.i'; then
+        if dpkg-query -f '${db:Status-abbrev}' -W flatpak 2> /dev/null | grep -q '^.i'; then
+            sudo apt-get install -y --mark-auto gnome-software-plugin-flatpak
+        fi
+
+        if dpkg-query -f '${db:Status-abbrev}' -W snapd 2> /dev/null | grep -q '^.i'; then
             sudo apt-get install -y --mark-auto gnome-software-plugin-snap
         fi
     ;;
     remove)
-        sudo apt-get purge -y snapd gnome-software-plugin-snap
-        sudo ln -s /usr/lib/bleux-features/nosnap.pref /etc/apt/preferences.d/
+        sudo apt-get purge -y gnome-software gnome-software-plugin-flatpak gnome-software-plugin-snap
     ;;
     *)
-        echo Unknown subcommand. >&2
+        echo Unknown feature subcommand. >&2
         exit 1
     ;;
 esac

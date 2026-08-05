@@ -1,0 +1,69 @@
+Section: admin
+Depends: apt, ubuntu-settings
+Suggests:
+####begin
+    baobab,
+    bleux-backgrounds,
+    deja-dup,
+    file-roller,
+    flatpak,
+    gnome-calculator,
+    gnome-calendar,
+    gnome-characters,
+    gnome-clocks,
+    gnome-console,
+    gnome-font-viewer,
+    gnome-initial-setup,
+    gnome-logs,
+    gnome-snapshot,
+    gnome-software,
+    gnome-software-plugin-flatpak,
+    gnome-software-plugin-snap,
+    gnome-system-monitor,
+    gnome-text-editor,
+    gnome-tour,
+    gufw,
+    libreoffice-calc,
+    libreoffice-gnome,
+    libreoffice-impress,
+    libreoffice-math,
+    libreoffice-style-colibre,
+    libreoffice-style-yaru,
+    libreoffice-uiconfig-common,
+    libreoffice-writer,
+    loupe,
+    papers,
+    preload,
+    ptyxis,
+    remmina,
+    resources,
+    rhythmbox,
+    seahorse,
+    shotwell,
+    showtime,
+    simple-scan,
+    snapd,
+    software-properties-gtk,
+    timeshift,
+    transmission-gtk,
+    ubuntu-wallpapers,
+####end
+Description: The bleUX management scripts
+ This package has scripts to toggle the core features and settings of the
+ bleUX desktop system.
+Files: features/add.csv /usr/lib/bleux-ux/features/
+    features/extended.csv /usr/lib/bleux-ux/features/
+    features/extras.csv /usr/lib/bleux-ux/features/
+    features/flatpak.sh /usr/lib/bleux-ux/features/
+    features/gnome-software.sh /usr/lib/bleux-ux/features/
+    features/preremove.csv /usr/lib/bleux-ux/features/
+    features/remove.csv /usr/lib/bleux-ux/features/
+    features/snap.sh /usr/lib/bleux-ux/features/
+    features/ufw.sh /usr/lib/bleux-ux/features/
+    settings/30_bleux_accent-color.gschema.override /usr/lib/bleux-ux/settings/
+    settings/30_bleux_button-layout.gschema.override /usr/lib/bleux-ux/settings/
+    settings/30_bleux_favorite-apps.gschema.override /usr/lib/bleux-ux/settings/
+    settings/30_bleux_gnome-backgrounds.gschema.override /usr/lib/bleux-ux/settings/
+    settings/30_bleux_gnome-console.gschema.override /usr/lib/bleux-ux/settings/
+    settings/nosnap.pref /usr/lib/bleux-ux/settings/
+    ux /usr/bin/

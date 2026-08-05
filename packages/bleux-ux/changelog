@@ -1,3 +1,9 @@
+bleux-ux (3.0.0) resolute; urgency=low
+
+  * Rename package to bleux-ux.
+
+ -- Natan Junges <natanajunges@gmail.com>  Wed, 05 Aug 2026 11:12:00 -0300
+
 bleux-features (2.0.2) noble; urgency=low
 
   * Delete data when removing flatpaks.

@@ -18,7 +18,7 @@
 
 include ../build-common
 
-control: ../bleux-features/features/preremove.csv ../bleux-features/features/remove.csv
+control: ../bleux-ux/features/preremove.csv ../bleux-ux/features/remove.csv
 	sed -Ei "s/^#   /    /; s/^    ($$( \
 		cat $^ | while read feature; do \
 			feature_type="$$(echo "$$feature" | cut -d , -f 2)"; \
@@ -39,8 +39,8 @@ control: ../bleux-features/features/preremove.csv ../bleux-features/features/rem
 		done; \
 	)),/#   \1,/" '$@'
 
-minimize: ../bleux-features/features/extended.csv
-	sh ../bleux-features/feature replace_features '' '$^' 5 remove disable '$@'
+minimize: ../bleux-ux/features/extended.csv
+	sh ../bleux-ux/ux feature replace_features '' '$^' 5 remove disable '$@'
 
-unminimize: ../bleux-features/features/extended.csv
-	sh ../bleux-features/feature replace_features '' '$^' 4 add enable '$@'
+unminimize: ../bleux-ux/features/extended.csv
+	sh ../bleux-ux/ux feature replace_features '' '$^' 4 add enable '$@'

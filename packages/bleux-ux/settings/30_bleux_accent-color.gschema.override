@@ -1,0 +1,4 @@
+[org.gnome.desktop.interface:ubuntu]
+accent-color = 'blue'
+gtk-theme = 'Yaru-blue'
+icon-theme = 'Yaru-blue'
