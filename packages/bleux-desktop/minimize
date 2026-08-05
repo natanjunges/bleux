@@ -1,4 +1,4 @@
-#!/usr/bin/sh
+#!/bin/sh
 
 # bleUX, a user-centric desktop Linux distribution
 # Copyright (C) 2024, 2026  Natan Junges <natanajunges@gmail.com>
@@ -16,7 +16,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-set -e -x
+set -ex
 
 if ! dpkg-query -f '${db:Status-abbrev}' -W bleux-features 2> /dev/null | grep -q '^.i'; then
     echo 'The \e[1mbleux-features\e[0m package is not installed.' >&2

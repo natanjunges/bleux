@@ -1,4 +1,4 @@
-#!/usr/bin/sh
+#!/bin/sh
 
 # bleUX, a user-centric desktop Linux distribution
 # Copyright (C) 2023, 2024, 2026  Natan Junges <natanajunges@gmail.com>
@@ -16,7 +16,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-set -e -x
+set -ex
 
 if [ "$1" = replace ]; then
     sh packages/bleux-features/feature replace_features ' preremove' packages/bleux-features/features/preremove.csv 4 remove disable customize
