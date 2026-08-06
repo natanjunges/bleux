@@ -261,6 +261,10 @@ case "$1" in
                     accent-color|button-layout|favorite-apps|gnome-backgrounds|gnome-console)
                         sudo rm -f "/usr/share/glib-2.0/schemas/30_bleux_$1.gschema.override"
                         sudo glib-compile-schemas /usr/share/glib-2.0/schemas
+
+                        if [ "$1" = accent-color ]; then
+                            dconf reset /org/gnome/desktop/interface/icon-theme
+                        fi
                     ;;
                     nosnap)
                         sudo rm -f "/etc/apt/preferences.d/$1.pref"
@@ -278,6 +282,10 @@ case "$1" in
                     accent-color|button-layout|favorite-apps|gnome-backgrounds|gnome-console)
                         sudo ln -s "/usr/lib/bleux-ux/settings/30_bleux_$1.gschema.override" /usr/share/glib-2.0/schemas/
                         sudo glib-compile-schemas /usr/share/glib-2.0/schemas
+
+                        if [ "$1" = accent-color ]; then
+                            dconf reset /org/gnome/desktop/interface/icon-theme
+                        fi
                     ;;
                     nosnap)
                         sudo ln -s "/usr/lib/bleux-ux/settings/$1.pref" /etc/apt/preferences.d/

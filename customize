@@ -121,9 +121,6 @@ sudo apt-get autoremove -y --purge
 # Finish installation of flatpak runtimes
 ux feature update flatpak
 
-# Reset icon theme
-dconf reset /org/gnome/desktop/interface/icon-theme
-
 # Reset app picker layout
 dconf reset /org/gnome/shell/app-picker-layout
 
