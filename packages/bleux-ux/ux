@@ -144,6 +144,7 @@ feature_generate() {
 feature_replace() {
     sed -i "/^####begin$1\$/,/^####end$1\$/c\\####begin$1\\n$(
         cat $2 | while read feature; do
+            old_feature_type="$feature_type"
             feature_type="$(echo "$feature" | cut -d , -f 2)"
 
             case "$feature_type" in
@@ -178,7 +179,11 @@ feature_replace_features() {
         *)
             subcommand="$feature_type"
         ;;
-    esac' 'feature_generate "$feature_type" "$subcommand" $feature_resources | sed -E '\''s/^(.*)$/\1\\/'\' cat "$6"
+    esac' 'if echo "$feature_type" | grep -Eq '\''^deb|flatpak|snap$'\'' && [ "$old_feature_type" = "$feature_type" ]; then
+        echo "\\ $feature_resources\\"
+    else
+        feature_generate "$feature_type" "$subcommand" $feature_resources | sed -E '\''s/^(.*)$/\1\\/'\''
+    fi' 'sed -z s/\\\n\\//g' "$6"
 }
 
 feature_replace_packages() {
@@ -194,10 +199,6 @@ case "$1" in
         shift
 
         case "$1" in
-            generate)
-                shift
-                feature_generate "$@"
-            ;;
             replace_features)
                 shift
                 feature_replace_features "$@"

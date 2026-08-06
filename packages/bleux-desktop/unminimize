@@ -28,18 +28,8 @@ if [ "$1" != customize ]; then
 fi
 
 ####begin
-sudo apt-get install -y --mark-auto gufw
-sudo apt-get install -y --mark-auto timeshift
-flatpak install -y --noninteractive --no-related org.gnome.DejaDup
-flatpak install -y --noninteractive --no-related org.gnome.Calendar
-flatpak install -y --noninteractive --no-related org.gnome.Connections
-flatpak install -y --noninteractive --no-related org.gnome.Music
-flatpak install -y --noninteractive --no-related org.gnome.Snapshot
-flatpak install -y --noninteractive --no-related org.libreoffice.LibreOffice
-flatpak install -y --noninteractive --no-related org.gnome.Showtime
-flatpak install -y --noninteractive --no-related org.gnome.SimpleScan
-flatpak install -y --noninteractive --no-related org.mozilla.thunderbird
-flatpak install -y --noninteractive --no-related com.transmissionbt.Transmission
+sudo apt-get install -y --mark-auto gufw timeshift
+flatpak install -y --noninteractive --no-related org.gnome.DejaDup org.gnome.Calendar org.gnome.Connections org.gnome.Music org.gnome.Snapshot org.libreoffice.LibreOffice org.gnome.Showtime org.gnome.SimpleScan org.mozilla.thunderbird com.transmissionbt.Transmission
 ####end
 
 if [ "$1" != customize ]; then

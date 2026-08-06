@@ -25,18 +25,8 @@ fi
 
 sudo apt-get purge -y $(dpkg-query -f '${Suggests}' -W bleux-desktop | tr -d ,)
 ####begin
-sudo apt-get purge -y gufw
-sudo apt-get purge -y timeshift
-flatpak remove -y --noninteractive --delete-data org.gnome.DejaDup
-flatpak remove -y --noninteractive --delete-data org.gnome.Calendar
-flatpak remove -y --noninteractive --delete-data org.gnome.Connections
-flatpak remove -y --noninteractive --delete-data org.gnome.Music
-flatpak remove -y --noninteractive --delete-data org.gnome.Snapshot
-flatpak remove -y --noninteractive --delete-data org.libreoffice.LibreOffice
-flatpak remove -y --noninteractive --delete-data org.gnome.Showtime
-flatpak remove -y --noninteractive --delete-data org.gnome.SimpleScan
-flatpak remove -y --noninteractive --delete-data org.mozilla.thunderbird
-flatpak remove -y --noninteractive --delete-data com.transmissionbt.Transmission
+sudo apt-get purge -y gufw timeshift
+flatpak remove -y --noninteractive --delete-data org.gnome.DejaDup org.gnome.Calendar org.gnome.Connections org.gnome.Music org.gnome.Snapshot org.libreoffice.LibreOffice org.gnome.Showtime org.gnome.SimpleScan org.mozilla.thunderbird com.transmissionbt.Transmission
 ####end
 sudo apt-get autoremove -y --purge
 ux feature remove-unused flatpak
