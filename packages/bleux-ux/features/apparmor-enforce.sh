@@ -17,11 +17,11 @@
 set -e
 
 aa_unconfined() {
-    profile="$(echo "${1#/}" | tr / .)"
+    profile="$(echo "${1#/}" | tr / . | tr ' ' _)"
 
-    if [ -f "/usr/apparmor.d/$profile" ] && ! grep -qm 1 'flags=(' "/usr/apparmor.d/$profile"; then
-        sudo sed -Ei 's/profile([^{]+)\{/profile\1flags=(unconfined) {/' "/usr/apparmor.d/$profile"
-        sudo apparmor_parser -r "/usr/apparmor.d/$profile"
+    if [ -f "/etc/apparmor.d/$profile" ] && ! grep -qm 1 'flags=(' "/etc/apparmor.d/$profile"; then
+        sudo sed -Ei 's/profile(.+)\{$/profile\1flags=(unconfined) {/' "/etc/apparmor.d/$profile"
+        sudo apparmor_parser -r "/etc/apparmor.d/$profile"
     fi
 }
 
@@ -45,6 +45,7 @@ case "$1" in
         aa_unconfined ch-run
         aa_unconfined chrome
         aa_unconfined chromium
+        aa_unconfined code
         aa_unconfined crun
         aa_unconfined desktop-icons-ng
         aa_unconfined devhelp
@@ -104,7 +105,6 @@ case "$1" in
         aa_unconfined virtiofsd
         aa_unconfined vivaldi-bin
         aa_unconfined vpnns
-        aa_unconfined vscode
         aa_unconfined wike
         aa_unconfined wpcom
     ;;
@@ -114,7 +114,7 @@ case "$1" in
             exit 1
         fi
 
-        sudo aa-enforce /usr/bin/irssi /usr/sbin/sssd Xorg Xorg_wrap 1password Discord 'MongoDB Compass' QtWebEngineProcess balena-etcher brave buildah cam ch-checkns ch-run chrome chromium crun desktop-icons-ng devhelp element-desktop epiphany evolution firefox foliate geary github-desktop goldendict kchmviewer keybase lc-compliance libcamerify linux-sandbox loupe lxc-attach lxc-create lxc-destroy lxc-execute lxc-stop lxc-unshare lxc-usernsexec mmdebstrap msedge notepadqq obsidian opam opera pageedit podman polypane privacybrowser qcam qmapshack qutebrowser rootlesskit rpm rssguard runc scide signal-desktop slack slirp4netns steam stress-ng surfshark systemd-coredump thunderbird trinity tup tuxedo-control-center userbindmount uwsgi-core vdens virtiofsd vivaldi-bin vpnns vscode wike wpcom
+        sudo aa-enforce /usr/bin/irssi /usr/sbin/sssd Xorg Xorg_wrap 1password Discord 'MongoDB Compass' QtWebEngineProcess balena-etcher brave buildah cam ch-checkns ch-run chrome chromium code crun desktop-icons-ng devhelp element-desktop epiphany evolution firefox foliate geary github-desktop goldendict kchmviewer keybase lc-compliance libcamerify linux-sandbox loupe lxc-attach lxc-create lxc-destroy lxc-execute lxc-stop lxc-unshare lxc-usernsexec mmdebstrap msedge notepadqq obsidian opam opera pageedit podman polypane privacybrowser qcam qmapshack qutebrowser rootlesskit rpm rssguard runc scide signal-desktop slack slirp4netns steam stress-ng surfshark systemd-coredump thunderbird trinity tup tuxedo-control-center userbindmount uwsgi-core vdens virtiofsd vivaldi-bin vpnns wike wpcom
     ;;
     *)
         echo Unknown feature subcommand. >&2
