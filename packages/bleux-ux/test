@@ -1,0 +1,151 @@
+#!/bin/sh
+
+set -e
+
+ux feature disable apparmor-enforce
+ux feature remove apparmor-extras
+ux feature remove flatpak baobab
+ux feature remove flatpak deja-dup
+ux feature remove flatpak firefox
+ux feature remove flatpak gnome-calculator
+ux feature remove flatpak gnome-calendar
+ux feature remove flatpak gnome-characters
+ux feature remove flatpak gnome-clocks
+ux feature remove flatpak gnome-connections
+ux feature remove flatpak gnome-font-viewer
+ux feature remove flatpak gnome-logs
+ux feature remove flatpak gnome-music
+ux feature remove flatpak gnome-snapshot
+ux feature remove flatpak gnome-text-editor
+ux feature remove flatpak libreoffice
+ux feature remove flatpak loupe
+ux feature remove flatpak papers
+ux feature remove flatpak showtime
+ux feature remove flatpak simple-scan
+ux feature remove flatpak thunderbird
+ux feature remove flatpak transmission
+ux feature remove-unused flatpak
+ux feature remove flatpak
+ux feature remove gnome-software
+ux feature add snap
+ux feature add snap desktop-security-center
+ux feature add snap firefox
+ux feature add snap firmware-updater
+ux feature add snap snap-store
+ux feature add snap thunderbird
+ux feature disable ufw
+ux feature add apparmor-extras
+ux feature enable apparmor-enforce
+ux feature add flatpak
+ux feature add flatpak baobab
+ux feature add flatpak deja-dup
+ux feature add flatpak firefox
+ux feature add flatpak gnome-calculator
+ux feature add flatpak gnome-calendar
+ux feature add flatpak gnome-characters
+ux feature add flatpak gnome-clocks
+ux feature add flatpak gnome-connections
+ux feature add flatpak gnome-font-viewer
+ux feature add flatpak gnome-logs
+ux feature add flatpak gnome-music
+ux feature add flatpak gnome-snapshot
+ux feature add flatpak gnome-text-editor
+ux feature add flatpak libreoffice
+ux feature add flatpak loupe
+ux feature add flatpak papers
+ux feature add flatpak showtime
+ux feature add flatpak simple-scan
+ux feature add flatpak thunderbird
+ux feature add flatpak transmission
+ux feature update flatpak
+ux feature add gnome-software
+ux feature remove snap desktop-security-center
+ux feature remove snap firefox
+ux feature remove snap firmware-updater
+ux feature remove snap snap-store
+ux feature remove snap thunderbird
+ux feature remove snap
+ux feature enable ufw
+ux feature add ubuntu-wallpapers
+ux feature remove gnome-backgrounds
+ux feature add ptyxis
+ux feature remove gnome-console
+ux feature remove gnome-system-monitor
+ux feature remove gnome-tour
+ux feature remove preload
+ux feature remove software-properties
+ux feature remove gufw
+ux feature remove timeshift
+ux feature enable desktop-icons
+ux feature enable ubuntu-dock
+ux feature add baobab
+ux feature add deja-dup
+ux feature add file-roller
+ux feature add gnome-calculator
+ux feature add gnome-calendar
+ux feature add gnome-characters
+ux feature add gnome-clocks
+ux feature add gnome-font-viewer
+ux feature add gnome-initial-setup
+ux feature add gnome-logs
+ux feature add gnome-snapshot
+ux feature add gnome-text-editor
+ux feature add libreoffice
+ux feature add loupe
+ux feature add papers
+ux feature add remmina
+ux feature add resources
+ux feature add rhythmbox
+ux feature add seahorse
+ux feature add shotwell
+ux feature add showtime
+ux feature add simple-scan
+ux feature add transmission
+ux feature add gnome-backgrounds
+ux feature remove ubuntu-wallpapers
+ux feature add gnome-console
+ux feature remove ptyxis
+ux feature add gnome-system-monitor
+ux feature add gnome-tour
+ux feature add preload
+ux feature add software-properties
+ux feature add gufw
+ux feature add timeshift
+ux feature disable desktop-icons
+ux feature disable ubuntu-dock
+ux feature remove baobab
+ux feature remove deja-dup
+ux feature remove file-roller
+ux feature remove gnome-calculator
+ux feature remove gnome-calendar
+ux feature remove gnome-characters
+ux feature remove gnome-clocks
+ux feature remove gnome-font-viewer
+ux feature remove gnome-initial-setup
+ux feature remove gnome-logs
+ux feature remove gnome-snapshot
+ux feature remove gnome-text-editor
+ux feature remove libreoffice
+ux feature remove loupe
+ux feature remove papers
+ux feature remove remmina
+ux feature remove resources
+ux feature remove rhythmbox
+ux feature remove seahorse
+ux feature remove shotwell
+ux feature remove showtime
+ux feature remove simple-scan
+ux feature remove transmission
+ux setting disable accent-color
+ux setting disable button-layout
+ux setting disable favorite-apps
+ux setting disable gnome-backgrounds
+ux setting disable gnome-console
+ux setting disable nosnap
+ux setting enable accent-color
+ux setting enable button-layout
+ux setting enable favorite-apps
+ux setting enable gnome-backgrounds
+ux setting enable gnome-console
+ux setting enable nosnap
+sudo apt-get autoremove -y --purge
