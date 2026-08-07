@@ -1,15 +1,15 @@
 feature_name,feature_type,feature_resources,default_subcommand
 apparmor-extras,deb,apparmor-profiles apparmor-profiles-extra apparmor-utils,
-apparmor-enforce,custom,,enable
 gnome-backgrounds,deb,bleux-backgrounds,
 gnome-console,deb,,
-gnome-software,custom,gnome-software gnome-software-plugin-flatpak gnome-software-plugin-snap,add
 gnome-system-monitor,deb,,
 gnome-tour,deb,,
 preload,deb,,
 software-properties,deb,software-properties-gtk,
-ufw,custom,,enable
+apparmor-enforce,custom,,enable
 flatpak,custom,flatpak gnome-software-plugin-flatpak,add
+gnome-software,custom,gnome-software gnome-software-plugin-flatpak gnome-software-plugin-snap,add
+ufw,custom,,enable
 flatpak baobab,flatpak,org.gnome.baobab,
 flatpak firefox,flatpak,org.mozilla.firefox,
 flatpak gnome-calculator,flatpak,org.gnome.Calculator,
