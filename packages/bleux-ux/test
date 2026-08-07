@@ -1,6 +1,6 @@
 #!/bin/sh
 
-set -e
+set -ex
 
 ux feature disable apparmor-enforce
 ux feature remove apparmor-extras
@@ -25,6 +25,7 @@ ux feature remove flatpak simple-scan
 ux feature remove flatpak thunderbird
 ux feature remove flatpak transmission
 ux feature remove-unused flatpak
+mkdir -p ~/.var/app
 ux feature remove flatpak
 ux feature remove gnome-software
 ux feature add snap
@@ -59,10 +60,13 @@ ux feature add flatpak thunderbird
 ux feature add flatpak transmission
 ux feature update flatpak
 ux feature add gnome-software
+sudo rm -r /root/snap/desktop-security-center
 ux feature remove snap desktop-security-center
+sudo rm -r /root/snap/firefox
 ux feature remove snap firefox
 ux feature remove snap firmware-updater
 ux feature remove snap snap-store
+sudo rm -r /root/snap/thunderbird
 ux feature remove snap thunderbird
 ux feature remove snap
 ux feature enable ufw
