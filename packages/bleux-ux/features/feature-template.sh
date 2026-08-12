@@ -17,11 +17,11 @@
 set -e
 
 case "$1" in
-    <disable>)
-        <commands>
+    add)
+        # commands
     ;;
-    <enable>)
-        <commands>
+    remove)
+        # commands
     ;;
     *)
         echo Unknown feature subcommand. >&2
