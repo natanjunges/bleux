@@ -2,9 +2,6 @@ Section: admin
 Depends: apt, ubuntu-settings
 Suggests:
 ####begin
-    apparmor-profiles,
-    apparmor-profiles-extra,
-    apparmor-utils,
     baobab,
     bleux-backgrounds,
     deja-dup,
@@ -55,7 +52,6 @@ Description: The bleUX management scripts
  This package has scripts to toggle the core features and settings of the
  bleUX desktop system.
 Files: features/add.csv /usr/lib/bleux-ux/features/
-    features/apparmor-enforce.sh /usr/lib/bleux-ux/features/
     features/extended.csv /usr/lib/bleux-ux/features/
     features/extras.csv /usr/lib/bleux-ux/features/
     features/flatpak.sh /usr/lib/bleux-ux/features/

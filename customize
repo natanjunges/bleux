@@ -54,8 +54,7 @@ sh '/usr/lib/bleux-ux/features/snap.sh' 'remove'
 ####end preremove
 
 ####begin add
-sudo apt-get install -y --mark-auto apparmor-profiles apparmor-profiles-extra apparmor-utils bleux-backgrounds gnome-console gnome-system-monitor gnome-tour preload software-properties-gtk
-sh '/usr/lib/bleux-ux/features/apparmor-enforce.sh' 'enable'
+sudo apt-get install -y --mark-auto bleux-backgrounds gnome-console gnome-system-monitor gnome-tour preload software-properties-gtk
 sh '/usr/lib/bleux-ux/features/flatpak.sh' 'add'
 sh '/usr/lib/bleux-ux/features/gnome-software.sh' 'add'
 sh '/usr/lib/bleux-ux/features/ufw.sh' 'enable'

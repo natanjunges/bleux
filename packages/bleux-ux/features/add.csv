@@ -1,12 +1,10 @@
 feature_name,feature_type,feature_resources,default_subcommand
-apparmor-extras,deb,apparmor-profiles apparmor-profiles-extra apparmor-utils,
 gnome-backgrounds,deb,bleux-backgrounds,
 gnome-console,deb,,
 gnome-system-monitor,deb,,
 gnome-tour,deb,,
 preload,deb,,
 software-properties,deb,software-properties-gtk,
-apparmor-enforce,custom,,enable
 flatpak,custom,flatpak gnome-software-plugin-flatpak,add
 gnome-software,custom,gnome-software gnome-software-plugin-flatpak gnome-software-plugin-snap,add
 ufw,custom,,enable
