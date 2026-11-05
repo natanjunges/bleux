@@ -26,6 +26,19 @@ if [ "$1" = replace ]; then
     exit
 fi
 
+validate_sudo() {
+    while true; do
+        sudo -v
+        sleep 14m
+    done
+}
+cleanup_sudo() {
+    kill $validate_sudo_pid
+}
+trap cleanup_sudo EXIT
+validate_sudo &
+validate_sudo_pid=$!
+
 # Install bleUX repository
 if [ ! -d /usr/local/bleux/ ]; then
      wget https://github.com/natanjunges/bleux/releases/latest/download/bleux-repository.deb

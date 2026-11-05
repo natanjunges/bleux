@@ -23,6 +23,19 @@ if ! dpkg-query -f '${db:Status-abbrev}' -W bleux-ux 2> /dev/null | grep -q '^.i
     exit 1
 fi
 
+validate_sudo() {
+    while true; do
+        sudo -v
+        sleep 14m
+    done
+}
+cleanup_sudo() {
+    kill $validate_sudo_pid
+}
+trap cleanup_sudo EXIT
+validate_sudo &
+validate_sudo_pid=$!
+
 sudo apt-get purge -y $(dpkg-query -f '${Suggests}' -W bleux-desktop | tr -d ,)
 ####begin
 sudo apt-get purge -y gufw timeshift

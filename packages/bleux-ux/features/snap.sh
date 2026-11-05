@@ -16,8 +16,21 @@
 
 set -e
 
+validate_sudo() {
+    while true; do
+        sudo -v
+        sleep 14m
+    done
+}
+cleanup_sudo() {
+    kill $validate_sudo_pid
+}
+
 case "$1" in
     add)
+        trap cleanup_sudo EXIT
+        validate_sudo &
+        validate_sudo_pid=$!
         ux setting disable nosnap
         sudo apt-get install -y --mark-auto snapd
         sudo snap install snapd

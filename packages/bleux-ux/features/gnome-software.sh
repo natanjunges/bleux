@@ -16,8 +16,21 @@
 
 set -e
 
+validate_sudo() {
+    while true; do
+        sudo -v
+        sleep 14m
+    done
+}
+cleanup_sudo() {
+    kill $validate_sudo_pid
+}
+
 case "$1" in
     add)
+        trap cleanup_sudo EXIT
+        validate_sudo &
+        validate_sudo_pid=$!
         sudo apt-get install -y --mark-auto gnome-software
 
         if dpkg-query -f '${db:Status-abbrev}' -W flatpak 2> /dev/null | grep -q '^.i'; then
