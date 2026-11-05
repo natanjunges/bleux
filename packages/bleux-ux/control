@@ -48,6 +48,7 @@ Suggests:
     transmission-gtk,
     ubuntu-wallpapers,
 ####end
+Conflicts: bleux-features, bleux-settings
 Description: The bleUX management scripts
  This package has scripts to toggle the core features (programs and settings)
  of the bleUX desktop system.

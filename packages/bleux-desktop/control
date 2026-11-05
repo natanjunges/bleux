@@ -173,7 +173,7 @@ Suggests:
 ####thunderbird,
 #   transmission-gtk,
     usb-creator-gtk,
-Conflicts: ubuntu-desktop, ubuntu-desktop-minimal
+Conflicts: bleux-desktop (<< 3.0.0), ubuntu-desktop, ubuntu-desktop-minimal
 Provides: packagekit-installer
 Replaces: ubuntu-desktop, ubuntu-desktop-minimal
 Description: The bleUX desktop system
