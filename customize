@@ -26,6 +26,12 @@ if [ "$1" = replace ]; then
     exit
 fi
 
+# Validate Ubuntu version
+if ! grep -qm 1 'VERSION_ID="26.04"' /etc/os-release; then
+    echo Unsupported Ubuntu version. Must be 26.04. >&2
+    exit 1
+fi
+
 validate_sudo() {
     while true; do
         sudo -v
