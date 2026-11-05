@@ -10,7 +10,7 @@ A user-centric desktop Linux distribution
 
 ```shell
 sudo apt-get install --no-install-recommends -y equivs git make
-git clone https://github.com/natanjunges/bleux.git
+git clone https://github.com/natanjunges/bleux.git -b noble
 cd bleux/repository
 ./build -j 5 install
 cd ..
@@ -20,5 +20,5 @@ cd ..
 ### Production
 
 ```shell
-wget -q -O - https://raw.githubusercontent.com/natanjunges/bleux/main/customize | sh
+wget -q -O - https://raw.githubusercontent.com/natanjunges/bleux/noble/customize | sh
 ```
