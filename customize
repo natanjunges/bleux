@@ -18,6 +18,12 @@
 
 set -e -x
 
+# Validate Ubuntu version
+if ! grep -qm 1 'VERSION_ID="24.04"' /etc/os-release; then
+    echo Unsupported Ubuntu version. Must be 24.04. >&2
+    exit 1
+fi
+
 # Install bleUX repository
 if [ ! -d /usr/local/bleux/ ]; then
      wget https://github.com/natanjunges/bleux/releases/latest/download/bleux-repository.deb
@@ -29,7 +35,7 @@ fi
 sudo apt-get update --no-list-cleanup -o Dir::Etc::SourceList="sources.list.d/bleux.list" -o Dir::Etc::SourceParts="-"
 
 # Install bleUX packages
-sudo apt-get install -y bleux-desktop
+sudo apt-get install -y bleux-desktop=2.0.0
 
 # Purge transitional packages
 sudo apt-get purge -y firefox libwmf0.2-7-gtk thunderbird
