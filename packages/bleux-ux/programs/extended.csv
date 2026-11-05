@@ -1,4 +1,4 @@
-feature_name,feature_type,feature_resources,default_subcommand,alternative_subcommand
+program_name,program_type,program_resources,default_subcommand,alternative_subcommand
 gufw,deb,,,
 timeshift,deb,,,
 flatpak deja-dup,flatpak,org.gnome.DejaDup,,

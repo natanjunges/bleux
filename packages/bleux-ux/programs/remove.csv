@@ -1,4 +1,4 @@
-feature_name,feature_type,feature_resources,default_subcommand
+program_name,program_type,program_resources,default_subcommand
 desktop-icons,extension,ding@rastersoft.com,
 ubuntu-dock,extension,ubuntu-dock@ubuntu.com,
 baobab,deb,,

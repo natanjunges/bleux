@@ -16,15 +16,35 @@
 
 set -e
 
+validate_sudo() {
+    while true; do
+        sudo -v
+        sleep 14m
+    done
+}
+cleanup_sudo() {
+    kill $validate_sudo_pid
+}
+
 case "$1" in
-    disable)
-        sudo ufw disable
+    add)
+        trap cleanup_sudo EXIT
+        validate_sudo &
+        validate_sudo_pid=$!
+        ux setting disable nosnap
+        sudo apt-get install -y --mark-auto snapd
+        sudo snap install snapd
+
+        if dpkg-query -f '${db:Status-abbrev}' -W gnome-software 2> /dev/null | grep -q '^.i'; then
+            sudo apt-get install -y --mark-auto gnome-software-plugin-snap
+        fi
     ;;
-    enable)
-        sudo ufw enable
+    remove)
+        sudo apt-get purge -y snapd gnome-software-plugin-snap
+        ux setting enable nosnap
     ;;
     *)
-        echo Unknown feature subcommand. >&2
+        echo Unknown program subcommand. >&2
         exit 1
     ;;
 esac

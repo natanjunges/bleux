@@ -49,7 +49,7 @@ case "$1" in
         flatpak update -y --noninteractive --system
     ;;
     *)
-        echo Unknown feature subcommand. >&2
+        echo Unknown program subcommand. >&2
         exit 1
     ;;
 esac

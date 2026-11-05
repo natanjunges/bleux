@@ -16,36 +16,15 @@
 
 set -e
 
-validate_sudo() {
-    while true; do
-        sudo -v
-        sleep 14m
-    done
-}
-cleanup_sudo() {
-    kill $validate_sudo_pid
-}
-
 case "$1" in
-    add)
-        trap cleanup_sudo EXIT
-        validate_sudo &
-        validate_sudo_pid=$!
-        sudo apt-get install -y --mark-auto gnome-software
-
-        if dpkg-query -f '${db:Status-abbrev}' -W flatpak 2> /dev/null | grep -q '^.i'; then
-            sudo apt-get install -y --mark-auto gnome-software-plugin-flatpak
-        fi
-
-        if dpkg-query -f '${db:Status-abbrev}' -W snapd 2> /dev/null | grep -q '^.i'; then
-            sudo apt-get install -y --mark-auto gnome-software-plugin-snap
-        fi
+    disable)
+        sudo ufw disable
     ;;
-    remove)
-        sudo apt-get purge -y gnome-software gnome-software-plugin-flatpak gnome-software-plugin-snap
+    enable)
+        sudo ufw enable
     ;;
     *)
-        echo Unknown feature subcommand. >&2
+        echo Unknown program subcommand. >&2
         exit 1
     ;;
 esac

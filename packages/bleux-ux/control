@@ -49,17 +49,17 @@ Suggests:
     ubuntu-wallpapers,
 ####end
 Description: The bleUX management scripts
- This package has scripts to toggle the core features and settings of the
- bleUX desktop system.
-Files: features/add.csv /usr/lib/bleux-ux/features/
-    features/extended.csv /usr/lib/bleux-ux/features/
-    features/extras.csv /usr/lib/bleux-ux/features/
-    features/flatpak.sh /usr/lib/bleux-ux/features/
-    features/gnome-software.sh /usr/lib/bleux-ux/features/
-    features/preremove.csv /usr/lib/bleux-ux/features/
-    features/remove.csv /usr/lib/bleux-ux/features/
-    features/snap.sh /usr/lib/bleux-ux/features/
-    features/ufw.sh /usr/lib/bleux-ux/features/
+ This package has scripts to toggle the core features (programs and settings)
+ of the bleUX desktop system.
+Files: programs/add.csv /usr/lib/bleux-ux/programs/
+    programs/extended.csv /usr/lib/bleux-ux/programs/
+    programs/extras.csv /usr/lib/bleux-ux/programs/
+    programs/flatpak.sh /usr/lib/bleux-ux/programs/
+    programs/gnome-software.sh /usr/lib/bleux-ux/programs/
+    programs/preremove.csv /usr/lib/bleux-ux/programs/
+    programs/remove.csv /usr/lib/bleux-ux/programs/
+    programs/snap.sh /usr/lib/bleux-ux/programs/
+    programs/ufw.sh /usr/lib/bleux-ux/programs/
     settings/30_bleux_accent-color.gschema.override /usr/lib/bleux-ux/settings/
     settings/30_bleux_button-layout.gschema.override /usr/lib/bleux-ux/settings/
     settings/30_bleux_favorite-apps.gschema.override /usr/lib/bleux-ux/settings/

@@ -24,7 +24,7 @@ case "$1" in
         # commands
     ;;
     *)
-        echo Unknown feature subcommand. >&2
+        echo Unknown program subcommand. >&2
         exit 1
     ;;
 esac

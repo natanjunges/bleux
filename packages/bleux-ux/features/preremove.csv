@@ -1,2 +1,0 @@
-feature_name,feature_type,feature_resources,default_subcommand
-snap,custom,snapd gnome-software-plugin-snap,remove

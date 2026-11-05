@@ -18,7 +18,7 @@
 
 set -e
 
-feature_generate() {
+program_generate() {
     case "$1" in
         deb)
             shift
@@ -37,7 +37,7 @@ feature_generate() {
                     echo "sudo apt-get purge -y $*"
                 ;;
                 *)
-                    echo 'echo Unknown feature subcommand. >&2'
+                    echo 'echo Unknown program subcommand. >&2'
                     echo exit 1
                 ;;
             esac
@@ -55,7 +55,7 @@ feature_generate() {
                     echo "sudo dpkg-divert --remove --rename --divert /usr/share/gnome-shell/extensions/$3/metadata.json.disabled /usr/share/gnome-shell/extensions/$3/metadata.json"
                 ;;
                 *)
-                    echo 'echo Unknown feature subcommand. >&2'
+                    echo 'echo Unknown program subcommand. >&2'
                     echo exit 1
                 ;;
             esac
@@ -72,7 +72,7 @@ feature_generate() {
                 add)
                     if [ "$check" ]; then
                         echo 'if ! dpkg-query -f '\''${db:Status-abbrev}'\'' -W flatpak 2> /dev/null | grep -q '\''^.i'\''; then'
-                        echo '    echo '\''The \\e[1mflatpak\\e[0m feature is not enabled.'\'' >&2'
+                        echo '    echo '\''The \\e[1mflatpak\\e[0m program is not enabled.'\'' >&2'
                         echo '    exit 1'
                         echo fi
                     fi
@@ -92,7 +92,7 @@ feature_generate() {
                     fi
                 ;;
                 *)
-                    echo 'echo Unknown feature subcommand. >&2'
+                    echo 'echo Unknown program subcommand. >&2'
                     echo exit 1
                 ;;
             esac
@@ -109,7 +109,7 @@ feature_generate() {
                 add)
                     if [ "$check" ]; then
                         echo 'if ! dpkg-query -f '\''${db:Status-abbrev}'\'' -W snapd 2> /dev/null | grep -q '\''^.i'\''; then'
-                        echo '    echo '\''The\\e[1msnap\\e[0mfeature is not enabled.'\'' >&2'
+                        echo '    echo '\''The\\e[1msnap\\e[0mprogram is not enabled.'\'' >&2'
                         echo '    exit 1'
                         echo fi
                     fi
@@ -129,36 +129,36 @@ feature_generate() {
                     fi
                 ;;
                 *)
-                    echo 'echo Unknown feature subcommand. >&2'
+                    echo 'echo Unknown program subcommand. >&2'
                     echo exit 1
                 ;;
             esac
         ;;
         *)
-            echo 'echo Unknown feature type. >&2'
+            echo 'echo Unknown program type. >&2'
             echo exit 1
         ;;
     esac
 }
 
-feature_replace() {
+program_replace() {
     sed -i "/^####begin$1\$/,/^####end$1\$/c\\####begin$1\\n$(
-        cat $2 | while read feature; do
-            old_feature_type="$feature_type"
-            feature_type="$(echo "$feature" | cut -d , -f 2)"
+        cat $2 | while read program; do
+            old_program_type="$program_type"
+            program_type="$(echo "$program" | cut -d , -f 2)"
 
-            case "$feature_type" in
+            case "$program_type" in
                 custom)
                     eval "$3"
                 ;;
-                feature_type)
+                program_type)
                 ;;
                 $4)
                     eval "$5"
-                    feature_resources="$(echo "$feature" | cut -d , -f 3)"
+                    program_resources="$(echo "$program" | cut -d , -f 3)"
 
-                    if [ -z "$feature_resources" ]; then
-                        feature_resources="$(echo "$feature" | cut -d , -f 1)"
+                    if [ -z "$program_resources" ]; then
+                        program_resources="$(echo "$program" | cut -d , -f 1)"
                     fi
 
                     eval "$6"
@@ -168,8 +168,8 @@ feature_replace() {
     )n####end$1" $8
 }
 
-feature_replace_features() {
-    feature_replace "$1" "$2" 'echo "sh '\''/usr/lib/bleux-ux/features/$(echo "$feature" | cut -d , -f 1 | tr '\'' '\'' /).sh'\'' '\''$(echo "$feature" | cut -d , -f '$3')'\''\\"' '*' 'case "$feature_type" in
+program_replace_programs() {
+    program_replace "$1" "$2" 'echo "sh '\''/usr/lib/bleux-ux/programs/$(echo "$program" | cut -d , -f 1 | tr '\'' '\'' /).sh'\'' '\''$(echo "$program" | cut -d , -f '$3')'\''\\"' '*' 'case "$program_type" in
         deb|flatpak|snap)
             subcommand='$4'
         ;;
@@ -177,75 +177,75 @@ feature_replace_features() {
             subcommand='$5'
         ;;
         *)
-            subcommand="$feature_type"
+            subcommand="$program_type"
         ;;
-    esac' 'if echo "$feature_type" | grep -Eq '\''^deb|flatpak|snap$'\'' && [ "$old_feature_type" = "$feature_type" ]; then
-        echo "\\ $feature_resources\\"
+    esac' 'if echo "$program_type" | grep -Eq '\''^deb|flatpak|snap$'\'' && [ "$old_program_type" = "$program_type" ]; then
+        echo "\\ $program_resources\\"
     else
-        feature_generate "$feature_type" "$subcommand" $feature_resources | sed -E '\''s/^(.*)$/\1\\/'\''
+        program_generate "$program_type" "$subcommand" $program_resources | sed -E '\''s/^(.*)$/\1\\/'\''
     fi' 'sed -z s/\\\n\\//g' "$6"
 }
 
-feature_replace_packages() {
-    feature_replace "$1" "$2" 'for package in $(echo "$feature" | cut -d , -f 3); do
+program_replace_packages() {
+    program_replace "$1" "$2" 'for package in $(echo "$program" | cut -d , -f 3); do
         echo "    $package,\\"
-    done' deb true 'for package in $feature_resources; do
+    done' deb true 'for package in $program_resources; do
         echo "    $package,\\"
     done' 'sort -u' "$3"
 }
 
 case "$1" in
-    feature)
+    program)
         shift
 
         case "$1" in
-            replace_features)
+            replace_programs)
                 shift
-                feature_replace_features "$@"
+                program_replace_programs "$@"
             ;;
             replace_packages)
                 shift
-                feature_replace_packages "$@"
+                program_replace_packages "$@"
             ;;
             *)
                 subcommand="$1"
                 shift
 
                 case "$*" in
-                    feature_name)
-                        feature=''
+                    program_name)
+                        program=''
                     ;;
                     *)
-                        feature="$(cat /usr/lib/bleux-ux/features/preremove.csv /usr/lib/bleux-ux/features/add.csv /usr/lib/bleux-ux/features/extended.csv /usr/lib/bleux-ux/features/remove.csv /usr/lib/bleux-ux/features/extras.csv | grep -m 1 "^$*," || true)"
+                        program="$(cat /usr/lib/bleux-ux/programs/preremove.csv /usr/lib/bleux-ux/programs/add.csv /usr/lib/bleux-ux/programs/extended.csv /usr/lib/bleux-ux/programs/remove.csv /usr/lib/bleux-ux/programs/extras.csv | grep -m 1 "^$*," || true)"
                     ;;
                 esac
 
-                if [ -z "$feature" ]; then
-                    echo 'Unknown feature.' >&2
+                if [ -z "$program" ]; then
+                    echo 'Unknown program.' >&2
                     exit 1
                 fi
 
-                feature_type="$(echo "$feature" | cut -d , -f 2)"
+                program_type="$(echo "$program" | cut -d , -f 2)"
 
-                case "$feature_type" in
+                case "$program_type" in
                     custom)
-                        feature="/usr/lib/bleux-ux/features/$(echo "$*" | tr ' ' /).sh"
+                        program="/usr/lib/bleux-ux/programs/$(echo "$*" | tr ' ' /).sh"
 
-                        if [ ! -e "$feature" ]; then
-                            echo 'Unknown feature.' >&2
+                        if [ ! -e "$program" ]; then
+                            echo 'Unknown program.' >&2
                             exit 1
                         fi
 
-                        sh "$feature" "$subcommand"
+                        sh "$program" "$subcommand"
                     ;;
                     *)
-                        feature_resources="$(echo "$feature" | cut -d , -f 3)"
+                        program_resources="$(echo "$program" | cut -d , -f 3)"
 
-                        if [ -z "$feature_resources" ]; then
-                            feature_resources="$*"
+                        if [ -z "$program_resources" ]; then
+                            program_resources="$*"
                         fi
 
-                        eval "$(feature_generate "$feature_type" --check "$subcommand" $feature_resources)"
+                        eval "$(program_generate "$program_type" --check "$subcommand" $program_resources)"
                     ;;
                 esac
             ;;

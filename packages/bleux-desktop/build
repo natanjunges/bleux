@@ -18,29 +18,29 @@
 
 include ../build-common
 
-control: ../bleux-ux/features/preremove.csv ../bleux-ux/features/remove.csv
+control: ../bleux-ux/programs/preremove.csv ../bleux-ux/programs/remove.csv
 	sed -Ei "s/^#   /    /; s/^    ($$( \
-		cat $^ | while read feature; do \
-			feature_type="$$(echo "$$feature" | cut -d , -f 2)"; \
-			feature_resources="$$(echo "$$feature" | cut -d , -f 3)"; \
-			case "$$feature_type" in \
+		cat $^ | while read program; do \
+			program_type="$$(echo "$$program" | cut -d , -f 2)"; \
+			program_resources="$$(echo "$$program" | cut -d , -f 3)"; \
+			case "$$program_type" in \
 				custom) \
-					if [ "$$feature_resources" ]; then \
-						printf "$$feature_resources|" | tr ' ' '|'; \
+					if [ "$$program_resources" ]; then \
+						printf "$$program_resources|" | tr ' ' '|'; \
 					fi; \
 				;; \
 				deb) \
-					if [ -z "$$feature_resources" ]; then \
-						feature_resources="$$(echo "$$feature" | cut -d , -f 1)"; \
+					if [ -z "$$program_resources" ]; then \
+						program_resources="$$(echo "$$program" | cut -d , -f 1)"; \
 					fi; \
-					printf "$$feature_resources|" | tr ' ' '|'; \
+					printf "$$program_resources|" | tr ' ' '|'; \
 				;; \
 			esac; \
 		done; \
 	)),/#   \1,/" '$@'
 
-minimize: ../bleux-ux/features/extended.csv
-	sh ../bleux-ux/ux feature replace_features '' '$^' 5 remove disable '$@'
+minimize: ../bleux-ux/programs/extended.csv
+	sh ../bleux-ux/ux program replace_programs '' '$^' 5 remove disable '$@'
 
-unminimize: ../bleux-ux/features/extended.csv
-	sh ../bleux-ux/ux feature replace_features '' '$^' 4 add enable '$@'
+unminimize: ../bleux-ux/programs/extended.csv
+	sh ../bleux-ux/ux program replace_programs '' '$^' 4 add enable '$@'

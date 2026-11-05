@@ -42,5 +42,5 @@ sudo apt-get purge -y gufw timeshift
 flatpak remove -y --noninteractive --delete-data org.gnome.DejaDup org.gnome.Calendar org.gnome.Connections org.gnome.Music org.gnome.Snapshot org.libreoffice.LibreOffice org.gnome.Showtime org.gnome.SimpleScan org.mozilla.thunderbird com.transmissionbt.Transmission
 ####end
 sudo apt-get autoremove -y --purge
-ux feature remove-unused flatpak
+ux program remove-unused flatpak
 dconf reset /org/gnome/shell/app-picker-layout
