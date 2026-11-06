@@ -47,16 +47,16 @@ validate_sudo_pid=$!
 
 # Install bleUX repository
 if [ ! -d /usr/local/bleux/ ]; then
-     wget https://github.com/natanjunges/bleux/releases/latest/download/bleux-repository.deb
-     sudo apt-get install -y ./bleux-repository.deb
-     rm bleux-repository.deb
+     wget https://github.com/natanjunges/bleux/releases/latest/download/bleux-repository-sources.deb
+     sudo apt-get install -y ./bleux-repository-sources.deb
+     rm bleux-repository-sources.deb
 fi
 
 # Update bleUX repository
 sudo apt-get update --no-list-cleanup -o Dir::Etc::SourceList="sources.list.d/bleux.sources" -o Dir::Etc::SourceParts="-"
 
 # Install bleUX packages
-sudo apt-get install -y bleux-desktop
+sudo apt-get install -y bleux-desktop-resolute
 
 # Enable bleUX settings
 ux setting enable accent-color
