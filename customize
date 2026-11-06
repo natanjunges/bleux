@@ -32,14 +32,10 @@ if [ ! -d /usr/local/bleux/ ]; then
 fi
 
 # Update bleUX repository
-if [ -f /etc/apt/sources.list.d/bleux.sources ]; then
-    sudo apt-get update --no-list-cleanup -o Dir::Etc::SourceList="sources.list.d/bleux.sources" -o Dir::Etc::SourceParts="-"
-else
-    sudo apt-get update --no-list-cleanup -o Dir::Etc::SourceList="sources.list.d/bleux.list" -o Dir::Etc::SourceParts="-"
-fi
+sudo apt-get update --no-list-cleanup -o Dir::Etc::SourceList="sources.list.d/bleux.list" -o Dir::Etc::SourceParts="-"
 
 # Install bleUX packages
-sudo apt-get install -y bleux-desktop=2.0.0
+sudo apt-get install -y bleux-desktop
 
 # Purge transitional packages
 sudo apt-get purge -y firefox libwmf0.2-7-gtk thunderbird
