@@ -195,69 +195,68 @@ program_replace_packages() {
 }
 
 case "$1" in
+    replace_programs)
+        shift
+        program_replace_programs "$@"
+        exit
+    ;;
+    replace_packages)
+        shift
+        program_replace_packages "$@"
+        exit
+    ;;
+esac
+
+subcommand="$1"
+shift
+
+case "$1" in
     program)
         shift
 
-        case "$1" in
-            replace_programs)
-                shift
-                program_replace_programs "$@"
-            ;;
-            replace_packages)
-                shift
-                program_replace_packages "$@"
+        case "$*" in
+            program_name)
+                program=''
             ;;
             *)
-                subcommand="$1"
-                shift
+                program="$(cat /usr/lib/bleux-ux/programs/preremove.csv /usr/lib/bleux-ux/programs/add.csv /usr/lib/bleux-ux/programs/extended.csv /usr/lib/bleux-ux/programs/remove.csv /usr/lib/bleux-ux/programs/extras.csv | grep -m 1 "^$*," || true)"
+            ;;
+        esac
 
-                case "$*" in
-                    program_name)
-                        program=''
-                    ;;
-                    *)
-                        program="$(cat /usr/lib/bleux-ux/programs/preremove.csv /usr/lib/bleux-ux/programs/add.csv /usr/lib/bleux-ux/programs/extended.csv /usr/lib/bleux-ux/programs/remove.csv /usr/lib/bleux-ux/programs/extras.csv | grep -m 1 "^$*," || true)"
-                    ;;
-                esac
+        if [ -z "$program" ]; then
+            echo 'Unknown program.' >&2
+            exit 1
+        fi
 
-                if [ -z "$program" ]; then
+        program_type="$(echo "$program" | cut -d , -f 2)"
+
+        case "$program_type" in
+            custom)
+                program="/usr/lib/bleux-ux/programs/$(echo "$*" | tr ' ' /).sh"
+
+                if [ ! -e "$program" ]; then
                     echo 'Unknown program.' >&2
                     exit 1
                 fi
 
-                program_type="$(echo "$program" | cut -d , -f 2)"
+                sh "$program" "$subcommand"
+            ;;
+            *)
+                program_resources="$(echo "$program" | cut -d , -f 3)"
 
-                case "$program_type" in
-                    custom)
-                        program="/usr/lib/bleux-ux/programs/$(echo "$*" | tr ' ' /).sh"
+                if [ -z "$program_resources" ]; then
+                    program_resources="$*"
+                fi
 
-                        if [ ! -e "$program" ]; then
-                            echo 'Unknown program.' >&2
-                            exit 1
-                        fi
-
-                        sh "$program" "$subcommand"
-                    ;;
-                    *)
-                        program_resources="$(echo "$program" | cut -d , -f 3)"
-
-                        if [ -z "$program_resources" ]; then
-                            program_resources="$*"
-                        fi
-
-                        eval "$(program_generate "$program_type" --check "$subcommand" $program_resources)"
-                    ;;
-                esac
+                eval "$(program_generate "$program_type" --check "$subcommand" $program_resources)"
             ;;
         esac
     ;;
     setting)
         shift
 
-        case "$1" in
+        case "$subcommand" in
             disable)
-                shift
-
                 case "$1" in
                     accent-color|button-layout|favorite-apps|gnome-backgrounds|gnome-console)
                         sudo rm -f "/usr/share/glib-2.0/schemas/30_bleux_$1.gschema.override"
@@ -277,8 +276,6 @@ case "$1" in
                 esac
             ;;
             enable)
-                shift
-
                 case "$1" in
                     accent-color|button-layout|favorite-apps|gnome-backgrounds|gnome-console)
                         sudo ln -s "/usr/lib/bleux-ux/settings/30_bleux_$1.gschema.override" /usr/share/glib-2.0/schemas/

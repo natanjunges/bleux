@@ -31,7 +31,7 @@ case "$1" in
         trap cleanup_sudo EXIT
         validate_sudo &
         validate_sudo_pid=$!
-        ux setting disable nosnap
+        ux disable setting nosnap
         sudo apt-get install -y --mark-auto snapd
         sudo snap install snapd
 
@@ -41,7 +41,7 @@ case "$1" in
     ;;
     remove)
         sudo apt-get purge -y snapd gnome-software-plugin-snap
-        ux setting enable nosnap
+        ux enable setting nosnap
     ;;
     *)
         echo Unknown program subcommand. >&2

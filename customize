@@ -20,9 +20,9 @@ set -ex
 
 # Update programs in this script
 if [ "$1" = replace ]; then
-    sh packages/bleux-ux/ux program replace_programs ' preremove' packages/bleux-ux/programs/preremove.csv 4 remove disable customize
-    sh packages/bleux-ux/ux program replace_programs ' add' packages/bleux-ux/programs/add.csv 4 add enable customize
-    sh packages/bleux-ux/ux program replace_programs ' remove' packages/bleux-ux/programs/remove.csv 4 remove disable customize
+    sh packages/bleux-ux/ux replace_programs ' preremove' packages/bleux-ux/programs/preremove.csv 4 remove disable customize
+    sh packages/bleux-ux/ux replace_programs ' add' packages/bleux-ux/programs/add.csv 4 add enable customize
+    sh packages/bleux-ux/ux replace_programs ' remove' packages/bleux-ux/programs/remove.csv 4 remove disable customize
     exit
 fi
 
@@ -59,11 +59,11 @@ sudo apt-get update --no-list-cleanup -o Dir::Etc::SourceList="sources.list.d/bl
 sudo apt-get install -y bleux-desktop-resolute
 
 # Enable bleUX settings
-ux setting enable accent-color
-ux setting enable button-layout
-ux setting enable favorite-apps
-ux setting enable gnome-backgrounds
-ux setting enable gnome-console
+ux enable setting accent-color
+ux enable setting button-layout
+ux enable setting favorite-apps
+ux enable setting gnome-backgrounds
+ux enable setting gnome-console
 
 # Purge transitional packages
 sudo apt-get purge -y firefox thunderbird
@@ -98,7 +98,7 @@ sudo apt-get install -y $(check-language-support)
 sudo apt-get autoremove -y --purge
 
 # Finish installation of flatpak runtimes
-ux program update flatpak
+ux update program flatpak
 
 # Reset app picker layout
 dconf reset /org/gnome/shell/app-picker-layout

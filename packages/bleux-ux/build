@@ -19,4 +19,4 @@
 include ../build-common
 
 control: programs/preremove.csv programs/add.csv programs/extended.csv programs/remove.csv
-	sh ux program replace_packages '' '$^' '$@'
+	sh ux replace_packages '' '$^' '$@'

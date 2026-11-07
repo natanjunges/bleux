@@ -40,7 +40,7 @@ control: ../bleux-ux/programs/preremove.csv ../bleux-ux/programs/remove.csv
 	)),/#   \1,/" '$@'
 
 minimize: ../bleux-ux/programs/extended.csv
-	sh ../bleux-ux/ux program replace_programs '' '$^' 5 remove disable '$@'
+	sh ../bleux-ux/ux replace_programs '' '$^' 5 remove disable '$@'
 
 unminimize: ../bleux-ux/programs/extended.csv
-	sh ../bleux-ux/ux program replace_programs '' '$^' 4 add enable '$@'
+	sh ../bleux-ux/ux replace_programs '' '$^' 4 add enable '$@'
