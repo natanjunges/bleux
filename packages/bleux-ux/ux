@@ -224,7 +224,7 @@ case "$1" in
         esac
 
         if [ -z "$program" ]; then
-            echo 'Unknown program.' >&2
+            echo Unknown program. >&2
             exit 1
         fi
 
@@ -235,7 +235,7 @@ case "$1" in
                 program="/usr/lib/bleux-ux/programs/$(echo "$*" | tr ' ' /).sh"
 
                 if [ ! -e "$program" ]; then
-                    echo 'Unknown program.' >&2
+                    echo Unknown program. >&2
                     exit 1
                 fi
 
@@ -255,50 +255,38 @@ case "$1" in
     setting)
         shift
 
+        case "$1" in
+            setting_name)
+                setting=''
+            ;;
+            *)
+                setting="$(grep -m 1 "^$1," /usr/lib/bleux-ux/settings/settings.csv || true)"
+            ;;
+        esac
+
+        if [ -z "$setting" ]; then
+            echo Unknown setting. >&2
+            exit 1
+        fi
+
+        setting_path="$(echo "$setting" | cut -d , -f 2)"
+        setting_filename="$(echo "$setting" | cut -d , -f 3)"
+        post_command="$(echo "$setting" | cut -d , -f 4)"
+
         case "$subcommand" in
             disable)
-                case "$1" in
-                    accent-color|button-layout|favorite-apps|gnome-backgrounds|gnome-console)
-                        sudo rm -f "/usr/share/glib-2.0/schemas/30_bleux_$1.gschema.override"
-                        sudo glib-compile-schemas /usr/share/glib-2.0/schemas
-
-                        if [ "$1" = accent-color ]; then
-                            dconf reset /org/gnome/desktop/interface/icon-theme
-                        fi
-                    ;;
-                    nosnap)
-                        sudo rm -f "/etc/apt/preferences.d/$1.pref"
-                    ;;
-                    *)
-                        echo Unknown setting. >&2
-                        exit 1
-                    ;;
-                esac
+                sudo rm -f "$setting_path$setting_filename"
             ;;
             enable)
-                case "$1" in
-                    accent-color|button-layout|favorite-apps|gnome-backgrounds|gnome-console)
-                        sudo ln -s "/usr/lib/bleux-ux/settings/30_bleux_$1.gschema.override" /usr/share/glib-2.0/schemas/
-                        sudo glib-compile-schemas /usr/share/glib-2.0/schemas
-
-                        if [ "$1" = accent-color ]; then
-                            dconf reset /org/gnome/desktop/interface/icon-theme
-                        fi
-                    ;;
-                    nosnap)
-                        sudo ln -s "/usr/lib/bleux-ux/settings/$1.pref" /etc/apt/preferences.d/
-                    ;;
-                    *)
-                        echo Unknown setting. >&2
-                        exit 1
-                    ;;
-                esac
+                sudo ln -s "/usr/lib/bleux-ux/settings/$setting_filename" "$setting_path"
             ;;
             *)
                 echo Unknown setting subcommand. >&2
                 exit 1
             ;;
         esac
+
+        eval "$post_command"
     ;;
     *)
         echo Unknown subcommand. >&2
