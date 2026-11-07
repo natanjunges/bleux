@@ -16,6 +16,6 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-POSTGEN=mv -f bleux-repository_*_amd64.deb bleux-repository.deb
+POSTGEN=mv -f bleux-repository-sources_*_amd64.deb bleux-repository-sources.deb
 
 include ../build-common
