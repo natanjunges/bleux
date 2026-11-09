@@ -23,6 +23,7 @@ if [ "$1" = replace ]; then
     sh packages/bleux-ux/ux replace_programs ' preremove' packages/bleux-ux/programs/preremove.csv 4 remove disable customize
     sh packages/bleux-ux/ux replace_programs ' add' packages/bleux-ux/programs/add.csv 4 add enable customize
     sh packages/bleux-ux/ux replace_programs ' remove' packages/bleux-ux/programs/remove.csv 4 remove disable customize
+    sh packages/bleux-ux/ux replace_settings ' enable' packages/bleux-ux/settings/enable.csv enable customize
     exit
 fi
 
@@ -58,12 +59,18 @@ sudo apt-get update --no-list-cleanup -o Dir::Etc::SourceList="sources.list.d/bl
 # Install bleUX packages
 sudo apt-get install -y bleux-desktop-resolute
 
-# Enable bleUX settings
-ux enable setting accent-color
-ux enable setting button-layout
-ux enable setting favorite-apps
-ux enable setting gnome-backgrounds
-ux enable setting gnome-console
+####begin enable
+sudo ln -s '/usr/lib/bleux-ux/settings/30_bleux_accent-color.gschema.override' '/usr/share/glib-2.0/schemas/'
+sudo glib-compile-schemas /usr/share/glib-2.0/schemas && dconf reset /org/gnome/desktop/interface/icon-theme
+sudo ln -s '/usr/lib/bleux-ux/settings/30_bleux_button-layout.gschema.override' '/usr/share/glib-2.0/schemas/'
+sudo glib-compile-schemas /usr/share/glib-2.0/schemas
+sudo ln -s '/usr/lib/bleux-ux/settings/30_bleux_favorite-apps.gschema.override' '/usr/share/glib-2.0/schemas/'
+sudo glib-compile-schemas /usr/share/glib-2.0/schemas
+sudo ln -s '/usr/lib/bleux-ux/settings/30_bleux_gnome-backgrounds.gschema.override' '/usr/share/glib-2.0/schemas/'
+sudo glib-compile-schemas /usr/share/glib-2.0/schemas
+sudo ln -s '/usr/lib/bleux-ux/settings/30_bleux_gnome-console.gschema.override' '/usr/share/glib-2.0/schemas/'
+sudo glib-compile-schemas /usr/share/glib-2.0/schemas
+####end enable
 
 # Purge transitional packages
 sudo apt-get purge -y firefox thunderbird

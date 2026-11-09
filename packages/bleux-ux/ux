@@ -18,6 +18,42 @@
 
 set -e
 
+setting_generate() {
+    case "$1" in
+        disable)
+            echo "sudo rm -f '$2$3'"
+            echo "$4"
+        ;;
+        enable)
+            echo "sudo ln -s '/usr/lib/bleux-ux/settings/$3' '$2'"
+            echo "$4"
+        ;;
+        *)
+            echo 'echo Unknown setting subcommand. >&2'
+            echo exit 1
+        ;;
+    esac
+}
+
+setting_replace() {
+    sed -i "/^####begin$1\$/,/^####end$1\$/c\\####begin$1\\n$(
+        cat $2 | while read setting; do
+            setting_name="$(echo "$setting" | cut -d , -f 1)"
+
+            case "$setting_name" in
+                setting_name)
+                ;;
+                *)
+                    setting_path="$(echo "$setting" | cut -d , -f 2)"
+                    setting_filename="$(echo "$setting" | cut -d , -f 3)"
+                    post_command="$(echo "$setting" | cut -d , -f 4)"
+                    setting_generate "$3" "$setting_path" "$setting_filename" "$post_command" | sed -E 's/^(.*)$/\1\\/'
+                ;;
+            esac
+        done
+    )n####end$1" $4
+}
+
 program_generate() {
     case "$1" in
         deb)
@@ -205,6 +241,11 @@ case "$1" in
         program_replace_packages "$@"
         exit
     ;;
+    replace_settings)
+        shift
+        setting_replace "$@"
+        exit
+    ;;
 esac
 
 subcommand="$1"
@@ -260,7 +301,7 @@ case "$1" in
                 setting=''
             ;;
             *)
-                setting="$(grep -m 1 "^$1," /usr/lib/bleux-ux/settings/settings.csv || true)"
+                setting="$(cat /usr/lib/bleux-ux/settings/enable.csv /usr/lib/bleux-ux/settings/extras.csv | grep -m 1 "^$1," || true)"
             ;;
         esac
 
@@ -272,21 +313,7 @@ case "$1" in
         setting_path="$(echo "$setting" | cut -d , -f 2)"
         setting_filename="$(echo "$setting" | cut -d , -f 3)"
         post_command="$(echo "$setting" | cut -d , -f 4)"
-
-        case "$subcommand" in
-            disable)
-                sudo rm -f "$setting_path$setting_filename"
-            ;;
-            enable)
-                sudo ln -s "/usr/lib/bleux-ux/settings/$setting_filename" "$setting_path"
-            ;;
-            *)
-                echo Unknown setting subcommand. >&2
-                exit 1
-            ;;
-        esac
-
-        eval "$post_command"
+        eval "$(setting_generate "$subcommand" "$setting_path" "$setting_filename" "$post_command")"
     ;;
     *)
         echo Unknown subcommand. >&2
