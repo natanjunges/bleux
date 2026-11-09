@@ -59,19 +59,6 @@ sudo apt-get update --no-list-cleanup -o Dir::Etc::SourceList="sources.list.d/bl
 # Install bleUX packages
 sudo apt-get install -y bleux-desktop-resolute
 
-####begin enable
-sudo ln -s '/usr/lib/bleux-ux/settings/30_bleux_accent-color.gschema.override' '/usr/share/glib-2.0/schemas/'
-sudo glib-compile-schemas /usr/share/glib-2.0/schemas && dconf reset /org/gnome/desktop/interface/icon-theme
-sudo ln -s '/usr/lib/bleux-ux/settings/30_bleux_button-layout.gschema.override' '/usr/share/glib-2.0/schemas/'
-sudo glib-compile-schemas /usr/share/glib-2.0/schemas
-sudo ln -s '/usr/lib/bleux-ux/settings/30_bleux_favorite-apps.gschema.override' '/usr/share/glib-2.0/schemas/'
-sudo glib-compile-schemas /usr/share/glib-2.0/schemas
-sudo ln -s '/usr/lib/bleux-ux/settings/30_bleux_gnome-backgrounds.gschema.override' '/usr/share/glib-2.0/schemas/'
-sudo glib-compile-schemas /usr/share/glib-2.0/schemas
-sudo ln -s '/usr/lib/bleux-ux/settings/30_bleux_gnome-console.gschema.override' '/usr/share/glib-2.0/schemas/'
-sudo glib-compile-schemas /usr/share/glib-2.0/schemas
-####end enable
-
 # Purge transitional packages
 sudo apt-get purge -y firefox thunderbird
 
@@ -98,14 +85,27 @@ sudo dpkg-divert --add --rename --divert /usr/share/gnome-shell/extensions/ubunt
 sudo apt-get purge -y baobab deja-dup file-roller gnome-calculator gnome-calendar gnome-characters gnome-clocks gnome-font-viewer gnome-initial-setup gnome-logs gnome-snapshot gnome-text-editor libreoffice-calc libreoffice-gnome libreoffice-impress libreoffice-math libreoffice-style-colibre libreoffice-style-yaru libreoffice-uiconfig-common libreoffice-writer loupe papers ptyxis remmina resources rhythmbox seahorse shotwell showtime simple-scan transmission-gtk ubuntu-wallpapers
 ####end remove
 
-# Finish installation of language support
-sudo apt-get install -y $(check-language-support)
-
 # Purge unused packages
 sudo apt-get autoremove -y --purge
 
+# Finish installation of language support
+sudo apt-get install -y $(check-language-support)
+
 # Finish installation of flatpak runtimes
 ux update program flatpak
+
+####begin enable
+sudo ln -s '/usr/lib/bleux-ux/settings/30_bleux_accent-color.gschema.override' '/usr/share/glib-2.0/schemas/'
+sudo glib-compile-schemas /usr/share/glib-2.0/schemas && dconf reset /org/gnome/desktop/interface/icon-theme
+sudo ln -s '/usr/lib/bleux-ux/settings/30_bleux_button-layout.gschema.override' '/usr/share/glib-2.0/schemas/'
+sudo glib-compile-schemas /usr/share/glib-2.0/schemas
+sudo ln -s '/usr/lib/bleux-ux/settings/30_bleux_favorite-apps.gschema.override' '/usr/share/glib-2.0/schemas/'
+sudo glib-compile-schemas /usr/share/glib-2.0/schemas
+sudo ln -s '/usr/lib/bleux-ux/settings/30_bleux_gnome-backgrounds.gschema.override' '/usr/share/glib-2.0/schemas/'
+sudo glib-compile-schemas /usr/share/glib-2.0/schemas
+sudo ln -s '/usr/lib/bleux-ux/settings/30_bleux_gnome-console.gschema.override' '/usr/share/glib-2.0/schemas/'
+sudo glib-compile-schemas /usr/share/glib-2.0/schemas
+####end enable
 
 # Reset app picker layout
 dconf reset /org/gnome/shell/app-picker-layout
