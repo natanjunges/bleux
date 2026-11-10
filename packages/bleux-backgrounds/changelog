@@ -1,3 +1,9 @@
+bleux-backgrounds (1.0.3) jammy noble resolute; urgency=low
+
+  * Update bleUX to resolute.
+
+ -- Natan Junges <natanajunges@gmail.com>  Tue, 10 Nov 2026 08:30:58 -0300
+
 bleux-backgrounds (1.0.2) jammy noble; urgency=low
 
   * Update bleUX to noble.

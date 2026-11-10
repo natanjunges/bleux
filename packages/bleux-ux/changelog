@@ -1,8 +1,19 @@
 bleux-ux (3.0.0) resolute; urgency=low
 
+  * Replace native GNOME packages with flatpaks.
+  * Move sudo invocations to the edge commands.
+  * Centralize and deduplicate feature definition and execution.
+  * Dynamically update control file from feature definitions.
   * Rename package to bleux-ux.
+  * Unify bleux-features and bleux-settings under bleux-ux, unify feature command and settings under ux command.
+  * Modularize settings.
+  * Add sudo keep-alive logic to scripts to make them less interactive.
+  * Unify programs and settings as features.
+  * Add version conflicts with noble packages.
+  * Make ux settings declarative.
+  * Update bleUX to resolute.
 
- -- Natan Junges <natanajunges@gmail.com>  Wed, 05 Aug 2026 11:12:00 -0300
+ -- Natan Junges <natanajunges@gmail.com>  Tue, 10 Nov 2026 08:30:58 -0300
 
 bleux-features (2.0.2) noble; urgency=low
 

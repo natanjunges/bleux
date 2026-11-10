@@ -1,3 +1,17 @@
+bleux-desktop-resolute (3.0.0) resolute; urgency=low
+
+  * Replace native GNOME packages with flatpaks.
+  * Move sudo invocations to the edge commands.
+  * Centralize and deduplicate feature definition and execution.
+  * Dynamically update control files and minimize and unminimize scripts from feature definitions.
+  * Add version conflicts with noble packages.
+  * Add sudo keep-alive logic to scripts to make them less interactive.
+  * Rename package to bleux-desktop-resolute.
+  * Rename packages to better accomodate supporting multiple versions of bleUX.
+  * Update bleUX to resolute.
+
+ -- Natan Junges <natanajunges@gmail.com>  Tue, 10 Nov 2026 08:30:58 -0300
+
 bleux-desktop (2.0.0) noble; urgency=low
 
   * Increase verbosity of (un)minimize scripts.
