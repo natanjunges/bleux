@@ -1,13 +1,13 @@
 Section:
-[Essential]: yes
-[Depends]:
-[Recommends]:
-[Suggests]:
-[Breaks]:
-[Conflicts]:
-[Provides]:
-[Replaces]:
+#Essential: yes
+#Depends:
+#Recommends:
+#Suggests:
+#Breaks:
+#Conflicts:
+#Provides:
+#Replaces:
 Description:
-[Postinst]:
-[Prerm]:
-[Files]:
+#Postinst:
+#Prerm:
+#Files:

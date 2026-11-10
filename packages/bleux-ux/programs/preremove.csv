@@ -1,0 +1,2 @@
+program_name,program_type,program_resources,default_subcommand
+snap,custom,snapd gnome-software-plugin-snap,remove

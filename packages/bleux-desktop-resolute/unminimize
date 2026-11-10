@@ -1,0 +1,51 @@
+#!/bin/sh
+
+# bleUX, a user-centric desktop Linux distribution
+# Copyright (C) 2024, 2026  Natan Junges <natanajunges@gmail.com>
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+set -ex
+
+if ! dpkg-query -f '${db:Status-abbrev}' -W bleux-ux 2> /dev/null | grep -q '^.i'; then
+    echo 'The \e[1mbleux-ux\e[0m package is not installed.' >&2
+    exit 1
+fi
+
+validate_sudo() {
+    while true; do
+        sudo -v
+        sleep 14m
+    done
+}
+cleanup_sudo() {
+    kill $validate_sudo_pid
+}
+trap cleanup_sudo EXIT
+validate_sudo &
+validate_sudo_pid=$!
+
+if [ "$1" != customize ]; then
+    sudo apt-get install -y --mark-auto $(dpkg-query -f '${Suggests}' -W bleux-desktop | tr -d ,)
+fi
+
+####begin
+sudo apt-get install -y --mark-auto gufw timeshift
+flatpak install -y --noninteractive --no-related org.gnome.DejaDup org.gnome.Calendar org.gnome.Connections org.gnome.Music org.gnome.Snapshot org.libreoffice.LibreOffice org.gnome.Showtime org.gnome.SimpleScan org.mozilla.thunderbird com.transmissionbt.Transmission
+####end
+
+if [ "$1" != customize ]; then
+    ux update program flatpak
+    dconf reset /org/gnome/shell/app-picker-layout
+fi

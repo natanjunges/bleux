@@ -1,0 +1,322 @@
+#!/bin/sh
+
+# bleUX, a user-centric desktop Linux distribution
+# Copyright (C) 2023, 2024, 2026  Natan Junges <natanajunges@gmail.com>
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+set -e
+
+setting_generate() {
+    case "$1" in
+        disable)
+            echo "sudo rm -f '$2$3'"
+            echo "$4"
+        ;;
+        enable)
+            echo "sudo ln -s '/usr/lib/bleux-ux/settings/$3' '$2'"
+            echo "$4"
+        ;;
+        *)
+            echo 'echo Unknown setting subcommand. >&2'
+            echo exit 1
+        ;;
+    esac
+}
+
+setting_replace() {
+    sed -i "/^####begin$1\$/,/^####end$1\$/c\\####begin$1\\n$(
+        cat $2 | while read setting; do
+            setting_name="$(echo "$setting" | cut -d , -f 1)"
+
+            case "$setting_name" in
+                setting_name)
+                ;;
+                *)
+                    setting_path="$(echo "$setting" | cut -d , -f 2)"
+                    setting_filename="$(echo "$setting" | cut -d , -f 3)"
+                    post_command="$(echo "$setting" | cut -d , -f 4)"
+                    setting_generate "$3" "$setting_path" "$setting_filename" "$post_command" | sed -E 's/^(.*)$/\1\\/'
+                ;;
+            esac
+        done
+    )n####end$1" $4
+}
+
+program_generate() {
+    case "$1" in
+        deb)
+            shift
+
+            if [ "$1" = --check ]; then
+                shift
+            fi
+
+            case "$1" in
+                add)
+                    shift
+                    echo "sudo apt-get install -y --mark-auto $*"
+                ;;
+                remove)
+                    shift
+                    echo "sudo apt-get purge -y $*"
+                ;;
+                *)
+                    echo 'echo Unknown program subcommand. >&2'
+                    echo exit 1
+                ;;
+            esac
+        ;;
+        extension)
+            if [ "$2" = --check ]; then
+                shift
+            fi
+
+            case "$2" in
+                disable)
+                    echo "sudo dpkg-divert --add --rename --divert /usr/share/gnome-shell/extensions/$3/metadata.json.disabled /usr/share/gnome-shell/extensions/$3/metadata.json"
+                ;;
+                enable)
+                    echo "sudo dpkg-divert --remove --rename --divert /usr/share/gnome-shell/extensions/$3/metadata.json.disabled /usr/share/gnome-shell/extensions/$3/metadata.json"
+                ;;
+                *)
+                    echo 'echo Unknown program subcommand. >&2'
+                    echo exit 1
+                ;;
+            esac
+        ;;
+        flatpak)
+            check=''
+
+            if [ "$2" = --check ]; then
+                shift
+                check=1
+            fi
+
+            case "$2" in
+                add)
+                    if [ "$check" ]; then
+                        echo 'if ! dpkg-query -f '\''${db:Status-abbrev}'\'' -W flatpak 2> /dev/null | grep -q '\''^.i'\''; then'
+                        echo '    echo '\''The \\e[1mflatpak\\e[0m program is not enabled.'\'' >&2'
+                        echo '    exit 1'
+                        echo fi
+                    fi
+
+                    echo "flatpak install -y --noninteractive --no-related $3"
+                ;;
+                remove)
+                    if [ "$check" ]; then
+                        echo 'if dpkg-query -f '\''${db:Status-abbrev}'\'' -W flatpak 2> /dev/null | grep -q '\''^.i'\''; then'
+                        printf '    '
+                    fi
+
+                    echo "flatpak remove -y --noninteractive --delete-data $3"
+
+                    if [ "$check" ]; then
+                        echo fi
+                    fi
+                ;;
+                *)
+                    echo 'echo Unknown program subcommand. >&2'
+                    echo exit 1
+                ;;
+            esac
+        ;;
+        snap)
+            check=''
+
+            if [ "$2" = --check ]; then
+                shift
+                check=1
+            fi
+
+            case "$2" in
+                add)
+                    if [ "$check" ]; then
+                        echo 'if ! dpkg-query -f '\''${db:Status-abbrev}'\'' -W snapd 2> /dev/null | grep -q '\''^.i'\''; then'
+                        echo '    echo '\''The\\e[1msnap\\e[0mprogram is not enabled.'\'' >&2'
+                        echo '    exit 1'
+                        echo fi
+                    fi
+
+                    echo "sudo snap install $3"
+                ;;
+                remove)
+                    if [ "$check" ]; then
+                        echo 'if dpkg-query -f '\''${db:Status-abbrev}'\'' -W snapd 2> /dev/null | grep -q '\''^.i'\''; then'
+                        printf '    '
+                    fi
+
+                    echo "sudo snap remove --purge $3"
+
+                    if [ "$check" ]; then
+                        echo fi
+                    fi
+                ;;
+                *)
+                    echo 'echo Unknown program subcommand. >&2'
+                    echo exit 1
+                ;;
+            esac
+        ;;
+        *)
+            echo 'echo Unknown program type. >&2'
+            echo exit 1
+        ;;
+    esac
+}
+
+program_replace() {
+    sed -i "/^####begin$1\$/,/^####end$1\$/c\\####begin$1\\n$(
+        cat $2 | while read program; do
+            old_program_type="$program_type"
+            program_type="$(echo "$program" | cut -d , -f 2)"
+
+            case "$program_type" in
+                custom)
+                    eval "$3"
+                ;;
+                program_type)
+                ;;
+                $4)
+                    eval "$5"
+                    program_resources="$(echo "$program" | cut -d , -f 3)"
+
+                    if [ -z "$program_resources" ]; then
+                        program_resources="$(echo "$program" | cut -d , -f 1)"
+                    fi
+
+                    eval "$6"
+                ;;
+            esac
+        done | $7
+    )n####end$1" $8
+}
+
+program_replace_programs() {
+    program_replace "$1" "$2" 'echo "sh '\''/usr/lib/bleux-ux/programs/$(echo "$program" | cut -d , -f 1 | tr '\'' '\'' /).sh'\'' '\''$(echo "$program" | cut -d , -f '$3')'\''\\"' '*' 'case "$program_type" in
+        deb|flatpak|snap)
+            subcommand='$4'
+        ;;
+        extension)
+            subcommand='$5'
+        ;;
+        *)
+            subcommand="$program_type"
+        ;;
+    esac' 'if echo "$program_type" | grep -Eq '\''^deb|flatpak|snap$'\'' && [ "$old_program_type" = "$program_type" ]; then
+        echo "\\ $program_resources\\"
+    else
+        program_generate "$program_type" "$subcommand" $program_resources | sed -E '\''s/^(.*)$/\1\\/'\''
+    fi' 'sed -z s/\\\n\\//g' "$6"
+}
+
+program_replace_packages() {
+    program_replace "$1" "$2" 'for package in $(echo "$program" | cut -d , -f 3); do
+        echo "    $package,\\"
+    done' deb true 'for package in $program_resources; do
+        echo "    $package,\\"
+    done' 'sort -u' "$3"
+}
+
+case "$1" in
+    replace_programs)
+        shift
+        program_replace_programs "$@"
+        exit
+    ;;
+    replace_packages)
+        shift
+        program_replace_packages "$@"
+        exit
+    ;;
+    replace_settings)
+        shift
+        setting_replace "$@"
+        exit
+    ;;
+esac
+
+subcommand="$1"
+shift
+
+case "$1" in
+    program)
+        shift
+
+        case "$*" in
+            program_name)
+                program=''
+            ;;
+            *)
+                program="$(cat /usr/lib/bleux-ux/programs/preremove.csv /usr/lib/bleux-ux/programs/add.csv /usr/lib/bleux-ux/programs/extended.csv /usr/lib/bleux-ux/programs/remove.csv /usr/lib/bleux-ux/programs/extras.csv | grep -m 1 "^$*," || true)"
+            ;;
+        esac
+
+        if [ -z "$program" ]; then
+            echo Unknown program. >&2
+            exit 1
+        fi
+
+        program_type="$(echo "$program" | cut -d , -f 2)"
+
+        case "$program_type" in
+            custom)
+                program="/usr/lib/bleux-ux/programs/$(echo "$*" | tr ' ' /).sh"
+
+                if [ ! -e "$program" ]; then
+                    echo Unknown program. >&2
+                    exit 1
+                fi
+
+                sh "$program" "$subcommand"
+            ;;
+            *)
+                program_resources="$(echo "$program" | cut -d , -f 3)"
+
+                if [ -z "$program_resources" ]; then
+                    program_resources="$*"
+                fi
+
+                eval "$(program_generate "$program_type" --check "$subcommand" $program_resources)"
+            ;;
+        esac
+    ;;
+    setting)
+        shift
+
+        case "$1" in
+            setting_name)
+                setting=''
+            ;;
+            *)
+                setting="$(cat /usr/lib/bleux-ux/settings/enable.csv /usr/lib/bleux-ux/settings/extras.csv | grep -m 1 "^$1," || true)"
+            ;;
+        esac
+
+        if [ -z "$setting" ]; then
+            echo Unknown setting. >&2
+            exit 1
+        fi
+
+        setting_path="$(echo "$setting" | cut -d , -f 2)"
+        setting_filename="$(echo "$setting" | cut -d , -f 3)"
+        post_command="$(echo "$setting" | cut -d , -f 4)"
+        eval "$(setting_generate "$subcommand" "$setting_path" "$setting_filename" "$post_command")"
+    ;;
+    *)
+        echo Unknown subcommand. >&2
+        exit 1
+    ;;
+esac

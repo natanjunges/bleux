@@ -1,7 +1,7 @@
-#!/usr/bin/sh
+#!/bin/sh
 
 # bleUX, a user-centric desktop Linux distribution
-# Copyright (C) 2023, 2024  Natan Junges <natanajunges@gmail.com>
+# Copyright (C) 2023, 2024, 2026  Natan Junges <natanajunges@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -16,69 +16,99 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-set -e -x
+set -ex
+
+# Update programs in this script
+if [ "$1" = replace ]; then
+    sh packages/bleux-ux/ux replace_programs ' preremove' packages/bleux-ux/programs/preremove.csv 4 remove disable customize
+    sh packages/bleux-ux/ux replace_programs ' add' packages/bleux-ux/programs/add.csv 4 add enable customize
+    sh packages/bleux-ux/ux replace_programs ' remove' packages/bleux-ux/programs/remove.csv 4 remove disable customize
+    sh packages/bleux-ux/ux replace_settings ' enable' packages/bleux-ux/settings/enable.csv enable customize
+    exit
+fi
+
+# Validate Ubuntu version
+if ! grep -qm 1 'VERSION_ID="26.04"' /etc/os-release; then
+    echo Unsupported Ubuntu version. Must be 26.04. >&2
+    exit 1
+fi
+
+validate_sudo() {
+    while true; do
+        sudo -v
+        sleep 14m
+    done
+}
+cleanup_sudo() {
+    kill $validate_sudo_pid
+}
+trap cleanup_sudo EXIT
+validate_sudo &
+validate_sudo_pid=$!
 
 # Install bleUX repository
 if [ ! -d /usr/local/bleux/ ]; then
-     wget https://github.com/natanjunges/bleux/releases/latest/download/bleux-repository.deb
-     sudo apt-get install -y ./bleux-repository.deb
-     rm bleux-repository.deb
+     wget https://github.com/natanjunges/bleux/releases/latest/download/bleux-repository-sources.deb
+     sudo apt-get install -y ./bleux-repository-sources.deb
+     rm bleux-repository-sources.deb
 fi
 
 # Update bleUX repository
-sudo apt-get update --no-list-cleanup -o Dir::Etc::SourceList="sources.list.d/bleux.list" -o Dir::Etc::SourceParts="-"
+sudo apt-get update --no-list-cleanup -o Dir::Etc::SourceList="sources.list.d/bleux.sources" -o Dir::Etc::SourceParts="-"
 
 # Install bleUX packages
-sudo apt-get install -y bleux-desktop
+sudo apt-get install -y bleux-desktop-resolute
 
 # Purge transitional packages
-sudo apt-get purge -y firefox libwmf0.2-7-gtk thunderbird
+sudo apt-get purge -y firefox thunderbird
 
-# Initialize GDM X.org configuration
-sudo feature init xorg
+####begin preremove
+sh '/usr/lib/bleux-ux/programs/snap.sh' 'remove'
+####end preremove
 
-# Remove snap before adding gnome-software
-sudo feature remove snap
+####begin add
+sudo apt-get install -y --mark-auto bleux-backgrounds gnome-console gnome-system-monitor gnome-tour preload software-properties-gtk
+sh '/usr/lib/bleux-ux/programs/flatpak.sh' 'add'
+sh '/usr/lib/bleux-ux/programs/gnome-software.sh' 'add'
+sh '/usr/lib/bleux-ux/programs/ufw.sh' 'enable'
+flatpak install -y --noninteractive --no-related org.gnome.baobab org.mozilla.firefox org.gnome.Calculator org.gnome.Characters org.gnome.clocks org.gnome.font-viewer org.gnome.Logs org.gnome.TextEditor org.gnome.Loupe org.gnome.Papers
+####end add
 
-# Add features
-sudo feature add gnome-backgrounds
-sudo feature add gnome-console
-sudo feature add gnome-software
-sudo feature add loupe
-sudo feature add nala
-sudo feature enable ufw
-sudo feature add flatpak
-feature add flatpak firefox
-
-# Install normal packages in normal install
+# Install extended packages in extended install
 if dpkg-query -f '${db:Status-abbrev}' -W usb-creator-gtk 2> /dev/null | grep -q '^.i'; then
     unminimize customize
 fi
 
-# Disable/remove features
-sudo feature disable apt
-sudo feature remove desktop-icons
-sudo feature remove eog
-sudo feature remove gnome-power-manager
-sudo feature remove gnome-terminal
-sudo feature remove libreoffice
-sudo feature remove remmina
-sudo feature remove rhythmbox
-sudo feature remove seahorse
-sudo feature remove shotwell
-sudo feature remove transmission
-sudo feature remove ubuntu-dock
-sudo feature remove ubuntu-wallpapers
-sudo feature disable xorg
-
-# Finish installation of language support
-sudo apt-get install -y $(check-language-support)
+####begin remove
+sudo dpkg-divert --add --rename --divert /usr/share/gnome-shell/extensions/ding@rastersoft.com/metadata.json.disabled /usr/share/gnome-shell/extensions/ding@rastersoft.com/metadata.json
+sudo dpkg-divert --add --rename --divert /usr/share/gnome-shell/extensions/ubuntu-dock@ubuntu.com/metadata.json.disabled /usr/share/gnome-shell/extensions/ubuntu-dock@ubuntu.com/metadata.json
+sudo apt-get purge -y baobab deja-dup file-roller gnome-calculator gnome-calendar gnome-characters gnome-clocks gnome-font-viewer gnome-initial-setup gnome-logs gnome-snapshot gnome-text-editor libreoffice-calc libreoffice-gnome libreoffice-impress libreoffice-math libreoffice-style-colibre libreoffice-style-yaru libreoffice-uiconfig-common libreoffice-writer loupe papers ptyxis remmina resources rhythmbox seahorse shotwell showtime simple-scan transmission-gtk ubuntu-wallpapers
+####end remove
 
 # Purge unused packages
 sudo apt-get autoremove -y --purge
 
-# Finish installation of flatpak runtimes
-feature update flatpak
+# Finish installation of language support
+sudo apt-get install -y $(check-language-support)
 
-# Fetch nala mirrors
-sudo feature fetch nala
+# Finish installation of flatpak runtimes
+ux update program flatpak
+
+####begin enable
+sudo ln -s '/usr/lib/bleux-ux/settings/30_bleux_accent-color.gschema.override' '/usr/share/glib-2.0/schemas/'
+sudo glib-compile-schemas /usr/share/glib-2.0/schemas && dconf reset /org/gnome/desktop/interface/icon-theme
+sudo ln -s '/usr/lib/bleux-ux/settings/30_bleux_button-layout.gschema.override' '/usr/share/glib-2.0/schemas/'
+sudo glib-compile-schemas /usr/share/glib-2.0/schemas
+sudo ln -s '/usr/lib/bleux-ux/settings/30_bleux_favorite-apps.gschema.override' '/usr/share/glib-2.0/schemas/'
+sudo glib-compile-schemas /usr/share/glib-2.0/schemas
+sudo ln -s '/usr/lib/bleux-ux/settings/30_bleux_gnome-backgrounds.gschema.override' '/usr/share/glib-2.0/schemas/'
+sudo glib-compile-schemas /usr/share/glib-2.0/schemas
+sudo ln -s '/usr/lib/bleux-ux/settings/30_bleux_gnome-console.gschema.override' '/usr/share/glib-2.0/schemas/'
+sudo glib-compile-schemas /usr/share/glib-2.0/schemas
+####end enable
+
+# Reset app picker layout
+dconf reset /org/gnome/shell/app-picker-layout
+
+# Reset welcome dialog last shown version
+dconf reset /org/gnome/shell/welcome-dialog-last-shown-version

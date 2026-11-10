@@ -1,0 +1,2 @@
+setting_name,setting_path,setting_filename,post_command
+nosnap,/etc/apt/preferences.d/,nosnap.pref,

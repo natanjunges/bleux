@@ -1,7 +1,7 @@
 # bleUX
 A user-centric desktop Linux distribution
 
-- Based on Ubuntu Desktop 24.04 LTS;
+- Based on Ubuntu Desktop [24.04 LTS](https://github.com/natanjunges/bleux/tree/noble) and 26.04 LTS;
 - Vanilla Gnome DE;
 - Modularly enable/disable [core features](https://github.com/natanjunges/bleux/wiki/Features) using scripts;
 
@@ -9,11 +9,12 @@ A user-centric desktop Linux distribution
 ### Development
 
 ```shell
-sudo apt-get install --no-install-recommends -y equivs git make
+sudo apt-get install --no-install-recommends -y apt-utils equivs git make
 git clone https://github.com/natanjunges/bleux.git
 cd bleux/repository
-./build -j 5 install
+./build -j 4 install
 cd ..
+./customize replace
 ./customize
 ```
 

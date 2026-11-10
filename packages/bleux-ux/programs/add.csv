@@ -1,0 +1,20 @@
+program_name,program_type,program_resources,default_subcommand
+gnome-backgrounds,deb,bleux-backgrounds,
+gnome-console,deb,,
+gnome-system-monitor,deb,,
+gnome-tour,deb,,
+preload,deb,,
+software-properties,deb,software-properties-gtk,
+flatpak,custom,flatpak gnome-software-plugin-flatpak,add
+gnome-software,custom,gnome-software gnome-software-plugin-flatpak gnome-software-plugin-snap,add
+ufw,custom,,enable
+flatpak baobab,flatpak,org.gnome.baobab,
+flatpak firefox,flatpak,org.mozilla.firefox,
+flatpak gnome-calculator,flatpak,org.gnome.Calculator,
+flatpak gnome-characters,flatpak,org.gnome.Characters,
+flatpak gnome-clocks,flatpak,org.gnome.clocks,
+flatpak gnome-font-viewer,flatpak,org.gnome.font-viewer,
+flatpak gnome-logs,flatpak,org.gnome.Logs,
+flatpak gnome-text-editor,flatpak,org.gnome.TextEditor,
+flatpak loupe,flatpak,org.gnome.Loupe,
+flatpak papers,flatpak,org.gnome.Papers,

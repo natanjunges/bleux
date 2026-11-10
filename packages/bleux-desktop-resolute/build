@@ -1,0 +1,46 @@
+#!/usr/bin/make -f
+
+# bleUX, a user-centric desktop Linux distribution
+# Copyright (C) 2023, 2026  Natan Junges <natanajunges@gmail.com>
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+include ../build-common
+
+control: ../bleux-ux/programs/preremove.csv ../bleux-ux/programs/remove.csv
+	sed -Ei "s/^#   /    /; s/^    ($$( \
+		cat $^ | while read program; do \
+			program_type="$$(echo "$$program" | cut -d , -f 2)"; \
+			program_resources="$$(echo "$$program" | cut -d , -f 3)"; \
+			case "$$program_type" in \
+				custom) \
+					if [ "$$program_resources" ]; then \
+						printf "$$program_resources|" | tr ' ' '|'; \
+					fi; \
+				;; \
+				deb) \
+					if [ -z "$$program_resources" ]; then \
+						program_resources="$$(echo "$$program" | cut -d , -f 1)"; \
+					fi; \
+					printf "$$program_resources|" | tr ' ' '|'; \
+				;; \
+			esac; \
+		done; \
+	)),/#   \1,/" '$@'
+
+minimize: ../bleux-ux/programs/extended.csv
+	sh ../bleux-ux/ux replace_programs '' '$^' 5 remove disable '$@'
+
+unminimize: ../bleux-ux/programs/extended.csv
+	sh ../bleux-ux/ux replace_programs '' '$^' 4 add enable '$@'

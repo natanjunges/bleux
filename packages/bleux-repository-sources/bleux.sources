@@ -1,0 +1,5 @@
+Types: deb
+URIs: https://github.com/natanjunges/bleux/releases/latest/download
+Suites: /
+Signed-By: /usr/share/keyrings/bleux-archive-keyring.gpg
+Architectures: amd64
