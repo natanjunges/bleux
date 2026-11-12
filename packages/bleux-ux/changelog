@@ -1,3 +1,10 @@
+bleux-ux (3.1.0) resolute; urgency=low
+
+  * Add pre-commands to settings.
+  * Add amd64v3 setting.
+
+ -- Natan Junges <natanajunges@gmail.com>  Thu, 12 Nov 2026 12:51:39 -0300
+
 bleux-ux (3.0.1) resolute; urgency=low
 
   * Fix sudo keep alive not working when sudo hasn't been validated yet.
