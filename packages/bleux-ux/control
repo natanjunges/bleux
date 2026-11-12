@@ -67,6 +67,7 @@ Files: programs/add.csv /usr/lib/bleux-ux/programs/
     settings/30_bleux_favorite-apps.gschema.override /usr/lib/bleux-ux/settings/
     settings/30_bleux_gnome-backgrounds.gschema.override /usr/lib/bleux-ux/settings/
     settings/30_bleux_gnome-console.gschema.override /usr/lib/bleux-ux/settings/
+    settings/99enable-amd64v3 /usr/lib/bleux-ux/settings/
     settings/enable.csv /usr/lib/bleux-ux/settings/
     settings/extras.csv /usr/lib/bleux-ux/settings/
     settings/nosnap.pref /usr/lib/bleux-ux/settings/

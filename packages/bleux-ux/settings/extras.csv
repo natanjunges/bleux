@@ -1,2 +1,3 @@
-setting_name,setting_path,setting_filename,post_command
-nosnap,/etc/apt/preferences.d/,nosnap.pref,
+setting_name,setting_path,setting_filename,post_command,pre_command
+nosnap,/etc/apt/preferences.d/,nosnap.pref,,
+amd64v3,/etc/apt/apt.conf.d/,99enable-amd64v3,sudo apt update,ld.so --help | grep -qm 1 'x86-64-v3 (supported' || (echo Unsupported CPU microarchitecture. >&2; exit 1)

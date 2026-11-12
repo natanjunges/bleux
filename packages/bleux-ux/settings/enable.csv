@@ -1,6 +1,6 @@
-setting_name,setting_path,setting_filename,post_command
-accent-color,/usr/share/glib-2.0/schemas/,30_bleux_accent-color.gschema.override,sudo glib-compile-schemas /usr/share/glib-2.0/schemas && dconf reset /org/gnome/desktop/interface/icon-theme
-button-layout,/usr/share/glib-2.0/schemas/,30_bleux_button-layout.gschema.override,sudo glib-compile-schemas /usr/share/glib-2.0/schemas
-favorite-apps,/usr/share/glib-2.0/schemas/,30_bleux_favorite-apps.gschema.override,sudo glib-compile-schemas /usr/share/glib-2.0/schemas
-gnome-backgrounds,/usr/share/glib-2.0/schemas/,30_bleux_gnome-backgrounds.gschema.override,sudo glib-compile-schemas /usr/share/glib-2.0/schemas
-gnome-console,/usr/share/glib-2.0/schemas/,30_bleux_gnome-console.gschema.override,sudo glib-compile-schemas /usr/share/glib-2.0/schemas
+setting_name,setting_path,setting_filename,post_command,pre_command
+accent-color,/usr/share/glib-2.0/schemas/,30_bleux_accent-color.gschema.override,sudo glib-compile-schemas /usr/share/glib-2.0/schemas && dconf reset /org/gnome/desktop/interface/icon-theme,
+button-layout,/usr/share/glib-2.0/schemas/,30_bleux_button-layout.gschema.override,sudo glib-compile-schemas /usr/share/glib-2.0/schemas,
+favorite-apps,/usr/share/glib-2.0/schemas/,30_bleux_favorite-apps.gschema.override,sudo glib-compile-schemas /usr/share/glib-2.0/schemas,
+gnome-backgrounds,/usr/share/glib-2.0/schemas/,30_bleux_gnome-backgrounds.gschema.override,sudo glib-compile-schemas /usr/share/glib-2.0/schemas,
+gnome-console,/usr/share/glib-2.0/schemas/,30_bleux_gnome-console.gschema.override,sudo glib-compile-schemas /usr/share/glib-2.0/schemas,

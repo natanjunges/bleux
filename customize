@@ -99,14 +99,19 @@ sudo apt-get install -y $(check-language-support)
 ux update program flatpak
 
 ####begin enable
+
 sudo ln -s '/usr/lib/bleux-ux/settings/30_bleux_accent-color.gschema.override' '/usr/share/glib-2.0/schemas/'
 sudo glib-compile-schemas /usr/share/glib-2.0/schemas && dconf reset /org/gnome/desktop/interface/icon-theme
+
 sudo ln -s '/usr/lib/bleux-ux/settings/30_bleux_button-layout.gschema.override' '/usr/share/glib-2.0/schemas/'
 sudo glib-compile-schemas /usr/share/glib-2.0/schemas
+
 sudo ln -s '/usr/lib/bleux-ux/settings/30_bleux_favorite-apps.gschema.override' '/usr/share/glib-2.0/schemas/'
 sudo glib-compile-schemas /usr/share/glib-2.0/schemas
+
 sudo ln -s '/usr/lib/bleux-ux/settings/30_bleux_gnome-backgrounds.gschema.override' '/usr/share/glib-2.0/schemas/'
 sudo glib-compile-schemas /usr/share/glib-2.0/schemas
+
 sudo ln -s '/usr/lib/bleux-ux/settings/30_bleux_gnome-console.gschema.override' '/usr/share/glib-2.0/schemas/'
 sudo glib-compile-schemas /usr/share/glib-2.0/schemas
 ####end enable

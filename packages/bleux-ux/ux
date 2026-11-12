@@ -21,10 +21,12 @@ set -e
 setting_generate() {
     case "$1" in
         disable)
+            echo "$5"
             echo "sudo rm -f '$2$3'"
             echo "$4"
         ;;
         enable)
+            echo "$5"
             echo "sudo ln -s '/usr/lib/bleux-ux/settings/$3' '$2'"
             echo "$4"
         ;;
@@ -47,7 +49,8 @@ setting_replace() {
                     setting_path="$(echo "$setting" | cut -d , -f 2)"
                     setting_filename="$(echo "$setting" | cut -d , -f 3)"
                     post_command="$(echo "$setting" | cut -d , -f 4)"
-                    setting_generate "$3" "$setting_path" "$setting_filename" "$post_command" | sed -E 's/^(.*)$/\1\\/'
+                    pre_command="$(echo "$setting" | cut -d , -f 5)"
+                    setting_generate "$3" "$setting_path" "$setting_filename" "$post_command" "$pre_command" | sed -E 's/^(.*)$/\1\\/'
                 ;;
             esac
         done
@@ -313,7 +316,8 @@ case "$1" in
         setting_path="$(echo "$setting" | cut -d , -f 2)"
         setting_filename="$(echo "$setting" | cut -d , -f 3)"
         post_command="$(echo "$setting" | cut -d , -f 4)"
-        eval "$(setting_generate "$subcommand" "$setting_path" "$setting_filename" "$post_command")"
+        pre_command="$(echo "$setting" | cut -d , -f 5)"
+        eval "$(setting_generate "$subcommand" "$setting_path" "$setting_filename" "$post_command" "$pre_command")"
     ;;
     *)
         echo Unknown subcommand. >&2
